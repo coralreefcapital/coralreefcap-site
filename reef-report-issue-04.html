@@ -70,6 +70,18 @@
   }
   .bug svg { width: 3cqw; height: 3cqw; min-width: 22px; min-height: 22px; }
   .bug .presents { color: rgba(255,255,255,.9); font-size: clamp(10px, 1.35cqw, 18px); font-family: 'Shrikhand', cursive; }
+  .bug a { display: inline-flex; }
+  .home-pill {
+    position: fixed; bottom: 20px; right: 20px; z-index: 50;
+    background: rgba(11,22,20,0.85); color: var(--teal-light);
+    border: 1px solid rgba(93,202,165,0.4); border-radius: 999px;
+    padding: 10px 18px; font-family: 'Inter', sans-serif; font-size: 11px;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; backdrop-filter: blur(6px);
+    transition: background .2s, color .2s;
+  }
+  .home-pill:hover { background: var(--teal); color: #fff; }
+  @media print { .home-pill { display: none; } }
   .wordmark {
     position: absolute; left: 2.7cqw; bottom: 2.4cqw;
     display: flex; flex-direction: column; align-items: flex-start; text-align: left; z-index: 3;
@@ -318,12 +330,15 @@
   <img class="hero-bleed" src="184_Concept_2___Epoch_of_Edifice_.jpg" alt="Epoch of Edifice: brutalist courtyard terraced with coral-shelf landscaping">
   <div class="scrim wash"></div>
   <div class="bug">
+    <a href="/" aria-label="Coral Reef Capital home">
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Coral Reef Capital">
       <path d="M15 3 Q8 14 7 25 L15 25 Z" fill="#1A6B62"/>
       <path d="M16 7 Q22 14 24 25 L16 25 Z" fill="#D85A30"/>
       <rect x="5" y="26" width="22" height="3" fill="#1A6B62"/>
     </svg>
+    </a>
   </div>
+  <a class="home-pill" href="/">&#8592; Back to Home</a>
   <div class="cover-toc">
     <span>July 2026</span>
     <strong>ATL · AUS · CLT · DFW · FTL · HOU · MIA · BNA · MCO · RDU · SAT · TPA</strong>
