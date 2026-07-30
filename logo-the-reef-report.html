@@ -1,0 +1,152 @@
+<!--
+  aesthetic_dna: Luxury Editorial Fintech / Atmospheric Brutalism
+  ui_paradigm: Scalable Cover Art Canvas (Container-Query Driven)
+  palette: Deep Teal (#1A6B62->#0A4A42), Bright Teal (#5DCAA5), Coral (#D85A30), Absolute White
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Reef Report - Coral Reef Capital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap');
+
+        .artwork-container {
+            container-type: inline-size;
+            container-name: artwork;
+            aspect-ratio: 1 / 1;
+            box-shadow:
+                0 8cqw 16cqw -4cqw rgba(0,0,0,0.8),
+                0 8cqw 20cqw rgba(26,107,98,0.5),
+                0 0 0 1px rgba(255,255,255,0.08) inset;
+        }
+
+        .layer-base {
+            background: linear-gradient(135deg, #1A6B62 0%, #0A4A42 100%);
+        }
+
+        .layer-light-top {
+            background: radial-gradient(circle at 110% -10%, rgba(60, 189, 174, 0.4) 0%, transparent 65%);
+            mix-blend-mode: screen;
+        }
+
+        .layer-shadow-bottom {
+            background: radial-gradient(circle at -10% 110%, rgba(0,0,0, 0.6) 0%, transparent 55%);
+            mix-blend-mode: multiply;
+        }
+
+        .structural-ring-outer {
+            inset: 1.5cqw;
+            border: 0.15cqw solid rgba(255,255,255,0.10);
+            border-radius: calc(4cqw - 1.5cqw);
+        }
+
+        .structural-ring-inner {
+            inset: 2.25cqw;
+            border: 0.15cqw solid rgba(26,107,98,0.50);
+            border-radius: calc(4cqw - 2.25cqw);
+        }
+
+        .font-masthead-italic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 5.5cqw;
+            letter-spacing: 0.05em;
+            line-height: 1;
+        }
+
+        .font-masthead-black {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 27cqw;
+            line-height: 0.82;
+            letter-spacing: -0.025em;
+            margin-left: -1.2cqw;
+        }
+
+        .font-masthead-bold {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 16.5cqw;
+            line-height: 0.85;
+            letter-spacing: -0.01em;
+            margin-left: 0.5cqw;
+        }
+
+        .font-sans-label {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .coral-glow {
+            filter: drop-shadow(0px 0px 1cqw rgba(216,90,48,0.7));
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-[#050505] p-6 lg:p-12 overflow-hidden selection:bg-[#5DCAA5] selection:text-white">
+
+    <!-- Ambient background glow -->
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#1A6B62] rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
+
+    <main class="artwork-container relative w-full max-w-[600px] rounded-[4cqw] overflow-hidden group hover:scale-[1.01] transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] will-change-transform cursor-crosshair">
+
+        <!-- Atmospheric Background -->
+        <div class="absolute inset-0 z-0 layer-base"></div>
+        <div class="absolute inset-0 z-10 layer-light-top"></div>
+        <div class="absolute inset-0 z-10 layer-shadow-bottom"></div>
+
+        <!-- Analog Noise (Linear principle) -->
+        <svg class="absolute inset-0 w-full h-full z-20 pointer-events-none mix-blend-overlay opacity-[0.075]">
+            <filter id="fractalNoise">
+                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#fractalNoise)"/>
+        </svg>
+
+        <!-- Framing Rings (Linear luminance stacking) -->
+        <div class="absolute pointer-events-none z-30 structural-ring-outer"></div>
+        <div class="absolute pointer-events-none z-30 structural-ring-inner backdrop-blur-[0.5px]"></div>
+
+        <!-- Content -->
+        <article class="relative z-40 w-full h-full flex flex-col justify-between p-[7cqw] box-border pointer-events-auto">
+
+            <header class="flex justify-between items-start w-full opacity-90 transition-opacity duration-500 group-hover:opacity-100">
+                <h2 class="font-sans-label font-medium uppercase text-white/75 text-[2.2cqw] tracking-[0.25cqw] leading-tight w-[60%]">
+                    Monthly Multifamily Intelligence
+                </h2>
+                <div class="text-right">
+                    <span class="block font-sans-label font-semibold text-[#5DCAA5] text-[1.8cqw] tracking-[0.1cqw] uppercase">Issue 01</span>
+                    <span class="block font-sans-label font-normal text-white/40 text-[1.6cqw] tracking-[0.15cqw] uppercase mt-[0.5cqw]">2026</span>
+                </div>
+            </header>
+
+            <!-- Typography Lockup -->
+            <section class="flex flex-col flex-grow justify-center mt-[4cqw]">
+                <div class="flex flex-col self-start transform transition-transform duration-700 ease-out group-hover:translate-x-[0.5cqw]">
+                    <span class="font-masthead-italic text-white/80 ml-[0.5cqw] mb-[0.5cqw]">The</span>
+                    <h1 class="font-masthead-black text-white mix-blend-plus-lighter drop-shadow-2xl">REEF</h1>
+                    <span class="font-masthead-bold text-white/95 mt-[0.5cqw]">REPORT</span>
+                </div>
+            </section>
+
+            <!-- Footer with Sailboat Mark -->
+            <footer class="flex justify-between items-end w-full pb-[1cqw]">
+                <svg viewBox="0 0 100 100" class="w-[8.5cqw] h-[8.5cqw] overflow-visible">
+                    <polygon points="45,15 45,75 12,75" fill="#5DCAA5" class="origin-bottom-right transition-transform duration-500 group-hover:scale-y-[1.05]" />
+                    <polygon points="52,30 52,75 88,75" fill="#D85A30" class="coral-glow origin-bottom-left transition-transform duration-500 group-hover:scale-y-[1.02]" />
+                    <rect x="8" y="82" width="84" height="2" fill="#5DCAA5" rx="1" />
+                    <rect x="15" y="87" width="70" height="1.5" fill="#5DCAA5" rx="0.75" opacity="0.6" />
+                </svg>
+
+                <div class="font-sans-label font-semibold text-white/30 text-[1.6cqw] tracking-[0.3cqw] uppercase text-right leading-none pb-[0.5cqw]">
+                    Coral Reef Capital
+                </div>
+            </footer>
+
+        </article>
+    </main>
+
+</body>
+</html>

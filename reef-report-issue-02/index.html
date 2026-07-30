@@ -1,0 +1,3376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Reef Report, Issue 02 · May 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page { margin: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-dark:  #0A4A42;
+      --teal:       #1A6B62;
+      --teal-mid:   #3A9B8E;
+      --teal-light: #5DCAA5;
+      --coral:      #D85A30;
+      --coral-lt:   #E8886C;
+      --ink:        #0B1614;
+      --paper:      #F4F3F0;
+      --paper-mid:  #EAE9E5;
+      --rule:       rgba(26,107,98,0.15);
+      --text:       #1C2B28;
+      --text-mid:   #4A6560;
+      --text-dim:   #7A9990;
+      --white:      #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--paper);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════════════════════════════════════
+       COVER - NEGATIVE EVIDENCE STYLE
+    ══════════════════════════════════════════ */
+    .cover {
+      width: 100%;
+      min-height: 100vh;
+      background: #080a0d;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      left: auto;
+      width: 50%;
+      background: url('reef_01_wide.png') center/cover;
+      filter: grayscale(1) invert(1) contrast(1.1);
+      opacity: 0.72;
+      z-index: 0;
+    }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: auto;
+      bottom: 0;
+      width: auto;
+      height: 5px;
+      background: linear-gradient(90deg, #c6694b, #d4af37, #2d6962);
+      z-index: 3;
+    }
+
+    .cover-glow {
+      display: none;
+    }
+    .cover-glow-bottom {
+      display: none;
+    }
+
+    .cover-inner {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 56px 72px;
+    }
+
+    .cover-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .cover-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .cover-issue {
+      text-align: right;
+    }
+    .cover-issue-num {
+      display: block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal-light);
+    }
+    .cover-issue-date {
+      display: block;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 4px;
+    }
+
+    .cover-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 0 40px;
+    }
+    .cover-headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(48px, 8vw, 80px);
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+      color: #ffffff;
+      margin-bottom: 24px;
+      max-width: 600px;
+    }
+    .cover-subtitle {
+      font-size: clamp(16px, 2.5vw, 19px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.74);
+      line-height: 1.5;
+      max-width: 580px;
+      margin-bottom: 32px;
+    }
+
+    .cover-bottom {
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .cover-wordmark {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .cover-toc-preview {
+      text-align: right;
+    }
+    .cover-toc-preview span {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 4px;
+    }
+    .cover-toc-preview strong {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #5DCAA5;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION BASE
+    ══════════════════════════════════════════ */
+    .section {
+      padding: 72px;
+      border-top: 1px solid var(--rule);
+    }
+    .section.dark {
+      background: var(--ink);
+      border-top-color: rgba(255,255,255,0.08);
+    }
+    .section-eyebrow {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3.5px; text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .dark .section-eyebrow { color: var(--teal-light); }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 36px;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .dark .section-title { color: var(--white); }
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-mid);
+      margin-bottom: 40px;
+      max-width: 1000px;
+      line-height: 1.7;
+    }
+    .dark .section-sub { color: rgba(240,245,244,0.5); }
+
+    /* ══════════════════════════════════════════
+       CONTINUITY BRIDGE
+    ══════════════════════════════════════════ */
+    .continuity-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 32px;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .continuity-box {
+      background: var(--paper-mid);
+      border-radius: 6px;
+      padding: 24px;
+    }
+    .dark .continuity-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(93,202,165,0.1);
+    }
+    .continuity-box h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .dark .continuity-box h4 { color: var(--teal-light); }
+    .continuity-box ul {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+    .dark .continuity-box ul { color: rgba(240,245,244,0.6); }
+    .continuity-box li:before {
+      content: "–";
+      margin-right: 8px;
+      color: var(--teal-mid);
+    }
+    .continuity-divider {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--teal);
+      text-align: center;
+      padding: 0 16px;
+      white-space: nowrap;
+    }
+    .dark .continuity-divider { color: var(--teal-light); }
+
+    /* ══════════════════════════════════════════
+       SOURCE INTELLIGENCE STACK
+    ══════════════════════════════════════════ */
+    .source-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin-top: 32px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .source-layer {
+      background: var(--paper-mid);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .dark .source-layer {
+      background: rgba(255,255,255,0.04);
+      border-left: 3px solid rgba(93,202,165,0.3);
+    }
+    .source-layer-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      min-width: 140px;
+    }
+    .dark .source-layer-label { color: var(--teal-light); }
+    .source-layer-content {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .dark .source-layer-content { color: rgba(240,245,244,0.6); }
+
+    /* ══════════════════════════════════════════
+       SIGNAL BOARD (12-card grid)
+    ══════════════════════════════════════════ */
+    .signal-board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .signal-card {
+      background: var(--paper-mid);
+      border-radius: 6px;
+      border-left: 3px solid var(--teal-mid);
+      padding: 20px;
+    }
+    .dark .signal-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(93,202,165,0.1);
+      border-left: 3px solid var(--teal-light);
+    }
+    .signal-card.macro { border-left-color: var(--teal); }
+    .signal-card.debt { border-left-color: var(--coral); }
+    .signal-card.supply { border-left-color: #C9A84C; }
+    .signal-card.ops { border-left-color: var(--teal-light); }
+    .signal-card.capital { border-left-color: #9B59B6; }
+
+    a.signal-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.2s ease;
+    }
+    a.signal-card-link:hover .signal-card {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    a.signal-card-link .signal-card {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .signal-metric {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .dark .signal-metric { color: var(--white); }
+    .signal-source {
+      font-size: 10px;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .dark .signal-source { color: rgba(240,245,244,0.35); }
+    .signal-implication {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .dark .signal-implication { color: rgba(240,245,244,0.6); }
+
+    /* ══════════════════════════════════════════
+       TRANSMISSION CHAIN
+    ══════════════════════════════════════════ */
+    .transmission-chain {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .chain-node {
+      flex: 1;
+      min-width: 140px;
+      background: rgba(58,155,142,0.08);
+      border: 1px solid var(--teal-mid);
+      border-radius: 6px;
+      padding: 16px;
+      text-align: center;
+    }
+    .dark .chain-node {
+      background: rgba(58,155,142,0.06);
+      border-color: rgba(58,155,142,0.3);
+    }
+    .chain-node-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .dark .chain-node-label { color: var(--white); }
+    .chain-arrow {
+      font-size: 20px;
+      color: var(--coral);
+    }
+
+    /* ══════════════════════════════════════════
+       DEBT WINDOW GAUGE
+    ══════════════════════════════════════════ */
+    .debt-gauge {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .gauge-side {
+      background: var(--paper-mid);
+      border-radius: 6px;
+      padding: 28px;
+    }
+    .dark .gauge-side {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(93,202,165,0.1);
+    }
+    .gauge-side.positive {
+      border-top: 4px solid var(--teal);
+    }
+    .gauge-side.negative {
+      border-top: 4px solid var(--coral);
+    }
+    .gauge-side h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .dark .gauge-side h4 { color: var(--white); }
+    .gauge-side ul {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+    .dark .gauge-side ul { color: rgba(240,245,244,0.6); }
+    .gauge-side li {
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .gauge-side li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+    .gauge-side.positive li:before { color: var(--teal); }
+    .gauge-side.negative li:before { color: var(--coral); }
+
+    /* ══════════════════════════════════════════
+       TIMELINE
+    ══════════════════════════════════════════ */
+    .timeline {
+      position: relative;
+      margin-top: 40px;
+      padding: 32px 0;
+    }
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal) 0%, var(--coral) 100%);
+    }
+    .timeline-events {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-event {
+      text-align: center;
+      max-width: 140px;
+    }
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--teal);
+      margin: 0 auto 12px;
+      border: 3px solid var(--paper);
+    }
+    .dark .timeline-dot { border-color: var(--ink); }
+    .timeline-event.critical .timeline-dot {
+      background: var(--coral);
+      width: 16px;
+      height: 16px;
+    }
+    .timeline-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .dark .timeline-label { color: var(--white); }
+    .timeline-desc {
+      font-size: 11px;
+      color: var(--text-mid);
+      line-height: 1.4;
+    }
+    .dark .timeline-desc { color: rgba(240,245,244,0.5); }
+
+    /* ══════════════════════════════════════════
+       CHECKLIST (Two-column)
+    ══════════════════════════════════════════ */
+    .checklist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 32px;
+    }
+    .checklist-col {
+      background: var(--paper);
+      padding: 28px 24px;
+    }
+    .dark .checklist-col {
+      background: rgba(255,255,255,0.03);
+    }
+    .checklist-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 16px;
+    }
+    .checklist-col:last-child h4 { color: var(--teal); }
+    .checklist-col ul {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+    .dark .checklist-col ul { color: rgba(240,245,244,0.6); }
+    .checklist-col li:before {
+      content: "□";
+      margin-right: 8px;
+      color: var(--text-dim);
+    }
+    .checklist-col:last-child li:before {
+      content: "✓";
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    /* ══════════════════════════════════════════
+       PRESSURE STRIP (4 cards)
+    ══════════════════════════════════════════ */
+    .pressure-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .pressure-card {
+      background: var(--paper-mid);
+      border-radius: 6px;
+      padding: 24px 20px;
+      border-top: 3px solid var(--coral);
+    }
+    .dark .pressure-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(216,90,48,0.2);
+      border-top: 3px solid var(--coral);
+    }
+    .pressure-card h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 12px;
+    }
+    .pressure-old {
+      font-size: 12px;
+      color: var(--text-dim);
+      /* text-decoration: line-through; */ /* Removed - no strikethrough */
+      margin-bottom: 4px;
+    }
+    .dark .pressure-old { color: rgba(240,245,244,0.3); }
+    .pressure-new {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .dark .pressure-new { color: var(--white); }
+    .pressure-question {
+      font-size: 12px;
+      color: var(--text-mid);
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .dark .pressure-question { color: rgba(240,245,244,0.5); }
+
+    /* ══════════════════════════════════════════
+       BEHAVIOR CARDS
+    ══════════════════════════════════════════ */
+    .behavior-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .behavior-card {
+      background: rgba(58,155,142,0.05);
+      border: 1px solid var(--teal-mid);
+      border-radius: 6px;
+      padding: 24px 20px;
+    }
+    .dark .behavior-card {
+      background: rgba(58,155,142,0.04);
+      border-color: rgba(58,155,142,0.2);
+    }
+    .behavior-card h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .behavior-stat {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .behavior-implication {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .dark .behavior-implication { color: rgba(240,245,244,0.6); }
+
+    /* ══════════════════════════════════════════
+       OPERATOR EDGE GRID
+    ══════════════════════════════════════════ */
+    .edge-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 32px;
+      font-size: 13px;
+    }
+    .edge-table thead tr {
+      border-bottom: 2px solid var(--teal);
+    }
+    .dark .edge-table thead tr {
+      border-bottom-color: var(--teal-light);
+    }
+    .edge-table th {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding: 0 16px 12px 0;
+      text-align: left;
+    }
+    .dark .edge-table th { color: var(--teal-light); }
+    .edge-table td {
+      padding: 16px 16px 16px 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .dark .edge-table td {
+      border-bottom-color: rgba(255,255,255,0.06);
+      color: rgba(240,245,244,0.6);
+    }
+    .edge-table tr:last-child td { border-bottom: none; }
+    .edge-table .category {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .dark .edge-table .category { color: var(--white); }
+
+    /* ══════════════════════════════════════════
+       NEWS BOARD
+    ══════════════════════════════════════════ */
+    .news-board {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .news-card {
+      background: var(--paper-mid);
+      border-radius: 6px;
+      padding: 20px;
+    }
+    .dark .news-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .news-card-source {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .dark .news-card-source { color: var(--teal-light); }
+    .news-card-headline {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .dark .news-card-headline { color: var(--white); }
+    .news-card-date {
+      font-size: 10px;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+    .dark .news-card-date { color: rgba(240,245,244,0.3); }
+
+    .sentiment-strip {
+      margin-top: 24px;
+      padding: 16px 20px;
+      background: rgba(122,153,144,0.08);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .dark .sentiment-strip {
+      background: rgba(122,153,144,0.06);
+      color: rgba(240,245,244,0.35);
+    }
+    .sentiment-strip strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .dark .sentiment-strip strong { color: rgba(240,245,244,0.7); }
+
+    /* ══════════════════════════════════════════
+       PROSE
+    ══════════════════════════════════════════ */
+    .prose {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.8;
+      max-width: 1100px;
+    }
+    .prose p { margin-bottom: 16px; }
+    .prose strong { color: var(--text); font-weight: 600; }
+    .dark .prose { color: rgba(240,245,244,0.6); }
+    .dark .prose strong { color: rgba(240,245,244,0.9); }
+
+    .crc-read {
+      background: rgba(58,155,142,0.08);
+      border-left: 4px solid var(--teal);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+    .dark .crc-read {
+      background: rgba(58,155,142,0.06);
+      border-left-color: var(--teal-light);
+    }
+    .crc-read-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .dark .crc-read-label { color: var(--teal-light); }
+    .crc-read p {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .dark .crc-read p { color: rgba(240,245,244,0.65); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    .report-footer {
+      background: var(--ink);
+      padding: 56px 72px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(93,202,165,0.12);
+      margin-bottom: 32px;
+    }
+    .footer-wordmark {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .footer-tagline {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(93,202,165,0.5);
+    }
+    .footer-disclosures {
+      max-width: 520px;
+      text-align: right;
+    }
+    .footer-disclosures p {
+      font-size: 11px;
+      color: rgba(240,245,244,0.25);
+      line-height: 1.7;
+    }
+    .footer-disclosures strong {
+      color: rgba(240,245,244,0.45);
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(240,245,244,0.2);
+    }
+    .footer-issue {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(93,202,165,0.4);
+    }
+
+    /* ══════════════════════════════════════════
+       MARKET SECTIONS
+    ══════════════════════════════════════════ */
+    .markets-wrapper {
+      background: var(--paper);
+    }
+
+    .market-section {
+      padding: 64px 72px;
+      border-top: 1px solid var(--rule);
+    }
+    .market-section:nth-child(even) {
+      background: rgba(26,107,98,0.03);
+    }
+
+    .market-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .market-header-left {}
+    .market-number {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .market-name-h {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 38px;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .market-state {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .market-rent-badge {
+      text-align: right;
+    }
+    .rent-number {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1;
+    }
+    .rent-number.up   { color: var(--teal); }
+    .rent-number.down { color: var(--coral); }
+    .rent-label {
+      display: block;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    .market-metrics {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-bottom: 32px;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .metric-cell {
+      padding: 20px 20px;
+      border-right: 1px solid var(--rule);
+    }
+    .metric-cell:last-child { border-right: none; }
+    .metric-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 18px; font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .metric-sub {
+      font-size: 11px;
+      color: var(--text-mid);
+      margin-top: 3px;
+    }
+
+    .market-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .market-headline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .market-insight {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+    .market-insight strong { color: var(--text); font-weight: 600; }
+
+    .market-sidebar {}
+    .sidebar-card {
+      background: var(--paper-mid);
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .sidebar-card:last-child { margin-bottom: 0; }
+    .sidebar-card-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .sidebar-card-value {
+      font-size: 14px; font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .sidebar-card-value.green { color: var(--teal); }
+    .sidebar-card-value.red   { color: var(--coral); }
+
+    /* ══════════════════════════════════════════
+       MOBILE (≤768px)
+    ══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .cover-inner { padding: 32px 24px; }
+      .cover-top, .cover-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+      .cover-issue { text-align: left; }
+      .cover-source-strip { text-align: left; }
+
+      .section { padding: 48px 24px; }
+      .section-title { font-size: 28px; }
+
+      .continuity-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .continuity-divider {
+        transform: none;
+        padding: 20px 0;
+        text-align: center;
+        font-size: 16px;
+      }
+      .continuity-divider::after {
+        content: " ↓";
+        display: inline;
+      }
+
+      .debt-gauge,
+      .checklist {
+        grid-template-columns: 1fr;
+      }
+
+      .signal-board,
+      .behavior-grid,
+      .news-board {
+        grid-template-columns: 1fr;
+      }
+
+      .transmission-chain {
+        flex-direction: column;
+      }
+      .chain-arrow {
+        transform: rotate(90deg);
+      }
+
+      .edge-table {
+        display: block;
+        overflow-x: auto;
+      }
+
+      /* Market sections mobile */
+      .market-section { padding: 40px 24px; }
+      .market-header { flex-direction: column; gap: 12px; }
+      .market-rent-badge { text-align: left; }
+      .market-name-h { font-size: 28px; }
+      .rent-number { font-size: 36px; }
+
+      /* 5-col metrics grid → 2 cols + last cell full-width */
+      .market-metrics { grid-template-columns: repeat(2, 1fr); }
+      .metric-cell:nth-child(2n) { border-right: none; }
+      .metric-cell:nth-child(5) { grid-column: span 2; border-right: none; }
+
+      .market-content { grid-template-columns: 1fr; gap: 24px; }
+
+      /* Center all content on mobile */
+      .section { text-align: center; }
+      .section-title, .section-sub, .prose { text-align: left; }
+
+      /* Scrollable tables */
+      table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+      }
+
+      /* Left-align market headers on mobile */
+      .market-header {
+        justify-content: flex-start;
+        text-align: left;
+        align-items: flex-start;
+      }
+      .market-header-left {
+        width: 100%;
+      }
+      .market-rent-badge {
+        width: 100%;
+      }
+
+      /* Stack grids on mobile */
+      .signal-board,
+      .news-board {
+        justify-items: center;
+      }
+
+
+      .report-footer { padding: 40px 24px; }
+      .footer-top { flex-direction: column; gap: 24px; }
+      .footer-disclosures { text-align: left; }
+
+
+      /* Scorecard table - horizontally scrollable on mobile */
+      .scorecard-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 12px;
+      }
+      .scorecard-table th {
+        padding: 12px 14px 12px 0;
+        white-space: nowrap;
+      }
+      .scorecard-table td {
+        padding: 10px 14px 10px 0;
+        white-space: nowrap;
+      }
+
+      /* Property examples and distress metrics - stack on mobile */
+      div[style*="grid-template-columns: repeat(3, 1fr)"],
+      div[style*="grid-template-columns: repeat(4, 1fr)"] {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+
+      /* Distress section horizontal gap layout */
+      div[style*="display: flex"][style*="align-items: center"][style*="gap: 40px"] {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        text-align: center !important;
+      }
+      div[style*="display: flex"][style*="align-items: center"][style*="gap: 40px"] > div {
+        text-align: center !important;
+      }
+
+      /* Large metric numbers - reduce on mobile */
+      div[style*="font-size: 64px"],
+      div[style*="font-size: 72px"],
+      div[style*="font-size: 80px"] {
+        font-size: 48px !important;
+      }
+
+      /* Ensure all cards have touch-friendly spacing */
+      .news-card,
+      .signal-card,
+      .behavior-card {
+        min-height: 44px;
+      }
+
+      /* Bank grid on mobile */
+      .bank-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Sources grid - stack on mobile */
+      div[style*="grid-template-columns: repeat(3, 1fr)"][style*="Sources"] {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      /* Center "217 The Gap" section on mobile */
+      div[style*="font-size: 80px"] {
+        text-align: center !important;
+      }
+
+      /* Stack and center "What this means" and "paradox" two-column layouts */
+      div[style*="display: grid"][style*="grid-template-columns: 1fr 1fr"],
+      div[style*="display: grid"][style*="grid-template-columns: 1fr 400px"] {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+      }
+
+      /* Market overview cards with stats - stack on mobile */
+      div[style*="display: grid"][style*="grid-template-columns: repeat(2, 1fr)"],
+      div[style*="grid-template-columns: repeat(2, 1fr)"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Regional bank cards - stack on mobile */
+      div[style*="background: rgba(26,107,98,0.08)"][style*="padding: 12px"] {
+        width: 100% !important;
+      }
+
+      /* Supply chart - allow horizontal scroll */
+      div[style*="background: rgba(26,107,98"] svg {
+        min-width: 600px !important;
+      }
+
+      /* Timeline - horizontal scroll on mobile */
+      .timeline {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 32px 12px;
+      }
+      .timeline-events {
+        min-width: 600px;
+        padding: 0 20px;
+      }
+      .timeline-event {
+        flex: 0 0 auto;
+        max-width: 120px;
+      }
+      .timeline-label {
+        font-size: 10px;
+      }
+      .timeline-desc {
+        font-size: 10px;
+      }
+
+      /* Footer - stack on mobile */
+      .report-footer div[style*="grid-template-columns: 300px 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+      }
+      .report-footer div[style*="display: flex"][style*="justify-content: space-between"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
+      }
+      .report-footer {
+        padding: 40px 20px 32px !important;
+      }
+    }
+
+    /* News card links */
+    a.news-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease;
+    }
+
+    a.news-card-link:hover {
+      transform: translateX(2px);
+    }
+
+    a.news-card-link:hover .news-card {
+      background: rgba(26,107,98,0.08);
+      border-left: 4px solid var(--teal);
+    }
+
+    .dark a.news-card-link:hover .news-card {
+      background: rgba(26,107,98,0.12);
+    }
+
+    .news-card {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     COVER
+══════════════════════════════════════════ -->
+<section class="cover">
+  <div class="cover-glow"></div>
+  <div class="cover-glow-bottom"></div>
+  <div class="cover-inner">
+    <div class="cover-top">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <a href="/" style="display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(93,202,165,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Home
+        </a>
+        <div class="cover-label">The Reef Report</div>
+      </div>
+      <div class="cover-issue">
+        <span class="cover-issue-num">Issue 02</span>
+        <span class="cover-issue-date">May 2026</span>
+      </div>
+    </div>
+
+    <div class="cover-hero">
+      <h1 class="cover-headline">The Market Is Moving Again</h1>
+      <p class="cover-subtitle">Bank fragility, extend-and-pretend, supply cliff mechanics, and 16 coral reef markets where the 2026-2027 acquisition window is opening.</p>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-wordmark">Coral Reef Capital</div>
+      <div class="cover-toc-preview">
+        <span>Markets covered</span>
+        <strong>ATL · AUS · CLT · DFW · FTL · HOU · MIA · BNA · MCO · RDU · SAT · TPA</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     OPENING BRIEF
+══════════════════════════════════════════ -->
+<section class="section dark">
+  <div class="section-eyebrow">Opening Brief</div>
+  <h2 class="section-title">Capital Is Moving, But Underwriting Isn't Casual Anymore</h2>
+
+  <div class="prose">
+    <p>The multifamily market is no longer frozen.</p>
+
+    <p>Debt is moving again. Lenders are quoting. Spreads have tightened. CRE CLO issuance is back in the conversation. Agency, life company, bank, debt fund, and private-credit capital are all trying to find the right version of multifamily risk.</p>
+
+    <p>At the same time, <strong>the old underwriting regime is gone</strong>.</p>
+
+    <p>The rate-cut rescue has not arrived cleanly. Oil and gasoline shocked the inflation path. The Fed is still cautious. Long rates remain high enough to matter. Insurance has repriced the expense line. Concessions are still distorting effective rent. Fraud and bad debt are now part of the NOI conversation. Small-balance Freddie execution changed in April. And the easiest mistake in 2026 is mistaking available capital for forgiving capital.</p>
+
+    <p>The opportunity is not that multifamily became easy again. It did not.</p>
+
+    <p><strong>The opportunity is that the market is moving again while the operating pain is still visible.</strong> That is where disciplined operators can see what casual buyers miss: the difference between physical occupancy and economic occupancy, between advertised rent and collected rent, between lower future supply and today's concession burn-off, between a quoted loan and actual proceeds, between a market with job growth and a submarket with enough good jobs.</p>
+
+    <p>Issue 01 was about where supply will not go. Issue 02 is about what happens when the market cycle starts to validate that framework.</p>
+
+    <p>The math is still submarket-specific.</p>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>The window is reopening, but not evenly. The window is reopening for disciplined buyers because debt is available, sellers are under pressure, and future supply is falling before operating pain has fully cleared. The work is no longer finding a market with a good headline. The work is proving the asset can survive real debt, real expenses, and real residents.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CONTINUITY: SUPPLY IS STILL THE STORY
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-eyebrow">Issue 01 Continuity</div>
+  <h2 class="section-title">Supply Is Still The Story</h2>
+  <p class="section-sub">Reef Report Issue 01 made a simple point: the best submarket signal is not what is being built today. It is what will not be built in 2025, 2026, and 2027. That framework still holds. In fact, the 2026 market makes it more important.</p>
+
+  <div class="continuity-grid">
+    <div class="continuity-box">
+      <h4>Issue 01 Framework</h4>
+      <ul>
+        <li>Start with fundamentally sound metros</li>
+        <li>Identify supply-constrained submarkets</li>
+        <li>Validate alternative employment nodes</li>
+        <li>Confirm income and crime fundamentals</li>
+        <li>Use premium retail as validation, not thesis</li>
+        <li>Look for outer-ring locations with thinner institutional competition</li>
+      </ul>
+    </div>
+
+    <div class="continuity-divider">Forward pipeline tells<br>a different story</div>
+
+    <div class="continuity-box">
+      <h4>Issue 02 Cycle Overlay</h4>
+      <ul>
+        <li>National supply cliff is now visible</li>
+        <li>Capital is returning selectively</li>
+        <li>Weak underwriting is being exposed</li>
+        <li>Operating file decides if supply story becomes NOI</li>
+        <li>Submarket discipline determines pricing power</li>
+        <li>Real rent roll validation matters more than ever</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top: 32px;">
+    <p>CoStar/Apartments.com reported that U.S. apartment construction starts fell to roughly <strong>55,000 units in Q1 2026</strong>, down <strong>73%</strong> from the early-2022 peak and the lowest quarterly level since 2011. Units under construction fell to roughly <strong>579,000</strong>, down more than <strong>50%</strong> from the early-2023 peak.</p>
+
+    <p>But national supply collapse does not automatically create local pricing power. The timing matters. The submarket matters. The resident base matters. The competing lease-up pipeline matters. The employment base matters. The rent roll matters.</p>
+
+    <p><strong>That is the Issue 02 refinement: supply is still the story, but the operating file decides whether that story turns into NOI.</strong></p>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>The supply cliff is the setup. It is not the underwriting. CRC still has to prove that demand is durable, that new supply will not come back quickly, and that today's rent roll is not hiding tomorrow's renewal cliff.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SIGNAL BOARD
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-eyebrow">Market Signals</div>
+  <h2 class="section-title">Signal Board</h2>
+  <p class="section-sub">The market is moving again. The signals are mixed. That is the point. The contradiction is the opportunity.</p>
+
+  <div class="signal-board">
+    <!-- MACRO -->
+    <a href="https://www.jpmorgan.com/insights/outlook" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card macro">
+        <div class="signal-metric">GDP: 2.0% SAAR</div>
+        <div class="signal-source">JPM Economic Update, May 11, 2026</div>
+        <div class="signal-implication">Growth is still positive, but not clean. The economy is not collapsing, but the growth mix matters.</div>
+      </div>
+    </a>
+
+    <a href="https://www.jpmorgan.com/insights/outlook" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card macro">
+        <div class="signal-metric">April payrolls: +115k<br>Unemployment: 4.3%</div>
+        <div class="signal-source">JPM Economic Update, May 11, 2026</div>
+        <div class="signal-implication">Labor is stabilizing, not re-tightening. Job growth exists, but not enough to ignore demand quality.</div>
+      </div>
+    </a>
+
+    <a href="https://www.jpmorgan.com/insights/outlook" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card macro">
+        <div class="signal-metric">Wages: 3.6% YoY</div>
+        <div class="signal-source">JPM Economic Update, May 11, 2026</div>
+        <div class="signal-implication">Supports rent affordability, but energy and credit pressure still hit households.</div>
+      </div>
+    </a>
+
+    <a href="https://www.jpmorgan.com/insights/outlook" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card macro">
+        <div class="signal-metric">March CPI: 3.3% YoY<br>0.9% MoM</div>
+        <div class="signal-source">JPM Economic Update, May 11, 2026</div>
+        <div class="signal-implication">Inflation reaccelerated. Rate-cut expectations became less reliable.</div>
+      </div>
+    </a>
+
+    <a href="https://www.jpmorgan.com/insights/outlook" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card macro">
+        <div class="signal-metric">Fed funds: 3.5%-3.75%</div>
+        <div class="signal-source">JPM Economic Update, May 11, 2026</div>
+        <div class="signal-implication">The Fed is still restrictive. Floating-rate and refi math remain constrained.</div>
+      </div>
+    </a>
+
+    <a href="https://www.jpmorgan.com/insights/research" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card macro">
+        <div class="signal-metric">10Y: 4.38%<br>30Y: 4.95%</div>
+        <div class="signal-source">JPM Weekly Market Recap, May 11, 2026</div>
+        <div class="signal-implication">Long rates still matter. Exit caps, refi proceeds, and buyer return hurdles remain rate-sensitive.</div>
+      </div>
+    </a>
+
+    <a href="https://www.jpmorgan.com/insights/research" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card macro">
+        <div class="signal-metric">WTI: $94.89<br>Gasoline: $4.45</div>
+        <div class="signal-source">JPM Weekly Market Recap, May 11, 2026</div>
+        <div class="signal-implication">Energy shock returned. Can transmit into inflation, rates, renter wallets, and OpEx.</div>
+      </div>
+    </a>
+
+    <!-- DEBT -->
+    <a href="https://www.mba.org/news-and-research" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card debt">
+        <div class="signal-metric">Q1 borrowing: +52% YoY</div>
+        <div class="signal-source">MBA, May 7, 2026</div>
+        <div class="signal-implication">Lending is thawing. Capital is moving again.</div>
+      </div>
+    </a>
+
+    <a href="https://www.trepp.com/trepptalk" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card debt">
+        <div class="signal-metric">MF CMBS delinquency: 7.71%<br>Up 56 bps</div>
+        <div class="signal-source">Trepp, May 4, 2026</div>
+        <div class="signal-implication">Multifamily stress is elevated. Sector stress is not just office.</div>
+      </div>
+    </a>
+
+    <!-- SUPPLY -->
+    <a href="https://www.costar.com/article/apartments" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card supply">
+        <div class="signal-metric">Q1 2026 starts: 55k<br>Down 73%</div>
+        <div class="signal-source">CoStar/Apartments.com, May 12, 2026</div>
+        <div class="signal-implication">Future supply vacuum is forming, but timing is uneven.</div>
+      </div>
+    </a>
+
+    <a href="https://www.costar.com/article/apartments" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card supply">
+        <div class="signal-metric">Under construction: 579k<br>Down 50%+</div>
+        <div class="signal-source">CoStar/Apartments.com, May 12, 2026</div>
+        <div class="signal-implication">Future competition is falling, especially after current deliveries clear.</div>
+      </div>
+    </a>
+
+    <!-- OPERATIONS -->
+    <a href="https://mf.freddiemac.com/" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card ops">
+        <div class="signal-metric">Freddie Conventional Small<br>$2M-$10M</div>
+        <div class="signal-source">Freddie Mac, Apr. 15-30, 2026</div>
+        <div class="signal-implication">Small-balance execution changed. Smaller deals may get better pricing, but more conventional process.</div>
+      </div>
+    </a>
+
+    <!-- BANK STRESS -->
+    <a href="https://www.ffiec.gov/NPW/" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card debt">
+        <div class="signal-metric">MF NPLs: +11.5% YoY<br>Regional banks: +242%</div>
+        <div class="signal-source">Cole / FFIEC Call Reports, Q4 2025</div>
+        <div class="signal-implication">Multifamily stress growing fastest at regional banks. Industry NPL rate 1.6% vs CMBS 7.3%—gap shows extend-and-pretend masking true stress.</div>
+      </div>
+    </a>
+
+    <!-- CAPITAL -->
+    <a href="https://www.privateequityrealestate.com/" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card capital">
+        <div class="signal-metric">Fundraising: $222B<br>+29% YoY</div>
+        <div class="signal-source">PERE, 2025 Annual</div>
+        <div class="signal-implication">Private real estate capital is returning, but selectivity increased and deployment timelines extended to ~25 months.</div>
+      </div>
+    </a>
+
+    <a href="https://www.costar.com/article/apartments" class="signal-card-link" target="_blank" rel="noopener noreferrer">
+      <div class="signal-card supply">
+        <div class="signal-metric">2027-28 deliveries: <br>~50% below 2024 peak</div>
+        <div class="signal-source">CoStar/Apartments.com, May 2026</div>
+        <div class="signal-implication">Supply cliff creates 2027-2028 opportunity window as pipeline empties and starts remain collapsed.</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>The contradiction is the opportunity. Capital is moving, but distress is still visible. Supply is falling, but concessions have not disappeared. Wages are growing, but energy and credit pressure still matter. The market is not easy. It is readable.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROPERTY-LEVEL DISTRESS
+══════════════════════════════════════════ -->
+<section class="section dark">
+  <div class="section-eyebrow">Property-Level Evidence</div>
+  <h2 class="section-title">Asset-Level Distress: The 217 Gap</h2>
+  <p class="section-sub">611 distressed properties. 288 underwater. Only 71 foreclosed.</p>
+
+  <!-- Three-Column Metric Display -->
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin: 48px 0; max-width: 1100px; margin-left: auto; margin-right: auto;">
+
+    <!-- Total Distressed -->
+    <div style="text-align: center; padding: 36px 24px; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.12); border-radius: 10px;">
+      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.9); margin-bottom: 16px;">Total Distressed</div>
+      <div style="font-size: 64px; font-weight: 900; color: #ffffff; line-height: 1; margin-bottom: 8px;">611</div>
+      <div style="font-size: 12px; color: #FFFFFF; line-height: 1.6;">NOI stress or<br>DSCR issues</div>
+    </div>
+
+    <!-- Underwater -->
+    <div style="text-align: center; padding: 36px 24px; background: rgba(255,107,107,0.1); border: 3px solid var(--coral); border-radius: 10px;">
+      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--coral); margin-bottom: 16px;">Underwater</div>
+      <div style="font-size: 64px; font-weight: 900; color: var(--coral); line-height: 1; margin-bottom: 8px;">288</div>
+      <div style="font-size: 12px; color: #ffffff; line-height: 1.6;">DSCR < 1.0<br>Can't cover debt</div>
+    </div>
+
+    <!-- Foreclosed -->
+    <div style="text-align: center; padding: 36px 24px; background: rgba(255,107,107,0.15); border: 2px solid rgba(255,107,107,0.6); border-radius: 10px;">
+      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,107,107,0.9); margin-bottom: 16px;">Foreclosed</div>
+      <div style="font-size: 64px; font-weight: 900; color: rgba(255,107,107,0.95); line-height: 1; margin-bottom: 8px;">71</div>
+      <div style="font-size: 12px; color: #ffffff; line-height: 1.6;">Bank took<br>the property</div>
+    </div>
+
+  </div>
+
+  <!-- The Gap Callout - Horizontal Layout -->
+  <div style="max-width: 1100px; margin: 0 auto 48px; background: linear-gradient(to right, rgba(255,107,107,0.15), rgba(255,107,107,0.05)); border: 2px solid var(--coral); border-radius: 8px; padding: 32px 40px; display: flex; align-items: center; gap: 40px;">
+    <div style="flex: 0 0 auto;">
+      <div style="font-size: 80px; font-weight: 900; color: var(--coral); line-height: 0.9; margin-bottom: 8px;">217</div>
+      <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #FFFFFF;">The Gap</div>
+    </div>
+    <div style="flex: 1;">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 10px;">Underwater but not foreclosed</div>
+      <div style="font-size: 14px; line-height: 1.7; color: #ffffff;">
+        Banks modifying loans, accepting reduced payments, or granting forbearance. <strong style="color: #ffffff;">This is extend-and-pretend at the asset level.</strong>
+      </div>
+    </div>
+    <div style="font-size: 13px; color: #FFFFFF; flex: 0 0 auto; text-align: center; padding: 16px 20px; background: rgba(0,0,0,0.2); border-radius: 6px;">
+      288 underwater<br>− 71 foreclosed<br>= <strong style="color: var(--coral); font-size: 18px;">217</strong> carried
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Rebel Cole's Q4 2025 FFIEC data explains why.</strong> Mid-sized banks ($10B-$100B assets) saw multifamily NPLs surge <strong style="color: var(--coral);">242%</strong> year-over-year. Large banks reduced NPLs 40%—they wrote off. Mid-sized banks can't afford to. They're carrying the 217 underwater properties that haven't yet been foreclosed.</p>
+
+    <ul style="margin: 16px 0 16px 32px; color: #ffffff; line-height: 1.8;">
+      <li><strong>Banks under $1B:</strong> +49.3% YoY</li>
+      <li><strong>Banks $1B-$10B:</strong> +10.4% YoY</li>
+      <li><strong>Banks $10B-$100B:</strong> <span style="color: var(--coral); font-weight: 700;">+242% YoY</span></li>
+      <li><strong>Banks over $100B:</strong> -40% YoY</li>
+    </ul>
+  </div>
+
+  <!-- Property Examples Grid -->
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0; max-width: 1100px; margin-left: auto; margin-right: auto;">
+    <div style="background: rgba(255,107,107,0.08); border-left: 4px solid var(--coral); padding: 20px; border-radius: 6px;">
+      <div style="font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">San Antonio C</div>
+      <div style="font-size: 13px; color: #ffffff; margin-bottom: 12px;">400+ units</div>
+      <div style="font-size: 18px; color: var(--coral); font-weight: 700;">0.87 DSCR</div>
+    </div>
+
+    <div style="background: rgba(255,107,107,0.08); border-left: 4px solid var(--coral); padding: 20px; border-radius: 6px;">
+      <div style="font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Dallas B+</div>
+      <div style="font-size: 13px; color: #ffffff; margin-bottom: 12px;">600+ units</div>
+      <div style="font-size: 18px; color: var(--coral); font-weight: 700;">0.92 DSCR</div>
+    </div>
+
+    <div style="background: rgba(26,107,98,0.08); border-left: 4px solid rgba(26,107,98,0.6); padding: 20px; border-radius: 6px;">
+      <div style="font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Atlanta A-</div>
+      <div style="font-size: 13px; color: #ffffff; margin-bottom: 12px;">400+ units</div>
+      <div style="font-size: 18px; color: #ffffff; font-weight: 700;">1.04 DSCR</div>
+    </div>
+
+    <div style="background: rgba(255,107,107,0.08); border-left: 4px solid var(--coral); padding: 20px; border-radius: 6px;">
+      <div style="font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Atlanta B</div>
+      <div style="font-size: 13px; color: #ffffff; margin-bottom: 12px;">200+ units</div>
+      <div style="font-size: 18px; color: var(--coral); font-weight: 700;">0.96 DSCR</div>
+    </div>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>The 217 gap is the opportunity. Banks carry these because they must. As supply tightens 2027-2028 and NOI stabilizes, some recover. Others won't. The edge is knowing which submarkets and asset classes can work out.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     OIL SHOCK TRANSMISSION CHAIN
+══════════════════════════════════════════ -->
+<section class="section dark">
+  <div class="section-eyebrow">Feature Story</div>
+  <h2 class="section-title">The Oil Shock That Moved Through The Rent Roll</h2>
+  <p class="section-sub">Oil is not a multifamily metric until it becomes one. In early 2026, it became one.</p>
+
+  <div class="transmission-chain">
+    <div class="chain-node">
+      <div class="chain-node-label">Oil/Gas Shock<br>WTI $94.89<br>Gas $4.45</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node">
+      <div class="chain-node-label">Inflation/Fed<br>CPI 3.3%<br>Fed on hold</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node">
+      <div class="chain-node-label">Rates/Caps<br>10Y 4.38%<br>SOFR 3.60%</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node">
+      <div class="chain-node-label">Refi Proceeds<br>Lower LTV<br>Cash-in refis</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node">
+      <div class="chain-node-label">Rent Roll/NOI<br>Pressure on 2021<br>underwriting</div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top: 32px;">
+    <p>JPM's May 11 Economic Update described a clear inflation shock: March CPI rose <strong>0.9% month-over-month</strong> and <strong>3.3% year-over-year</strong>, with energy moving sharply after the Middle East conflict pushed fuel prices higher. Gasoline was up <strong>19% year-over-year</strong>. JPM's Weekly Market Recap showed WTI at <strong>$94.89</strong> and gasoline at <strong>$4.45</strong> as of May 8, with WTI having peaked at <strong>$112</strong> after the Strait of Hormuz closure.</p>
+
+    <p>That matters for real estate because inflation is not abstract when the capital stack is floating, the refinance is marginal, and the tenant base is price-sensitive.</p>
+
+    <p>There is a renter channel too: <strong>Gasoline and utilities → household cash flow → delinquency risk → renewal sensitivity → concession demand → economic occupancy.</strong></p>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>Macro only matters when it shows up in the rent roll, the debt quote, or the expense line. In 2026, the oil shock touched all three.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ASSET-LEVEL DISTRESS
+══════════════════════════════════════════ -->
+<section class="section dark">
+  <div class="section-eyebrow">Capital Markets</div>
+  <h2 class="section-title">Debt Window Is Open, But Narrow</h2>
+  <p class="section-sub">Debt is available again. Casual debt is not.</p>
+
+  <div class="debt-gauge">
+    <div class="gauge-side positive">
+      <h4>Capital Moving Again</h4>
+      <ul>
+        <li>Q1 2026 borrowing up <strong>52% YoY</strong> (MBA)</li>
+        <li>2026 forecast: <strong>$805.5B</strong> total CRE originations, <strong>$399.2B</strong> multifamily (MBA)</li>
+        <li>MF spreads ~<strong>154 bps</strong> over 10Y, implying ~<strong>5.79%</strong> coupons (CRED iQ)</li>
+        <li>Freddie Conventional Small launched: <strong>$2M-$10M</strong> range, better pricing potential</li>
+        <li>Lenders are quoting again across agency, life co, bank, and private credit</li>
+      </ul>
+    </div>
+
+    <div class="gauge-side negative">
+      <h4>Stress Still Visible</h4>
+      <ul>
+        <li>CMBS distress: <strong>12.07%</strong> (CRED iQ, March 2026)</li>
+        <li>MF CMBS delinquency: <strong>7.71%</strong>, up <strong>56 bps</strong> (Trepp, April 2026)</li>
+        <li><strong>$76.6B</strong> CMBS hard maturities in 2026 (Trepp)</li>
+        <li>Big 4 banks: "Other" CRE NPLs average <strong>4.2%</strong> (Cole, Q4 2025)</li>
+        <li>High-CRE-exposure banks (>400% equity): NPLs only <strong>1.9%</strong> - extend-and-pretend masking true stress</li>
+        <li>Conventional Small = more work up front, more documentation, more scrutiny</li>
+        <li>Proceeds must survive real taxes, real insurance, real concessions, realistic exit caps</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Liquidity vs Forgiveness - Prominent Callout -->
+  <div style="background: linear-gradient(135deg, rgba(26,107,98,0.12), rgba(26,107,98,0.06)); border-left: 4px solid var(--teal); padding: 32px 40px; margin: 40px 0; border-radius: 6px;">
+    <p style="font-size: 18px; font-weight: 600; color: #ffffff; margin: 0 0 20px 0;">This is the difference between liquidity and forgiveness.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 16px;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.7); margin-bottom: 8px;">Liquidity</div>
+        <p style="font-size: 15px; line-height: 1.6; color: #ffffff; margin: 0;">Lenders are quoting.</p>
+      </div>
+      <div>
+        <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.7); margin-bottom: 8px;">Forgiveness</div>
+        <p style="font-size: 15px; line-height: 1.6; color: #ffffff; margin: 0;">The deal still works after real taxes, real insurance, real concessions, realistic proceeds, and an exit cap that does not rely on a fantasy Fed path.</p>
+      </div>
+    </div>
+
+    <p style="font-size: 16px; font-weight: 600; color: var(--coral); margin: 20px 0 0 0;">The market has the first. It does not have the second.</p>
+  </div>
+
+  <!-- Capital Markets Context -->
+  <div style="margin: 40px 0;">
+    <p style="font-size: 15px; line-height: 1.8; color: #ffffff;"><strong>The broader capital markets context supports the thaw.</strong> Private real estate fundraising reached <strong>$222 billion in 2025</strong>, up <strong>29% year-over-year</strong>, with data centers capturing <strong>37%</strong> of capital raised and average deal closing times extending to approximately <strong>25 months</strong>. PERE reported the fundraising pipeline beginning to unclog in early 2026, though capital targets reduced compared to prior year while fund count keeps rising. Ares announced it was "on track for another record year of fundraising" in May 2026. The capital is returning, but it is more selective and takes longer to deploy.</p>
+  </div>
+
+  <!-- Bank Exposure Paradox -->
+  <div style="margin: 48px 0;">
+    <div style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.9); margin-bottom: 16px;">The Concentration Paradox</div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px;">
+      <div style="background: rgba(255,255,255,0.04); padding: 24px; border-radius: 6px;">
+        <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px;">Big 4 Banks</div>
+        <div style="font-size: 32px; font-weight: 900; color: #ffffff; margin-bottom: 8px;">4.2%</div>
+        <div style="font-size: 13px; color: #ffffff;">Average CRE NPL rate<br>(2.7% to 5.5% range)</div>
+      </div>
+
+      <div style="background: rgba(26,107,98,0.08); padding: 24px; border-radius: 6px; border: 2px solid var(--teal);">
+        <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px;">Banks with 400%+ CRE/Equity</div>
+        <div style="font-size: 32px; font-weight: 900; color: var(--teal); margin-bottom: 8px;">1.9%</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.7);">Average NPL rate<br>(More exposed, lower reported stress)</div>
+      </div>
+    </div>
+
+    <p style="font-size: 15px; line-height: 1.8; color: #ffffff; margin-bottom: 24px;"><strong>Bank exposure adds another layer.</strong> Cole's data reveals the concentration paradox. The four largest U.S. banks reported Q4 2025 CRE NPL rates ranging from <strong>2.7% to 5.5%</strong>—manageable, but visible stress. But the 20 banks with CRE exposures exceeding 400% of equity—meaning their CRE loan books are 4X-6X larger than their capital cushion—reported average NPLs of only <strong>1.9%</strong> (1.4% excluding Bank D). These institutions include:</p>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; font-size: 13px;">
+      <div style="background: rgba(26,107,98,0.08); padding: 12px; border-left: 3px solid rgba(26,107,98,0.4); border-radius: 3px;">
+        <strong style="color: #ffffff;">Southeast Regional Bank A</strong><br>
+        <span style="color: rgba(255,248,236,0.7);">622% CRE/Equity · 5.5% NPL Owner-Occ · 1.7% NPL Other</span>
+      </div>
+      <div style="background: rgba(26,107,98,0.08); padding: 12px; border-left: 3px solid rgba(26,107,98,0.4); border-radius: 3px;">
+        <strong style="color: #ffffff;">Mid-Atlantic Regional Bank B</strong><br>
+        <span style="color: rgba(255,248,236,0.7);">525% CRE/Equity · 1.7% NPL Owner-Occ · 4.2% NPL Other</span>
+      </div>
+      <div style="background: rgba(26,107,98,0.08); padding: 12px; border-left: 3px solid rgba(26,107,98,0.4); border-radius: 3px;">
+        <strong style="color: #ffffff;">Southeast Regional Bank C</strong><br>
+        <span style="color: rgba(255,248,236,0.7);">517% CRE/Equity · 0.7% NPL Owner-Occ · 0.5% NPL Other</span>
+      </div>
+      <div style="background: rgba(255,107,107,0.06); padding: 12px; border-left: 3px solid var(--coral); border-radius: 3px;">
+        <strong style="color: var(--coral);">Northeast Regional Bank D</strong><br>
+        <span style="color: rgba(255,248,236,0.7);">489% CRE/Equity · 1.6% NPL Owner-Occ · <strong style="color: var(--coral);">10.4% NPL Other</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Two-column layout for paradox explanation -->
+  <div class="prose">
+    <div style="display: grid; grid-template-columns: 1fr 400px; gap: 40px; margin: 32px 0;">
+      <div>
+        <p><strong>This is the paradox.</strong> Banks with 400%-600% CRE/Equity ratios—the most exposed—report 1.9% average NPLs. Mid-sized banks with more diversified books saw multifamily NPLs surge 242%. Cole's interpretation: <strong>The most exposed banks have the strongest incentive to forbear.</strong> Recognizing losses would trigger regulatory scrutiny, capital raises, or forced asset sales. Forbearance keeps the loan performing on paper.</p>
+
+        <p><strong>Regional Bank D is the exception that proves the rule:</strong> 10.4% NPL rate (5X the peer average) with 489% CRE/Equity. This is what happens when forbearance fails—the NPL rate jumps, but foreclosure still hasn't happened at scale. The other 19 banks in this cohort are likely carrying similar stress, just not yet recognized.</p>
+      </div>
+
+      <div style="background: rgba(26,107,98,0.08); padding: 24px; border-radius: 6px; border-left: 4px solid var(--teal);">
+        <div style="font-size: 13px; font-weight: 700; color: #ffffff; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">What This Means for Buyers</div>
+        <p style="font-size: 14px; line-height: 1.7; color: #ffffff; margin: 0;">Regional banks with 400%+ CRE concentration won't foreclose in 2026—they can't afford to. But as loan modifications expire in 2027-2028 and rent growth returns, these lenders face a choice: foreclose into a recovering market (crystallizing losses at the bottom) or extend again (creating permanent zombie assets). Understanding which regional lenders hold which assets in target submarkets is competitive intelligence.</p>
+      </div>
+    </div>
+
+    <!-- Industry-wide stress data -->
+    <div style="background: rgba(255,107,107,0.06); padding: 28px; border-radius: 6px; margin: 40px 0;">
+      <p style="margin: 0 0 16px 0;"><strong>Cole's industry-wide analysis across 4,392 banks shows the stress is real and growing.</strong> From Q4 2024 to Q4 2025, total multifamily NPLs increased by <strong>$1.0 billion</strong>, up <strong>11.5%</strong>.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px;">
+        <div>
+          <div style="font-size: 24px; font-weight: 900; color: var(--coral);">+50%</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.7);">Regional bank CRE NPLs<br>($10B-$100B assets)</div>
+        </div>
+        <div>
+          <div style="font-size: 24px; font-weight: 900; color: var(--coral);">+242%</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.7);">Regional MF NPLs<br>(partly Flagstar reclassification)</div>
+        </div>
+        <div>
+          <div style="font-size: 24px; font-weight: 900; color: var(--coral);">+21%</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.7);">Community bank CRE NPLs<br>(under $1B assets)</div>
+        </div>
+        <div>
+          <div style="font-size: 24px; font-weight: 900; color: rgba(255,255,255,0.6);">+5%</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.7);">Industry average<br>CRE NPLs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CMBS gap -->
+    <div style="margin: 32px 0;">
+      <p><strong>The extend-and-pretend thesis is visible in the gap:</strong> bank CRE NPL rate was <strong>1.6%</strong> in Q4 2025, while Trepp reported CMBS delinquency at <strong>7.3%</strong> in December 2025-roughly <strong>5X higher</strong>. Cole's interpretation: there is no extend-and-pretend in CMBS, but banks with the highest CRE exposure are modifying loans to avoid default classification on a massive scale. That matters because it means actual refinancing stress may be higher than reported delinquency numbers suggest, and the stress is concentrated at regional and community banks.</p>
+    </div>
+
+    <!-- Bank Fragility -->
+    <div style="margin: 48px 0;">
+      <div style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.9); margin-bottom: 20px;">Bank Fragility Layer</div>
+
+      <p style="margin-bottom: 24px;"><strong>Cole's liquidity stress test measured uninsured deposits as a percentage of liquid assets</strong> (cash plus securities) to model vulnerability to SVB-style depositor runs:</p>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 24px 0;">
+        <div style="background: rgba(255,107,107,0.08); padding: 20px; border-radius: 6px; border-top: 3px solid var(--coral);">
+          <div style="font-size: 28px; font-weight: 900; color: var(--coral); margin-bottom: 8px;">4</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.6;">Banks >300% ratio<br>$83B combined assets<br>(ServisFirst, Cathay, Ameris, ConnectOne)</div>
+        </div>
+        <div style="background: rgba(255,107,107,0.06); padding: 20px; border-radius: 6px;">
+          <div style="font-size: 28px; font-weight: 900; color: rgba(255,107,107,0.9); margin-bottom: 8px;">50</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.6;">Banks >150% ratio<br>$1.84T combined assets</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); padding: 20px; border-radius: 6px;">
+          <div style="font-size: 28px; font-weight: 900; color: rgba(255,255,255,0.7); margin-bottom: 8px;">92</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.6;">Banks >100% ratio<br>$11.56T assets<br>(JPM 113%, Wells 121%, USB 127%)</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 24px;"><strong>The triple threat:</strong> ServisFirst and ConnectOne appear on both the high-CRE-exposure list (>500% of equity) and the high-uninsured-deposit-vulnerability list (>300%). If a bank is vulnerable to a deposit run and carrying extend-and-pretend CRE loans, liquidity pressure could force them to stop extending and start selling or foreclosing. That changes the refinancing environment for borrowers who have been relying on modification rather than true refinance execution.</p>
+    </div>
+
+    <!-- Systemic Read -->
+    <div style="background: rgba(255,107,107,0.08); border-left: 4px solid var(--coral); padding: 24px 28px; margin: 40px 0; border-radius: 4px;">
+      <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--coral); margin-bottom: 12px;">Systemic Read</div>
+      <p style="font-size: 15px; line-height: 1.7; color: #ffffff; margin: 0;">Liquidity-vulnerable banks carrying extend-and-pretend CRE loans with high uninsured deposit concentrations will be forced to stop extending when pressure hits. That creates hidden refinancing cliffs for borrowers who think they are current but are actually being temporarily accommodated by fragile lenders.</p>
+    </div>
+
+    <!-- Scale -->
+    <p style="margin: 32px 0;"><strong>The scale is massive.</strong> Cole's master list shows 52 large banks (>$10B assets) with CRE exposure exceeding <strong>300% of equity</strong>, including Flagstar ($88B, 474%), Valley National ($64B, 377%), Synovus ($61B, 369%), Zions ($89B, 356%), and East-West Bank ($80B, 309%). Across all 4,392 U.S. banks, <strong>1,585</strong> have CRE exposures above 300% of equity, down from 1,713 in Q1 2025 but still substantial. With approximately <strong>$1 trillion</strong> in CRE maturities over the next 12 months that must be refinanced at materially higher rates, and the 10-year Treasury trending higher since December, the extend-and-pretend accommodation cannot continue indefinitely. The bank data suggests the stress is real, growing, concentrated at vulnerable institutions, and being temporarily masked rather than resolved.</p>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>The question is not "Can you get debt?" The question is "What proceeds survive real underwriting?" Capital is available. Casual underwriting is not.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SUPPLY CLIFF TIMELINE
+══════════════════════════════════════════ -->
+<section class="section dark">
+  <div class="section-eyebrow">Supply Fundamentals</div>
+  <h2 class="section-title">Supply Cliff / Demand Floor</h2>
+  <p class="section-sub">The supply cliff is real. The rent recovery is not automatic.</p>
+
+  <div class="timeline">
+    <div class="timeline-line"></div>
+    <div class="timeline-events">
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Early 2022</div>
+        <div class="timeline-desc">Peak starts</div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Early 2023</div>
+        <div class="timeline-desc">Peak under construction</div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">2024</div>
+        <div class="timeline-desc">Delivery peak</div>
+      </div>
+      <div class="timeline-event critical">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">Q1 2026</div>
+        <div class="timeline-desc">Starts collapse<br>55k units, -73%</div>
+      </div>
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label">2027/2028</div>
+        <div class="timeline-desc">Tightening setup</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top: 40px;">
+    <p>CoStar/Apartments.com reported that apartment construction starts fell to approximately <strong>55,000 units</strong> in Q1 2026, down <strong>73%</strong> from the early-2022 peak and the lowest quarterly level since 2011. Units under construction fell to roughly <strong>579,000</strong>, down more than <strong>50%</strong> from the early-2023 peak.</p>
+
+    <p>RealPage's April 2026 update showed national occupancy improving to <strong>95.2%</strong>, up from the late-2025 bottom, but still not a clean all-clear for every market.</p>
+
+    <p>GlobeSt's May 2026 coverage showed the nuance: absorption was improving, but rent growth remained muted. One piece reported absorption of <strong>78,100</strong> units against completions of <strong>58,100</strong>, with rent growth of only <strong>0.2%</strong> and cap rates around <strong>5.8%</strong>.</p>
+
+    <p><strong>Yardi Matrix's October 2025 forward forecast</strong> provides the clearest view of the supply cliff timeline. Their revised outlook calls for national asking rent growth of <strong>1.2%</strong> in 2026 (mid to low range), then a <strong>"tepid 2027"</strong> at <strong>2%</strong> growth (down from 3% in their June forecast), before a <strong>stronger 2028 and beyond</strong> as supply cliff effects compound. The key insight: even with starts collapsing in Q1 2026, the 2023-2024 delivery wave is still being absorbed. The tightening is a 2027-2028 story, not a 2026 story.</p>
+
+    <p>This is why Issue 01 still matters. A national starts collapse is useful, but it is not enough. CRC still has to know where supply will not return, where demand is durable, and where current rent growth is not being manufactured with free rent.</p>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>Less future supply matters most where current demand is durable and new supply will not return quickly. The supply cliff is a tailwind. Submarket discipline determines whether it becomes pricing power.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     REAL RENT ROLL CHECKLIST
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-eyebrow">Asset-Level Diligence</div>
+  <h2 class="section-title">The Real Rent Roll</h2>
+  <p class="section-sub">Physical occupancy is not economic occupancy. That sentence should sit near the center of Issue 02.</p>
+
+  <div class="checklist">
+    <div class="checklist-col">
+      <h4>What The OM Shows</h4>
+      <ul>
+        <li>Physical occupancy</li>
+        <li>Advertised rent</li>
+        <li>Smooth renewal path</li>
+        <li>Average rent growth</li>
+        <li>Standard OpEx</li>
+        <li>Clean lease file</li>
+        <li>Market-rate concessions</li>
+        <li>Projected NOI</li>
+      </ul>
+    </div>
+    <div class="checklist-col">
+      <h4>What CRC Verifies</h4>
+      <ul>
+        <li>Economic occupancy (after concessions, bad debt, loss-to-lease)</li>
+        <li>Collected rent (actual cash flow)</li>
+        <li>Renewal cliff exposure (when concessions burn off)</li>
+        <li>Lease expiration concentration</li>
+        <li>Real insurance, taxes, utilities after resets</li>
+        <li>Fraud and screening quality</li>
+        <li>Concession structure and timing</li>
+        <li>Actual NOI after real expenses and resident quality</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top: 32px;">
+    <p>The last cycle trained too many buyers to underwrite visible occupancy, advertised rent, and a smooth renewal path. The 2026 cycle punishes that habit. A property can look occupied and still be carrying hidden NOI weakness: free rent, bad debt, fraud, delayed turns, lease-expiration concentration, and residents who only leased because the first-year concession made the deal work.</p>
+
+    <p>Bisnow reported in February 2026 that one month free had become common across many apartment markets, with Apartment List data showing elevated incentives and especially high concession pressure in Phoenix and Austin.</p>
+
+    <p>NMHC/NAA survey data found that <strong>93.3%</strong> of respondents experienced fraud, <strong>70.7%</strong> saw fraud increase, <strong>23.8%</strong> of eviction filings were tied to fraudulent applications, and <strong>58.5%</strong> saw increased nonpayment due to fraud.</p>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>The rent roll is where the recovery story either survives or fails. If the asset needs 2021 rent growth, 2021 debt terms, and 2021 operating expenses to work, the problem is not the market. The problem is the underwriting.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     EXPENSE PRESSURE STRIP
+══════════════════════════════════════════ -->
+<section class="section dark">
+  <div class="section-eyebrow">Operating Reality</div>
+  <h2 class="section-title">The Expense Line Became The Story</h2>
+  <p class="section-sub">Moderation is not normalization. That is the cleanest way to understand operating expenses in 2026.</p>
+
+  <div class="pressure-strip">
+    <div class="pressure-card">
+      <h5>Insurance</h5>
+      <div class="pressure-old">$39/unit/month (2019)</div>
+      <div class="pressure-new">$68/unit/month (2024)</div>
+      <div class="pressure-question">Can the rent roll absorb a 75% real increase?</div>
+    </div>
+
+    <div class="pressure-card">
+      <h5>Taxes</h5>
+      <div class="pressure-old">Assumed flat or 2-3%</div>
+      <div class="pressure-new">Reassessment risk after sale</div>
+      <div class="pressure-question">What is the post-acquisition tax basis?</div>
+    </div>
+
+    <div class="pressure-card">
+      <h5>Utilities/Energy</h5>
+      <div class="pressure-old">Stable baseline</div>
+      <div class="pressure-new">Oil spike, power volatility</div>
+      <div class="pressure-question">Are utilities recoverable or owner-paid?</div>
+    </div>
+
+    <div class="pressure-card">
+      <h5>Labor/Maintenance</h5>
+      <div class="pressure-old">3-4% annual growth</div>
+      <div class="pressure-new">Payroll + deferred maintenance</div>
+      <div class="pressure-question">Is the current staff adequate for resident experience?</div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top: 32px;">
+    <p>RealPage has shown that operating expense growth moderated, including a sharp slowdown in insurance growth from the peak. That matters. But moderation does not mean the expense line returned to the old baseline. RealPage still shows multifamily operating costs roughly <strong>40%</strong> above pre-pandemic levels, with insurance growth moderating to around <strong>7%</strong> after much higher prior increases.</p>
+
+    <p>A September 2025 Fed FEDS Note found that multifamily insurance costs rose from <strong>$39 per unit per month</strong> in 2019 to <strong>$68 per unit per month</strong> in 2024, a real increase of more than <strong>75%</strong>. The Fed estimated that every <strong>$1</strong> increase in insurance cost reduces owner net income by about <strong>$0.72</strong>.</p>
+
+    <p>This is why an asset can have stable occupancy and still lose value. If insurance, taxes, utilities, payroll, and repairs reset higher, the NOI bridge changes. A slower-growing expense line can still impair value if the absolute cost basis has permanently moved.</p>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>The easy underwriting mistake is calling expense moderation a recovery. It is not. The question is whether the new expense base is supportable at the actual rent roll, with actual debt proceeds, in the actual submarket.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     RENTER BEHAVIOR CARDS
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-eyebrow">Resident Intelligence</div>
+  <h2 class="section-title">Renter Behavior Is The Operating Signal</h2>
+  <p class="section-sub">Renters are not only price-sensitive. They are friction-sensitive.</p>
+
+  <div class="behavior-grid">
+    <div class="behavior-card">
+      <h5>Price</h5>
+      <div class="behavior-stat">49%</div>
+      <div class="behavior-implication">Cited lower rent as a top reason to move (NMHC/Grace Hill)</div>
+    </div>
+
+    <div class="behavior-card">
+      <h5>Reviews/Photos</h5>
+      <div class="behavior-stat">3 in 4</div>
+      <div class="behavior-implication">Use ratings/review sites. 54% said property photos were most valuable search content (NMHC/Grace Hill)</div>
+    </div>
+
+    <div class="behavior-card">
+      <h5>Maintenance</h5>
+      <div class="behavior-stat">60%</div>
+      <div class="behavior-implication">Cited maintenance-free living as the biggest benefit of renting (NMHC/Grace Hill)</div>
+    </div>
+
+    <div class="behavior-card">
+      <h5>Connectivity</h5>
+      <div class="behavior-stat">63%</div>
+      <div class="behavior-implication">Said mobile connectivity influenced decision-making (NMHC/Grace Hill)</div>
+    </div>
+
+    <div class="behavior-card">
+      <h5>Experience</h5>
+      <div class="behavior-stat">97%</div>
+      <div class="behavior-implication">Would be more likely to renew if working with property management were as easy as Amazon (RealPage)</div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top: 32px;">
+    <p>Renter preferences were covered across more than <strong>172,000</strong> renters, <strong>4,220</strong> communities, and <strong>77</strong> U.S. markets. The takeaway is not that renters only care about price. They also care about reviews, photos, response time, and friction.</p>
+
+    <p>RealPage's National Renter Study adds a resident-experience layer. The study found that <strong>97%</strong> of renters would be more likely to renew if working with property management were as easy as interacting with Amazon, <strong>98%</strong> wanted loyalty rewards for on-time rent payments, and <strong>77%</strong> had struggled with credit and wanted flexible payment or financial wellness support.</p>
+
+    <p>These are not soft brand metrics. They affect leasing velocity, renewals, bad debt, review reputation, and operating load.</p>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>The resident experience is no longer just property management. It is revenue protection. In a loose market, friction becomes vacancy.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     OPERATOR EDGE GRID
+══════════════════════════════════════════ -->
+<section class="section dark">
+  <div class="section-eyebrow">Competitive Advantage</div>
+  <h2 class="section-title">Operator Edge</h2>
+  <p class="section-sub">The new value-add is not just cosmetic. The 2021 value-add playbook was easy: buy with cheap floating-rate debt, renovate units, push rents, refinance or sell. That playbook broke when rates rose, rent growth slowed, insurance reset, and concessions returned.</p>
+
+  <table class="edge-table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Old Playbook</th>
+        <th>2026 Requirement</th>
+        <th>CRC Diligence Question</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="category">Leasing</td>
+        <td>Post availability, wait for leads</td>
+        <td>Data-driven lead-to-tour conversion, 30% benchmark</td>
+        <td>What is actual lead-to-tour rate?</td>
+      </tr>
+      <tr>
+        <td class="category">Maintenance</td>
+        <td>Reactive repairs</td>
+        <td>Response time affects reviews, renewals, and reputation</td>
+        <td>What is current maintenance backlog?</td>
+      </tr>
+      <tr>
+        <td class="category">Renewals</td>
+        <td>Blanket rent increases</td>
+        <td>Renewal management by lease cohort, concession timing</td>
+        <td>When do current concessions expire?</td>
+      </tr>
+      <tr>
+        <td class="category">Fraud</td>
+        <td>Basic screening</td>
+        <td>Fraud control = NOI protection</td>
+        <td>What fraud rate is the asset experiencing?</td>
+      </tr>
+      <tr>
+        <td class="category">Concessions</td>
+        <td>Match market</td>
+        <td>Concession discipline and burn-off timing</td>
+        <td>What is concession structure and renewal plan?</td>
+      </tr>
+      <tr>
+        <td class="category">Data</td>
+        <td>Basic reporting</td>
+        <td>Clean data, real-time visibility, AI/leasing infrastructure</td>
+        <td>Does the operator have data-quality discipline?</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="prose" style="margin-top: 32px;">
+    <p>Thesis Driven's Moneyball Playbook for Multifamily Development described Gowanus Wharf / Union Channel leasing <strong>25% faster</strong> than competition and achieving rents <strong>10-20%</strong> above market by using data-driven product, unit mix, amenity, and marketing decisions.</p>
+
+    <p>Thesis Driven's "Why Great Buildings Still Struggle to Lease" makes the same point from the other side: the building can be fine and the lease-up can still fail if the inquiry-to-move-in funnel breaks. A rough <strong>30%</strong> lead-to-tour benchmark is a useful operating reference.</p>
+
+    <p>The AI/leasing infrastructure layer is no longer theoretical. Thesis Driven reported that Funnel is used by <strong>9 of the top 15</strong> operators and more than <strong>1.5 million</strong> units, while EliseAI has at least one product used by <strong>24 of the top 25</strong> owners.</p>
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>Operations are not the back office anymore. They are the investment thesis. The asset-level edge is the ability to convert market dislocation into collected NOI.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     NEWS TEMPERATURE BOARD
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-eyebrow">Article Layer</div>
+  <h2 class="section-title">Market Headlines</h2>
+  <p class="section-sub">The recent market conversation is consistent: capital is returning, supply is falling, rent growth remains muted, concessions remain elevated, and distress is moving through debt structures unevenly.</p>
+
+  <div class="news-board">
+    <!-- BROKER COVERAGE -->
+    <a href="https://www.thebrokerlist.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">The Broker List</div>
+        <div class="news-card-headline">NYC Multifamily Q1 2026: The recovery is no longer theoretical-it's showing up in the numbers</div>
+        <div class="news-card-date">May 12, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.thebrokerlist.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">The Broker List</div>
+        <div class="news-card-headline">How oil prices affect CRE</div>
+        <div class="news-card-date">Apr. 21, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.thebrokerlist.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">The Broker List</div>
+        <div class="news-card-headline">How buyers underwrite deferred maintenance in 2026</div>
+        <div class="news-card-date">2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.thebrokerlist.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">The Broker List</div>
+        <div class="news-card-headline">Multifamily investing explained: Why perfect properties are a costly mistake</div>
+        <div class="news-card-date">2026</div>
+      </div>
+    </a>
+
+    <!-- INSTITUTIONAL COVERAGE -->
+    <a href="https://commercialobserver.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">Commercial Observer</div>
+        <div class="news-card-headline">DFW recovery uneven: beds/sheds durable, construction pullback may help 3-5 years</div>
+        <div class="news-card-date">May 12, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://commercialobserver.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">Commercial Observer</div>
+        <div class="news-card-headline">Multifamily construction starts drop to lowest level since 2011</div>
+        <div class="news-card-date">May 12, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.connectcre.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">Connect CRE</div>
+        <div class="news-card-headline">CRE lending activity reaches highest level in five years</div>
+        <div class="news-card-date">May 11, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.costar.com/article/apartments" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">GlobeSt</div>
+        <div class="news-card-headline">CoStar more cautious on multifamily vacancy, elevated through 2026</div>
+        <div class="news-card-date">May 8, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.globest.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">GlobeSt</div>
+        <div class="news-card-headline">Absorption rebounds, rent growth muted at 0.2%, cap rates ~5.8%</div>
+        <div class="news-card-date">May 7, 2026</div>
+      </div>
+    </a>
+
+    <!-- PRIVATE EQUITY COVERAGE -->
+    <a href="https://www.privateequityrealestate.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">PERE</div>
+        <div class="news-card-headline">Ares' Phillips: 'We're on track for another record year of fundraising'</div>
+        <div class="news-card-date">May 6, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.privateequityrealestate.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">PERE</div>
+        <div class="news-card-headline">Private real estate losses prompt search for answers: Covid-era deals underperform</div>
+        <div class="news-card-date">May 5, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.bisnow.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">Bisnow</div>
+        <div class="news-card-headline">Supply slowdown gives multifamily room to stabilize, concessions persist</div>
+        <div class="news-card-date">Apr. 16, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.privateequityrealestate.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">PERE</div>
+        <div class="news-card-headline">How private real estate is building resilience against an AI bubble</div>
+        <div class="news-card-date">Apr. 1, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.privateequityrealestate.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">PERE</div>
+        <div class="news-card-headline">The fundraising pipeline begins to unclog: Capital targets reduced, fund count rising</div>
+        <div class="news-card-date">Mar. 10, 2026</div>
+      </div>
+    </a>
+
+    <a href="https://www.privateequityrealestate.com" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">PERE</div>
+        <div class="news-card-headline">Private real estate assesses sectors being reshaped by AI disruption</div>
+        <div class="news-card-date">2026</div>
+      </div>
+    </a>
+
+    <!-- MARKET DATA COVERAGE -->
+    <a href="#" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">Zero Flux</div>
+        <div class="news-card-headline">2026's hottest market: Hartford tops list with 63% inventory shortage, 66% sold above ask</div>
+        <div class="news-card-date">2026</div>
+      </div>
+    </a>
+
+    <a href="#" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">Zero Flux</div>
+        <div class="news-card-headline">Where Americans moved in 2025: SC/ID/NC leading, FL/TX slowing, insurance costs hurting inflows</div>
+        <div class="news-card-date">Feb. 6, 2026</div>
+      </div>
+    </a>
+
+    <a href="#" target="_blank" rel="noopener noreferrer" class="news-card-link">
+      <div class="news-card">
+        <div class="news-card-source">Zero Flux</div>
+        <div class="news-card-headline">CRE fundraising on the rise: $222B in 2025, up 29% YoY, data centers capture 37%</div>
+        <div class="news-card-date">2026</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="sentiment-strip">
+    <strong>Data layer context:</strong> Private RE fundraising reached $222B in 2025 (+29% YoY) with data centers capturing 37% of capital. Migration shifted to SC/ID/NC while FL/TX slowed due to insurance costs. National housing shortage estimated at 10M homes. Institutional firms control 82% of investor-owned rentals in top 30 metros. Build-to-rent pipeline: 64,250 units under construction. Sun Belt showing oversupply vs. Midwest/Northeast balance. Hartford leads with 63% inventory shortage below pre-pandemic levels. Private sentiment (Yahoo/Drudge): housing affordability concerns, oil/inflation stress, geopolitical risk. Not used as proof—used for temperature and context.
+  </div>
+
+  <div class="crc-read">
+    <div class="crc-read-label">CRC Read</div>
+    <p>The news layer is not the proof. It is the market's conversation with itself. The proof still comes from JPM, BLS/EIA/FRED, MBA, Trepp, CRED iQ, RealPage, CoStar, Freddie, NMHC, and the rent roll.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MARKET-BY-MARKET APPENDIX
+══════════════════════════════════════════ -->
+<section class="section dark">
+  <div class="section-eyebrow">Market Intelligence</div>
+  <h2 class="section-title">Coral Reef Markets: Supply-Constrained Opportunity Set</h2>
+  <p class="section-sub">16 markets where forward supply dynamics, employment fundamentals, and asset class performance converge to create 2026-2027 acquisition windows.</p>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     MARKET SCORECARD
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-eyebrow">At a Glance</div>
+  <h2 class="section-title">Market Scorecard</h2>
+  <p class="section-sub">12-market summary showing rent growth, vacancy, employment, pipeline, deliveries, transaction volume, and average price per unit. Sources: Yardi Matrix sales comps (2025-2026), ALN, CoStar, Colliers, Capital Markets Research.</p>
+
+  <table class="scorecard-table" style="width: 100%; border-collapse: collapse; margin: 40px 0;">
+    <thead>
+      <tr style="background: var(--teal); color: var(--white);">
+        <th style="padding: 16px; text-align: left; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Market</th>
+        <th style="padding: 16px; text-align: center; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Rent Growth (YoY)</th>
+        <th style="padding: 16px; text-align: center; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Vacancy</th>
+        <th style="padding: 16px; text-align: center; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Employment Growth</th>
+        <th style="padding: 16px; text-align: center; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Price Per Unit</th>
+        <th style="padding: 16px; text-align: center; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Pipeline</th>
+        <th style="padding: 16px; text-align: center; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">12-Mo Deliveries</th>
+        <th style="padding: 16px; text-align: center; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Trans. Vol (TTM)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Atlanta</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #D85A30;">−0.5%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">7.5%</td>
+        <td style="padding: 14px 16px; text-align: center;">+1.8%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$195K</td>
+        <td style="padding: 14px 16px; text-align: center;">15,971</td>
+        <td style="padding: 14px 16px; text-align: center;">13,535</td>
+        <td style="padding: 14px 16px; text-align: center;">$6.6B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Austin</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #D85A30;">−3.2%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">8.5%</td>
+        <td style="padding: 14px 16px; text-align: center;">+2.2%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$245K</td>
+        <td style="padding: 14px 16px; text-align: center;">7,700</td>
+        <td style="padding: 14px 16px; text-align: center;">9,848</td>
+        <td style="padding: 14px 16px; text-align: center;">$1.6B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Charlotte</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #1A6B62;">+0.1%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">7.7%</td>
+        <td style="padding: 14px 16px; text-align: center;">+2.0%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$175K</td>
+        <td style="padding: 14px 16px; text-align: center;">14,125</td>
+        <td style="padding: 14px 16px; text-align: center;">9,000</td>
+        <td style="padding: 14px 16px; text-align: center;">$3.2B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Dallas-Fort Worth</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #D85A30;">−1.0%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">8.1%</td>
+        <td style="padding: 14px 16px; text-align: center;">+1.5%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$191K</td>
+        <td style="padding: 14px 16px; text-align: center;">42,704</td>
+        <td style="padding: 14px 16px; text-align: center;">26,000</td>
+        <td style="padding: 14px 16px; text-align: center;">$8.5B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Fort Lauderdale</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #1A6B62;">+2.3%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">6.0%</td>
+        <td style="padding: 14px 16px; text-align: center;">+0.9%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$256K</td>
+        <td style="padding: 14px 16px; text-align: center;">10,127</td>
+        <td style="padding: 14px 16px; text-align: center;">4,009</td>
+        <td style="padding: 14px 16px; text-align: center;">$2.0B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Houston</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #D85A30;">−1.2%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">7.8%</td>
+        <td style="padding: 14px 16px; text-align: center;">+1.2%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$185K</td>
+        <td style="padding: 14px 16px; text-align: center;">15,000</td>
+        <td style="padding: 14px 16px; text-align: center;">13,549</td>
+        <td style="padding: 14px 16px; text-align: center;">$945.4M</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Miami</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #1A6B62;">+1.8%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">6.3%</td>
+        <td style="padding: 14px 16px; text-align: center;">+0.8%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$282K</td>
+        <td style="padding: 14px 16px; text-align: center;">19,133</td>
+        <td style="padding: 14px 16px; text-align: center;">8,500</td>
+        <td style="padding: 14px 16px; text-align: center;">$5.2B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Nashville</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #D85A30;">−0.1%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">7.5%</td>
+        <td style="padding: 14px 16px; text-align: center;">+1.3%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$225K</td>
+        <td style="padding: 14px 16px; text-align: center;">7,600</td>
+        <td style="padding: 14px 16px; text-align: center;">6,230</td>
+        <td style="padding: 14px 16px; text-align: center;">$1.5B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Orlando</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #D85A30;">−1.5%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">10.6%</td>
+        <td style="padding: 14px 16px; text-align: center;">+1.1%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$185K</td>
+        <td style="padding: 14px 16px; text-align: center;">8,900</td>
+        <td style="padding: 14px 16px; text-align: center;">10,000</td>
+        <td style="padding: 14px 16px; text-align: center;">$1.8B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Raleigh-Durham</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #D85A30;">−1.3%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">10.3%</td>
+        <td style="padding: 14px 16px; text-align: center;">+1.4%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$216K</td>
+        <td style="padding: 14px 16px; text-align: center;">3,500</td>
+        <td style="padding: 14px 16px; text-align: center;">6,272</td>
+        <td style="padding: 14px 16px; text-align: center;">$1.2B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">San Antonio</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #D85A30;">−0.3%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">7.2%</td>
+        <td style="padding: 14px 16px; text-align: center;">+1.0%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$149K</td>
+        <td style="padding: 14px 16px; text-align: center;">5,500</td>
+        <td style="padding: 14px 16px; text-align: center;">4,500</td>
+        <td style="padding: 14px 16px; text-align: center;">$1.1B</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--rule);">
+        <td style="padding: 14px 16px; font-weight: 600; color: var(--text);">Tampa-St. Petersburg</td>
+        <td style="padding: 14px 16px; text-align: center;"><span style="color: #D85A30;">−1.4%</span></td>
+        <td style="padding: 14px 16px; text-align: center;">8.4%</td>
+        <td style="padding: 14px 16px; text-align: center;">+1.3%</td>
+        <td style="padding: 14px 16px; text-align: center; font-weight: 600;">$205K</td>
+        <td style="padding: 14px 16px; text-align: center;">18,283</td>
+        <td style="padding: 14px 16px; text-align: center;">11,000</td>
+        <td style="padding: 14px 16px; text-align: center;">$2.3B</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="markets-wrapper">
+<!-- ATLANTA - SUBURBAN -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">01</div>
+      <div class="market-name-h">Atlanta</div>
+      <div class="market-state">1,387 properties · 303,668 units</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−0.5%</span>
+      <span class="rent-label">Metro Rent Growth (YoY)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+1.8%</div>
+      <div class="metric-sub">3.1M Atlanta employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">15,971</div>
+      <div class="metric-sub">3.2% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">13,535</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$6.6B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$141,200</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Supply cliff mechanics visible: 45% completion drop creates forward tightening."</div>
+      <div class="market-insight">
+        <strong>Atlanta metro: $1,636 avg rent (-0.5% YoY), 5th largest U.S. multifamily market.</strong> Suburban submarket 91.64% occupancy (April), $1,646 rent, negative absorption -184 units (March). Asset class: 53.3% Upper Mid-Range (161,751 units), 21.4% Low Mid-Range (65,110 units), 13.6% Discretionary (41,181 units). <strong>Upper Mid-Range dominant, not Class A.</strong><br><br>
+        Supply cliff: Completions peaked 17,441 units (2024), dropping to 9,511 forecast 2026 - 45% decline. Pipeline: 83,699 units (63.7% Prospective, 18.3% Under Construction). <strong>Diversified corporate growth (logistics, film/entertainment, tech), inbound migration from higher-cost markets.</strong> Negative absorption March signals still digesting deliveries. Buyers targeting "Atlanta growth" should underwrite mid-tier fundamentals, not luxury performance.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Supply Signal</div>
+        <div class="sidebar-card-value green">45% completion drop 2024→2026</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Asset Class Reality</div>
+        <div class="sidebar-card-value">53% Upper Mid-Range - mid-tier market, not luxury</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Current Stress</div>
+        <div class="sidebar-card-value red">Negative absorption -184 (March), still digesting</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value">Supply cliff working, but timing matters. ITP vs OTP submarket selection critical.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- AUSTIN, TX -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">02</div>
+      <div class="market-name-h">Austin</div>
+      <div class="market-state">~200,000 units tracked</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−5.0%</span>
+      <span class="rent-label">Rent Growth (YoY)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+2.0%</div>
+      <div class="metric-sub">1.25M total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">14,000</div>
+      <div class="metric-sub">6.7% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">15,450</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$546.4M</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$245,000</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Supply peak passing. Forward pipeline collapse creates 2027-2028 acquisition window."</div>
+      <div class="market-insight">
+        <strong>Tech employment stabilized post-2023 correction, but demand absorption lagging supply overhang.</strong> Revenue-based net occupancy <90%. Heavy 2022-2024 pipeline delivered into weakening demand. $95 average concession gap (6.0% of market rent) is highest in Texas markets surveyed. Forward supply cliff approaching as construction starts collapsed.<br><br>
+        Operators who can hold through 2026-2027 will see tightening, creating value entry points for patient capital. Asset class selection critical. <strong>Workforce and Class B assets are absorbing the majority of the stress.</strong> Discretionary and Upper Mid-Range showing more resilience. The gap between headline occupancy (90.19% Yardi) and online listings (85.7% ALN) suggests significant concession pressure masking true demand weakness.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Stress Level</div>
+        <div class="sidebar-card-value red">Peak supply overhang</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Key Risk</div>
+        <div class="sidebar-card-value">Structural concession gap, NOI compression through 2026</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Supply Signal</div>
+        <div class="sidebar-card-value green">Forward starts collapsed, 2027-2028 tightening likely</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value">Hold-through-pain trade. Asset class selection critical. Avoid Workforce/Class B stress.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- CHARLOTTE -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">03</div>
+      <div class="market-name-h">Charlotte</div>
+      <div class="market-state">21st largest US multifamily market</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−1.8%</span>
+      <span class="rent-label">Rent Growth (YoY)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+2.1%</div>
+      <div class="metric-sub">1.4M total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">18,000</div>
+      <div class="metric-sub">5.1% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">15,122</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$2.0B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$187,500</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Banking employment strength. Supply moderation creating near-term opportunities."</div>
+      <div class="market-insight">
+        <strong>Charlotte: $1,573 avg rent (-1.8% YoY), 91.98% occupancy (April), negative absorption -180 units.</strong> Rent decline consistent with Texas markets despite stronger employment fundamentals. Banking and financial services concentration (Bank of America HQ, Wells Fargo operations) + corporate relocations supporting high-wage demand.<br><br>
+        Absorption normalizing as elevated 2023-2025 deliveries complete; forward pipeline declining sharply. <strong>Forward pipeline moderating sharply - supply cliff should tighten market late 2026.</strong> Financial services employment provides income floor that Texas energy markets lack. Occupancy 91.98% stronger than Austin (90.19%) or San Antonio (85.4%), showing better demand resilience despite negative absorption.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Employment Advantage</div>
+        <div class="sidebar-card-value green">Banking/financial HQ, income floor > Texas energy</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Current Stress</div>
+        <div class="sidebar-card-value red">Negative absorption -180, supply overhang visible</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Supply Signal</div>
+        <div class="sidebar-card-value green">Forward pipeline moderating, late 2026 tightening</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value">Time-limited overhang. Employment base stronger than TX. Buy digestion, sell tightening.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- DALLAS-FORT WORTH -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">04</div>
+      <div class="market-name-h">Dallas-Fort Worth</div>
+      <div class="market-state">1,796 properties · 466,281 units</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−1.9%</span>
+      <span class="rent-label">DFW Rent Growth (YoY)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+1.5%</div>
+      <div class="metric-sub">4.2M DFW employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">32,338</div>
+      <div class="metric-sub">DFW-wide pipeline</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">31,292</div>
+      <div class="metric-sub">DFW units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$1.3B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$191,000</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Positive absorption despite elevated supply. Quality submarket showing demand resilience."</div>
+      <div class="market-insight">
+        <strong>Dallas-North showing +1,199 net absorption (April) despite metro-wide supply pressure.</strong> Asset class composition: 36.6% Upper Mid-Range (170,592 units), 29.5% Discretionary (137,619 units), 24.3% Low Mid-Range (113,347 units). Quality tilt (66% Upper Mid-Range + Discretionary) supporting occupancy performance relative to working-class submarkets.<br><br>
+        DFW metro: $1,509 average rent (-1.9% YoY), 92.9% occupancy (Yardi), 87.7% occupancy (ALN listings, 4,413 properties tracked). Concession pressure moderate ($66 gap, 4.3% of rent) compared to Austin. <strong>Diversified job growth (logistics, corporate relocations, defense) stronger than Austin/Houston.</strong> Forward pipeline collapse will tighten 2027-2028.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Performance</div>
+        <div class="sidebar-card-value green">Positive absorption +1,199 units</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Asset Class Edge</div>
+        <div class="sidebar-card-value">66% quality tilt, Upper Mid + Discretionary dominant</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Supply Signal</div>
+        <div class="sidebar-card-value green">Forward starts collapsing, 2027-2028 tightening</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value">Buy now, stabilize occupancy, roll concessions by 2027. Quality submarket thesis working.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FORT LAUDERDALE -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">05</div>
+      <div class="market-name-h">Fort Lauderdale</div>
+      <div class="market-state">~150,000 units metro</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number up">+0.5%</span>
+      <span class="rent-label">Rent Growth (est)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.5%</div>
+      <div class="metric-sub">1.0M total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">5,739</div>
+      <div class="metric-sub">6.2% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">4,009</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$2.0B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$140,700</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Florida counter-narrative to Tampa. Near-94% occupancy = strong demand despite insurance headwinds."</div>
+      <div class="market-insight">
+        <strong>Fort Lauderdale: 93.98% occupancy (April 2026), strongest in surveyed markets.</strong> Positive absorption trajectory. Moderate pipeline relative to demand base. High-wage professional employment, wealthy retiree inflows, coastal premium supporting occupancy.<br><br>
+        <strong>High-wage base and coastal scarcity support occupancy despite insurance headwinds.</strong> Income base can absorb elevated insurance pass-through better than Tampa/Orlando tourism/service wages. Premium pricing defensible due to limited supply + coastal location. Market absorbing supply that would stress Tampa - demand fundamentals working. Forward supply limited by coastal development constraints.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Performance</div>
+        <div class="sidebar-card-value green">93.98% occupancy - #1 in Florida</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Demand Quality</div>
+        <div class="sidebar-card-value green">High-wage professional + retiree wealth</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Supply Constraint</div>
+        <div class="sidebar-card-value green">Coastal scarcity, limited future pipeline</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value green">Defensible positioning. Income base absorbs insurance risk. Premium Florida exposure.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- HOUSTON -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">06</div>
+      <div class="market-name-h">Houston</div>
+      <div class="market-state">~400,000 units metro</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−1.2%</span>
+      <span class="rent-label">Rent Growth (YoY)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+1.2%</div>
+      <div class="metric-sub">3.5M total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">15,000</div>
+      <div class="metric-sub">4.2% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">13,549</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$945.4M</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$185,000</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Least stressed Texas market. Concession pressure muted, absorption better than headline suggests."</div>
+      <div class="market-insight">
+        <strong>Houston fundamentals less stressed than Austin/DFW despite energy volatility concerns.</strong> $1,353 average rent (-1.2% YoY), 92.2% occupancy (Yardi), 88.3% occupancy (ALN). Concession gap $47 (3.4%) lowest in Texas survey. Submarket divergence visible: Houston-East 89.37% occ (weakest), Houston-West 90.32% occ, both mixed absorption April 2026.<br><br>
+        Energy sector stabilized, medical/logistics diversification improving demand resilience. <strong>24,782 units underway elevated but manageable vs DFW 42,704.</strong> Oil price stability supporting employment demand. Forward supply tightening should stabilize rent growth late 2026. Market absorbing supply better than -1.2% rent growth suggests; concession pressure remains muted.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Stress Level</div>
+        <div class="sidebar-card-value green">Least stressed Texas market</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Concession Pressure</div>
+        <div class="sidebar-card-value green">$47 (3.4%) - lowest in Texas</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Employment Base</div>
+        <div class="sidebar-card-value">Energy stabilized, medical/logistics diversification</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value">Better fundamentals than Austin/DFW. Forward supply tightening by late 2026.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MIAMI -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">07</div>
+      <div class="market-name-h">Miami</div>
+      <div class="market-state">~400,000 units metro</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number up">+0.3%</span>
+      <span class="rent-label">Rent Growth (est)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">−0.36%</div>
+      <div class="metric-sub">1.34M total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">13,355</div>
+      <div class="metric-sub">6.1% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">8,882</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$1.8B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$202,200</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"High-wage demand thesis validated. Absorbing luxury supply that would stress other FL markets."</div>
+      <div class="market-insight">
+        <strong>Miami: 93.87% occupancy (April 2026), consistent with Fort Lauderdale's 93.98% resilience.</strong> Elevated luxury deliveries, but high-wage demand base absorbing supply. Financial services, international capital flows, high-net-worth migration supporting demand. Wage base supports luxury rents despite elevated completions.<br><br>
+        <strong>Market absorbing luxury supply that would stress Tampa/Orlando.</strong> International capital and financial services employment create demand resilience - Miami functions as Latin America financial gateway. Insurance risk remains (same FL headwinds), but income base can absorb cost pass-through better than Tampa/Orlando tourism/service wages. Occupancy 93.87% vs Tampa's estimated ~89-90% (7 months contraction) shows demand quality divergence.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Demand Strength</div>
+        <div class="sidebar-card-value green">93.87% occ, absorbing elevated luxury supply</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Income Base</div>
+        <div class="sidebar-card-value green">Financial services, international HNW, capital gateway</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Insurance Risk</div>
+        <div class="sidebar-card-value">Exists, but income base absorbs better than Tampa/Orlando</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value green">High-wage demand working. Luxury thesis defensible despite insurance headwinds.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- NASHVILLE -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">08</div>
+      <div class="market-name-h">Nashville</div>
+      <div class="market-state">~200,000 units metro</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−0.5%</span>
+      <span class="rent-label">Rent Growth (est)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.87%</div>
+      <div class="metric-sub">1.2M total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">11,323</div>
+      <div class="metric-sub">4.8% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">7,198</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$1.2B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$203,600</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Healthcare employment anchor. Mid-cycle market with forward supply moderation."</div>
+      <div class="market-insight">
+        <strong>Nashville: 92.39% occupancy (April 2026), solid mid-cycle performance at 92.39%, reflecting supply absorption with healthcare employment providing demand stability.</strong> Elevated 2023-2025 deliveries, forward pipeline moderating.<br><br>
+        Healthcare (HCA HQ, Vanderbilt Medical) + music/entertainment + corporate relocations create diversified employment base with stable high-wage anchors. <strong>Healthcare employment provides demand floor that tourism markets (Tampa, Orlando) lack.</strong> Market absorbing supply but not at Texas/Atlanta digestion pace. Forward tightening likely as pipeline moderates. Occupancy 92.39% suggests moderate stress - not crisis (Austin 90.19%, San Antonio 85.4%) but not resilient (Miami 93.87%, Fort Lauderdale 93.98%).
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Performance Tier</div>
+        <div class="sidebar-card-value">Mid-pack: stronger than TX, weaker than coastal FL</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Employment Anchor</div>
+        <div class="sidebar-card-value green">Healthcare (HCA, Vanderbilt) = stable high-wage floor</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Supply Signal</div>
+        <div class="sidebar-card-value green">Forward pipeline moderating, tightening likely</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value">Moderate opportunity. Healthcare floor + forward supply moderation = defensible.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ORLANDO -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">09</div>
+      <div class="market-name-h">Orlando</div>
+      <div class="market-state">~200,000 units metro</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−1.5%</span>
+      <span class="rent-label">Rent Growth (12-month)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+2.5%</div>
+      <div class="metric-sub">1.5M total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">15,000</div>
+      <div class="metric-sub">6.3% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">10,343</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$2.2B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$175,200</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Supply peak absorption cycle. Population growth intact, forward pipeline moderating."</div>
+      <div class="market-insight">
+        <strong>Orlando: 10.6% vacancy (89.4% occ, CoStar May 2026), -1.5% rent growth, negative absorption -1,513 units (12-month).</strong> ~10,000 units delivered past year, 8,900 under construction. Elevated supply concentrated in 4 & 5 Star amenity-rich properties. CoStar projects vacancy approaching 11% mid-2026, highest in 16+ years.<br><br>
+        Population growth (pandemic migration) remains strong, but <strong>wage growth lags rent levels - tourism/theme park employment provides floor but limited high-wage job creation.</strong> Rent growth expected negative through 2026, return to positive mid-2027 if recovery holds. Renter demand expected to outpace deliveries 2027 for first time in six years. <strong>This is supply overhang with Tampa's stress but without Miami/Fort Lauderdale high-wage base.</strong> Stabilized vacancy (90%+ occ, 18+ months delivered) ~250 bps lower than headline - stress concentrated in new deliveries.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Stress Level</div>
+        <div class="sidebar-card-value red">16-year high vacancy approaching, structural correction</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Timing</div>
+        <div class="sidebar-card-value red">No 2026 tightening. 2027-2028 stabilization timeline.</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Wage Gap</div>
+        <div class="sidebar-card-value red">Tourism wages < rent levels, population ≠ income quality</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value red">Weak current fundamentals. Buy for 2027-2028, not 2026. Population provides medium-term support.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- RALEIGH-DURHAM -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">10</div>
+      <div class="market-name-h">Raleigh</div>
+      <div class="market-state">1,021 properties · 220,884 units</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−1.3%</span>
+      <span class="rent-label">Rent Growth (12-month)</span>
+    </div>
+  </div>
+
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+1.6%</div>
+      <div class="metric-sub">760,000 total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">6,900</div>
+      <div class="metric-sub">5.0% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">4,717</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$1.1B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$148,300</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Positive absorption despite elevated vacancy. Supply digestion story, not supply absorption."</div>
+      <div class="market-insight">
+        <strong>Raleigh-Durham: 10.3% vacancy (89.7% occ, CoStar May 2026), -1.3% rent growth, POSITIVE absorption +1,555 units (12-month).</strong> 6,272 units absorbed vs 4,717 delivered - demand outpacing supply. Vacancy reached record 12.9% Q4 2024, declined to 10.3% but above 8.9% historical average. About 3,500 units forecast 2026, down from elevated 2023-2024.<br><br>
+        <strong>Asset class: 48.3% Upper Mid-Range (106,669 units), 19.7% Discretionary (43,520 units), 19.3% Low Mid-Range (42,626 units)</strong> - professional/white-collar tilt. Research Triangle (Duke, UNC, NC State) + corporate relocations drive high-wage employment. Top 5 US population growth, affordable cost vs peer metros sustains inbound migration. <strong>85% of past 12-month absorption in 4 & 5 Star properties = quality-driven demand.</strong> Under construction 6,900 units (5.0% inventory expansion) moderate vs Texas 7-10%+ in stressed markets. Vacancies declining gradually, return to positive rent growth late 2026/early 2027.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Key Distinction</div>
+        <div class="sidebar-card-value green">POSITIVE absorption +1,555 despite elevated vacancy</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Demand Drivers</div>
+        <div class="sidebar-card-value green">Research Triangle, Top 5 pop. growth, affordable vs peers</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Supply Moderate</div>
+        <div class="sidebar-card-value green">5% inventory expansion vs TX 7-10%+</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value green">Demand working. Supply digestion, not failure. Vacancy declining from 2024 peak. Buy now.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- SAN ANTONIO -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">11</div>
+      <div class="market-name-h">San Antonio</div>
+      <div class="market-state">~150,000 units estimated</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−3.0%</span>
+      <span class="rent-label">Rent Growth (est)</span>
+    </div>
+  </div>
+
+    <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.67%</div>
+      <div class="metric-sub">1.2M total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">3,903</div>
+      <div class="metric-sub">1.8% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">6,747</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$89.6M</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$149,000</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Military employment base provides stability. Forward supply moderation ahead."</div>
+      <div class="market-insight">
+        <strong>San Antonio 85.4% occupancy (ALN) matches Austin for weakest in Texas.</strong> Concession gap $64 (5.1% of market rent) second-highest after Austin's $95 (6.0%). Lower absolute supply volume than Austin/DFW/Houston, but demand base smaller and more volatile.<br><br>
+        Military presence (Fort Sam Houston, Lackland AFB, Randolph AFB) provides occupancy floor, but <strong>limited high-wage job growth constraining Class A absorption.</strong> Asset class selection critical. Workforce and Class B assets deeply stressed (national data: 91.07%-91.16% occupancy). Market lacks Austin's tech rebound narrative or Houston's diversified base. Supply tightening 2027-2028, but demand fundamentals weaker than peer TX markets.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Stress Level</div>
+        <div class="sidebar-card-value red">Tied with Austin—weakest TX</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Key Risk</div>
+        <div class="sidebar-card-value red">Workforce/Class B deeply stressed, limited high-wage jobs</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Employment Floor</div>
+        <div class="sidebar-card-value">Military presence provides base, but constrained upside</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value red">Avoid. Stress without rebound narrative. Asset class selection critical.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- TAMPA -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">12</div>
+      <div class="market-name-h">Tampa</div>
+      <div class="market-state">~250,000 units metro</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−1.8%</span>
+      <span class="rent-label">Rent Growth (YoY)</span>
+    </div>
+  </div>
+
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.43%</div>
+      <div class="metric-sub">1.56M total employed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">13,172</div>
+      <div class="metric-sub">5.3% inventory expansion</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">7,175</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$1.8B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$139,200</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Supply absorption cycle underway. Remote work inflows stabilized, forward pipeline declining."</div>
+      <div class="market-insight">
+        <strong>Tampa: $1,786 avg rent (-1.8% YoY), 7 consecutive months of rent contraction through March 2026.</strong> Heavy 2023-2025 deliveries into demand constrained by insurance costs and wage growth lag. Tourism and service sector recovery complete, but wage growth trailing rent levels. Remote work inflows stabilized post-2024.<br><br>
+        <strong>Seven consecutive months signals structural correction, not seasonal softness.</strong> Insurance cost volatility adds NOI uncertainty. Florida property insurance up 40-60% in some cases. Market will stabilize as supply cliff hits 2027-2028, but current fundamentals are weak. Wage base (tourism, service, healthcare) cannot absorb elevated rents + insurance pass-through like Miami/Fort Lauderdale high-wage professional base.
+      </div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Stress Level</div>
+        <div class="sidebar-card-value red">Structural correction—7 months contraction</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Key Risks</div>
+        <div class="sidebar-card-value red">Insurance volatility, wage growth < rent growth</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Supply Signal</div>
+        <div class="sidebar-card-value">2027-2028 stabilization as cliff hits</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">CRC Thesis</div>
+        <div class="sidebar-card-value red">Weak fundamentals. Insurance adds NOI risk. Avoid until 2027 stabilization visible.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div><!-- end markets-wrapper -->
+
+<!-- ══════════════════════════════════════════
+     CLOSING
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-eyebrow">Conclusion</div>
+  <h2 class="section-title">The Market Is Readable Again</h2>
+
+  <div class="prose">
+    <p>Issue 02 should leave the reader with one clear idea:</p>
+
+    <p><strong>The market is moving again, but the real opportunity is not in the headline recovery. It is in the gap between improving capital markets and unresolved asset-level pain.</strong></p>
+
+    <p>That gap is where operators matter.</p>
+
+    <p>Debt is available. Supply is falling. Renters are still selective. Expenses are still high. Concessions still distort the rent roll. Fraud and bad debt still hit NOI. Small-balance financing changed. The Fed is not cleanly rescuing anyone. And the submarkets that matter are still the ones where forward pipeline tells a different story.</p>
+
+    <p>The opportunity is not that multifamily is easy again.</p>
+
+    <p><strong>The opportunity is that the market is readable again.</strong></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<div class="report-footer" style="background: linear-gradient(135deg, #0A4A42, #1A6B62); padding: 60px 40px 40px; margin-top: 80px;">
+  <div style="max-width: 1400px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 300px 1fr; gap: 60px; margin-bottom: 40px;">
+      <div>
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom: 16px;">
+          <path d="M15 3 Q8 14 7 25 L15 25 Z" fill="#5DCAA5"/>
+          <path d="M16 7 Q22 14 24 25 L16 25 Z" fill="#D85A30"/>
+          <line x1="4" y1="28" x2="28" y2="28" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #F4F3F0; margin-bottom: 8px;">Coral Reef Capital</div>
+        <div style="font-size: 13px; color: rgba(240,245,244,0.7); line-height: 1.6;">The Next Generation of Multifamily Owning &amp; Operating</div>
+      </div>
+      <div style="font-size: 13px; line-height: 1.8; color: rgba(240,245,244,0.85);">
+        <p style="margin-bottom: 16px;"><strong style="color: #F4F3F0; font-weight: 700;">Data Sources:</strong> Yardi Matrix MarketPoint (Q1 2026); CoStar/Apartments.com Market Reports (Q1 2026); ALN Apartment Data; Colliers Capital Markets Research (Dallas-Fort Worth, Houston, Austin, Charlotte, Atlanta, South Florida); Capital Markets Property Sale PDFs; Rebel Cole / Florida Atlantic University FFIEC Call Report Analysis (Q4 2025, 4,392 U.S. Banks); JPMorgan Economic Research; Federal Reserve (FRED); Bureau of Labor Statistics; U.S. Energy Information Administration; MBA Originations Index; Trepp CMBS; CRED iQ; RealPage Analytics; NMHC; Freddie Mac Multifamily; Grace Hill Renter Preferences Survey 2024; Commercial Observer; GlobeSt; Bisnow; Connect CRE; PERE (Private Equity Real Estate); The Broker List; Thesis Driven.</p>
+        <p style="margin-top: 16px; font-size: 12px; color: rgba(240,245,244,0.65);">This report is produced by Coral Reef Capital for informational purposes only and does not constitute investment advice, a solicitation, or an offer to buy or sell any security. Past performance is not indicative of future results. Independent analysis and qualified professional consultation are recommended before making investment decisions.</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 12px; color: rgba(240,245,244,0.6);">
+      <div>© 2026 Coral Reef Capital · coralreefcap.co · All rights reserved</div>
+      <div style="font-weight: 600; color: rgba(240,245,244,0.8);">The Reef Report · Issue 02 · May 2026</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

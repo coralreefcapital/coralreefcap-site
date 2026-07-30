@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#0b1614"/>
+    <path d="M30 42 Q42 34 54 42 T78 42" fill="none" stroke="#d85a30" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M30 54 Q42 46 54 54 T78 54" fill="none" stroke="#b0863a" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M30 66 Q42 58 54 66 T78 66" fill="none" stroke="#1a8f7e" stroke-width="3.4" stroke-linecap="round"/>
+  </svg>
+</template>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; background:#f4f3f0; color:#16241f; font-family:'Newsreader',Georgia,serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  ::selection{ background:#d85a30; color:#fff; }
+  @keyframes reefdrift{ 0%{ transform:translate3d(0,0,0) scale(1); } 50%{ transform:translate3d(4%,-3%,0) scale(1.12); } 100%{ transform:translate3d(0,0,0) scale(1); } }
+  @keyframes reefdrift2{ 0%{ transform:translate3d(0,0,0) scale(1.05); } 50%{ transform:translate3d(-5%,4%,0) scale(1); } 100%{ transform:translate3d(0,0,0) scale(1.05); } }
+  @page { size: letter portrait; margin: 0; }
+  @page coverpage { size: letter landscape; margin: 0; }
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html, body { overflow: visible !important; }
+    *, *::before, *::after {
+      animation-delay: -99s !important; animation-duration: .001s !important;
+      animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+      animation-play-state: running !important; transition-duration: 0s !important;
+    }
+    section, footer { break-before: page; break-inside: avoid-page; }
+    section:first-of-type { break-before: auto; }
+    section[data-screen-label="Cover"] { min-height: 100vh !important; page: coverpage; }
+  }
+</style>
+<script src="./image-slot.js"></script>
+<script>
+if (window.top === window.self) {
+  addEventListener('load', () => { (async () => {
+    try { await document.fonts.ready; } catch (e) {}
+    // wait for the DC to mount its sections
+    for (let i = 0; i < 60; i++) {
+      const root = document.querySelector('x-dc');
+      const sr = root && (root.shadowRoot || root);
+      if (sr && sr.querySelectorAll && sr.querySelectorAll('section').length > 3) break;
+      await new Promise(r => setTimeout(r, 150));
+    }
+    const imgs = Array.from(document.images).filter(i => !i.complete);
+    await Promise.race([
+      Promise.allSettled(imgs.map(i => i.decode().catch(()=>{}))),
+      new Promise(r => setTimeout(r, 8000)),
+    ]);
+    setTimeout(() => window.print(), 900);
+  })(); });
+}
+</script>
+</helmet>
+
+<sc-if value="{{ draftBanner }}" hint-placeholder-val="{{ true }}">
+<div style="background:#d85a30; color:#fff; font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.04em; text-align:center; padding:8px 16px; font-weight:500;">DRAFT · June 2026 / Q1 2026 data from CoStar, Yardi Matrix, the Federal Reserve, MBA &amp; Trepp · final copy review pending</div>
+</sc-if>
+
+<svg aria-hidden="true" width="0" height="0" style="position:absolute; width:0; height:0; pointer-events:none;">
+  <filter id="glassRefract" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.009 0.013" numOctaves="2" seed="7" result="noise"></feTurbulence>
+    <feGaussianBlur in="noise" stdDeviation="1.4" result="softNoise"></feGaussianBlur>
+    <feDisplacementMap in="SourceGraphic" in2="softNoise" scale="16" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+  </filter>
+</svg>
+
+<!-- ============ COVER ============ -->
+<section data-screen-label="Cover" style="position:relative; background:#0b1614; color:#eaf2ef; overflow:hidden; min-height:94vh; display:flex; flex-direction:column;">
+  <sc-if value="{{ coverTexture }}" hint-placeholder-val="{{ true }}">
+  <image-slot id="coverImage" src="assets/cover-texture.png" fit="cover" placeholder="Drop a cover image" style="position:absolute; inset:0; width:100%; height:100%; opacity:.26; filter:grayscale(1) contrast(1.05);"></image-slot>
+  </sc-if>
+  <div style="position:absolute; inset:0; background:radial-gradient(120% 80% at 70% 12%, rgba(26,107,98,.34), transparent 60%), linear-gradient(180deg, rgba(11,22,20,.55), rgba(11,22,20,.86));"></div>
+  <div style="position:absolute; top:-6%; right:2%; width:44%; height:60%; background:radial-gradient(circle at 50% 50%, rgba(93,202,165,.34), transparent 62%); filter:blur(46px); animation:reefdrift 28s ease-in-out infinite; pointer-events:none; z-index:1;"></div>
+  <div style="position:absolute; bottom:-8%; left:-4%; width:40%; height:56%; background:radial-gradient(circle at 50% 50%, rgba(216,90,48,.22), transparent 60%); filter:blur(52px); animation:reefdrift2 34s ease-in-out infinite; pointer-events:none; z-index:1;"></div>
+
+  <canvas data-cover-glass="1" style="position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none;"></canvas>
+  <div style="position:absolute; inset:0; z-index:1; background:linear-gradient(90deg, rgba(6,17,20,.86) 0%, rgba(6,17,20,.34) 34%, transparent 62%), linear-gradient(0deg, rgba(6,17,20,.82) 0%, transparent 44%); pointer-events:none;"></div>
+
+  <div style="position:relative; z-index:2; max-width:1180px; width:100%; margin:0 auto; padding:clamp(28px,4vw,44px) clamp(20px,5vw,52px); display:flex; flex-direction:column; flex:1;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; border-bottom:1px solid rgba(234,242,239,.18); padding-bottom:18px;">
+      <div style="font-family:'Archivo',sans-serif; font-weight:700; letter-spacing:.34em; font-size:clamp(13px,1.5vw,15px); text-transform:uppercase; color:#eaf2ef;">The Reef Report</div>
+      <div style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:#7fb3a6;">Issue 03 · June 2026</div>
+    </div>
+
+    <div style="flex:1;"></div>
+
+    <div style="border-top:1px solid rgba(234,242,239,.18); padding-top:22px;">
+      <h1 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(44px,8.5vw,104px); line-height:.94; letter-spacing:-.02em; margin:0 0 28px; max-width:15ch; color:#f3f8f6;">The Lines Are Lying</h1>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;">
+        <div style="max-width:640px;">
+          <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#7fb3a6; margin-bottom:9px;">Markets covered</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:clamp(13px,1.5vw,15px); letter-spacing:.08em; color:#dcebe6; font-weight:500;">ATL · AUS · CLT · DFW · FTL · HOU · MIA · BNA · MCO · RDU · SAT · TPA</div>
+        </div>
+        <div style="display:flex; flex-direction:row; align-items:center; gap:12px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:13px; color:#5dcaa5;">Coral Reef Capital</div>
+          <image-slot id="crcLogo" src="assets/crc-logo.png" fit="contain" placeholder="Logo" shape="rect" style="width:46px; height:42px;"></image-slot>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPENING BRIEF ============ -->
+<section data-screen-label="Opening Brief" style="background:linear-gradient(180deg,#f6f5f2 0%,#eef3f1 100%);">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">Opening Brief</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 36px; max-width:18ch;">Read Beneath the Average</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(28px,4vw,56px); max-width:880px;">
+      <div style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.62; color:#2c3a37;">
+        <p style="margin:0 0 18px;">In June the Zumper National Rent Index turned positive year-over-year for the first time since May 2025, one-bedroom rents up 0.4%. The headline reads like recovery. It isn't.</p>
+        <p style="margin:0;">As Zumper's own CEO put it, the national number is “simply the midpoint between two realities.” Where supply is constrained, rents are rising, San Francisco ran +21.9%. Where it isn't, they are still falling: Houston, Austin, and San Antonio each posted double-digit annual declines.</p>
+      </div>
+      <div style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.62; color:#2c3a37;">
+        <p style="margin:0 0 18px;">Yardi Matrix calls multifamily “muddling along,” with flat demand expected through the back half of 2026 and the Sun Belt lagging the Northeast and Midwest. The supply overhang is still the story.</p>
+        <p style="margin:0;">And the rate rescue everyone underwrote is not coming. On June 17, in Kevin Warsh’s first meeting as Fed chair, the Fed held for a fourth straight meeting, stripped forward guidance from a gutted statement, and the median dot now implies a hike, not a cut. The average is a lie, the signal lives beneath it, between markets and, this issue, between property types.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(40px,5vw,64px); background:#fff; border-left:3px solid #d85a30; padding:clamp(24px,3vw,34px); max-width:880px; box-shadow:0 1px 0 rgba(20,40,36,.05);">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#d85a30; font-weight:700; margin-bottom:12px;">CRC Read</div>
+      <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.8vw,20px); line-height:1.5; margin:0; color:#16241f;">Divergence is the opportunity. Averaging it away is how you miss it. The work is knowing which submarket, and now which sector, sits on the right side of the split.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIGNAL BOARD ============ -->
+<section data-screen-label="Signal Board" style="position:relative; overflow:hidden; background:linear-gradient(165deg,#0a1513 0%,#0d201c 45%,#0b1a24 100%); border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06);">
+  <div style="position:absolute; top:-12%; left:-8%; width:52%; height:70%; background:radial-gradient(circle at 40% 40%, rgba(93,202,165,.4), transparent 62%); filter:blur(40px); animation:reefdrift 26s ease-in-out infinite; pointer-events:none;"></div>
+  <div style="position:absolute; bottom:-18%; right:-6%; width:48%; height:72%; background:radial-gradient(circle at 60% 50%, rgba(216,90,48,.26), transparent 60%); filter:blur(48px); animation:reefdrift2 32s ease-in-out infinite; pointer-events:none;"></div>
+  <div style="position:relative; z-index:2; max-width:1180px; margin:0 auto; padding:clamp(64px,9vw,112px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#5dcaa5; font-weight:600; margin-bottom:18px;">Market Signals</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; color:#f1f8f5;">Signal Board</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.55; color:#aecabf; max-width:60ch; margin:0 0 clamp(34px,4vw,52px);">The market is moving again. The signals are mixed, that is the point. The contradiction is the opportunity.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(248px,1fr)); gap:14px;">
+      <sc-for list="{{ signals }}" as="sig" hint-placeholder-count="12">
+        <div style="background:linear-gradient(150deg, rgba(255,255,255,.08), rgba(255,255,255,.02)) padding-box, linear-gradient(135deg, rgba(93,202,165,.9), rgba(216,90,48,.5) 55%, rgba(255,255,255,.38)) border-box; border:1.5px solid transparent; border-radius:18px; -webkit-backdrop-filter:blur(18px) saturate(160%); backdrop-filter:url(#glassRefract) blur(16px) saturate(160%); box-shadow:0 10px 34px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.16); color:#dcebe6; padding:22px 22px 18px; display:flex; flex-direction:column; min-height:152px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(22px,2.6vw,28px); letter-spacing:-.01em; color:#5dcaa5; font-variant-numeric:tabular-nums;">{{ sig.value }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:12.5px; letter-spacing:.04em; color:#9fc4ba; margin-top:4px; font-weight:500;">{{ sig.label }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.4; color:#cfe1db; margin-top:auto; padding-top:14px;">{{ sig.read }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:#5f7e76; margin-top:10px;">{{ sig.source }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE ============ -->
+<section data-screen-label="Feature" style="background:linear-gradient(165deg,#0b1614 0%,#0e1f1b 55%,#0b1a22 100%); color:#e3efeb;">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#5dcaa5; font-weight:600; margin-bottom:18px;">Feature Story</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5.2vw,56px); line-height:1.03; letter-spacing:-.015em; margin:0 0 16px; max-width:20ch; color:#f1f8f5;">No Rescue Coming</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.9vw,21px); line-height:1.5; color:#aecabf; max-width:54ch; margin:0 0 clamp(38px,5vw,58px); font-weight:400;">The underwriting crutch of 2024–2025 was a falling-rate exit. On June 17, a newly hawkish Fed took it away, resetting the math on every floating-rate deal and marginal refinance in the Sun Belt.</p>
+
+    <div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:10px; margin-bottom:clamp(40px,5vw,58px);">
+      <sc-for list="{{ flow }}" as="f" hint-placeholder-count="5">
+        <div style="flex:1 1 150px; background:rgba(93,202,165,.07); border:1px solid rgba(93,202,165,.2); padding:18px 16px; min-width:130px;">
+          <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#5dcaa5; font-weight:600;">{{ f.k }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:16px; line-height:1.35; color:#dcebe6; margin-top:8px;">{{ f.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="max-width:720px; border-left:3px solid #5dcaa5; padding:6px 0 6px 24px;">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#5dcaa5; font-weight:700; margin-bottom:12px;">CRC Read</div>
+      <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.9vw,21px); line-height:1.5; margin:0; color:#eaf4f0;">Macro only matters when it hits the rent roll, the debt quote, or the expense line. A hawkish Fed hits all three at once, and it ends the strategy of buying soft NOI on faith in a 2026 cut.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPITAL MARKETS ============ -->
+<section data-screen-label="Capital Markets" style="background:linear-gradient(180deg,#eef3f1 0%,#f4f3f0 100%);">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">Capital Markets</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 12px;">Debt Window Open, But Narrow</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.8vw,20px); line-height:1.5; color:#54635f; max-width:50ch; margin:0 0 clamp(36px,4vw,52px);">Debt is available again. Casual debt is not. This is the difference between liquidity and forgiveness.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px;">
+      <div style="background:linear-gradient(155deg, rgba(255,255,255,.66), rgba(255,255,255,.34)); -webkit-backdrop-filter:blur(20px) saturate(150%); backdrop-filter:blur(20px) saturate(150%); border:1px solid rgba(255,255,255,.6); border-radius:20px; box-shadow:0 16px 44px rgba(20,40,36,.09), inset 0 1px 0 rgba(255,255,255,.7); border-top:3px solid #1a6b62; padding:clamp(26px,3vw,34px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:#1a6b62; font-weight:700; margin:0 0 18px;">Capital Moving Again</h3>
+        <ul style="list-style:none; margin:0; padding:0; font-family:'Newsreader',serif; font-size:clamp(16px,1.6vw,18px); line-height:1.4; color:#2c3a37;">
+          <sc-for list="{{ capMoving }}" as="c" hint-placeholder-count="4">
+            <li style="padding:13px 0; border-bottom:1px solid #ece9e2;">{{ c }}</li>
+          </sc-for>
+        </ul>
+      </div>
+      <div style="background:linear-gradient(155deg, rgba(255,255,255,.66), rgba(255,255,255,.34)); -webkit-backdrop-filter:blur(20px) saturate(150%); backdrop-filter:blur(20px) saturate(150%); border:1px solid rgba(255,255,255,.6); border-radius:20px; box-shadow:0 16px 44px rgba(20,40,36,.09), inset 0 1px 0 rgba(255,255,255,.7); border-top:3px solid #d85a30; padding:clamp(26px,3vw,34px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:#d85a30; font-weight:700; margin:0 0 18px;">Stress Still Visible</h3>
+        <ul style="list-style:none; margin:0; padding:0; font-family:'Newsreader',serif; font-size:clamp(16px,1.6vw,18px); line-height:1.4; color:#2c3a37;">
+          <sc-for list="{{ capStress }}" as="c" hint-placeholder-count="4">
+            <li style="padding:13px 0; border-bottom:1px solid #ece9e2;">{{ c }}</li>
+          </sc-for>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:0; margin-top:18px; border:1px solid #e2ded6;">
+      <div style="padding:clamp(28px,3.5vw,40px); background:#fff; border-right:1px solid #e2ded6;">
+        <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#1a6b62; font-weight:700;">Liquidity</div>
+        <p style="font-family:'Newsreader',serif; font-size:clamp(18px,2vw,23px); line-height:1.4; margin:14px 0 0; color:#16241f;">Lenders are quoting.</p>
+      </div>
+      <div style="padding:clamp(28px,3.5vw,40px); background:#0c1614;">
+        <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#d85a30; font-weight:700;">Forgiveness</div>
+        <p style="font-family:'Newsreader',serif; font-size:clamp(18px,2vw,23px); line-height:1.4; margin:14px 0 0; color:#eaf4f0;">The deal still works after real taxes, real insurance, real concessions, and an exit cap that does not rely on a fantasy Fed path. The market has the first. It does not have the second.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:36px;">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:#1a6b62; font-weight:700; margin:0;">What Lenders Are Quoting · Multifamily</h3>
+        <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#8a978f; font-weight:600;">As of Jul 1, 2026 · Northmarq</div>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:1px; background:#e2ded6; border:1px solid #e2ded6; margin-bottom:14px;">
+        <sc-for list="{{ quoteIndex }}" as="ix" hint-placeholder-count="4">
+          <div style="flex:1 1 140px; background:#fff; padding:14px 18px;">
+            <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#8a978f; font-weight:600;">{{ ix.k }}</div>
+            <div style="font-family:'Archivo',sans-serif; font-size:clamp(19px,2.3vw,25px); font-weight:700; letter-spacing:-.02em; color:#16241f; font-variant-numeric:tabular-nums; margin-top:5px;">{{ ix.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="border:1px solid #e2ded6; background:#fff;">
+        <div style="display:grid; grid-template-columns:1.6fr 1.3fr 1fr; gap:0; padding:11px 18px; border-bottom:1px solid #e2ded6; background:#f6f5f1; font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#8a978f; font-weight:700;">
+          <div>Source</div>
+          <div>Term / Leverage</div>
+          <div style="text-align:right;">All-in Rate</div>
+        </div>
+        <sc-for list="{{ lenderQuotes }}" as="q" hint-placeholder-count="5">
+          <div style="display:grid; grid-template-columns:1.6fr 1.3fr 1fr; gap:0; align-items:center; padding:15px 18px; border-bottom:1px solid #f0ede6; border-left:3px solid {{ q.dotColor }};">
+            <div style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); color:#16241f; font-weight:500;">{{ q.src }}</div>
+            <div style="font-family:'Archivo',sans-serif; font-size:13px; color:#68756f;">{{ q.term }}</div>
+            <div style="font-family:'Archivo',sans-serif; font-size:clamp(15px,1.7vw,18px); font-weight:700; color:{{ q.dotColor }}; text-align:right; font-variant-numeric:tabular-nums; letter-spacing:-.01em;">{{ q.rate }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#8a978f; margin:12px 0 0; line-height:1.5;">Indicative ranges, informational only, not a commitment to lend. Agency and FHA lead on price; CMBS is widest. The window is open — the deal still has to clear at these coupons.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE 30% SIGNAL ============ -->
+<section data-screen-label="Credit Signal" style="background:linear-gradient(165deg,#0b1614 0%,#0e1f1b 55%,#0b1a22 100%); color:#e3efeb;">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#5dcaa5; font-weight:600; margin-bottom:18px;">Credit Signal</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5.2vw,56px); line-height:1.03; letter-spacing:-.015em; margin:0 0 16px; max-width:18ch; color:#f1f8f5;">The 30% Signal</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.9vw,21px); line-height:1.5; color:#aecabf; max-width:60ch; margin:0 0 clamp(40px,5vw,56px); font-weight:400;">When acquisition financing crosses roughly 30% of CMBS issuance in a sector, buyers are competing on price, not underwriting to income. Per Trepp, that line has preceded every major CRE correction of the last twenty years.</p>
+
+    <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#7fb3a6; font-weight:600; margin-bottom:18px;">Acquisition share of CMBS issuance, by vintage</div>
+    <div style="margin-bottom:14px;">
+      <sc-for list="{{ signal30 }}" as="bar" hint-placeholder-count="6">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:11px;">
+          <div style="width:clamp(110px,18vw,160px); flex-shrink:0; font-family:'Archivo',sans-serif; font-size:12.5px; color:#9fc4ba; text-align:right;">{{ bar.label }}</div>
+          <div style="flex:1; position:relative; height:28px; background:rgba(255,255,255,.05);">
+            <div style="position:absolute; left:0; top:0; bottom:0; width:{{ bar.width }}; background:{{ bar.color }};"></div>
+            <div style="position:absolute; left:60%; top:-5px; bottom:-5px; border-left:1px dashed rgba(255,255,255,.5);"></div>
+            <div style="position:absolute; left:calc({{ bar.width }} + 10px); top:0; height:28px; display:flex; align-items:center; font-family:'Archivo',sans-serif; font-size:12.5px; font-weight:700; color:#eaf4f0;">{{ bar.val }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#6f8e85; margin-bottom:clamp(44px,5vw,60px); padding-left:clamp(124px,19vw,174px);">Dashed line = 30% threshold. Coral = warning zone. Source: Trepp, June 2026.</div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(28px,4vw,48px); max-width:900px; margin-bottom:clamp(44px,5vw,60px);">
+      <div>
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#5dcaa5; font-weight:700; margin:0 0 12px;">Where it stands now</h3>
+        <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.55; color:#cfe1db; margin:0;">Office acquisition share has collapsed to 4% in 2025 and 6% so far in 2026; refinancing is 79–84% of originations. On the deals being written today, the signal is quiet.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#d98a5e; font-weight:700; margin:0 0 12px;">The catch</h3>
+        <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.55; color:#cfe1db; margin:0;">The danger is the 2021 vintage. Multifamily acquisition share hit 47% that year, underwritten when the 10-year Treasury averaged 1.3%. That paper is hitting refinance now, at 4.4–4.5%.</p>
+      </div>
+    </div>
+
+    <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#7fb3a6; font-weight:600; margin-bottom:16px;">The Plumbing Is Changing</div>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(15px,1.6vw,18px); line-height:1.5; color:#aecabf; max-width:58ch; margin:0 0 18px;">Two quieter shifts under the headline: the standard loan is getting shorter, and the fastest-growing pocket of lending is the least visible.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1px; background:rgba(93,202,165,.16); border:1px solid rgba(93,202,165,.16); margin-bottom:clamp(40px,5vw,56px);">
+      <sc-for list="{{ debtShift }}" as="r" hint-placeholder-count="4">
+        <div style="background:linear-gradient(150deg, rgba(255,255,255,.1), rgba(255,255,255,.03)); -webkit-backdrop-filter:blur(16px) saturate(150%); backdrop-filter:url(#glassRefract) blur(14px) saturate(150%); border:1px solid rgba(255,255,255,.12); border-radius:16px; box-shadow:inset 0 1px 0 rgba(255,255,255,.22); padding:22px 20px 24px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(22px,2.9vw,32px); letter-spacing:-.02em; color:#5dcaa5; font-variant-numeric:tabular-nums;">{{ r.v }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.35; color:#dcebe6; margin-top:8px;">{{ r.k }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#6f8e85; margin-top:6px;">{{ r.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="max-width:760px; border-left:3px solid #5dcaa5; padding:6px 0 6px 24px;">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#5dcaa5; font-weight:700; margin-bottom:12px;">CRC Read</div>
+      <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.9vw,21px); line-height:1.5; margin:0; color:#eaf4f0;">The 30% signal is flashing on the refi wall: peak-vintage paper written at 1.3% money, coming due into 4.5% money and a Fed that just deleted its easing bias.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEXAS DISTRESS WATCH ============ -->
+<section data-screen-label="Texas Distress Watch" style="background:linear-gradient(160deg,#120e0c 0%,#1a1310 55%,#120f0d 100%); color:#ecddd5;">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#e0865b; font-weight:600; margin-bottom:18px;">Distress Watch · Texas</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 16px; max-width:20ch; color:#fbeee8;">The Band-Aid Is Beginning to Come Off in North Texas</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.9vw,21px); line-height:1.5; color:#cbb3a8; max-width:56ch; margin:0 0 clamp(36px,4vw,52px);">Four of our twelve markets are in Texas, and Texas is where the 2021–23 vintage is meeting its lender. The foreclosure slate has become a monthly print.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; background:rgba(224,134,91,.22); border:1px solid rgba(224,134,91,.22); margin-bottom:clamp(32px,4vw,48px);">
+      <sc-for list="{{ txDistressStat }}" as="s" hint-placeholder-count="3">
+        <div style="position:relative; overflow:hidden; background:linear-gradient(140deg, rgba(216,90,48,.2), rgba(216,90,48,.04) 60%, rgba(255,255,255,.03)); -webkit-backdrop-filter:blur(18px) saturate(170%); backdrop-filter:url(#glassRefract) blur(16px) saturate(170%); border:1px solid rgba(240,160,122,.32); border-radius:16px; box-shadow:0 12px 34px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.3), inset 0 0 30px rgba(216,90,48,.14); padding:24px 22px 26px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,38px); letter-spacing:-.02em; color:#f0a07a; font-variant-numeric:tabular-nums;">{{ s.v }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:clamp(15px,1.6vw,17px); line-height:1.35; color:#ecddd5; margin-top:8px;">{{ s.k }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:11.5px; letter-spacing:.02em; color:#9a8278; margin-top:8px;">{{ s.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:1px; background:rgba(224,134,91,.18); border:1px solid rgba(224,134,91,.18);">
+      <sc-for list="{{ txDistress }}" as="d" hint-placeholder-count="4">
+        <div style="background:linear-gradient(150deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); -webkit-backdrop-filter:blur(14px) saturate(140%); backdrop-filter:url(#glassRefract) blur(12px) saturate(140%); padding:clamp(20px,2.6vw,28px) clamp(18px,2.4vw,28px); display:grid; grid-template-columns:minmax(180px,260px) 1fr; gap:clamp(16px,3vw,40px); align-items:start;">
+          <div>
+            <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#e0865b; font-weight:700; margin-bottom:6px;">{{ d.who }}</div>
+            <div style="font-family:'Newsreader',serif; font-size:clamp(18px,2vw,22px); line-height:1.2; color:#fbeee8;">{{ d.deal }}</div>
+          </div>
+          <div style="font-family:'Newsreader',serif; font-size:clamp(15px,1.6vw,17px); line-height:1.55; color:#cdb6ab;">{{ d.detail }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top:18px; border-left:3px solid #e0865b; padding:6px 0 6px 24px; max-width:760px;">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#e0865b; font-weight:700; margin-bottom:10px;">CRC Read</div>
+      <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.8vw,20px); line-height:1.5; margin:0; color:#fbeee8;">This is the 2021-vintage refi wall arriving as actual deeds. The motivated seller here is the lender, the basis resets to today's money, and the buyer who underwrote collected rent at today's money is the one standing across the table. Distress is the entry point, not the warning.</p>
+    </div>
+    <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.04em; color:#7e6a60; margin-top:20px;">Source: The Real Deal, June 2026, using Roddy’s Foreclosure Listing Service data. Defaults described as alleged; loan workouts may avert auction.</div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section data-screen-label="Pricing" style="background:linear-gradient(180deg,#f4f3f0 0%,#eef3f1 100%);">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">Pricing</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 12px;">Stable on the Surface</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.8vw,20px); line-height:1.5; color:#54635f; max-width:56ch; margin:0 0 clamp(34px,4vw,48px);">Trepp's price index shows broad stabilization in Q1 2026, but the averages hide it: smaller assets have firmed while the largest properties, and the value-add trade, are still resetting.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; background:#ece9e2; border:1px solid #ece9e2; margin-bottom:clamp(40px,5vw,52px);">
+      <sc-for list="{{ tppi }}" as="t" hint-placeholder-count="3">
+        <div style="background:#fff; padding:22px 20px 24px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(24px,3vw,32px); letter-spacing:-.02em; color:#1a6b62; font-variant-numeric:tabular-nums;">{{ t.v }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.35; color:#2c3a37; margin-top:8px;">{{ t.k }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#9aa39f; margin-top:6px;">{{ t.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#1a6b62; font-weight:700; margin-bottom:6px;">The value-add repricing has slowed</div>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.55; color:#54635f; max-width:60ch; margin:0 0 24px;">Trepp's CRE-CLO data on 1970s-vintage multifamily shows how much of the last cycle's value creation was rate-driven, and how that engine has stalled.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; background:#ece9e2; border:1px solid #ece9e2;">
+      <sc-for list="{{ valueAdd }}" as="v" hint-placeholder-count="3">
+        <div style="background:#fff; padding:22px 20px 24px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(24px,3vw,32px); letter-spacing:-.02em; color:#d85a30; font-variant-numeric:tabular-nums;">{{ v.v }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.35; color:#2c3a37; margin-top:8px;">{{ v.k }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#9aa39f; margin-top:6px;">{{ v.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUPPLY ============ -->
+<section data-screen-label="Supply" style="background:linear-gradient(180deg,#eef4f2 0%,#e7efec 100%);">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">Supply</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 12px;">Nothing Pencils</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.8vw,20px); line-height:1.5; color:#54635f; max-width:58ch; margin:0 0 clamp(34px,4vw,48px);">NMHC's June survey: starts are split, 55% of firms unchanged, 22% starting more, 20% fewer. Among those pulling back, the reasons are economic, not logistical.</p>
+    <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#7a8a85; font-weight:600; margin-bottom:16px;">Why firms are starting fewer projects · share citing</div>
+    <div>
+      <sc-for list="{{ supplyWhy }}" as="s" hint-placeholder-count="4">
+        <div style="display:flex; align-items:baseline; gap:16px; padding:14px 0; border-top:1px solid #d6e0db;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(22px,2.6vw,28px); color:#1a6b62; min-width:64px; font-variant-numeric:tabular-nums;">{{ s.v }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.4; color:#16241f;">{{ s.k }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#7a8a85; margin:14px 0 0;">Source: NMHC Quarterly Construction Survey, June 2026.</p>
+  </div>
+</section>
+
+<!-- ============ SCORECARD ============ -->
+<section data-screen-label="Scorecard" style="background:linear-gradient(160deg,#0a1412 0%,#0c1a17 100%); color:#dcebe6;">
+  <div style="max-width:1180px; margin:0 auto; padding:clamp(64px,9vw,112px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#5dcaa5; font-weight:600; margin-bottom:18px;">At a Glance</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; color:#f1f8f5;">Market Scorecard</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(15px,1.6vw,18px); line-height:1.5; color:#9fc4ba; max-width:62ch; margin:0 0 28px;">12-market multifamily summary, rent growth, vacancy, employment, price per unit, pipeline, net deliveries, and trailing transaction volume. Source: CoStar / Yardi Matrix DataExport, Q1 2026 (as of Q2 2026).</p>
+    <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.08em; color:#5f7e76; margin-bottom:12px; text-transform:uppercase;">↔ Scroll table on mobile</div>
+
+    <div style="overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid rgba(93,202,165,.18);">
+      <div style="min-width:760px; font-family:'Archivo',sans-serif; font-variant-numeric:tabular-nums;">
+        <div style="display:grid; grid-template-columns:minmax(120px,1.5fr) repeat(7, minmax(78px,1fr)); background:#16241f;">
+          <div style="text-align:left; padding:15px 18px; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#7fb3a6; font-weight:600;">Market</div>
+          <div style="text-align:right; padding:15px 14px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#7fb3a6; font-weight:600;">Rent YoY</div>
+          <div style="text-align:right; padding:15px 14px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#7fb3a6; font-weight:600;">Vacancy</div>
+          <div style="text-align:right; padding:15px 14px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#7fb3a6; font-weight:600;">Emp.</div>
+          <div style="text-align:right; padding:15px 14px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#7fb3a6; font-weight:600;">$/Unit</div>
+          <div style="text-align:right; padding:15px 14px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#7fb3a6; font-weight:600;">Pipeline</div>
+          <div style="text-align:right; padding:15px 14px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#7fb3a6; font-weight:600;">12-Mo Deliv.</div>
+          <div style="text-align:right; padding:15px 18px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#7fb3a6; font-weight:600;">Trans. Vol.</div>
+        </div>
+        <sc-for list="{{ scorecard }}" as="row" hint-placeholder-count="12">
+          <div style="display:grid; grid-template-columns:minmax(120px,1.5fr) repeat(7, minmax(78px,1fr)); border-top:1px solid rgba(93,202,165,.12);">
+            <div style="text-align:left; padding:14px 18px; font-size:14px; font-weight:600; color:#f1f8f5; white-space:nowrap;">{{ row.market }}</div>
+            <div style="text-align:right; padding:14px 14px; font-size:14px; font-weight:600; color:{{ row.rentColor }};">{{ row.rent }}</div>
+            <div style="text-align:right; padding:14px 14px; font-size:14px; color:#c3d8d1;">{{ row.vacancy }}</div>
+            <div style="text-align:right; padding:14px 14px; font-size:14px; color:#c3d8d1;">{{ row.emp }}</div>
+            <div style="text-align:right; padding:14px 14px; font-size:14px; color:#c3d8d1;">{{ row.ppu }}</div>
+            <div style="text-align:right; padding:14px 14px; font-size:14px; color:#c3d8d1;">{{ row.pipeline }}</div>
+            <div style="text-align:right; padding:14px 14px; font-size:14px; color:#c3d8d1;">{{ row.deliv }}</div>
+            <div style="text-align:right; padding:14px 18px; font-size:14px; color:#c3d8d1;">{{ row.vol }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARKET CARDS ============ -->
+<section data-screen-label="Market Intelligence" style="position:relative; overflow:hidden; background:linear-gradient(180deg,#eef3f1 0%,#e7eeec 50%,#eef1ee 100%);">
+  <div style="position:absolute; top:6%; right:-10%; width:46%; height:40%; background:radial-gradient(circle at 50% 50%, rgba(26,107,98,.14), transparent 64%); filter:blur(50px); animation:reefdrift 30s ease-in-out infinite; pointer-events:none;"></div>
+  <div style="position:absolute; bottom:4%; left:-10%; width:46%; height:40%; background:radial-gradient(circle at 50% 50%, rgba(216,90,48,.1), transparent 64%); filter:blur(52px); animation:reefdrift2 36s ease-in-out infinite; pointer-events:none;"></div>
+  <div style="position:relative; z-index:2; max-width:980px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">Market Intelligence</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; max-width:20ch;">Coral Reef Markets: Four Sectors, One Read</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.55; color:#54635f; max-width:62ch; margin:0 0 clamp(40px,5vw,64px);">12 markets, four sectors. Each card leads with multifamily, then reads across office, retail, and industrial, because the supply, demand, and capital story rarely points the same direction for every property type.</p>
+
+    <div style="display:flex; flex-direction:column; gap:clamp(20px,3vw,32px);">
+      <sc-for list="{{ markets }}" as="m" hint-placeholder-count="12">
+        <article style="position:relative; overflow:hidden; background:linear-gradient(140deg, rgba(26,107,98,.14), rgba(26,107,98,.03) 58%, rgba(255,255,255,.5)); -webkit-backdrop-filter:blur(22px) saturate(160%); backdrop-filter:url(#glassRefract) blur(20px) saturate(160%); border:1px solid rgba(26,107,98,.24); border-radius:22px; box-shadow:0 18px 48px rgba(20,40,36,.12), inset 0 1px 0 rgba(255,255,255,.75), inset 0 0 36px rgba(26,107,98,.1); padding:clamp(26px,4vw,44px);">
+          <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:6px;">
+            <span style="font-family:'Archivo',sans-serif; font-size:13px; font-weight:700; letter-spacing:.1em; color:#d85a30;">{{ m.n }}</span>
+            <h3 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(26px,3.6vw,40px); line-height:1; letter-spacing:-.01em; margin:0; color:#16241f;">{{ m.name }}</h3>
+          </div>
+          <div style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.02em; color:#7a8a85; margin-bottom:22px;">{{ m.sub }}</div>
+
+          <div style="display:flex; align-items:baseline; gap:14px; padding:18px 0; border-top:1px solid #ece9e2; border-bottom:1px solid #ece9e2; margin-bottom:22px;">
+            <span style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(30px,4.4vw,46px); letter-spacing:-.02em; color:{{ m.rentColor }}; font-variant-numeric:tabular-nums; line-height:1;">{{ m.rent }}</span>
+            <span style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#7a8a85; font-weight:600;">Rent Growth (YoY)</span>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1px; background:rgba(255,255,255,.28); border:1px solid rgba(255,255,255,.5); border-radius:14px; overflow:hidden; margin-bottom:26px;">
+            <sc-for list="{{ m.stats }}" as="st" hint-placeholder-count="5">
+              <div style="background:rgba(255,255,255,.35); padding:16px 16px 18px;">
+                <div style="font-family:'Archivo',sans-serif; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:#7a8a85; font-weight:600;">{{ st.label }}</div>
+                <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(18px,2.2vw,23px); color:#1a6b62; margin-top:8px; letter-spacing:-.01em; font-variant-numeric:tabular-nums;">{{ st.value }}</div>
+                <div style="font-family:'Newsreader',serif; font-size:13px; color:#7a8a85; margin-top:3px; line-height:1.3;">{{ st.note }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <blockquote style="font-family:'Newsreader',serif; font-style:italic; font-size:clamp(18px,2.1vw,24px); line-height:1.4; color:#16241f; margin:0 0 20px; padding-left:18px; border-left:3px solid #d85a30;">{{ m.quote }}</blockquote>
+          <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,18px); line-height:1.6; color:#3a4a46; margin:0 0 26px; max-width:64ch;">{{ m.body }}</p>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
+            <sc-for list="{{ m.tags }}" as="t" hint-placeholder-count="3">
+              <div>
+                <div style="font-family:'Archivo',sans-serif; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#1a6b62; font-weight:700; margin-bottom:6px;">{{ t.k }}</div>
+                <div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.4; color:#3a4a46;">{{ t.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:24px; padding-top:14px; border-top:1px solid #ece9e2;">
+            <div style="font-family:'Archivo',sans-serif; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#9aa39f; font-weight:600; margin-bottom:10px;">Cross-asset context · CoStar Q1 2026</div>
+            <div style="display:flex; flex-wrap:wrap; gap:10px 26px; font-family:'Archivo',sans-serif; font-variant-numeric:tabular-nums;">
+              <sc-for list="{{ m.secondary }}" as="a" hint-placeholder-count="3">
+                <div style="display:flex; align-items:baseline; gap:8px;">
+                  <span style="font-size:11px; color:#7a8a85; min-width:62px;">{{ a.cls }}</span>
+                  <span style="font-size:13.5px; font-weight:600; color:#3a4a46;">{{ a.vac }}</span>
+                  <span style="font-size:11px; color:#9aa39f;">vac</span>
+                  <span style="font-size:13.5px; font-weight:600; color:{{ a.rentColor }};">{{ a.rent }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NET LEASE ============ -->
+<section data-screen-label="Net Lease" style="background:linear-gradient(180deg,#eef3f1 0%,#f4f3f0 100%);">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">Capital Flows · Net Lease</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; max-width:20ch;">Where the Money Cleared</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.8vw,20px); line-height:1.5; color:#54635f; max-width:60ch; margin:0 0 clamp(40px,5vw,52px);">Net-lease volume topped $50B for a third straight quarter, and industrial, not retail, is where it concentrated, with institutions quietly taking share from private buyers.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1px; background:#ece9e2; border:1px solid #ece9e2;">
+      <sc-for list="{{ netLease }}" as="n" hint-placeholder-count="4">
+        <div style="background:#fff; padding:22px 20px 24px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(24px,3vw,32px); letter-spacing:-.02em; color:#1a6b62; font-variant-numeric:tabular-nums;">{{ n.v }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.35; color:#2c3a37; margin-top:8px;">{{ n.k }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#9aa39f; margin-top:6px;">{{ n.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#7a8a85; margin:14px 0 0;">Source: Multi- &amp; Single-Tenant Market Snapshots, Q1 2026.</p>
+  </div>
+</section>
+
+<!-- ============ RETAIL PULSE ============ -->
+<section data-screen-label="Retail Pulse" style="background:linear-gradient(180deg,#faf9f6 0%,#f1f4f2 100%); border-top:1px solid #e6e3dc;">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">Sector Spotlight · Retail</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; max-width:20ch;">The Selective Consumer</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.8vw,20px); line-height:1.5; color:#54635f; max-width:60ch; margin:0 0 clamp(40px,5vw,52px);">Foot-traffic data says the retail story behind the multifamily strip: spending holds, but volumes are softening and the wallet is moving toward value and experience.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1px; background:#ece9e2; border:1px solid #ece9e2;">
+      <sc-for list="{{ retailPulse }}" as="r" hint-placeholder-count="4">
+        <div style="background:#fff; padding:22px 20px 24px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(26px,3.2vw,34px); letter-spacing:-.02em; color:#1a6b62; font-variant-numeric:tabular-nums;">{{ r.v }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.35; color:#2c3a37; margin-top:8px;">{{ r.k }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#9aa39f; margin-top:6px;">{{ r.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#7a8a85; margin:14px 0 0;">Source: Colliers / Placer.ai, May 2026, visits per location, YoY.</p>
+  </div>
+</section>
+
+<!-- ============ DEMAND CROSS-CURRENTS ============ -->
+<section data-screen-label="Demand Shifts" style="background:linear-gradient(180deg,#eef4f2 0%,#e7efec 100%);">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">Demand · Cross-Currents</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px;">The Demand Map Is Redrawing</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.8vw,20px); line-height:1.5; color:#54635f; max-width:58ch; margin:0 0 clamp(36px,4vw,52px);">Two forces are quietly reshaping where Sun Belt demand goes, one a headwind the migration narrative still hasn't priced, one a latent tailwind that mostly sits elsewhere.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px;">
+      <div style="background:#fff; border-top:3px solid #d85a30; padding:clamp(26px,3vw,36px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#d85a30; font-weight:700; margin:0 0 14px;">Headwind · Insurance &amp; Climate</h3>
+        <p style="font-family:'Newsreader',serif; font-size:clamp(15px,1.6vw,17px); line-height:1.55; color:#3a4a46; margin:0 0 20px;">For 25 years Americans flooded the Sun Belt. Cotality now shows the tide reversing: climate-driven premium spikes are eroding values and pushing net out-migration from Texas, Arizona, and Florida toward the Midwest and Northeast. First Street pegs values 17% lower in high-risk markets.</p>
+        <div style="display:flex; flex-direction:column; gap:0;">
+          <sc-for list="{{ demandHead }}" as="d" hint-placeholder-count="3">
+            <div style="display:flex; gap:14px; align-items:baseline; padding:12px 0; border-top:1px solid #f0ede6;">
+              <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(16px,1.9vw,20px); color:#d85a30; flex:0 0 auto; min-width:96px; font-variant-numeric:tabular-nums;">{{ d.v }}</div>
+              <div><div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.35; color:#16241f;">{{ d.k }}</div><div style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#7a8a85; margin-top:2px;">{{ d.note }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#fff; border-top:3px solid #1a6b62; padding:clamp(26px,3vw,36px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#1a6b62; font-weight:700; margin:0 0 14px;">Tailwind · Gen Z Formation</h3>
+        <p style="font-family:'Newsreader',serif; font-size:clamp(15px,1.6vw,17px); line-height:1.55; color:#3a4a46; margin:0 0 20px;">Delayed move-outs are a stored-up renter pool. Chandan and Arbor find metros with the most Gen Z still at home post steadier rents, but the deepest pools sit in secondary California and Texas markets (McAllen, El Paso), not our primary 12. A national tailwind that lands unevenly on this footprint.</p>
+        <div style="display:flex; flex-direction:column; gap:0;">
+          <sc-for list="{{ demandTail }}" as="d" hint-placeholder-count="2">
+            <div style="display:flex; gap:14px; align-items:baseline; padding:12px 0; border-top:1px solid #f0ede6;">
+              <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(16px,1.9vw,20px); color:#1a6b62; flex:0 0 auto; min-width:96px; font-variant-numeric:tabular-nums;">{{ d.v }}</div>
+              <div><div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.35; color:#16241f;">{{ d.k }}</div><div style="font-family:'Archivo',sans-serif; font-size:11.5px; color:#7a8a85; margin-top:2px;">{{ d.note }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px; background:#0c1614; border-left:3px solid #5dcaa5; padding:clamp(22px,3vw,30px);">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#5dcaa5; font-weight:700; margin-bottom:10px;">CRC Read</div>
+      <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.8vw,20px); line-height:1.5; margin:0; color:#eaf4f0;">The insurance line now behaves like a demand variable. Where premiums break the household budget, people leave; where the budget holds, the supply cliff does its work. Underwrite the premium curve, not just the current dollar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARTIFICIAL INTELLIGENCE ============ -->
+<section data-screen-label="Artificial Intelligence" style="background:linear-gradient(180deg,#faf9f6 0%,#f1f4f2 100%); border-top:1px solid #e6e3dc;">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">The Machine Layer</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; max-width:20ch;">AI Is Now an Operating Variable</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.8vw,20px); line-height:1.5; color:#54635f; max-width:60ch; margin:0 0 clamp(40px,5vw,56px);">It cuts both ways. Adoption is already moving the expense line and leasing velocity, and it is quietly introducing a new risk: confident answers that don't agree.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1px; background:#ece9e2; border:1px solid #ece9e2; margin-bottom:clamp(44px,5vw,60px);">
+      <sc-for list="{{ aiStats }}" as="a" hint-placeholder-count="4">
+        <div style="background:#fff; padding:22px 20px 24px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(26px,3.2vw,34px); letter-spacing:-.02em; color:#1a6b62; font-variant-numeric:tabular-nums;">{{ a.v }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:15px; line-height:1.35; color:#2c3a37; margin-top:8px;">{{ a.k }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:10.5px; letter-spacing:.04em; text-transform:uppercase; color:#9aa39f; margin-top:8px;">{{ a.s }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; margin-bottom:clamp(40px,5vw,56px);">
+      <div style="background:#f4f7f5; border-top:3px solid #1a6b62; padding:clamp(26px,3vw,34px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#1a6b62; font-weight:700; margin:0 0 14px;">The upside</h3>
+        <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.55; color:#2c3a37; margin:0;">Leasing and operations AI has crossed into core infrastructure, Funnel across ~1.5M units, EliseAI inside 24 of the 25 largest owners. On a knife's-edge cycle of flat revenue and rising expenses, the operators converting demand with precision and protecting retention are the ones holding NOI.</p>
+      </div>
+      <div style="background:#faf4f0; border-top:3px solid #d85a30; padding:clamp(26px,3vw,34px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#d85a30; font-weight:700; margin:0 0 14px;">Machines of many answers</h3>
+        <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.55; color:#2c3a37; margin:0;">When an owner's agent and an operator's platform define "effective rent" differently, you don't get two views of one reality, you get two numbers and a trust problem. AI's documented sycophancy compounds it; a 2026 Aalto study found AI erases the self-correction that normally checks overconfidence, every user overestimated their work, the most experienced most of all.</p>
+      </div>
+    </div>
+
+    <div style="max-width:760px; border-left:3px solid #d85a30; padding:6px 0 6px 24px;">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#d85a30; font-weight:700; margin-bottom:12px;">CRC Read</div>
+      <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.9vw,21px); line-height:1.5; margin:0; color:#16241f;">Everyone has access to AI now. The edge is verified, standardized context. A model will produce a fluent answer and have no idea whether to believe it; knowing whether to is still the job.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVESTOR SENTIMENT ============ -->
+<section data-screen-label="Investor Sentiment" style="background:linear-gradient(165deg,#0b1614 0%,#0e1f1b 55%,#0b1a22 100%); color:#e3efeb;">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#5dcaa5; font-weight:600; margin-bottom:18px;">Investor Sentiment</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5.2vw,56px); line-height:1.03; letter-spacing:-.015em; margin:0 0 16px; max-width:20ch; color:#f1f8f5;">Built on Cuts That Aren't Coming</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.9vw,21px); line-height:1.5; color:#aecabf; max-width:58ch; margin:0 0 clamp(40px,5vw,56px); font-weight:400;">Coming into 2026, investor sentiment was broadly constructive, most expected lower rates and an improving climate. June erased the rate path the optimism was built on.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px;">
+      <div style="background:rgba(93,202,165,.07); border-top:3px solid #5dcaa5; padding:clamp(26px,3vw,34px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#5dcaa5; font-weight:700; margin:0 0 14px;">What the consensus expected · entering 2026</h3>
+        <ul style="list-style:none; margin:0; padding:0; font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,18px); line-height:1.4; color:#dcebe6;">
+          <li style="padding:11px 0; border-bottom:1px solid rgba(93,202,165,.14);">The 10-Year Treasury holding below 4.0%</li>
+          <li style="padding:11px 0; border-bottom:1px solid rgba(93,202,165,.14);">Two Fed rate cuts in 2026</li>
+          <li style="padding:11px 0; border-bottom:1px solid rgba(93,202,165,.14);">The investment climate improving over 24 months</li>
+          <li style="padding:11px 0;">Absorption outpacing supply; the Southeast leading</li>
+        </ul>
+      </div>
+      <div style="background:rgba(216,90,48,.08); border-top:3px solid #d85a30; padding:clamp(26px,3vw,34px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#d98a5e; font-weight:700; margin:0 0 14px;">What June delivered</h3>
+        <ul style="list-style:none; margin:0; padding:0; font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,18px); line-height:1.4; color:#dcebe6;">
+          <li style="padding:11px 0; border-bottom:1px solid rgba(216,90,48,.16);">The 10-Year in the mid-4% range</li>
+          <li style="padding:11px 0; border-bottom:1px solid rgba(216,90,48,.16);">A hawkish Warsh Fed, median dot implies a hike</li>
+          <li style="padding:11px 0; border-bottom:1px solid rgba(216,90,48,.16);">The easing bias deleted from the statement</li>
+          <li style="padding:11px 0;">Sun Belt rent growth still negative; absorption uneven</li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width:760px; border-left:3px solid #5dcaa5; padding:6px 0 6px 24px; margin-top:clamp(36px,4vw,48px);">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#5dcaa5; font-weight:700; margin-bottom:12px;">CRC Read</div>
+      <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.9vw,21px); line-height:1.5; margin:0; color:#eaf4f0;">Constructive sentiment is fine; it was underwritten on cuts that aren't coming. The long-term conviction in rental housing is real, but the 2026 entry has to clear today's rate, at today's money.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POLICY & REGULATION ============ -->
+<section data-screen-label="Policy & Regulation" style="background:linear-gradient(180deg,#f4f3f0 0%,#eef3f1 100%);">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,118px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#1a6b62; font-weight:600; margin-bottom:18px;">Policy &amp; Regulation</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; max-width:20ch;">Washington Names the Supply Problem</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(17px,1.8vw,20px); line-height:1.5; color:#54635f; max-width:56ch; margin:0 0 clamp(36px,4vw,52px);">The 2026 Economic Report of the President puts regulation at the center of the affordability problem, a rare alignment with the industry. The catch is buried in the fine print: a proposal that could throttle built-to-rent.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; background:#e2ded6; border:1px solid #e2ded6; margin-bottom:clamp(32px,4vw,48px);">
+      <sc-for list="{{ policyStat }}" as="p" hint-placeholder-count="4">
+        <div style="background:#fff; padding:24px 22px 26px;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,38px); letter-spacing:-.02em; color:#1a6b62; font-variant-numeric:tabular-nums;">{{ p.v }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:clamp(15px,1.6vw,17px); line-height:1.35; color:#16241f; margin-top:8px;">{{ p.k }}</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:11.5px; letter-spacing:.02em; color:#7a8a85; margin-top:8px;">{{ p.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px;">
+      <div style="background:#fff; border-top:3px solid #1a6b62; padding:clamp(26px,3vw,34px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:#1a6b62; font-weight:700; margin:0 0 18px;">Tailwind · The Report Aligns</h3>
+        <ul style="list-style:none; margin:0; padding:0; font-family:'Newsreader',serif; font-size:clamp(16px,1.6vw,18px); line-height:1.4; color:#2c3a37;">
+          <sc-for list="{{ policyFor }}" as="c" hint-placeholder-count="4">
+            <li style="padding:13px 0; border-bottom:1px solid #ece9e2;">{{ c }}</li>
+          </sc-for>
+        </ul>
+      </div>
+      <div style="background:#fff; border-top:3px solid #d85a30; padding:clamp(26px,3vw,34px);">
+        <h3 style="font-family:'Archivo',sans-serif; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:#d85a30; font-weight:700; margin:0 0 18px;">Watch · Section 901 / BTR Risk</h3>
+        <ul style="list-style:none; margin:0; padding:0; font-family:'Newsreader',serif; font-size:clamp(16px,1.6vw,18px); line-height:1.4; color:#2c3a37;">
+          <sc-for list="{{ policyWatch }}" as="c" hint-placeholder-count="4">
+            <li style="padding:13px 0; border-bottom:1px solid #ece9e2;">{{ c }}</li>
+          </sc-for>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(28px,3.5vw,40px); border-left:3px solid #d85a30; padding:6px 0 6px 24px; max-width:760px;">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#d85a30; font-weight:700; margin-bottom:10px;">CRC Read</div>
+      <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.8vw,20px); line-height:1.5; margin:0; color:#16241f;">Regulation is the most durable moat in housing: every barrier that blocks new supply protects the cash flow of what is already standing. We underwrite the existing book, watch Section 901 closely for BTR exposure, and treat the supply cliff as policy-reinforced, not just cyclical.</p>
+    </div>
+    <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.04em; color:#9aa39f; margin-top:18px;">Source: National Apartment Association / Units, “What the 2026 Economic Report of the President Means for Rental Housing,” May 2026.</div>
+  </div>
+</section>
+
+<!-- ============ WHAT TO WATCH ============ -->
+<section data-screen-label="What to Watch" style="background:linear-gradient(160deg,#0a1412 0%,#0c1a17 100%); color:#dcebe6;">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(64px,9vw,112px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#5dcaa5; font-weight:600; margin-bottom:18px;">CRC · What to Watch</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(30px,5vw,54px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; color:#f1f8f5;">The Print Calendar That Sets H2</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.7vw,19px); line-height:1.55; color:#9fc4ba; max-width:62ch; margin:0 0 clamp(36px,4vw,52px);">With forward guidance gone, every release now moves the rate path on its own. Five data points between now and the July FOMC will decide whether the hawkish turn holds, and what proceeds survive an autumn refinance.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1px; background:rgba(93,202,165,.18); border:1px solid rgba(93,202,165,.18);">
+      <sc-for list="{{ julyWatch }}" as="w" hint-placeholder-count="5">
+        <div style="background:linear-gradient(150deg, rgba(255,255,255,.09), rgba(255,255,255,.03)); -webkit-backdrop-filter:blur(16px) saturate(150%); backdrop-filter:url(#glassRefract) blur(14px) saturate(150%); border:1px solid rgba(255,255,255,.1); border-radius:16px; box-shadow:inset 0 1px 0 rgba(255,255,255,.2); padding:24px 22px 26px; display:flex; flex-direction:column;">
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:13px; letter-spacing:.06em; color:#d85a30; text-transform:uppercase;">{{ w.date }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:clamp(19px,2.1vw,23px); line-height:1.2; color:#f1f8f5; margin:10px 0 12px;">{{ w.event }}</div>
+          <div style="font-family:'Newsreader',serif; font-size:14.5px; line-height:1.5; color:#bcd3cc;">{{ w.why }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top:18px; background:linear-gradient(150deg, rgba(255,255,255,.09), rgba(255,255,255,.03)); -webkit-backdrop-filter:blur(16px) saturate(150%); backdrop-filter:blur(16px) saturate(150%); border:1px solid rgba(255,255,255,.12); border-radius:16px; box-shadow:inset 0 1px 0 rgba(255,255,255,.16); padding:clamp(22px,3vw,30px);">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#d85a30; font-weight:700; margin-bottom:16px;">Scenario · If openings revise to ~7.1M</div>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(16px,3vw,36px);">
+        <div>
+          <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#7fb3a6; font-weight:600; margin-bottom:6px;">As printed</div>
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(28px,3.6vw,38px); letter-spacing:-.02em; color:#f1f8f5; font-variant-numeric:tabular-nums; line-height:1;">1.05</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:12px; color:#9fc4ba; margin-top:6px;">7.59M openings ÷ 7.2M unemployed</div>
+        </div>
+        <div style="font-family:'Archivo',sans-serif; font-size:26px; color:#d85a30; font-weight:700;">→</div>
+        <div>
+          <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#e0805f; font-weight:600; margin-bottom:6px;">After a ~450k revision</div>
+          <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(28px,3.6vw,38px); letter-spacing:-.02em; color:#e8865f; font-variant-numeric:tabular-nums; line-height:1;">0.98</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:12px; color:#c9a99c; margin-top:6px;">below 1.0 — fewer openings than job-seekers</div>
+        </div>
+        <div style="flex:1 1 260px; min-width:220px; border-left:1px solid rgba(255,255,255,.14); padding-left:clamp(16px,2.5vw,24px);">
+          <p style="font-family:'Newsreader',serif; font-size:clamp(15px,1.6vw,17.5px); line-height:1.5; margin:0; color:#dcebe6;">The 2-year high becomes an in-line print, and the ratio breaks below 1.0 for the first time since the 2021 recovery — the line the Fed watches to call labor "balanced" rather than tight. The hawkish hold loses its best data point, and cuts re-enter the conversation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px; border-left:3px solid #5dcaa5; padding:6px 0 6px 24px; max-width:760px;">
+      <div style="font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#5dcaa5; font-weight:700; margin-bottom:10px;">CRC Read</div>
+      <p style="font-family:'Newsreader',serif; font-size:clamp(16px,1.8vw,20px); line-height:1.5; margin:0; color:#eaf4f0;">We underwrite a distribution of outcomes. If the jobs print cracks, cuts re-enter and pricing moves fast; if PCE stays hot, the hawkish hold extends and the refinancing wall gets taller. Build both into the model now.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONCLUSION ============ -->
+<section data-screen-label="Conclusion" style="position:relative; overflow:hidden; background:linear-gradient(165deg,#0a1513 0%,#0d201c 50%,#0b1a24 100%); color:#e3efeb;">
+  <div style="position:absolute; top:-10%; left:50%; transform:translateX(-50%); width:70%; height:70%; background:radial-gradient(circle at 50% 40%, rgba(93,202,165,.24), transparent 62%); filter:blur(60px); animation:reefdrift 30s ease-in-out infinite; pointer-events:none;"></div>
+  <div style="position:relative; z-index:2; max-width:880px; margin:0 auto; padding:clamp(72px,10vw,128px) clamp(20px,5vw,40px); text-align:center;">
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#5dcaa5; font-weight:600; margin-bottom:22px;">Conclusion</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(32px,6vw,64px); line-height:1.04; letter-spacing:-.02em; margin:0 0 30px; color:#f3f8f6;">The Market Is Investable Again</h2>
+    <p style="font-family:'Newsreader',serif; font-size:clamp(18px,2.2vw,24px); line-height:1.5; color:#bcd3cc; margin:0 auto; max-width:52ch;">The opportunity is in the gap between improving capital markets and unresolved asset-level pain. That gap is where operators matter, and where the next comp gets set.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background:#16241f; color:#9fc4ba;">
+  <div style="max-width:1080px; margin:0 auto; padding:clamp(48px,6vw,72px) clamp(20px,5vw,40px);">
+    <div style="font-family:'Archivo',sans-serif; font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:14px; color:#5dcaa5; margin-bottom:8px;">Coral Reef Capital</div>
+    <div style="font-family:'Newsreader',serif; font-style:italic; font-size:clamp(16px,1.8vw,20px); color:#cfe1db; margin-bottom:30px;">The Next Generation of Multifamily Owning &amp; Operating</div>
+    <p style="font-family:'Archivo',sans-serif; font-size:12.5px; line-height:1.7; color:#6f8e85; max-width:80ch; margin:0 0 18px;"><strong style="color:#9fc4ba;">Data Sources:</strong> CoStar / Yardi Matrix DataExport (Multifamily, Retail, Industrial, Q1 2026, as of Q2 2026); CoStar Office Market Overview decks (office vacancy, rent growth, cap rate, Q1 2026, blended across star tiers); CoStar property-sales comps. Macro Signal Board, feature story, and capital-markets figures are placeholder pending the June 2026 source list.</p>
+    <p style="font-family:'Archivo',sans-serif; font-size:11.5px; line-height:1.6; color:#5f7e76; max-width:80ch; margin:0 0 22px;">This report is produced by Coral Reef Capital for informational purposes only and does not constitute investment advice, a solicitation, or an offer to buy or sell any security. Past performance is not indicative of future results.</p>
+    <div style="font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:.04em; color:#6f8e85; border-top:1px solid rgba(93,202,165,.14); padding-top:18px;">© 2026 Coral Reef Capital · coralreefcap.co · The Reef Report · Issue 03 · June 2026</div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;showDraftBanner&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Draft&quot;},&quot;coverTexture&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Cover&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = (this.host && this.host.shadowRoot) || document;
+    const canvas = root.querySelector('canvas[data-cover-glass]');
+    if (!canvas) return;
+    const gl = canvas.getContext('webgl', { premultipliedAlpha: false, antialias: true });
+    if (!gl) return;
+    this._glCanvas = canvas;
+
+    // ---- value-noise fbm ----
+    const perm = new Uint8Array(512);
+    for (let i = 0; i < 256; i++) perm[i] = i;
+    for (let i = 255; i > 0; i--) { const j = (Math.sin(i * 12.9898) * 43758.5453 % 1 + 1) % 1 * (i + 1) | 0; const t = perm[i]; perm[i] = perm[j]; perm[j] = t; }
+    for (let i = 0; i < 256; i++) perm[i + 256] = perm[i];
+    const fade = t => t * t * t * (t * (t * 6 - 15) + 10);
+    const grad = (h, x, y) => { const u = h & 1 ? x : y, v = h & 2 ? x : y; return ((h & 1 ? -u : u) + (h & 2 ? -v : v)) * 0.5; };
+    const vnoise = (x, y) => {
+      const X = Math.floor(x) & 255, Y = Math.floor(y) & 255; x -= Math.floor(x); y -= Math.floor(y);
+      const u = fade(x), v = fade(y);
+      const aa = perm[perm[X] + Y], ab = perm[perm[X] + Y + 1], ba = perm[perm[X + 1] + Y], bb = perm[perm[X + 1] + Y + 1];
+      const lerp = (a, b, t) => a + (b - a) * t;
+      return lerp(lerp(grad(aa, x, y), grad(ba, x - 1, y), u), lerp(grad(ab, x, y - 1), grad(bb, x - 1, y - 1), u), v);
+    };
+    const fbm = (x, y) => { let v = 0, a = 0.5, f = 1; for (let i = 0; i < 5; i++) { v += a * vnoise(x * f, y * f); f *= 2; a *= 0.5; } return v; };
+    const clamp01 = t => t < 0 ? 0 : t > 1 ? 1 : t;
+    const cstops = [[0.0, 58, 12, 96], [0.14, 40, 66, 214], [0.32, 28, 168, 208], [0.5, 52, 194, 82], [0.66, 210, 214, 40], [0.82, 232, 132, 34], [1.0, 222, 40, 32]];
+    const turbo = t => { t = clamp01(t); for (let k = 0; k < cstops.length - 1; k++) { const a = cstops[k], b = cstops[k + 1]; if (t <= b[0]) { const u = (t - a[0]) / (b[0] - a[0]); return [(a[1] + (b[1] - a[1]) * u) / 255, (a[2] + (b[2] - a[2]) * u) / 255, (a[3] + (b[3] - a[3]) * u) / 255]; } } return [cstops[6][1] / 255, cstops[6][2] / 255, cstops[6][3] / 255]; };
+    const COLS = 168, ROWS = 108, W = 7.6, D = 6.6, AMP = 2.15;
+    const height = (i, j) => {
+      const nx = i / COLS, nz = j / ROWS;
+      const edge = 0.40 + 0.10 * fbm(nz * 3.2 + 9.0, 4.0);
+      let e = (nx - edge) / 0.26; e = e < 0 ? 0 : e > 1 ? 1 : e;
+      const s = e * e * (3 - 2 * e);
+      const shelf = 1.42 + 0.16 * fbm(nx * 9 + nz * 4, nz * 9);
+      const deep = 0.06 + 0.07 * fbm(nx * 4 + 2, nz * 4);
+      let h = shelf * (1 - s) + deep * s;
+      const groove = 0.5 + 0.5 * Math.sin(nz * 46.0 + fbm(nx * 6, nz * 6) * 4.0);
+      h -= s * (1 - s) * groove * 0.7;
+      return h;
+    };
+    const px = (i) => (i / COLS - 0.5) * W;
+    const pz = (j) => (j / ROWS - 0.5) * D;
+    let hmin = 1e9, hmax = -1e9;
+    const HH = [];
+    for (let j = 0; j <= ROWS; j++) { HH[j] = []; for (let i = 0; i <= COLS; i++) { const h = height(i, j); HH[j][i] = h; if (h < hmin) hmin = h; if (h > hmax) hmax = h; } }
+    const verts = [];
+    const dxw = W / COLS;
+    const pushv = (i, j) => {
+      const h = HH[j][i], t = (h - hmin) / (hmax - hmin);
+      const c = turbo(clamp01(t));
+      const hl = HH[j][Math.max(0, i - 1)], hr = HH[j][Math.min(COLS, i + 1)];
+      const hd = HH[Math.max(0, j - 1)][i], hu = HH[Math.min(ROWS, j + 1)][i];
+      const sx = (hl - hr) * AMP, sz = (hd - hu) * AMP, sy = 2 * dxw;
+      const nl = Math.hypot(sx, sy, sz) || 1;
+      const diff = clamp01((sx * 0.62 - sz * 0.5 + sy * 0.6) / nl);
+      const sh = 0.24 + 1.15 * diff;
+      verts.push(px(i), (h - (hmin + hmax) / 2) * AMP, pz(j), c[0] * sh, c[1] * sh, c[2] * sh);
+    };
+    for (let j = 0; j < ROWS; j++) for (let i = 0; i < COLS; i++) { pushv(i, j); pushv(i + 1, j); pushv(i + 1, j + 1); pushv(i, j); pushv(i + 1, j + 1); pushv(i, j + 1); }
+    const data = new Float32Array(verts);
+    const nVerts = verts.length / 6;
+    const vsrc = 'attribute vec3 pos; attribute vec3 col; uniform mat4 u_mvp; uniform mat4 u_mv; varying vec3 v_col; varying float v_fog; void main(){ vec4 mv = u_mv * vec4(pos,1.0); v_fog = clamp((-mv.z - 3.0)/7.0, 0.0, 1.0); v_col = col; gl_Position = u_mvp * vec4(pos,1.0); }';
+    const fsrc = 'precision highp float; varying vec3 v_col; varying float v_fog; uniform vec3 u_fog; void main(){ vec3 c = mix(v_col, u_fog, v_fog*0.92); gl_FragColor = vec4(c, 1.0); }';
+    const mk = (ty, s) => { const sh = gl.createShader(ty); gl.shaderSource(sh, s); gl.compileShader(sh); if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) console.warn(gl.getShaderInfoLog(sh)); return sh; };
+    const prog = gl.createProgram(); gl.attachShader(prog, mk(gl.VERTEX_SHADER, vsrc)); gl.attachShader(prog, mk(gl.FRAGMENT_SHADER, fsrc)); gl.linkProgram(prog); gl.useProgram(prog);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+    const aPos = gl.getAttribLocation(prog, 'pos'), aCol = gl.getAttribLocation(prog, 'col');
+    gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 24, 0);
+    gl.enableVertexAttribArray(aCol); gl.vertexAttribPointer(aCol, 3, gl.FLOAT, false, 24, 12);
+    const uMVP = gl.getUniformLocation(prog, 'u_mvp'), uMV = gl.getUniformLocation(prog, 'u_mv'), uFog = gl.getUniformLocation(prog, 'u_fog');
+    gl.enable(gl.DEPTH_TEST);
+    const mul = (a, b) => { const o = new Float32Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
+    const persp = (fovy, asp, n, f) => { const t = 1 / Math.tan(fovy / 2); return new Float32Array([t / asp, 0, 0, 0, 0, t, 0, 0, 0, 0, (f + n) / (n - f), -1, 0, 0, 2 * f * n / (n - f), 0]); };
+    const rotX = a => { const c = Math.cos(a), s = Math.sin(a); return new Float32Array([1, 0, 0, 0, 0, c, s, 0, 0, -s, c, 0, 0, 0, 0, 1]); };
+    const rotY = a => { const c = Math.cos(a), s = Math.sin(a); return new Float32Array([c, 0, -s, 0, 0, 1, 0, 0, s, 0, c, 0, 0, 0, 0, 1]); };
+    const trans = (x, y, z) => new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1]);
+    const resize = () => { const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = canvas.clientWidth * dpr; canvas.height = canvas.clientHeight * dpr; gl.viewport(0, 0, canvas.width, canvas.height); };
+    resize(); this._glResize = resize; window.addEventListener('resize', resize);
+    const startT = performance.now();
+    const loop = () => {
+      const time = (performance.now() - startT) / 1000;
+      const asp = canvas.width / canvas.height;
+      const P = persp(0.85, asp, 0.1, 40);
+      const view = mul(mul(trans(0, -0.05, -4.4), rotX(0.5)), rotY(Math.sin(time * 0.06) * 0.14 - 0.36));
+      gl.uniformMatrix4fv(uMVP, false, mul(P, view));
+      gl.uniformMatrix4fv(uMV, false, view);
+      gl.uniform3f(uFog, 0.031, 0.11, 0.17);
+      gl.clearColor(0.024, 0.078, 0.129, 1); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, nVerts);
+      this._glRaf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  componentWillUnmount() {
+    if (this._glRaf) cancelAnimationFrame(this._glRaf);
+    if (this._glResize) window.removeEventListener('resize', this._glResize);
+  }
+
+  renderVals() {
+    const POS = '#2f8f7f', NEG = '#c0502a';
+    const S = (label, value, note) => ({ label, value, note });
+    const T = (k, v) => ({ k, v });
+    const AC = (cls, vac, rent, cap) => ({ cls, vac, rent, cap, rentColor: rent.trim().charAt(0) === '−' ? NEG : POS });
+    const mk = (n, name, sub, rent, pos, stats, quote, body, tags, assets) =>
+      ({ n, name, sub, rent, rentColor: pos ? POS : NEG, stats, quote, body, tags, assets });
+
+    const markets = [
+      mk('01', "Atlanta", '~3,600 properties · ~550K units', '−0.9%', false,
+        [S('Employment','+0.3%','3.1M jobs'), S('Pipeline','~16K','units under constr.'), S('12-Mo Net Deliv.','~15K','units, trailing'), S('Transaction Vol.','$6.7B','trailing 12 months'), S('Avg Price / Unit','$215K','')],
+        "Apartment rent is grinding lower at −0.9% as a thinning pipeline of ~16K units works through. The multifamily call here is about supply and timing. Downtown is on the upswing ($5B Centennial Yards, an Underground revamp, World Cup 2026), even as Class B/C office keeps bleeding tenants to trophy space.",
+        "Atlanta's multifamily market is grinding lower, with employment roughly flat. Entry pricing sits near $215K per unit. The commercial sectors run tighter, retail leads on rent at +5.3%, but this issue keeps multifamily in front.",
+        [T('Supply','~16K u/c · ~15K delivered (12mo)'), T('Entry','$215K/unit'), T('Field','Centennial Yards $5B · World Cup ’26 · office flight-to-quality'), T('CRC Thesis','Accumulate into the supply trough, not the headline')],
+        [AC('Multifamily','11.6%','−0.9%','5.6%'), AC('Office','15.8%','+2.1%','8.7%'), AC('Retail','4.3%','+5.3%','7.3%'), AC('Industrial','7.9%','+3.0%','6.6%')]),
+      mk('02', "Austin", '~2,000 properties · ~335K units', '−4.5%', false,
+        [S('Employment','+0.4%','1.4M jobs'), S('Pipeline','~17K','units under constr.'), S('12-Mo Net Deliv.','~16K','units, trailing'), S('Transaction Vol.','$547M','trailing 12 months'), S('Avg Price / Unit','$217K','')],
+        "Apartment rent is still correcting at −4.5% as a moderate pipeline of ~17K units works through. The multifamily call here is about supply and timing.",
+        "Austin's multifamily market is still correcting, with employment roughly flat. Entry pricing sits near $217K per unit. The commercial sectors run tighter, office leads on rent at +3.2%, but this issue keeps multifamily in front. The bones are intact: Austin ranks #1 nationally in office-using job growth (+34% since 2019), and a thinning pipeline across product types points to a 2027 turn.",
+        [T('Supply','~17K u/c · ~16K delivered (12mo)'), T('Entry','$217K/unit'), T('Field','#1 U.S. office-job growth · pipeline thinning · 2027 turn'), T('CRC Thesis','Underwrite the correction; wait for the pipeline to clear')],
+        [AC('Multifamily','13.4%','−4.5%','5.7%'), AC('Office','14.0%','+3.2%','7.6%'), AC('Retail','3.2%','+2.4%','6.4%'), AC('Industrial','14.4%','−1.1%','7.5%')]),
+      mk('03', "Charlotte", '~1,700 properties · ~250K units', '−2.0%', false,
+        [S('Employment','+1.7%','1.4M jobs'), S('Pipeline','~19K','units under constr.'), S('12-Mo Net Deliv.','~14K','units, trailing'), S('Transaction Vol.','$2.2B','trailing 12 months'), S('Avg Price / Unit','$243K','')],
+        "Apartment rent is grinding lower at −2.0% as a heavy pipeline of ~19K units works through. The multifamily call here is about supply and timing.",
+        "Charlotte's multifamily market is grinding lower, with job growth a relative bright spot at +1.7%. Entry pricing sits near $243K per unit. The commercial sectors run tighter, retail leads on rent at +6.7%, but this issue keeps multifamily in front. The in-migration engine is intact: SMBC chose Charlotte for its second U.S. HQ (~~2,000 jobs), the metro added ~38K jobs in 2025 (#2 nationally), and Northmarq logged a record ~15K net move-ins.",
+        [T('Supply','~19K u/c · ~14K delivered (12mo)'), T('Entry','$243K/unit'), T('Field','SMBC 2nd HQ · +54k residents · Northmarq +0.5% rent in ’26'), T('CRC Thesis','Accumulate into the supply trough, not the headline')],
+        [AC('Multifamily','12.6%','−2.0%','5.4%'), AC('Office','12.4%','+1.9%','7.9%'), AC('Retail','3.4%','+6.7%','7.1%'), AC('Industrial','10.1%','+5.0%','7.2%')]),
+      mk('04', "Dallas–Fort Worth", '~5,600 properties · ~930K units', '−2.1%', false,
+        [S('Employment','+0.1%','4.3M jobs'), S('Pipeline','~36K','units under constr.'), S('12-Mo Net Deliv.','~34K','units, trailing'), S('Transaction Vol.','$1.6B','trailing 12 months'), S('Avg Price / Unit','$182K','')],
+        "Apartment rent is grinding lower at −2.1% as a moderate pipeline of ~36K units works through. The multifamily call here is about supply and timing.",
+        "Dallas–Fort Worth's multifamily market is grinding lower, with employment roughly flat. Entry pricing sits near $182K per unit. The commercial sectors run tighter, industrial leads on rent at +4.3%, but this issue keeps multifamily in front. Industrial signals metro health: Marcus & Millichap ranks DFW #3 nationally, vacancy is down to 8.9% (a three-year low), and ~~40K net new jobs are projected for 2026.",
+        [T('Supply','~36K u/c · ~34K delivered (12mo)'), T('Entry','$182K/unit'), T('Field','M&M #3 industrial · 8.9% vacancy · +40k jobs ’26'), T('CRC Thesis','Accumulate into the supply trough, not the headline')],
+        [AC('Multifamily','12.3%','−2.1%','5.9%'), AC('Office','17.2%','+3.0%','8.3%'), AC('Retail','5.0%','+3.4%','6.9%'), AC('Industrial','8.5%','+4.3%','6.2%')]),
+      mk('05', "Fort Lauderdale", '~3,700 properties · ~150K units', '−0.4%', false,
+        [S('Employment','−0.1%','0.9M jobs'), S('Pipeline','~6,600','units under constr.'), S('12-Mo Net Deliv.','~3,900','units, trailing'), S('Transaction Vol.','$1.8B','trailing 12 months'), S('Avg Price / Unit','$280K','')],
+        "Apartment rent has flattened at −0.4% as a moderate pipeline of ~6,600 units works through. The multifamily call here is about supply and timing. The demand base keeps deepening: downtown population has doubled since 2010 and is projected +8% over five years (twice the national rate), with Brightline and 'Wall Street South' spillover diversifying beyond tourism.",
+        "Fort Lauderdale's multifamily market has flattened, with employment slipping −0.1%. Entry pricing sits near $280K per unit. The commercial sectors run tighter, retail leads on rent at +2.2%, but this issue keeps multifamily in front.",
+        [T('Supply','~6,600 u/c · ~3,900 delivered (12mo)'), T('Entry','$280K/unit'), T('Field','Downtown pop 2× since ’10 · +8% / 5yr · Brightline HQ'), T('CRC Thesis','High-wage in-migration absorbs the insurance pass-through')],
+        [AC('Multifamily','7.6%','−0.4%','5.7%'), AC('Office','11.5%','+1.5%','8.1%'), AC('Retail','4.0%','+2.2%','6.1%'), AC('Industrial','6.8%','+1.4%','6.7%')]),
+      mk('06', "Houston", '~4,600 properties · ~745K units', '−1.2%', false,
+        [S('Employment','−0.0%','3.5M jobs'), S('Pipeline','~14K','units under constr.'), S('12-Mo Net Deliv.','~15K','units, trailing'), S('Transaction Vol.','$1.0B','trailing 12 months'), S('Avg Price / Unit','$149K','')],
+        "Apartment rent is grinding lower at −1.2% as a thinning pipeline of ~14K units works through. The multifamily call here is about supply and timing. Houston leads the nation in home starts and keeps landing onshoring wins, so the demand engine outruns most of the Sun Belt even as new supply clears.",
+        "Houston's multifamily market is grinding lower, with employment slipping −0.0%. Entry pricing sits near $149K per unit. The commercial sectors run tighter, office leads on rent at +3.1%, but this issue keeps multifamily in front. Diversification is the story: a record 117 foreign-business announcements in 2025 (Foxconn $450M, Inventec $251M) and a record 4.3M containers through Port Houston, the top U.S. export metro nine years running.",
+        [T('Supply','~14K u/c · ~15K delivered (12mo)'), T('Entry','$149K/unit'), T('Field','117 foreign-biz wins · Port 4.3M containers · onshoring'), T('CRC Thesis','Accumulate into the supply trough, not the headline')],
+        [AC('Multifamily','12.8%','−1.2%','6.7%'), AC('Office','19.0%','+3.1%','9.6%'), AC('Retail','5.3%','+3.0%','7.2%'), AC('Industrial','7.4%','+2.3%','7.8%')]),
+      mk('07', "Miami", '~6,100 properties · ~210K units', '+0.2%', true,
+        [S('Employment','−0.4%','1.3M jobs'), S('Pipeline','~16K','units under constr.'), S('12-Mo Net Deliv.','~9,200','units, trailing'), S('Transaction Vol.','$1.8B','trailing 12 months'), S('Avg Price / Unit','$330K','')],
+        "Apartment rent has flattened at +0.2% as a heavy pipeline of ~16K units works through. The multifamily call here is about supply and timing. A high-wage, internationally-fed demand base, finance, trade, wealth migration, is what lets Miami absorb elevated insurance costs the rest of Florida can't.",
+        "Miami's multifamily market has flattened, with employment slipping −0.4%. Entry pricing sits near $330K per unit. The commercial sectors run tighter, retail leads on rent at +1.7%, but this issue keeps multifamily in front.",
+        [T('Supply','~16K u/c · ~9,200 delivered (12mo)'), T('Entry','$330K/unit'), T('CRC Thesis','A forming floor, pricing power returns as supply thins')],
+        [AC('Multifamily','7.7%','+0.2%','5.5%'), AC('Office','9.0%','+1.0%','6.5%'), AC('Retail','3.2%','+1.7%','5.8%'), AC('Industrial','7.7%','+1.5%','5.9%')]),
+      mk('08', "Nashville", '~1,400 properties · ~190K units', '−1.7%', false,
+        [S('Employment','+1.1%','1.2M jobs'), S('Pipeline','~11K','units under constr.'), S('12-Mo Net Deliv.','~8,300','units, trailing'), S('Transaction Vol.','$1.2B','trailing 12 months'), S('Avg Price / Unit','$241K','')],
+        "Apartment rent is grinding lower at −1.7% as a moderate pipeline of ~11K units works through. The multifamily call here is about supply and timing.",
+        "Nashville's multifamily market is grinding lower, with employment roughly flat. Entry pricing sits near $241K per unit. The commercial sectors run tighter, retail leads on rent at +6.1%, but this issue keeps multifamily in front.",
+        [T('Supply','~11K u/c · ~8,300 delivered (12mo)'), T('Entry','$241K/unit'), T('Field','JPMorgan names Paradigm tower · healthcare + finance anchor'), T('CRC Thesis','Accumulate into the supply trough, not the headline')],
+        [AC('Multifamily','11.1%','−1.7%','5.7%'), AC('Office','11.4%','+3.0%','8.0%'), AC('Retail','3.4%','+6.1%','6.3%'), AC('Industrial','6.4%','+5.0%','6.5%')]),
+      mk('09', "Orlando", '~1,300 properties · ~240K units', '−1.6%', false,
+        [S('Employment','−0.5%','1.5M jobs'), S('Pipeline','~11K','units under constr.'), S('12-Mo Net Deliv.','~10K','units, trailing'), S('Transaction Vol.','$2.2B','trailing 12 months'), S('Avg Price / Unit','$237K','')],
+        "Apartment rent is grinding lower at −1.6% as a moderate pipeline of ~11K units works through. The multifamily call here is about supply and timing. Population growth stays among the nation's fastest, but tourism-weighted wages set a ceiling on how fast rents recover.",
+        "Orlando's multifamily market is grinding lower, with employment slipping −0.5%. Entry pricing sits near $237K per unit. The commercial sectors run tighter, retail leads on rent at +5.1%, but this issue keeps multifamily in front.",
+        [T('Supply','~11K u/c · ~10K delivered (12mo)'), T('Entry','$237K/unit'), T('CRC Thesis','Accumulate into the supply trough, not the headline')],
+        [AC('Multifamily','10.6%','−1.6%','5.4%'), AC('Office','9.3%','+2.1%','8.6%'), AC('Retail','3.9%','+5.1%','6.7%'), AC('Industrial','8.9%','+4.2%','6.7%')]),
+      mk('10', "Raleigh–Durham", '983 properties · ~140K units', '−1.8%', false,
+        [S('Employment','+0.7%','0.8M jobs'), S('Pipeline','~7,100','units under constr.'), S('12-Mo Net Deliv.','~5,200','units, trailing'), S('Transaction Vol.','$1.2B','trailing 12 months'), S('Avg Price / Unit','$244K','')],
+        "Apartment rent is grinding lower at −1.8% as a moderate pipeline of ~7,100 units works through. The multifamily call here is about supply and timing.",
+        "Raleigh–Durham's multifamily market is grinding lower, with employment roughly flat. Entry pricing sits near $244K per unit. The commercial sectors run tighter, retail leads on rent at +6.8%, but this issue keeps multifamily in front. The turn is visible: Marcus & Millichap projects vacancy falling to 5% (a third straight year of tightening) with rent +0.7%, institutional buyers are returning, and JPI is re-entering with a $150M project near Duke.",
+        [T('Supply','~7,100 u/c · ~5,200 delivered (12mo)'), T('Entry','$244K/unit'), T('Field','M&M: vacancy →5% · institutions back · JPI $150M Durham'), T('CRC Thesis','Accumulate into the supply trough, not the headline')],
+        [AC('Multifamily','10.6%','−1.8%','5.3%'), AC('Office','10.5%','+1.7%','8.6%'), AC('Retail','2.5%','+6.8%','6.9%'), AC('Industrial','6.8%','+3.7%','7.7%')]),
+      mk('11', "San Antonio", '~1,600 properties · ~235K units', '−3.3%', false,
+        [S('Employment','+0.9%','1.2M jobs'), S('Pipeline','~4,600','units under constr.'), S('12-Mo Net Deliv.','~6,300','units, trailing'), S('Transaction Vol.','$114M','trailing 12 months'), S('Avg Price / Unit','$135K','')],
+        "Apartment rent is still correcting at −3.3% as a thinning pipeline of ~4,600 units works through. The multifamily call here is about supply and timing.",
+        "San Antonio's multifamily market is still correcting, with employment roughly flat. Entry pricing sits near $135K per unit. The commercial sectors run tighter, industrial leads on rent at +2.3%, but this issue keeps multifamily in front.",
+        [T('Supply','~4,600 u/c · ~6,300 delivered (12mo)'), T('Entry','$135K/unit'), T('CRC Thesis','Underwrite the correction; wait for the pipeline to clear')],
+        [AC('Multifamily','15.9%','−3.3%','6.6%'), AC('Office','10.6%','+1.9%','9.9%'), AC('Retail','3.8%','+1.7%','6.5%'), AC('Industrial','10.5%','+2.3%','8.1%')]),
+      mk('12', "Tampa–St. Pete", '~2,800 properties · ~245K units', '−2.9%', false,
+        [S('Employment','+0.5%','1.6M jobs'), S('Pipeline','~14K','units under constr.'), S('12-Mo Net Deliv.','~6,400','units, trailing'), S('Transaction Vol.','$2.0B','trailing 12 months'), S('Avg Price / Unit','$219K','')],
+        "Apartment rent is grinding lower at −2.9% as a moderate pipeline of ~14K units works through. The multifamily call here is about supply and timing.",
+        "Tampa–St. Pete's multifamily market is grinding lower, with employment roughly flat. Entry pricing sits near $219K per unit. The commercial sectors run tighter, retail leads on rent at +3.2%, but this issue keeps multifamily in front.",
+        [T('Supply','~14K u/c · ~6,400 delivered (12mo)'), T('Entry','$219K/unit'), T('CRC Thesis','Accumulate into the supply trough, not the headline')],
+        [AC('Multifamily','10.7%','−2.9%','5.7%'), AC('Office','9.7%','+1.5%','8.6%'), AC('Retail','3.7%','+3.2%','6.7%'), AC('Industrial','7.4%','+2.7%','7.6%')]),
+    ];
+
+    markets.forEach(m => { m.secondary = m.assets.slice(1); }); // office, retail, industrial (MF is the hero above)
+
+    const sc = (market, rent, pos, vacancy, emp, ppu, pipeline, deliv, vol) =>
+      ({ market, rent, rentColor: pos ? POS : NEG, vacancy, emp, ppu, pipeline, deliv, vol });
+    const scorecard = [
+      sc("Atlanta", '−0.9%', false, '11.6%', '+0.3%', '$215K', '15,968', '15,181', '$6.7B'),
+      sc("Austin", '−4.5%', false, '13.4%', '+0.4%', '$217K', '16,779', '16,477', '$547M'),
+      sc("Charlotte", '−2.0%', false, '12.6%', '+1.7%', '$243K', '18,556', '14,476', '$2.2B'),
+      sc("Dallas–Fort Worth", '−2.1%', false, '12.3%', '+0.1%', '$182K', '36,451', '33,794', '$1.6B'),
+      sc("Fort Lauderdale", '−0.4%', false, '7.6%', '−0.1%', '$280K', '6,623', '3,934', '$1.8B'),
+      sc("Houston", '−1.2%', false, '12.8%', '−0.0%', '$149K', '14,255', '14,828', '$1.0B'),
+      sc("Miami", '+0.2%', true, '7.7%', '−0.4%', '$330K', '15,857', '9,232', '$1.8B'),
+      sc("Nashville", '−1.7%', false, '11.1%', '+1.1%', '$241K', '10,965', '8,307', '$1.2B'),
+      sc("Orlando", '−1.6%', false, '10.6%', '−0.5%', '$237K', '11,466', '10,213', '$2.2B'),
+      sc("Raleigh–Durham", '−1.8%', false, '10.6%', '+0.7%', '$244K', '7,062', '5,241', '$1.2B'),
+      sc("San Antonio", '−3.3%', false, '15.9%', '+0.9%', '$135K', '4,589', '6,344', '$114M'),
+      sc("Tampa–St. Pete", '−2.9%', false, '10.7%', '+0.5%', '$219K', '13,623', '6,443', '$2.0B'),
+    ];
+
+    const signals = [
+      { value: '3.50–3.75%', label: 'Fed funds, held 4th mtg', read: 'First unanimous FOMC vote since June 2025.', source: 'Federal Reserve · Jun 17' },
+      { value: '+1 hike', label: 'Median dot, by year-end', read: 'Easing bias removed from the statement.', source: 'Federal Reserve · Jun 17' },
+      { value: 'Warsh', label: 'New Fed chair · 1st meeting', read: 'Statement gutted; forward guidance removed.', source: 'Trepp · Jun 22' },
+      { value: '+4.2%', label: 'May CPI, YoY · core 2.9%', read: 'Fastest pace since April 2023.', source: 'BLS · Jun 10' },
+      { value: '+172k', label: 'May payrolls · 4.3% unemp.', read: 'Nearly double the 88k consensus.', source: 'BLS · Jun 5' },
+      { value: '7.59M', label: 'JOLTS openings · 2-yr high', read: 'Beat the ~7.0M call, but read it with a discount: initial labor prints have been revised lower with striking regularity.', source: 'BLS · Jun 30' },
+      { value: '62%', label: 'Odds of a Dec rate hike', read: 'Markets now price tightening, not cuts.', source: 'Market-implied · Jun 5' },
+      { value: 'Slowing', label: 'Atlanta Fed Q2 GDP tracker', read: 'The Fed’s real-time GDP estimate is easing while prices stay firm, a stagflation tint.', source: 'Atlanta Fed · Jun 29' },
+      { value: '+0.4%', label: 'Zumper 1BR rent, YoY', read: 'First positive reading since May 2025.', source: 'Zumper · Jun 2026' },
+      { value: '+21.9% / −10%', label: 'SF vs. HOU · AUS · SAT', read: 'The national average hides two realities.', source: 'Zumper · Jun 2026' },
+      { value: '“Muddling”', label: 'Apartments at midyear', read: 'Flat demand expected through H2 2026.', source: 'Yardi Matrix · Summer 2026' },
+      { value: '4.67% / 2.05%', label: '10Y nominal / real (TIPS) peak', read: 'Real yields, not just inflation, set the ceiling.', source: 'Connect CRE · Jun 3' },
+    ];
+
+    const flow = [
+      { k: 'Floating Rate', v: 'No cap-cost relief coming' },
+      { k: 'Fixed Refi', v: 'Resets 150–250 bps higher' },
+      { k: 'Exit Cap', v: 'Underwrite flat, not down' },
+      { k: 'Bridge Debt', v: 'Extensions expiring in 2026' },
+      { k: 'The Deal', v: 'Must clear at today’s rate' },
+    ];
+    const capMoving = [
+      'JLL Global Credit Intensity at record highs, lenders fighting to win deals (JLL, Jun 2026)',
+      'Q1 2026 Americas CRE investment up 25% YoY to $113B (JLL)',
+      'CRE / multifamily mortgage debt crossed $5T in Q1, +$26.3B; MF led at $2.32T (MBA)',
+      'CMBS issuance ~$52B YTD (+16% YoY); CRE CLO $21.6B (+60% YoY) (Trepp)',
+    ];
+    const capStress = [
+      'JLL bid intensity flat ~2 years, still lags 2021, credit is hot, bidding is cold (JLL)',
+      'US transaction volume fell 33% in April YoY to $24.7B as the 10Y ran up (JLL)',
+      '10Y at or above the 4.5% ceiling that breaks the math on pre-2022 debt (JLL)',
+      '$76.6B in CMBS hard maturities in 2026, 39% in Q4; 36% carry debt yield ≤8% (Trepp)',
+    ];
+    const quoteIndex = [
+      { k: '5-Yr Treasury', v: '4.23%' },
+      { k: '7-Yr Treasury', v: '4.34%' },
+      { k: '10-Yr Treasury', v: '4.47%' },
+      { k: '30-Day SOFR', v: '3.63%' },
+    ];
+    const lenderQuotes = [
+      { src: 'Agency — Fannie / Freddie', term: '10-yr · 55–65% LTV', rate: '5.42% – 5.82%', dotColor: '#1a6b62' },
+      { src: 'FHA 223(f)', term: '35-yr · 87% LTV', rate: '5.50% – 6.00%', dotColor: '#1a6b62' },
+      { src: 'Life Company', term: '10-yr · 60–75% LTV', rate: '5.87% – 6.17%', dotColor: '#b0863a' },
+      { src: 'FHA 221(d)(4)', term: '40-yr construction', rate: '5.95% – 6.40%', dotColor: '#b0863a' },
+      { src: 'CMBS', term: '10-yr · 65–75% LTV', rate: '6.22% – 6.72%', dotColor: '#d85a30' },
+    ];
+    const timeline = [
+      { when: 'Early 2022', what: 'Peak starts' },      { when: 'Early 2023', what: 'Peak under construction' },
+      { when: '2024', what: 'Delivery peak' },
+      { when: 'Q1 2026', what: 'Starts collapse, 55k units, −73%' },
+      { when: '2027 / 2028', what: 'Tightening setup' },
+    ];
+
+    const signal30 = [
+      { label: '2007 · Office', val: '39%', width: '78%', color: '#d98a5e' },
+      { label: '2007 · Multifamily', val: '35%', width: '70%', color: '#d98a5e' },
+      { label: '2007 · Retail', val: '31%', width: '62%', color: '#d98a5e' },
+      { label: '2021 · Multifamily', val: '47%', width: '94%', color: '#d98a5e' },
+      { label: '2025 · Office', val: '4%', width: '8%', color: '#5dcaa5' },
+      { label: '2026 YTD · Office', val: '6%', width: '12%', color: '#5dcaa5' },
+    ];
+    const refiWall = [
+      { v: '$76.6B', k: 'CMBS hard maturities due in 2026', note: 'more than 2024 or 2025' },
+      { v: '39%', k: 'land in Q4 alone', note: 'a back-loaded wall' },
+      { v: '36%', k: 'carry a debt yield ≤ 8%', note: 'most likely to face friction' },
+      { v: '79–84%', k: 'of CMBS is now refinancing', note: 'acquisitions have gone quiet' },
+    ];
+    const aiStats = [
+      { v: '77%', k: 'of AI-using operators report measurable OpEx reductions', s: '2025 industry survey (RealPage)' },
+      { v: '78%', k: 'say they have already lost business to AI-enabled competitors', s: '2025 industry survey (RealPage)' },
+      { v: '9 of 15', k: 'top operators run Funnel, across ~1.5M units', s: 'Thesis Driven' },
+      { v: '24 of 25', k: 'largest owners use at least one EliseAI product', s: 'Thesis Driven' },
+    ];
+
+    const tppi = [
+      { v: '+4.45%', k: 'CRE composite vs. June 2022', note: 'EW index, broadly stabilizing' },
+      { v: '−14.58%', k: 'multifamily vs. its 2022 peak', note: 'VW index, large assets still resetting' },
+      { v: '+3.22%', k: 'office prices, year-over-year', note: 'EW, firmer than the narrative' },
+    ];
+    const valueAdd = [
+      { v: '+63%', k: 'median value on 1970s-vintage MF, re-securitized', note: 'over a ~59-month hold' },
+      { v: '−81 bps', k: 'cap-rate compression did the heavy lifting', note: 'NOI rose 39% over the same span' },
+      { v: '+27%', k: 'CRE-CLO-to-CRE-CLO pairs, the slowdown', note: '14.9% posted an outright value decline' },
+    ];
+    const supplyWhy = [
+      { v: '67%', k: '“not economically feasible at this time”' },
+      { v: '50%', k: 'economic uncertainty' },
+      { v: '42%', k: 'low rent growth' },
+      { v: '25%', k: 'cost / availability of construction financing' },
+    ];
+    const retailPulse = [
+      { v: '+0.2%', k: 'core retail volume growth', note: 'the consumer is constrained' },
+      { v: '+7.8%', k: 'discount & dollar-store visits', note: 'shoppers trading down' },
+      { v: '+12.2%', k: 'theater & music-venue visits', note: 'experiences stay resilient' },
+      { v: '−0.7%', k: 'food sales volume', note: 'spending up, volume down' },
+    ];
+
+    const operators = [
+      { name: 'Greystar', props: '206', units: '57,598' },
+      { name: 'RPM Living', props: '165', units: '44,555' },
+      { name: 'Willow Bridge', props: '149', units: '44,262' },
+      { name: 'Asset Living', props: '140', units: '25,633' },
+      { name: 'ZRS Management', props: '88', units: '26,416' },
+    ];
+    const opMoves = [
+      { name: 'Asset Living', net: '+9', d: 'gained 14, lost 5', color: '#2f8f7f' },
+      { name: 'Summit Property Mgmt', net: '+6', d: 'gained 6, lost 0', color: '#2f8f7f' },
+      { name: 'AIR Communities', net: '+4', d: 'gained 4, lost 0', color: '#2f8f7f' },
+      { name: 'RPM Living', net: '−6', d: 'gained 2, lost 8', color: '#c0502a' },
+      { name: 'The Paskin Group', net: '−13', d: 'gained 0, lost 13', color: '#c0502a' },
+    ];
+    const netLease = [
+      { v: '$50B+', k: 'multi-tenant volume, Q1 2026', note: '3rd straight quarter · +28% YoY' },
+      { v: '40.7%', k: 'industrial, the largest share', note: 'office 32%, retail 27%' },
+      { v: '6.99%', k: 'average multi-tenant cap rate', note: '+1 bp · single-tenant 6.81%' },
+      { v: '+13%', k: 'institutional acquisition share since 2023', note: 'private buyers still lead at 51%' },
+    ];
+    const debtShift = [
+      { v: '95.6% → low', k: '10-year share of conduit loan count', note: '2019 dominance has faded' },
+      { v: '5-year', k: 'is becoming the default tenor', note: 'borrowers buying optionality on rates' },
+      { v: '1st ever', k: 'BDC redemptions topped inflows in Q1', note: 'perpetual private-credit funds' },
+      { v: '$2.6T', k: 'bank commitments to nonbank lenders', note: '+17% YoY, the shadow plumbing' },
+    ];
+    const demandHead = [
+      { v: '−4.6%', k: 'property value per +10% insurance premium', note: 'Cotality' },
+      { v: '12% · $4.6T', k: 'of homes are high climate-risk stock', note: 'rising toward $7.8T replacement cost' },
+      { v: 'Insurance', k: 'is now a migration variable in TX, AZ & FL', note: 'high-premium coastal pockets see outflows' },
+    ];
+    const demandTail = [
+      { v: '~140 / 1k', k: 'Gen Z still at home in McAllen, latent renters', note: 'Chandan Economics / Arbor' },
+      { v: 'Slowing', k: 'national household formation', note: 'built-in demand pools matter more' },
+    ];
+    const txDistressStat = [
+      { v: '~$1.3B', k: 'TX loans flagged for June foreclosure', note: 'highest since tracking began (May 2025)' },
+      { v: '~30 of 48', k: 'flagged loans sit in North Texas', note: 'concentrated in the Dallas–Fort Worth core' },
+      { v: 'Apartments', k: 'still the most-represented type', note: 'the 2021–23 value-add vintage' },
+    ];
+    const policyStat = [
+      { v: '$100k+', k: 'regulatory "bureaucrat tax" per new home', note: 'CEA / Economic Report of the President' },
+      { v: '89¢', k: 'of every $1 of rent is already committed', note: 'mortgage, taxes, payroll and operations (NAA)' },
+      { v: '1-in-6', k: 'new homes affordable to a typical family', note: 'down from ~1-in-2 in 2019' },
+      { v: '$31k', k: 'added per home by green-code mandates', note: 'NAHB analysis cited by CEA' },
+    ];
+    const policyFor = [
+      'Economic Report of the President names regulation the #1 affordability barrier',
+      'CEA recommends ending rent control and just-cause eviction policies',
+      'NAA Barriers Index (58 metros): NIMBY, slow approvals, density limits, impact fees',
+      'Federal alignment with the industry’s long-standing supply-cost case',
+    ];
+    const policyWatch = [
+      'CEA backs a ban on institutional investors buying single-family homes',
+      'Now Section 901 of the 21st Century ROAD to Housing Act',
+      'As written, it could choke built-to-rent (BTR), a top-growth supply source',
+      'MIT study: BPS retrofit rules push operators to walk; renters won’t pay the cost back',
+    ];
+    const txDistress = [
+      { who: 'DFW 400+', deal: '2021 vintage · value-add', detail: 'Alleged default on a ~$90M loan taken out near peak pricing. Now offering a month free rent to hold occupancy.' },
+      { who: 'DFW 1500~', deal: 'four-property portfolio', detail: 'Lender moving to foreclose over an alleged default on a ~$175M loan, the largest single action on the current slate.' },
+      { who: 'DFW 1000+', deal: '2021–22 value-add', detail: 'A last-minute sale is racing the auction clock; alleged default on a ~$79M loan.' },
+      { who: 'Class C', deal: '1970s vintage', detail: 'Back on the block over a ~$28M loan; older stock carrying the thinnest margins.' },
+    ];
+    const julyWatch = [
+      { date: 'Jun 30 · IN', event: 'JOLTS: Job Openings', why: 'Out today: openings jumped to 7.59M, a two-year high, well above the ~7.0M expected, with real-estate/leasing postings up 40k. The caveat matters: the past two years of labor data have been revised down almost every print (the 2024 benchmark alone erased ~818k jobs), so the true read is likely softer than the headline. A hot number keeps Warsh hawkish today; a downward revision next month is the base case.' },      { date: 'Jul 1', event: 'ADP · ISM Mfg · Warsh at the ECB', why: 'Private payrolls, factory activity as oil eases, and Warsh’s first major remarks since the June hold, read his inflation framing.' },
+      { date: 'Jul 2', event: 'June Employment Report', why: 'The pillar. Last print: solid payrolls, flat unemployment, wages cooling but still below PCE. A crack here is the only thing that reopens cuts.' },
+      { date: 'Jul 15', event: 'June CPI', why: 'With May PCE already at multi-year highs, another firm core hands Warsh cover to stay put, or hike.' },
+      { date: 'Jul 28–29', event: 'FOMC: Warsh’s 2nd Meeting', why: 'No forward guidance means the statement and dot drift are everything. Markets are pricing the first possible hike, not a cut.' },
+    ];
+
+    return {
+      markets, scorecard, signals, flow, capMoving, capStress, quoteIndex, lenderQuotes, timeline, signal30, refiWall, aiStats,
+      tppi, valueAdd, supplyWhy, retailPulse, operators, opMoves, netLease, debtShift, demandHead, demandTail, julyWatch,
+      txDistress, txDistressStat, policyStat, policyFor, policyWatch,
+      draftBanner: this.props.showDraftBanner ?? false,
+      coverTexture: this.props.coverTexture ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

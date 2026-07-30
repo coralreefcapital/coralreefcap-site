@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coral Reef Capital</title>
+<meta name="description" content="Built for a market where tighter conditions and artificial intelligence are separating firms with real process from firms without it.">
+<meta property="og:title" content="Coral Reef Capital | Multifamily Investment Management">
+<meta property="og:description" content="The next generation of multifamily owning and operating.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.coralreefcap.co">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Coral Reef Capital | Multifamily Investment Management">
+<meta name="twitter:description" content="The next generation of multifamily owning and operating.">
+<meta property="og:image" content="https://coralreefcap.co/og-preview.png">
+<meta name="twitter:image" content="https://coralreefcap.co/og-preview.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--teal-dark:#0A4A42;--teal:#1A6B62;--teal-mid:#3A9B8E;--teal-light:#5DCAA5;--coral:#D85A30;--coral-light:#E8886C;--coral-hover:#E56A3E;--dark:#0B1614;--dark-card:#0F1F1C;--dark-border:rgba(93,202,165,0.08);--text-bright:#F0F5F4;--text-mid:rgba(240,245,244,0.6);--text-dim:rgba(240,245,244,0.5);--white:#FFFFFF}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Nunito Sans',sans-serif;color:var(--text-bright);background:var(--dark);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:400}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--coral-light);outline-offset:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+nav.scrolled{background:rgba(11,22,20,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--dark-border);padding:14px 56px}
+.logo{font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--text-bright);text-decoration:none}
+.logo span{color:var(--coral)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;color:var(--text-dim);transition:color .25s}
+.nav-links a:hover{color:var(--text-bright)}
+.nav-cta{background:transparent!important;color:var(--coral-light)!important;padding:10px 28px;border-radius:980px;border:1px solid var(--coral)!important;transition:all .3s!important}
+.nav-cta:hover{background:var(--coral)!important;color:var(--white)!important;transform:translateY(-1px);box-shadow:0 6px 20px rgba(216,90,48,0.15)}
+.nav-portal{border:1px solid var(--dark-border);padding:9px 24px;border-radius:980px;transition:all .3s}
+.nav-portal:hover{border-color:var(--teal-mid);color:var(--teal-light)!important}
+.hamburger{display:none;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text-bright);transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(11,22,20,0.98);z-index:999;overflow-y:auto;padding:80px 0 40px}
+.mobile-menu.active{display:block}
+.mobile-menu a{display:block;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;color:var(--text-mid);transition:color .2s;text-align:center;padding:12px 24px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mobile-menu a:hover{color:var(--text-bright)}
+.mobile-close{position:absolute;top:24px;right:28px;font-size:28px;color:var(--text-bright);cursor:pointer;background:none;border:none}
+
+/* DROPDOWN NAV */
+.nav-group{position:relative;display:flex;align-items:center}
+.nav-group>a{display:flex;align-items:center;gap:4px;cursor:pointer}
+.nav-group>a .chevron{transition:transform .2s ease;opacity:.5}
+.nav-group.open>a .chevron{transform:rotate(180deg);opacity:1}
+.nav-group.open>a{color:var(--text-bright)}
+.nav-dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:190px;background:rgba(11,22,20,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--dark-border);border-radius:8px;padding:6px 0;opacity:0;visibility:hidden;transition:opacity .18s ease,visibility .18s ease,transform .18s ease;z-index:200;pointer-events:none}
+.nav-group.open .nav-dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.nav-group.open .nav-dropdown::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px}
+.nav-dropdown a{display:block;padding:9px 18px;font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color .15s,background .15s;white-space:nowrap}
+.nav-dropdown a:hover{color:var(--text-bright);background:rgba(93,202,165,0.06)}
+.nav-dropdown .dropdown-divider{height:1px;background:var(--dark-border);margin:6px 0}
+.nav-dropdown .dropdown-cta{color:var(--coral-light)!important}
+.nav-dropdown .dropdown-cta:hover{color:var(--coral)!important;background:rgba(216,90,48,0.06)!important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:140px 56px 100px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 85%,rgba(26,107,98,0.12) 0%,transparent 55%),radial-gradient(ellipse at 85% 15%,rgba(216,90,48,0.06) 0%,transparent 45%)}
+.hero-layout{position:relative;z-index:1;display:flex;align-items:center;gap:56px;width:100%}
+.hero-inner{flex:1;min-width:0}
+.hero-video{flex:1;min-width:0;opacity:0;animation:fadeIn 1s ease forwards 1s}
+.hero-video-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:0;overflow:hidden;border:1px solid rgba(93,202,165,0.15);box-shadow:rgba(26,107,98,0.25) 0px 30px 45px -30px,rgba(0,0,0,0.3) 0px 18px 36px -18px;filter:drop-shadow(0 0 4px rgba(93,202,165,0.3))}
+.hero-video-wrap video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.hero-tag{font-size:14px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--coral);margin-bottom:28px;opacity:0;animation:fadeIn .8s ease forwards .3s}
+.hero h1{font-size:clamp(36px,5vw,58px);line-height:1.08;letter-spacing:-0.5px;color:var(--text-bright);margin-bottom:28px;opacity:0;animation:fadeIn .8s ease forwards .5s}
+.hero h1 em{font-style:italic;color:var(--teal-light)}
+.hero-sub{font-size:17px;font-weight:300;color:var(--text-mid);max-width:580px;line-height:1.9;margin-bottom:48px;opacity:0;animation:fadeIn .8s ease forwards .7s}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeIn .8s ease forwards .9s}
+.btn{display:inline-block;padding:16px 36px;font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:980px;transition:all .3s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden}
+.btn-coral{background:var(--coral);color:var(--white)}.btn-coral:hover{background:linear-gradient(135deg,var(--coral),var(--coral-light));transform:translateY(-1px);box-shadow:0 8px 28px rgba(216,90,48,0.25)}
+.btn-ghost{border:1px solid rgba(240,245,244,0.15);color:var(--text-mid)}.btn-ghost:hover{border-color:var(--teal-mid);color:var(--teal-light)}
+.btn-teal{background:var(--teal);color:var(--white)}.btn-teal:hover{background:var(--teal-dark)}
+.hero-accent{position:absolute;right:56px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:16px;opacity:0;animation:fadeIn 1s ease forwards 1.2s}
+.accent-line{width:1px;height:120px;background:linear-gradient(to bottom,var(--teal-mid),transparent)}
+.accent-text{writing-mode:vertical-rl;font-size:10px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim)}
+
+/* COMMONS */
+section{padding:120px 56px}.section-inner{max-width:1140px;margin:0 auto}
+.tag{font-size:11px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--coral);margin-bottom:20px}
+.section-heading{font-size:clamp(30px,3.5vw,44px);color:var(--text-bright);margin-bottom:20px;line-height:1.1;letter-spacing:-0.3px}
+.section-sub{font-size:16px;font-weight:300;color:var(--text-mid);max-width:600px;line-height:1.8}
+.divider{max-width:1140px;margin:0 auto;height:1px;background:var(--dark-border)}
+
+/* VELOCITY */
+.velocity{background:var(--dark-card);padding:80px 56px;border-top:1px solid var(--dark-border);border-bottom:1px solid var(--dark-border)}
+.velocity-inner{max-width:1140px;margin:0 auto}
+.velocity-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1140px;margin:0 auto}
+.v-stat{text-align:center;padding:24px 12px}
+.v-stat .num{font-family:'Libre Baskerville',serif;font-size:36px;color:var(--teal-light);margin-bottom:6px}
+.v-stat .lbl{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);line-height:1.5}
+.v-stat .lbl span{color:var(--coral)}
+
+/* FOUNDATION */
+.foundation{background:var(--dark-card)}
+.phil-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--dark-border);border-radius:4px;overflow:hidden}
+.phil-item{padding:40px 28px;border-right:1px solid var(--dark-border);transition:background .3s}
+.phil-item:last-child{border-right:none}.phil-item:hover{background:rgba(93,202,165,0.03)}
+.phil-num{font-family:'Libre Baskerville',serif;font-size:32px;color:var(--teal-mid);opacity:0.4;margin-bottom:16px}
+.phil-item h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:400;font-size:18px;color:var(--text-bright);margin-bottom:12px}
+.phil-item p{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.8}
+
+/* EDGE */
+.edge{background:var(--dark)}
+.edge-card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:64px}
+.edge-card{padding:24px 24px;border:1px solid var(--dark-border);border-radius:6px;box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px;transition:transform .4s ease,box-shadow .4s ease,border-color .3s}
+.edge-card:hover{border-color:rgba(93,202,165,0.2);background:var(--dark-card);transform:translateY(-2px);box-shadow:rgba(0,30,43,0.18) 0px 32px 50px,rgba(0,0,0,0.18) 0px 10px 20px}
+.edge-card h4{font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:700;color:var(--teal-light);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase}
+.edge-card p{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7}
+.edge-body{margin-top:56px;padding-top:56px;border-top:1px solid var(--dark-border);text-align:center}
+.edge-body h3{font-size:28px;color:var(--text-bright);margin-bottom:24px;line-height:1.2}
+.edge-body-text{max-width:800px;margin:0 auto;text-align:left}
+.edge-body p{font-size:15px;font-weight:300;color:var(--text-mid);line-height:1.9;margin-bottom:18px}
+
+/* CORAL REEF STACK */
+.coral-stack{background:var(--dark-card)}
+.stack-grid{display:grid;grid-template-columns:340px 1fr;gap:0;margin-top:64px;min-height:320px}
+.stack-tabs{display:flex;flex-direction:column;border-right:1px solid var(--dark-border)}
+.stack-tab{padding:24px 32px;border-bottom:1px solid var(--dark-border);cursor:pointer;transition:all .2s;position:relative}
+.stack-tab:last-child{border-bottom:none}
+.stack-tab::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .2s}
+.stack-tab.active::before{background:var(--teal-light)}
+.stack-tab.active{background:rgba(93,202,165,0.04)}
+.stack-tab .stack-num{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--coral);margin-bottom:6px;display:block}
+.stack-tab h4{font-family:'Nunito Sans',sans-serif;font-size:15px;font-weight:700;color:var(--text-mid);letter-spacing:0.3px;transition:color .2s}
+.stack-tab.active h4{color:var(--text-bright)}
+.stack-panel{display:none;padding:40px 48px;align-items:center}
+.stack-panel.active{display:flex;flex-direction:column;justify-content:center}
+.stack-panel p{font-size:15px;font-weight:300;color:var(--text-mid);line-height:1.9;margin:0}
+
+/* STRATEGY */
+.strategy{background:var(--dark)}
+.strat-content{margin-top:64px}
+.strat-text h3{font-size:28px;color:var(--text-bright);margin-bottom:20px}
+.strat-text p{font-size:15px;font-weight:300;color:var(--text-mid);line-height:1.9;margin-bottom:16px}
+.strat-list{list-style:none;margin-top:24px}
+.strat-list li{font-size:14px;font-weight:400;color:var(--text-mid);padding:10px 0;border-bottom:1px solid var(--dark-border);display:flex;align-items:center;gap:12px}
+.strat-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--coral);flex-shrink:0}
+
+/* PROCESS */
+.process{background:var(--dark-card)}
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:64px;position:relative}
+.process-steps::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:1px;background:var(--dark-border);z-index:0}
+.step{text-align:center;position:relative;z-index:1;padding:0 12px}
+.step-num{width:64px;height:64px;border-radius:50%;border:1px solid var(--dark-border);background:var(--dark-card);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Libre Baskerville',serif;font-size:22px;color:var(--teal-light);transition:border-color .3s,background .3s}
+.step:hover .step-num{border-color:var(--coral);background:var(--dark)}
+.step h4{font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:700;color:var(--text-bright);margin-bottom:8px;letter-spacing:0.5px}
+.step p{font-size:12px;font-weight:300;color:var(--text-mid);line-height:1.7}
+.process-footer{margin-top:48px;font-size:13px;font-weight:400;color:var(--text-dim);font-style:italic;display:flex;align-items:center;gap:24px;white-space:nowrap}.process-footer::before,.process-footer::after{content:'';flex:1;height:1px;background:var(--dark-border)}
+
+/* CRITERIA */
+.criteria{background:var(--dark)}
+.criteria-grid{display:flex;flex-direction:column;gap:40px;margin-top:64px}
+.criteria-box{padding:40px;border:1px solid var(--dark-border);border-radius:4px}
+.criteria-box h3{font-size:22px;color:var(--text-bright);margin-bottom:24px}
+.criteria-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--dark-border)}
+.criteria-row{display:flex;flex-direction:column;gap:8px;padding:20px 18px;background:var(--dark)}
+.criteria-label{font-size:10px;font-weight:700;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+.criteria-value{font-size:14px;font-weight:400;color:var(--text-bright);line-height:1.5}
+.brokers-box h3{font-size:22px;color:var(--text-bright);margin-bottom:16px}
+.brokers-box p{font-size:15px;font-weight:300;color:var(--text-mid);line-height:1.8;margin-bottom:24px}
+.broker-points{list-style:none}
+.broker-points li{font-size:14px;font-weight:400;color:var(--text-mid);padding:12px 0;border-bottom:1px solid var(--dark-border);display:flex;align-items:center;gap:12px}
+.broker-points li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-mid);flex-shrink:0}
+.broker-cta{display:inline-block;margin-top:28px;padding:14px 32px;background:var(--coral);color:var(--white);border-radius:980px;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .3s}
+.broker-cta:hover{background:linear-gradient(135deg,var(--coral),var(--coral-light));box-shadow:0 8px 28px rgba(216,90,48,0.25)}
+
+/* MARKETS */
+.markets{background:var(--dark-card)}
+.markets-list{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:48px 64px}
+.markets-group h3{font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--coral);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--dark-border)}
+.markets-group-items{display:flex;flex-direction:column;gap:0}
+.market-item{font-family:'Libre Baskerville',Georgia,serif;font-size:18px;color:var(--text-bright);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--dark-border);transition:color .2s}
+.market-item:last-child{border-bottom:none}
+.market-item:hover{color:var(--teal-light)}
+
+/* BEYOND ACQUISITION */
+.beyond-acq{background:var(--dark)}
+.beyond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.beyond-card{padding:36px 28px;border:1px solid var(--dark-border);border-radius:6px;box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px;transition:transform .4s ease,box-shadow .4s ease,border-color .3s}
+.beyond-card:hover{border-color:rgba(93,202,165,0.2);transform:translateY(-2px);box-shadow:rgba(0,30,43,0.18) 0px 32px 50px,rgba(0,0,0,0.18) 0px 10px 20px}
+.beyond-card h4{font-family:'Nunito Sans',sans-serif;font-size:15px;font-weight:700;color:var(--teal-light);margin-bottom:10px;letter-spacing:0.5px}
+.beyond-card p{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7}
+
+/* WHY INVEST */
+.why-invest{background:var(--dark-card)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.why-card{padding:36px 28px;border:1px solid var(--dark-border);border-radius:6px;box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px;transition:transform .4s ease,box-shadow .4s ease,border-color .3s}
+.why-card:hover{border-color:rgba(93,202,165,0.2);transform:translateY(-2px);box-shadow:rgba(0,30,43,0.18) 0px 32px 50px,rgba(0,0,0,0.18) 0px 10px 20px}
+.why-icon{font-size:28px;margin-bottom:16px;color:var(--teal-light)}
+.why-card h4{font-family:'Nunito Sans',sans-serif;font-size:15px;font-weight:700;color:var(--text-bright);margin-bottom:10px}
+.why-card p{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7}
+
+/* REP EXP */
+.rep-exp{background:var(--dark)}
+.rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.rep-card{padding:32px;border:1px solid var(--dark-border);border-radius:6px;box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px;transition:transform .4s ease,box-shadow .4s ease,border-color .3s}
+.rep-card:hover{border-color:rgba(93,202,165,0.2);transform:translateY(-2px);box-shadow:rgba(0,30,43,0.18) 0px 32px 50px,rgba(0,0,0,0.18) 0px 10px 20px}
+.rep-card .rep-type{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--coral);margin-bottom:16px}
+.rep-card h4{font-family:'Libre Baskerville',serif;font-size:20px;color:var(--text-bright);margin-bottom:12px}
+.rep-detail{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--dark-border);font-size:13px}
+.rep-detail:last-child{border-bottom:none}
+.rep-detail .rd-label{color:var(--text-dim);font-weight:600;letter-spacing:0.5px;text-transform:uppercase;font-size:11px}
+.rep-detail .rd-value{color:var(--text-mid);font-weight:400}
+.rep-insight{margin-top:16px;padding-top:16px;border-top:1px solid var(--dark-border);font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7;font-style:italic}
+
+/* INVEST BAR */
+.invest-bar{background:var(--teal-dark);padding:48px 56px;text-align:center;position:relative;overflow:hidden}
+.invest-bar::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(93,202,165,0.06) 0%,transparent 60%)}
+.invest-bar .section-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.invest-bar p{font-size:17px;font-weight:400;color:rgba(255,255,255,0.8);margin:0}
+.invest-bar .btn{padding:12px 28px;font-size:12px}
+
+/* ABOUT */
+.about{background:var(--dark-card)}
+.about-grid{display:grid;grid-template-columns:300px 1fr;gap:64px;align-items:start;margin-top:64px}
+.about-photo{width:100%;aspect-ratio:3/4;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:4px;overflow:hidden}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.about-content h3{font-size:28px;color:var(--text-bright);margin-bottom:6px}
+.about-role{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);margin-bottom:28px}
+.about-content p{font-size:15px;font-weight:300;color:var(--text-mid);line-height:1.9;margin-bottom:18px}
+
+/* FEATURED */
+.featured{background:var(--dark)}
+.featured-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-top:64px}
+.featured-card{border:1px solid var(--dark-border);border-radius:6px;overflow:hidden;transition:transform .25s,border-color .25s}
+.featured-card:hover{transform:translateY(-4px);border-color:rgba(93,202,165,0.2)}
+.featured-card img{width:100%;height:280px;object-fit:cover;display:block}
+.featured-card-body{padding:24px}
+.featured-card-body h3{font-size:18px;color:var(--text-bright);margin-bottom:6px}
+.featured-card-body p{font-size:13px;color:var(--text-mid);font-weight:300}
+
+/* VALUES */
+.values{background:var(--dark)}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px}
+.value-card{padding:32px 24px;border:1px solid var(--dark-border);border-radius:6px;box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px;transition:transform .4s ease,box-shadow .4s ease,border-color .3s}
+.value-card:hover{border-color:rgba(93,202,165,0.2);transform:translateY(-2px);box-shadow:rgba(0,30,43,0.18) 0px 32px 50px,rgba(0,0,0,0.18) 0px 10px 20px}
+.value-card h4{font-family:'Nunito Sans',sans-serif;font-size:15px;font-weight:700;color:var(--teal-light);margin-bottom:10px;letter-spacing:0.5px}
+.value-card p{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7}
+
+/* TESTIMONIALS */
+.testimonials{background:var(--dark-card)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.testimonial-card{padding:32px 28px;border:1px solid var(--dark-border);border-radius:6px;box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px;transition:transform .4s ease,box-shadow .4s ease,border-color .3s}
+.testimonial-card:hover{border-color:rgba(93,202,165,0.2);transform:translateY(-2px);box-shadow:rgba(0,30,43,0.18) 0px 32px 50px,rgba(0,0,0,0.18) 0px 10px 20px}
+.testimonial-quote{font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.8;margin-bottom:18px}
+.testimonial-meta{padding-top:18px;border-top:1px solid var(--dark-border)}
+.testimonial-name{font-size:13px;font-weight:700;color:var(--text-bright);letter-spacing:.4px}
+.testimonial-role{font-size:11px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--coral);margin-top:4px}
+
+/* COMMUNITY */
+.community{background:var(--dark-card)}
+.community-intro{max-width:720px;margin-bottom:56px}
+.community-intro p{font-size:15px;font-weight:300;color:var(--text-mid);line-height:1.9;margin-top:20px}
+.community-photo{width:100%;height:420px;object-fit:cover;object-position:center 40%;border-radius:6px;margin-bottom:56px;display:block}
+.partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.partner-card{border:1px solid var(--dark-border);border-radius:6px;overflow:hidden;box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px;transition:transform .4s ease,border-color .3s}
+.partner-card:hover{border-color:rgba(93,202,165,0.2);transform:translateY(-2px)}
+.partner-logo{background:#fff;padding:24px 32px;display:flex;align-items:center;justify-content:center;height:110px}
+.partner-logo img{max-height:60px;max-width:100%;object-fit:contain}
+.partner-info{padding:20px 24px}
+.partner-type{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--coral);margin-bottom:8px}
+.partner-name{font-size:15px;font-weight:700;color:var(--text-bright);margin-bottom:8px}
+.partner-desc{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7}
+
+/* CAREERS */
+.careers{background:var(--dark)}
+.careers-content{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start;margin-top:64px}
+.careers-copy p{font-size:15px;font-weight:300;color:var(--text-mid);line-height:1.9;margin-bottom:18px}
+.careers-card{padding:32px;border:1px solid var(--dark-border);border-radius:6px;box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px}
+.careers-card h3{font-size:20px;color:var(--text-bright);margin-bottom:12px}
+.careers-card p{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.8;margin-bottom:18px}
+
+/* HOW IT WORKS */
+.how-it-works{background:var(--dark)}
+.hiw-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:64px;position:relative}
+.hiw-steps::before{content:'';position:absolute;top:32px;left:8%;right:8%;height:1px;background:var(--dark-border);z-index:0}
+.hiw-step{text-align:center;position:relative;z-index:1;padding:0 8px}
+.hiw-step-num{width:64px;height:64px;border-radius:50%;border:1px solid var(--dark-border);background:var(--dark);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Libre Baskerville',serif;font-size:22px;color:var(--teal-light);transition:border-color .3s,background .3s}
+.hiw-step:hover .hiw-step-num{border-color:var(--coral);background:var(--dark-card)}
+.hiw-step h4{font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:700;color:var(--text-bright);margin-bottom:8px;letter-spacing:0.5px}
+.hiw-step p{font-size:11px;font-weight:300;color:var(--text-mid);line-height:1.6}
+
+/* INVEST FORM */
+.invest-section{background:var(--dark-card);position:relative;overflow:hidden}
+.invest-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(26,107,98,0.08) 0%,transparent 50%)}
+.invest-section .section-inner{position:relative;z-index:1}
+.invest-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px}
+.invest-step{padding:40px 32px;border:1px solid var(--dark-border);border-radius:4px;text-align:center;transition:border-color .3s}
+.invest-step:hover{border-color:rgba(93,202,165,0.2)}
+.invest-step-num{font-family:'Libre Baskerville',serif;font-size:36px;color:var(--teal-mid);opacity:0.4;margin-bottom:16px}
+.invest-step h4{font-family:'Nunito Sans',sans-serif;font-size:15px;font-weight:700;color:var(--text-bright);margin-bottom:10px}
+.invest-step p{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7}
+.invest-form-wrap{margin-top:64px;max-width:680px;margin-left:auto;margin-right:auto;padding:48px;border:1px solid var(--dark-border);border-radius:6px;background:var(--dark)}
+.invest-form-wrap h3{font-size:24px;color:var(--text-bright);margin-bottom:8px;text-align:center}
+.invest-form-wrap .invest-sub{font-size:14px;color:var(--text-mid);text-align:center;margin-bottom:32px;font-weight:300}
+.invest-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.invest-form .full{grid-column:1/-1}
+.invest-form input,.invest-form select{padding:16px 20px;background:rgba(255,255,255,0.03);border:1px solid var(--dark-border);border-radius:3px;font-family:'Nunito Sans',sans-serif;font-size:14px;color:var(--text-bright);outline:none;transition:border-color .2s}
+.invest-form input::placeholder{color:var(--text-dim)}
+.invest-form input:focus,.invest-form select:focus{border-color:var(--teal-mid);box-shadow:0 0 0 3px rgba(93,202,165,0.2)}
+.invest-form select{color:var(--text-dim);appearance:none;cursor:pointer}
+.invest-form button{grid-column:1/-1;padding:16px;background:var(--coral);color:var(--white);border:none;border-radius:980px;font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.invest-form button:hover{background:linear-gradient(135deg,var(--coral),var(--coral-light));box-shadow:0 8px 28px rgba(216,90,48,0.25)}
+.invest-disclaimer{font-size:11px;color:var(--text-dim);text-align:center;margin-top:20px;line-height:1.6}
+
+/* INSIGHTS / REEF REPORT */
+.insights{background:var(--dark)}
+.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.insight-card{border:1px solid var(--dark-border);border-radius:6px;overflow:hidden;box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px;transition:transform .4s ease,box-shadow .4s ease,border-color .25s;cursor:pointer;text-decoration:none;color:inherit}
+.insight-card:hover{transform:translateY(-4px);border-color:rgba(93,202,165,0.2);box-shadow:rgba(0,30,43,0.18) 0px 32px 50px,rgba(0,0,0,0.18) 0px 10px 20px}
+.insight-img{height:180px;position:relative;display:flex;align-items:center;justify-content:center}
+.insight-img.podcast-bg{background:linear-gradient(145deg,#0F2B26,#0A4A42)}
+.insight-img.blog-bg{background:linear-gradient(145deg,#0B1614,#162E2A)}
+.insight-img.analysis-bg{background:linear-gradient(145deg,#1A2A28,#0F5C54)}
+.badge{position:absolute;top:14px;left:14px;background:var(--coral);color:var(--white);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:2px}
+.play-btn{width:52px;height:52px;border:2px solid rgba(93,202,165,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.play-btn::after{content:'';width:0;height:0;border-left:14px solid var(--teal-light);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:3px;opacity:0.8}
+.chart-icon{opacity:0.12}
+.insight-body{padding:24px}
+.insight-date{font-size:11px;color:var(--text-dim);letter-spacing:1px;margin-bottom:10px}
+.insight-body h3{font-size:17px;color:var(--text-bright);margin-bottom:8px;line-height:1.4}
+.insight-body p{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.7}
+
+/* FAQ */
+.faq{background:var(--dark-card)}
+.faq-grid{max-width:800px;margin-top:64px}
+.faq-item{border-bottom:1px solid var(--dark-border);padding:20px 0;cursor:pointer}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:600;color:var(--text-bright);gap:16px}
+.faq-q::after{content:'+';font-size:20px;color:var(--teal-mid);flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-q::after{content:'-'}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px}
+.faq-a p{font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.8}
+
+/* CONTACT */
+.contact{background:var(--dark)}
+.contact-tabs{display:flex;gap:0;margin-top:40px;border-bottom:1px solid var(--dark-border)}
+.contact-tab{padding:14px 28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:'Nunito Sans',sans-serif}
+.contact-tab:hover{color:var(--text-bright)}
+.contact-tab.active{color:var(--coral);border-bottom-color:var(--coral)}
+.contact-panel{display:none;margin-top:48px}
+.contact-panel.active{display:block}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.contact-info p{font-size:16px;font-weight:300;color:var(--text-mid);line-height:1.9;margin-bottom:36px}
+.c-detail{margin-bottom:24px}
+.c-detail .c-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal-mid);margin-bottom:4px}
+.c-detail .c-val{font-size:16px;color:var(--text-bright);font-weight:300}
+.c-detail a{color:var(--teal-light);text-decoration:none;transition:color .2s}
+.c-detail a:hover{color:var(--coral-light)}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.contact-form input,.contact-form select,.contact-form textarea{padding:16px 20px;background:rgba(255,255,255,0.03);border:1px solid var(--dark-border);border-radius:3px;font-family:'Nunito Sans',sans-serif;font-size:14px;color:var(--text-bright);outline:none;transition:border-color .2s}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--text-dim)}
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{border-color:var(--teal-mid);box-shadow:0 0 0 3px rgba(93,202,165,0.2)}
+.contact-form select{color:var(--text-dim);appearance:none;cursor:pointer}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form button{align-self:flex-start;padding:16px 44px;background:var(--coral);color:var(--white);border:none;border-radius:980px;font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.contact-form button:hover{background:linear-gradient(135deg,var(--coral),var(--coral-light));box-shadow:0 8px 28px rgba(216,90,48,0.25)}
+
+/* MARQUEE */
+.logo-marquee{padding:40px 0;overflow:hidden;border-top:1px solid var(--dark-border);border-bottom:1px solid var(--dark-border);background:var(--dark)}
+.marquee-track{display:flex;gap:80px;animation:marquee 20s linear infinite;width:max-content}
+.marquee-item{display:flex;align-items:center;gap:12px;white-space:nowrap;flex-shrink:0}
+.marquee-item span{font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:rgba(240,245,244,0.5)}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:rgba(93,202,165,0.55);flex-shrink:0}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* FOOTER */
+footer{background:var(--dark-card);border-top:1px solid var(--dark-border);padding:56px 56px 24px}
+.footer-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+.footer-brand p{font-size:13px;color:var(--text-dim);max-width:260px;font-weight:300;margin-top:12px}
+.footer-col h4{font-family:'Nunito Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:var(--text-mid);text-decoration:none;margin-bottom:10px;font-weight:300;transition:color .2s}
+.footer-col a:hover{color:var(--teal-light)}
+.footer-bottom{max-width:1140px;margin:32px auto 0;padding-top:24px;border-top:1px solid var(--dark-border);display:flex;justify-content:space-between;align-items:start;font-size:11px;color:var(--text-dim);gap:40px;flex-wrap:wrap}
+.footer-bottom a{color:var(--text-dim);text-decoration:none}
+.footer-disclaimer{max-width:700px;line-height:1.7;font-size:10px}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(0.16,1,0.3,1),transform .8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
+
+/* DESIGN POLISH — LETTER-SPACING (Apple/BMW) */
+.section-heading{letter-spacing:-0.5px}
+h1{letter-spacing:-0.8px}
+
+/* DESIGN POLISH — ENHANCED CARD GLOW (Stripe/VoltAgent) */
+.edge-card:hover,.stack-card:hover,.beyond-card:hover,.why-card:hover,.rep-card:hover,.testimonial-card:hover{
+  box-shadow:rgba(26,107,98,0.18) 0px 32px 50px -12px,rgba(0,0,0,0.2) 0px 10px 20px -5px,inset 0 1px 0 rgba(93,202,165,0.06);
+}
+
+/* DESIGN POLISH — NAV GLASS (Apple) */
+nav.scrolled{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(11,22,20,0.92)}
+
+/* AM SECTION EXPANDED */
+.am-section{background:var(--dark)}
+.am-intro{margin-top:48px;max-width:720px}
+.am-intro p{font-size:15px;font-weight:300;color:var(--text-mid);line-height:1.9;margin-bottom:16px}
+.am-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.am-card{padding:36px 28px;border:1px solid var(--dark-border);border-radius:6px;background:var(--dark-card);box-shadow:rgba(0,30,43,0.12) 0px 26px 44px,rgba(0,0,0,0.13) 0px 7px 13px;transition:transform .4s ease,box-shadow .4s ease,border-color .3s}
+.am-card:hover{border-color:rgba(93,202,165,0.2);transform:translateY(-2px);box-shadow:rgba(26,107,98,0.18) 0px 32px 50px -12px,rgba(0,0,0,0.2) 0px 10px 20px -5px}
+.am-card h4{font-family:'Nunito Sans',sans-serif;font-size:15px;font-weight:700;color:var(--teal-light);margin-bottom:10px;letter-spacing:0.5px}
+.am-card p{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7;margin-bottom:10px}
+.am-card ul{list-style:none;margin-top:8px}
+.am-card ul li{font-size:12px;font-weight:400;color:var(--text-mid);padding:5px 0;border-bottom:1px solid var(--dark-border);display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.am-card ul li:last-child{border-bottom:none}
+.am-card ul li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--coral);flex-shrink:0;margin-top:7px}
+.am-highlight{margin-top:48px;padding:40px;border:1px solid rgba(93,202,165,0.12);border-radius:6px;background:linear-gradient(135deg,rgba(26,107,98,0.06),rgba(15,31,28,0.8))}
+.am-highlight h4{font-family:'Libre Baskerville',serif;font-size:20px;color:var(--text-bright);margin-bottom:16px}
+.am-highlight p{font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.8;margin-bottom:12px}
+.am-highlight .am-quote{font-style:italic;color:var(--teal-light);font-size:15px;font-weight:400;margin-top:16px}
+
+@media(max-width:900px){
+  nav{padding:18px 28px}nav.scrolled{padding:14px 28px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  section{padding:72px 20px}
+  .hero{padding:100px 20px 72px}
+  .hero-layout{flex-direction:column;gap:32px}
+  .hero-video{width:100%}
+  .hero h1{font-size:clamp(28px,8vw,42px)}
+  .velocity{padding:52px 20px}.velocity-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .phil-grid{grid-template-columns:1fr}.phil-item{border-right:none;border-bottom:1px solid var(--dark-border);padding:28px 20px}.phil-item:last-child{border-bottom:none}
+  .process-steps{grid-template-columns:1fr;gap:28px}.process-steps::before{display:none}
+  .process-footer{white-space:normal;text-align:center;flex-direction:column;gap:12px}
+  .process-footer::before,.process-footer::after{display:none}
+  .hiw-steps{grid-template-columns:repeat(2,1fr);gap:28px}.hiw-steps::before{display:none}
+  .stack-grid{grid-template-columns:1fr!important}.stack-tabs{border-right:none;border-bottom:1px solid var(--dark-border)}.stack-panel.active{padding:24px 20px}
+  .beyond-grid,.am-grid{grid-template-columns:1fr}
+  .criteria-grid,.about-grid,.contact-grid,.featured-grid,.careers-content{grid-template-columns:1fr;gap:36px}
+  .criteria-cols{grid-template-columns:1fr 1fr}
+  .criteria-box{padding:24px 20px}
+  .edge-card-grid{grid-template-columns:1fr}
+  .edge-body{grid-template-columns:1fr;gap:0}
+  .partner-grid{grid-template-columns:1fr}
+  .community-photo{height:280px}
+  .partner-logo{height:90px;padding:16px 20px}
+  .partner-logo img{max-height:50px}
+  .insights-grid,.why-grid,.rep-grid,.testimonials-grid,.values-grid{grid-template-columns:1fr}
+  .markets-list{grid-template-columns:1fr;gap:28px}
+  .invest-steps{grid-template-columns:1fr}
+  .invest-form{grid-template-columns:1fr}
+  .invest-form .full{grid-column:auto}
+  .invest-form-wrap{padding:28px 20px}
+  [style*="grid-template-columns:280px"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns:1.5fr"]{grid-template-columns:1fr!important}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:16px}
+  .hero-accent{display:none}
+  .invest-bar{padding:32px 20px}
+  .invest-bar .section-inner{flex-direction:column;gap:16px;text-align:center}
+  .contact-tabs{flex-wrap:wrap;gap:4px}
+  .contact-tab{padding:10px 14px;font-size:10px}
+  /* newsletter subscribe row */
+  [style*="max-width:460px"]{flex-direction:column}
+  [style*="max-width:460px"] input,[style*="max-width:460px"] button{width:100%;border-radius:4px}
+  .section-heading{font-size:clamp(24px,7vw,36px)}
+  .section-sub{font-size:14px}
+  .about-photo{max-width:240px}
+  .rep-detail{flex-direction:column;gap:2px}
+  .rd-value{color:var(--text-bright)!important}
+}
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<!-- Facebook Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','XXXXXXXXXXXXXXX');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
+<!-- LinkedIn Insight Tag -->
+<script type="text/javascript">_linkedin_partner_id="XXXXXXX";window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push(_linkedin_partner_id);</script>
+<script type="text/javascript">(function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s);})(window.lintrk);</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://px.ads.linkedin.com/collect/?pid=XXXXXXX&fmt=gif"/></noscript>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="width:24px;height:24px;vertical-align:middle;margin-right:8px"><path d="M16 2 L16 26 L6 26 Q7 14 16 2Z" fill="#1A6B62"/><path d="M16 6 L16 26 L26 26 Q24 16 16 6Z" fill="#D85A30"/><line x1="4" y1="28" x2="28" y2="28" stroke="#1A6B62" stroke-width="2" stroke-linecap="round"/></svg>Coral Reef <span>Capital</span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <div class="nav-group">
+      <a href="#foundation">Firm <svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="#foundation">Foundation</a>
+        <a href="#experience">Experience</a>
+        <a href="#values">Values</a>
+        <a href="#community">Community</a>
+        <a href="#careers">Careers</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <a href="#edge">Platform <svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="#edge">Our Edge</a>
+        <a href="#stack">Coral Reef Stack</a>
+        <a href="#asset-management">Asset Management</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <a href="#strategy">Deals <svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="#strategy">Strategy</a>
+        <a href="#process">Process</a>
+        <a href="#criteria">Buy Box</a>
+        <a href="#markets">Markets</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <a href="#invest">Invest <svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="#why-invest">Why Invest</a>
+        <a href="#how-it-works">How It Works</a>
+        <div class="dropdown-divider"></div>
+        <a href="#invest" class="dropdown-cta">Invest With Us</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <a href="#insights">Insights <svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="#insights">The Deep End</a>
+        <a href="#insights">The Reef Report</a>
+        <a href="#insights">The Current</a>
+        <a href="#featured">Media Appearances</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <a class='nav-portal' href='/investor-login' target='_blank'>Investor Portal</a>
+    <a href="#contact" class="nav-cta">Connect</a>
+  </div>
+  <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('active')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="this.parentElement.classList.remove('active')">&#215;</button>
+  <a href="#about" onclick="this.parentElement.classList.remove('active')">About</a>
+  <a href="#foundation" onclick="this.parentElement.classList.remove('active')">Foundation</a>
+  <a href="#experience" onclick="this.parentElement.classList.remove('active')">Experience</a>
+  <a href="#values" onclick="this.parentElement.classList.remove('active')">Values</a>
+  <a href="#community" onclick="this.parentElement.classList.remove('active')">Community</a>
+  <a href="#edge" onclick="this.parentElement.classList.remove('active')">Our Edge</a>
+  <a href="#stack" onclick="this.parentElement.classList.remove('active')">Coral Reef Stack</a>
+  <a href="#asset-management" onclick="this.parentElement.classList.remove('active')">Asset Management</a>
+  <a href="#strategy" onclick="this.parentElement.classList.remove('active')">Strategy</a>
+  <a href="#process" onclick="this.parentElement.classList.remove('active')">Process</a>
+  <a href="#criteria" onclick="this.parentElement.classList.remove('active')">Buy Box</a>
+  <a href="#markets" onclick="this.parentElement.classList.remove('active')">Markets</a>
+  <a href="#why-invest" onclick="this.parentElement.classList.remove('active')">Why Invest</a>
+  <a href="#how-it-works" onclick="this.parentElement.classList.remove('active')">How It Works</a>
+  <a href="#invest" onclick="this.parentElement.classList.remove('active')">Invest With Us</a>
+  <a href="#insights" onclick="this.parentElement.classList.remove('active')">Insights</a>
+  <a href="#featured" onclick="this.parentElement.classList.remove('active')">Media Appearances</a>
+  <a href="#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+  <a href='/investor-login' target='_blank'>Investor Portal</a>
+  <a href="#contact" onclick="this.parentElement.classList.remove('active')">Connect</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-layout">
+    <div class="hero-inner">
+      <div class="hero-tag">Built for a New World</div>
+      <h1>The Next Generation of <em>Multifamily</em> Owning &amp; Operating</h1>
+      <p class="hero-sub">We acquire multifamily assets where short-term dislocation creates<br>long-term opportunity.</p>
+      <div class="hero-actions">
+        <a href="#invest" class="btn btn-coral">Invest With Us</a>
+        <a href="https://calendly.com/harrison-coralreefcap/30min" target="_blank" class="btn btn-ghost">Schedule a Call</a>
+        <a href="#contact" class="btn btn-ghost">Submit a Deal</a>
+      </div>
+    </div>
+    <div class="hero-video">
+      <div class="hero-video-wrap">
+        <video id="heroVid" autoplay muted loop playsinline preload="auto" poster="header-current.png" style="background:var(--dark-card)">
+          <source src="hero-video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+  <div class="hero-accent">
+    <div class="accent-line"></div>
+    <span class="accent-text">Scroll</span>
+  </div>
+</section>
+
+<!-- ===================== VELOCITY STATS ===================== -->
+<div class="velocity">
+  <div class="velocity-inner">
+    <div class="velocity-grid">
+      <div class="v-stat"><div class="num">$700M+</div><div class="lbl">Deal <span>Volume</span></div></div>
+      <div class="v-stat"><div class="num" data-target="3000" data-suffix="+">0</div><div class="lbl">Deals Underwritten <span>Current Cycle</span></div></div>
+      <div class="v-stat"><div class="num" data-target="60" data-suffix="+">0</div><div class="lbl">Brokerage Firms <span>Nationwide</span></div></div>
+      <div class="v-stat"><div class="num">7 MSAs</div><div class="lbl">Acquisitions Leadership <span>4 States</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FOUNDATION ===================== -->
+<section class="foundation" id="foundation">
+  <div class="section-inner">
+    <div class="tag">Foundation</div>
+    <div class="section-heading">Forged in the Down Cycle. Built Across the Capital Stack.</div>
+    <p class="section-sub">Coral Reef Capital is a multifamily investment platform built for a new operating regime. The firm sits at the intersection of two shifts: a real estate market that punishes passive underwriting and rewards operational discipline, and an era of machine intelligence that has fundamentally changed the economics of information work. The platform was built with both in mind from day one.</p>
+    <div class="phil-grid" style="margin-top:64px">
+      <div class="phil-item"><div class="phil-num">01</div><h3>Multifamily Lending</h3><p>$700M+ in loan transaction volume on the capital markets side. We understand how lenders size deals, where they pull back, and what makes a capital stack fragile. Always current on where we are in the cycle.</p></div>
+      <div class="phil-item"><div class="phil-num">02</div><h3>Investment Sales</h3><p>Activity built the hard way: outbound, broker relationships, and live market reps during one of the industry's slowest stretches. That creates sharper pricing instincts and a better read on how deals actually trade.</p></div>
+      <div class="phil-item"><div class="phil-num">03</div><h3>Principal Acquisitions</h3><p>Proven track record finding and closing distressed and off-market multifamily. Loan assumptions, estate sales, creative structuring. The deals that only surface through patience, discipline, and direct relationships.</p></div>
+      <div class="phil-item"><div class="phil-num">04</div><h3>Acquisitions at Scale</h3><p>Sole acquisitions lead across 7 MSAs in 4 states for a $2B+ AUM platform. Every rep was built in the current environment, where basis, debt structure, and execution risk mattered immediately.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EDGE ===================== -->
+<section class="edge" id="edge">
+  <div class="section-inner">
+    <div class="tag">Our Edge</div>
+    <div class="section-heading">A Structurally Different Investment Management Platform</div>
+    <p class="section-sub">Most firms still run acquisitions through headcount and spreadsheet bottlenecks. We built around lower friction, tighter feedback loops, and better decision support.</p>
+    <div class="edge-card-grid">
+      <div class="edge-card"><h4>Self-Built Infrastructure</h4><p>We did not come to AI through real estate. We came to real estate through AI. The underwriting infrastructure, data pipelines, and decision workflows at Coral Reef Capital were built from the ground up, written in Python, SQL, and JavaScript, years before this became an industry talking point. That is not a feature we added. It is where we started.</p></div>
+      <div class="edge-card"><h4>Why-We-Passed Discipline</h4><p>Discipline is a system, not a slogan. We track the reasons opportunities pass or fail our standards so future decisions get sharper instead of noisier.</p></div>
+      <div class="edge-card"><h4>Deal Team Intelligence</h4><p>Every opportunity carries contact history, market context, and deal-team mapping across brokers, lenders, property managers, and vendors, enabling topline sourcing and execution on every deal.</p></div>
+      <div class="edge-card"><h4>Proprietary Data Stack</h4><p>Informed by CoStar, CredIQ, Crexi, and verified operating statements from current-cycle transactions. Real expense ratios, trade-out rents, and rehab cost baselines from deals we have actually touched.</p></div>
+      <div class="edge-card"><h4>Distressed Market Expertise</h4><p>Specialized in finding opportunities when others are not looking. Assumable loans, estate sales, special servicer situations. A proven track record of identifying and closing deals that only surface through patience, discipline, and direct relationships.</p></div>
+      <div class="edge-card"><h4>Lower Structural Overhead</h4><p>We do not carry a legacy workflow with 10 people doing what a tight system should handle. That matters for speed, cost per deal reviewed, and long-term scalability.</p></div>
+      <div class="edge-card"><h4>Transparent Market Communication</h4><p>Over 10,000 subscribers already follow our market intelligence. The same analytical communication style carries through to partners and investors once capital is at work.</p></div>
+      <div class="edge-card"><h4>Real-Time Portfolio Intelligence</h4><p>Our asset management infrastructure is built around automated, real-time data, designed so every pricing decision, every renewal conversation, and every stakeholder update draws from one source of truth. Not quarterly reconciliations. Not competing spreadsheets. Built before the portfolio demands it.</p></div>
+    </div>
+    <div class="edge-body">
+      <h3>Built for Speed, Visibility, and Fewer Blind Spots</h3>
+      <div class="edge-body-text">
+        <p>Our edge is not that we use AI. It is that the firm was designed around an AI-native workflow from day one. Repetitive tasks are automated, exceptions are flagged quickly, and decisions stay human.</p>
+        <p>We can evaluate more opportunities, respond faster to brokers, and spend more time on judgment, relationships, and execution rather than manual process.</p>
+        <p>Most firms added AI to an existing process. We built the process around quality control first, then layered in persistent memory, self-improving reasoning, and full human control. Every output is cross-referenced against live market data and verified before it informs a decision. The result is a second brain that continually gets sharper with every decision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE CORAL REEF STACK (NEW) ===================== -->
+<section class="coral-stack" id="stack">
+  <div class="section-inner">
+    <div class="tag">The Coral Reef Stack</div>
+    <div class="section-heading">Systematic Diligence &amp; Analysis</div>
+    <p class="section-sub">No deal moves forward on disorganized data. Every opportunity passes through the same documented workflow, from initial file organization through final analysis, so the decision made at the end reflects everything that is actually in the deal.</p>
+    <div class="stack-grid">
+      <div class="stack-tabs">
+        <div class="stack-tab active" onclick="switchStack(0)">
+          <span class="stack-num">01</span>
+          <h4>Diligence Control</h4>
+        </div>
+        <div class="stack-tab" onclick="switchStack(1)">
+          <span class="stack-num">02</span>
+          <h4>Document Intelligence</h4>
+        </div>
+        <div class="stack-tab" onclick="switchStack(2)">
+          <span class="stack-num">03</span>
+          <h4>Physical &amp; Capital Review</h4>
+        </div>
+        <div class="stack-tab" onclick="switchStack(3)">
+          <span class="stack-num">04</span>
+          <h4>Valuation &amp; Risk Review</h4>
+        </div>
+      </div>
+      <div class="stack-panel active" id="stack-panel-0">
+        <p>No deal moves forward on disorganized data. Every document is reconciled against a checklist, organized by category, and reviewed for missing items and risk gaps before any analysis begins. Clean inputs are not optional. They are the foundation every subsequent decision rests on.</p>
+      </div>
+      <div class="stack-panel" id="stack-panel-1">
+        <p>Vendor agreements and leases are not skimmed. They are abstracted into structured trackers that surface renewal windows, termination rights, obligation exposure, and hidden traps before they become closing problems. Auto-renewal flags, termination conditions, and obligation mapping are documented before capital is committed.</p>
+      </div>
+      <div class="stack-panel" id="stack-panel-2">
+        <p>We do not accept PCAs at face value. Scope limitations, cost assumptions, and reserve needs are challenged before final pricing decisions, creating negotiation leverage and protecting against capex blind spots. Contractor estimates are cross-checked and credit recommendations are built into the offer.</p>
+      </div>
+      <div class="stack-panel" id="stack-panel-3">
+        <p>Appraisal assumptions, comp sets, and valuation logic are extracted, compared, and challenged for aggressive underwriting or unsupported conclusions. Key findings are synthesized into a decision-ready report with severity ratings and cross-document contradiction checks. No red flag missed in a compressed closing window.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STRATEGY ===================== -->
+<section class="strategy" id="strategy">
+  <div class="section-inner">
+    <div class="tag">Strategy</div>
+    <div class="section-heading">How We Invest</div>
+    <p class="section-sub">We invest where price has reset faster than long-term demand. The entry matters. Execution is what makes it durable.</p>
+    <div class="strat-content">
+      <div class="strat-text">
+        <h3>Where We Invest and Why</h3>
+        <p style="font-size:15px;font-weight:400;color:var(--teal-light);line-height:1.8;margin-bottom:18px;font-style:italic">Our focus is supply-driven inefficiency in growth markets where pricing has corrected, but the long-term demand picture still holds.</p>
+        <p>We entered multifamily in the post-rate-hike environment. Every live rep, every underwriting decision, and every acquisition process has happened in a market defined by dislocation, refinancing stress, and higher scrutiny.</p>
+        <p>That pushes us toward opportunities with clear basis support, conservative debt, and execution plans that do not depend on a return to easy capital. In suburban markets, that often means workforce housing where supply temporarily outpaced absorption and compressed values. The underlying fundamentals did not correct with the pricing: durable employment, employer diversification, net in-migration, household formation, and employment hub proximity at workforce-level pricing. In urban infill, it means locations where land scarcity and walkability create long-term defensibility that cash flow alone may not fully capture.</p>
+        <p>We are comfortable with complexity when it is understandable, financeable, and priced correctly. We are not interested in complexity for its own sake.</p>
+        <ul class="strat-list">
+          <li>Off-market and lightly marketed sourcing where speed and credibility matter</li>
+          <li>Supply-driven dislocation in markets with real population, job, and liquidity support</li>
+          <li>Distressed situations, loan assumptions, and creative structures when downside is clear</li>
+          <li>JV, Co-GP, and passive investment structures with aligned incentives</li>
+          <li>Preference for durable debt structures over optimism-driven leverage</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INVESTMENT PROCESS ===================== -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <div class="tag">Investment Process</div>
+    <div class="section-heading">From Sourcing to Execution</div>
+    <p class="section-sub">Speed and consistency applied the same way on every deal, with the discipline to say no when the numbers do not hold.</p>
+    <div class="process-steps">
+      <div class="step"><div class="step-num">1</div><h4>Sourcing</h4><p>200+ broker relationships, direct outreach, and proprietary data systems identifying off-market and lightly marketed opportunities. Our pipeline tracks pricing, velocity, and market signals across target submarkets. Before a deal is marketed, we already have a view.</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Underwriting</h4><p>Standardized evaluation backed by real operating data, submarket pricing intelligence, and current-cycle deal knowledge. Every deal gets the same rigorous pass.</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Investment Decision</h4><p>Clear criteria, applied consistently. Basis, debt structure, execution risk, and exit path all pass the same filter. If the deal does not work conservatively, we pass.</p></div>
+      <div class="step"><div class="step-num">4</div><h4>Structuring</h4><p>JV, Co-GP, and passive structures tailored to each deal. Capital stack alignment designed to keep incentives intact from acquisition through exit.</p></div>
+      <div class="step"><div class="step-num">5</div><h4>Execution</h4><p>Hands-on asset management built on relationships developed across every level of the stack: brokers, lenders, operators, and onsite teams, from acquisition through disposition.</p></div>
+    </div>
+    <p class="process-footer">Our process is designed to evaluate and execute opportunities consistently across all markets and cycles.</p>
+
+    <div style="margin-top:56px;padding:40px 48px;border:1px solid var(--dark-border);border-radius:4px;background:rgba(10,74,66,0.04)">
+      <p style="font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--coral);margin-bottom:32px">Underwriting Standard</p>
+      <div style="margin-bottom:28px">
+        <p style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal-light);margin-bottom:10px">Income &amp; Expenses</p>
+        <p style="font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.9">T12 figures are a starting point, not an assumption that holds. Property taxes are verified through established advisor relationships before an offer is made. Insurance assessed as a forward-looking exposure profile: construction type, prior loss history, catastrophe positioning, and carrier availability in the submarket evaluated before we underwrite. When carriers exit a market, the ones who remain price accordingly. Loss run frequency and claim type often surfaces deferred maintenance more accurately than the inspection does. We model the insurance cost trajectory, not just today's premium. Common area utility costs and municipal rate trajectories verified independently.</p>
+      </div>
+      <div style="margin-bottom:28px">
+        <p style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal-light);margin-bottom:10px">Debt Structure</p>
+        <p style="font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.9">Debt structure is a decision, not a default. Bridge financing is evaluated deal-by-deal: rate cap coverage, floor hedge options, and exit paths assessed against the specific business plan and rate environment.</p>
+      </div>
+      <div style="margin-bottom:28px">
+        <p style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal-light);margin-bottom:10px">Rent Comps</p>
+        <p style="font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.9">Rent comps selected the way an unbiased prospect would evaluate them, matched on vintage, unit mix, finish level, and positioning. Not aspirationally benchmarked against superior product. Dollar rent and price per square foot evaluated together. Then tested against what the submarket's income demographics can actually sustain.</p>
+      </div>
+      <div style="margin-bottom:28px">
+        <p style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal-light);margin-bottom:10px">Conviction</p>
+        <p style="font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.9">Conviction before commitment. The work done pre-offer draws on cycle experience, established advisor relationships, and current submarket data, not assumptions carried from the last deal. The objective is to know the deal before we are in it. Diligence should narrow what remains open, not introduce us to what was unknown.</p>
+      </div>
+      <div>
+        <p style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal-light);margin-bottom:10px">Stress Test</p>
+        <p style="font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.9">Every deal is stress tested across occupancy, rent growth, expense, and exit assumptions before an offer is made. The base case is never the reason we buy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INVESTMENT CRITERIA ===================== -->
+<section class="criteria" id="criteria">
+  <div class="section-inner">
+    <div class="tag">Investment Criteria</div>
+    <div class="section-heading">What We Look For</div>
+    <div class="criteria-grid">
+      <div class="criteria-box">
+        <h3>Buy Box</h3>
+        <div class="criteria-cols">
+          <div class="criteria-row"><span class="criteria-label">Hold Period</span><span class="criteria-value">2 to 5 years</span></div>
+          <div class="criteria-row"><span class="criteria-label">HVAC</span><span class="criteria-value">Individual units preferred</span></div>
+          <div class="criteria-row"><span class="criteria-label">Water Heaters</span><span class="criteria-value">Individual units preferred</span></div>
+          <div class="criteria-row"><span class="criteria-label">Unit Range</span><span class="criteria-value">50 to 200 units | 30+ in select markets</span></div>
+          <div class="criteria-row"><span class="criteria-label">Deal Types</span><span class="criteria-value">Value-add, dislocation-driven opportunities, assumable debt, structured transactions</span></div>
+          <div class="criteria-row"><span class="criteria-label">Asset Class</span><span class="criteria-value">Primarily Class B / B+ with selective Class A or C depending on business plan</span></div>
+          <div class="criteria-row"><span class="criteria-label">Vintage</span><span class="criteria-value">Primarily 1985+. Older vintage considered in true infill locations with strong land value and exit liquidity</span></div>
+          <div class="criteria-row"><span class="criteria-label">Systems</span><span class="criteria-value">Major building systems must be addressed or clearly underwritten (plumbing, electrical, roofing, structural)</span></div>
+          <div class="criteria-row"><span class="criteria-label">Debt</span><span class="criteria-value">Preference for fixed-rate agency or life company. Bridge with rate caps and future funded capex in special situations</span></div>
+          <div class="criteria-row"><span class="criteria-label">Markets</span><span class="criteria-value">High-growth U.S. metros with strong population and job expansion, focused on submarkets experiencing supply-driven dislocation or urban infill dynamics</span></div>
+        </div>
+      </div>
+      <div class="brokers-box">
+        <h3>Why Brokers Work With Us</h3>
+        <p>We aim to be a reliable counterparty that understands both the deal and the process.</p>
+        <ul class="broker-points">
+          <li>Feedback on every submission within 24 hours</li>
+          <li>We don't retrade sellers.</li>
+          <li>Ability to structure and close complex transactions</li>
+          <li>Direct access to the decision maker on every deal</li>
+          <li>Established relationships with 200+ brokers at 60+ firms</li>
+        </ul>
+        <a href="#contact" class="broker-cta">Submit a Deal</a>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;padding:32px 40px;border:1px solid var(--dark-border);border-radius:4px;background:rgba(10,74,66,0.04)">
+      <p style="font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--coral);margin-bottom:16px">Documented Discipline</p>
+      <p style="font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.9">We track every deal we decline and why: basis too thin, execution risk too concentrated, exit path unclear. That record sharpens future decisions and prevents the drift that happens when every opportunity starts to look like an exception.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARKETS ===================== -->
+<section class="markets" id="markets">
+  <div class="section-inner">
+    <div class="tag">Where We Invest</div>
+    <div class="section-heading">Geography With a Reason</div>
+    <p class="section-sub">We invest at the submarket level, not the market level. Every portfolio addition must support population growth, job and economic expansion, exit liquidity, and enough fragmentation to create mispricing.</p>
+    <div class="markets-list">
+      <div class="markets-group">
+        <h3>Texas Triangle</h3>
+        <div class="markets-group-items">
+          <span class="market-item">Austin</span>
+          <span class="market-item">Dallas-Fort Worth</span>
+          <span class="market-item">Houston</span>
+          <span class="market-item">San Antonio</span>
+        </div>
+      </div>
+      <div class="markets-group">
+        <h3>Southeast</h3>
+        <div class="markets-group-items">
+          <span class="market-item">Atlanta</span>
+          <span class="market-item">Charlotte</span>
+          <span class="market-item">Nashville</span>
+          <span class="market-item">Raleigh-Durham</span>
+        </div>
+      </div>
+      <div class="markets-group">
+        <h3>Florida</h3>
+        <div class="markets-group-items">
+          <span class="market-item">Fort Lauderdale</span>
+          <span class="market-item">Miami</span>
+          <span class="market-item">Orlando</span>
+          <span class="market-item">Tampa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ASSET MANAGEMENT ===================== -->
+<section class="am-section" id="asset-management">
+  <div class="section-inner">
+    <div class="tag">Asset Management</div>
+    <div class="section-heading">Buying Right Is Necessary. Operating Well Returns Capital.</div>
+    <p class="section-sub">Acquisition is the entry point. NOI growth is the thesis. We do not hand off assets and wait for monthly reconciliations. We track the metrics that matter from day one and build the systems that scale.</p>
+
+    <div class="am-grid">
+      <div class="am-card">
+        <h4>Reporting Rhythm</h4>
+        <p>Most operators reconcile monthly. By the time the report hits, the problem is six weeks old. We build weekly visibility into collections, occupancy, and trade-outs from day one.</p>
+        <p>The data that matters, not the data that is convenient.</p>
+      </div>
+      <div class="am-card">
+        <h4>The Scale Test</h4>
+        <p>Most asset management breakdowns are coordination problems instead of property-level problems: renewals that fall through, turns that run long, reporting that arrives too late to act on. Our system executes the same way at one as it does at ten.</p>
+      </div>
+      <div class="am-card">
+        <h4>Performance Diagnostics</h4>
+        <p>Below-target occupancy is obvious. Where most teams break down is diagnosing why. Is it a marketing problem, a conversion problem, or a retention problem?</p>
+        <p>When an asset manager understands how the property is running without being told, it shows the team they are in it together.</p>
+      </div>
+      <div class="am-card">
+        <h4>The AM / PM Dynamic</h4>
+        <p>Property managers run day-to-day operations. Our job is to analyze performance, identify what is lagging, and provide the strategic insight they need to improve. They deserve better than "increase occupancy."</p>
+        <p>Vague goals decay fast. Frameworks with rhythm and governance carry through cycles. Execution becomes repeatable instead of reactive.</p>
+      </div>
+      <div class="am-card">
+        <h4>The 5 Core Metrics</h4>
+        <ul>
+          <li>Weekly occupancy with 6-week forward view</li>
+          <li>Collections percentage against billed revenue</li>
+          <li>Renewal rate and retention efficiency</li>
+          <li>Trade-out performance: renewal vs. new lease</li>
+          <li>Work order completion time by category</li>
+        </ul>
+        <p style="margin-top:10px">One metric gives you someone to blame. The right metrics give you something to fix.</p>
+      </div>
+      <div class="am-card">
+        <h4>Systems-First Scaling</h4>
+        <p>Unit turn workflows, lease renewal tracking, preventive maintenance schedules — standardized before the first acquisition closes. When a new property enters the portfolio, it runs on the same process from day one. We do not rebuild operational infrastructure property by property.</p>
+      </div>
+    </div>
+
+    <div class="am-highlight">
+      <h4>Infrastructure That Comes First</h4>
+      <p>The current market cycle is creating one of the most compelling acquisition environments in a generation. Overleveraged positions are unwinding, basis resets are accelerating, and the operators who built infrastructure during the correction will move fastest when the window opens.</p>
+      <p>We built Coral Reef Capital like a franchise: standardized workflows, repeatable reporting, and operational systems that are already in place before the portfolio requires them. That is not theory. It comes from running acquisitions and asset management through the hardest stretch this industry has seen in over a decade.</p>
+      <p>The hardest part of asset management is not reading the numbers. It is building the scaffolds that keep execution aligned when the pressure hits. We underwrite conservatively, treat the onsite team as partners, and provide the specific, actionable guidance that builds results and trust.</p>
+      <p class="am-quote">Retention is treated as an underwritable outcome, not a projected one. The work done on maintenance, renewals, and onsite execution is designed to be measurable and repeatable, built into the asset plan from day one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY INVEST ===================== -->
+<section class="why-invest" id="why-invest">
+  <div class="section-inner">
+    <div class="tag">For Investors</div>
+    <div class="section-heading">Why Capital Partners Work With Us</div>
+    <p class="section-sub">The goal is straightforward: protect downside, communicate clearly, and create a repeatable edge in a market where many firms are still organized for a cycle that ended.</p>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">&#9670;</div><h4>Cycle-Aware Underwriting</h4><p>Every live rep has happened in a market defined by dislocation and higher scrutiny. That shapes how we underwrite, not just what we buy.</p></div>
+      <div class="why-card"><div class="why-icon">&#9670;</div><h4>Direct Principal Access</h4><p>You are dealing with the decision maker, not a layer of investor relations between you and the facts.</p></div>
+      <div class="why-card"><div class="why-icon">&#9670;</div><h4>Institutional Reporting</h4><p>Partners receive disciplined updates, market context, and reporting that reflects what is happening now, not what is convenient to say.</p></div>
+      <div class="why-card"><div class="why-icon">&#9670;</div><h4>Aligned Structures</h4><p>We pursue passive, JV, and Co-GP structures with incentives designed to stay aligned from acquisition through exit.</p></div>
+      <div class="why-card"><div class="why-icon">&#9670;</div><h4>Faster Decision Cycles</h4><p>Better systems compress time to answer without turning discipline into a casualty of speed.</p></div>
+      <div class="why-card"><div class="why-icon">&#9670;</div><h4>Operator-Led Communication</h4><p>The same person sourcing, underwriting, and structuring the deal is the person accountable for explaining it clearly.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REPRESENTATIVE EXPERIENCE ===================== -->
+<section class="rep-exp" id="experience">
+  <div class="section-inner">
+    <div class="tag">Representative Experience</div>
+    <div class="section-heading">Transactions</div>
+    <p class="section-sub">Select examples from our team's acquisition and transaction history. Details anonymized for confidentiality.</p>
+    <div class="rep-grid">
+      <div class="rep-card">
+        <div class="rep-type">Value-Add / Off-Market</div>
+        <h4>Infill Townhomes</h4>
+        <div class="rep-detail"><span class="rd-label">Market</span><span class="rd-value">DFW Metroplex</span></div>
+        <div class="rep-detail"><span class="rd-label">Vintage</span><span class="rd-value">1980s</span></div>
+        <div class="rep-detail"><span class="rd-label">Basis</span><span class="rd-value">~1/3 of market value</span></div>
+        <div class="rep-detail"><span class="rd-label">Debt</span><span class="rd-value">All-Cash</span></div>
+        <div class="rep-detail"><span class="rd-label">Strategy</span><span class="rd-value">Estate sale, off-market</span></div>
+        <div class="rep-insight">Identified through direct relationships. In-place rents 39% below projected market. All 3/2, 1,250 SF avg.</div>
+      </div>
+      <div class="rep-card">
+        <div class="rep-type">Distressed / Loan Assumption</div>
+        <h4>Suburban Garden-Style</h4>
+        <div class="rep-detail"><span class="rd-label">Market</span><span class="rd-value">DFW Metroplex</span></div>
+        <div class="rep-detail"><span class="rd-label">Vintage</span><span class="rd-value">1980s</span></div>
+        <div class="rep-detail"><span class="rd-label">Basis</span><span class="rd-value">~1/3 of market value</span></div>
+        <div class="rep-detail"><span class="rd-label">Debt</span><span class="rd-value">Agency Assumption</span></div>
+        <div class="rep-detail"><span class="rd-label">Strategy</span><span class="rd-value">Distressed</span></div>
+        <div class="rep-insight">Workforce housing in a corridor with no new supply and durable household formation. Assumed agency debt at 3% and acquired at a basis well below what the market would later reflect.</div>
+      </div>
+      <div class="rep-card">
+        <div class="rep-type">Scale / Institutional</div>
+        <h4>190+ Unit Repositioning</h4>
+        <div class="rep-detail"><span class="rd-label">Market</span><span class="rd-value">Phoenix MSA</span></div>
+        <div class="rep-detail"><span class="rd-label">Vintage</span><span class="rd-value">1980s</span></div>
+        <div class="rep-detail"><span class="rd-label">Basis</span><span class="rd-value">Below market</span></div>
+        <div class="rep-detail"><span class="rd-label">Debt</span><span class="rd-value">Bridge financing</span></div>
+        <div class="rep-detail"><span class="rd-label">Strategy</span><span class="rd-value">Operational Efficiencies</span></div>
+        <div class="rep-insight">Part of a broader pipeline sourced and underwritten across 7 MSAs in 4 states as sole acquisitions lead for a $2B+ AUM platform.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVEST CTA BAR -->
+<div class="invest-bar">
+  <div class="section-inner">
+    <p>Interested in investing with Coral Reef Capital?</p>
+    <a href="#invest" class="btn btn-coral">Invest With Us</a>
+    <a href="https://calendly.com/harrison-coralreefcap/30min" target="_blank" class="btn btn-ghost" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.7)">Schedule a Call</a>
+  </div>
+</div>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="tag">About</div>
+    <div class="section-heading">An Operator Built for This Market</div>
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="IMG_6366.jpeg" alt="Harrison Hoy">
+      </div>
+      <div class="about-content">
+        <h3>Harrison Hoy</h3>
+        <div class="about-role">Founder &amp; Principal</div>
+        <p>In 2017, Google researchers published "Attention Is All You Need," the paper that introduced the Transformer architecture and set the foundation for modern large language models. Harrison had just graduated high school. Postgrad, he began building his professional career in analytics and AI consulting as BERT, GPT-1, and GPT-2 emerged in rapid succession.</p>
+        <p>While majoring in Economics during the COVID era, Harrison watched post-pandemic inflation reshape capital markets in real time. Compressed cap rates, stimulus-driven asset inflation, and a leverage cycle running on borrowed time. By early 2022, he saw two things converging: AI capability was accelerating past what most industries understood, and a real estate cycle built on borrowed time was approaching the moment it would price all of that in. He entered multifamily in April 2022, the month of the first rate hike. That was not an accident.</p>
+        <p>In November 2022, OpenAI released ChatGPT and brought large language models into public consciousness. That same month, Harrison left his analyst role, having supported the closings of over $600M in multifamily loan volume at an average deal size of $30M, and started a career in brokerage.</p>
+        <p>His path spans institutional multifamily lending as an analyst, trial-by-fire investment sales, principal acquisitions, and institutional-scale sourcing. Along the way he set multiple activity records at a national investment sales advisory firm, even doubling second place, underwrote more than 1,100 deals in a year for a Dallas family office, closed distressed and off-market opportunities at exceptional basis, and later served as sole acquisitions lead across seven MSAs and four states for a $2B+ AUM platform.</p>
+        <p>That mix of technical background, current-cycle reps, and direct market exposure is the foundation of Coral Reef Capital. Harrison has personally built Coral Reef's full operating stack: the underwriting infrastructure, diligence workflows, and decision systems. He has developed broker and capital relationships across every target market, and built a platform with the network and infrastructure to scale without rebuilding from scratch at each stage.</p>
+        <p style="font-style:italic;color:var(--text-dim);margin-top:24px;font-size:14px">The name Coral Reef comes from Harrison's adolescence in Miami, where he sailed competitively at the national level out of Coral Reef Yacht Club in Coconut Grove. Coral reefs are not built quickly or in favorable conditions. They are built slowly, under pressure, in deep water, and they become the most resilient ecosystems on earth precisely because of what they endured.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURED ===================== -->
+<section class="featured" id="featured">
+  <div class="section-inner">
+    <div class="tag">Featured</div>
+    <div class="section-heading">Media Appearances</div>
+    <div class="featured-grid">
+      <div class="featured-card"><img src="media-mastering-cre.png" alt="Mastering Commercial Real Estate Podcast featuring Harrison Hoy"><div class="featured-card-body"><h3>Mastering Commercial Real Estate Podcast</h3><p>Guest appearance discussing multifamily acquisitions, market outlook, and the role of technology in deal sourcing.</p></div></div>
+      <div class="featured-card"><img src="media-imn.png" alt="Multifamily Hangout Podcast"><div class="featured-card-body"><h3>Multifamily Hangout</h3><p>Podcast appearance discussing deal sourcing and off-market multifamily opportunities in Texas.</p></div></div>
+      <div class="featured-card"><a href="REA041426-pages.pdf" target="_blank" style="text-decoration:none;color:inherit"><div style="padding:40px;background:#1a1a1a;border-radius:6px 6px 0 0;display:flex;align-items:center;justify-content:center;min-height:200px;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(90deg, #4CAF50 0%, #45a049 100%)"></div><div style="text-align:center;padding:20px"><div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M3 3h18v2H3V3zm0 4h12v2H3V7zm0 4h18v2H3v-2zm0 4h12v2H3v-2zm0 4h18v2H3v-2z"/></svg><span style="color:white;font-family:'Inter',sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.5px">Green Street News</span></div><div style="color:white;font-family:'Inter',sans-serif;font-size:32px;font-weight:700;letter-spacing:-1px;line-height:1.1">Real Estate Alert</div></div></div><div class="featured-card-body"><h3>Green Street News</h3><p>Featured coverage of Coral Reef Capital's multifamily acquisitions and market positioning in Real Estate Alert.</p></div></a></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== HOW IT WORKS (NEW) ===================== -->
+<section class="how-it-works" id="how-it-works">
+  <div class="section-inner">
+    <div class="tag">How It Works</div>
+    <div class="section-heading">The Investor Lifecycle</div>
+    <p class="section-sub">From first conversation to active partnership. A clear, repeatable process designed for transparency at every stage.</p>
+    <div class="hiw-steps">
+      <div class="hiw-step"><div class="hiw-step-num">1</div><h4>Connect</h4><p>Initial conversation to understand your mandate, goals, and how we might work together.</p></div>
+      <div class="hiw-step"><div class="hiw-step-num">2</div><h4>Qualify</h4><p>Alignment review on strategy, structure, risk tolerance, and reporting expectations.</p></div>
+      <div class="hiw-step"><div class="hiw-step-num">3</div><h4>Evaluate</h4><p>Relevant opportunities shared with full underwriting, market context, and risk assessment.</p></div>
+      <div class="hiw-step"><div class="hiw-step-num">4</div><h4>Commit</h4><p>Capital commitment with clear documentation, legal review, and PPM execution.</p></div>
+      <div class="hiw-step"><div class="hiw-step-num">5</div><h4>Manage</h4><p>Active asset management with weekly visibility, quarterly reporting, and direct principal access.</p></div>
+      <div class="hiw-step"><div class="hiw-step-num">6</div><h4>Exit</h4><p>Disciplined disposition with clear communication on timing, returns, and capital distribution.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INVEST WITH US ===================== -->
+<section class="invest-section" id="invest">
+  <div class="section-inner">
+    <div class="tag">Partner With Us</div>
+    <div class="section-heading">How We Work Together</div>
+    <p class="section-sub">We work with operating, capital, and institutional partners who value disciplined underwriting, direct communication, and speed. We also welcome passive investors seeking multifamily exposure with direct principal access.</p>
+    <div class="why-grid" style="margin-top:48px">
+      <div class="why-card"><div class="why-icon">&#9670;</div><h4>JV / Co-GP / Institutional Partners</h4><p>For family offices, RIAs, operators, and capital partners looking for sourcing, underwriting, and execution capability in a current-cycle acquisitions platform.</p></div>
+      <div class="why-card"><div class="why-icon">&#9670;</div><h4>Passive Investors</h4><p>For accredited and select non-accredited investors seeking multifamily exposure, direct principal access, and a clearer view of how decisions get made.</p></div>
+      <div class="why-card"><div class="why-icon">&#9670;</div><h4>Brokers &amp; Deal Sources</h4><p>For counterparties who need a fast, credible buyer that can evaluate complexity, communicate quickly, and stay close to the process.</p></div>
+    </div>
+    <div class="invest-steps">
+      <div class="invest-step"><div class="invest-step-num">01</div><h4>Start the Conversation</h4><p>Complete the form below so we understand your mandate, capital profile, or deal interest before the first call.</p></div>
+      <div class="invest-step"><div class="invest-step-num">02</div><h4>Review Fit</h4><p>We discuss strategy alignment, structure, reporting expectations, and where Coral Reef Capital is most useful to you.</p></div>
+      <div class="invest-step"><div class="invest-step-num">03</div><h4>Share Opportunities</h4><p>Once aligned, we share relevant opportunities or stay in contact through our market intelligence and pipeline updates.</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:48px;margin-top:64px;align-items:start">
+      <div style="position:sticky;top:120px">
+        <p style="font-size:14px;font-weight:600;color:var(--text-bright)">Harrison Hoy</p>
+        <p style="font-size:12px;color:var(--coral);letter-spacing:1px;font-weight:600;text-transform:uppercase;margin-bottom:12px">Founder &amp; Principal</p>
+        <p style="font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.7">Have questions? Reach out directly.</p>
+        <p style="font-size:13px;margin-top:8px"><a href="mailto:harrison@coralreefcap.co" style="color:var(--teal-light);text-decoration:none">harrison@coralreefcap.co</a></p>
+        <p style="font-size:13px"><a href="tel:2147386331" style="color:var(--teal-light);text-decoration:none">(214) 738-6331</a></p>
+      </div>
+      <div class="invest-form-wrap">
+        <h3>Tell Us How You Want to Engage</h3>
+        <p class="invest-sub">Complete the form below and we will follow up directly. Or <a href="https://calendly.com/harrison-coralreefcap/30min" target="_blank" style="color:var(--coral);text-decoration:underline">schedule a call</a>.</p>
+        <div class="invest-form">
+          <input type="text" placeholder="First Name">
+          <input type="text" placeholder="Last Name">
+          <input type="email" placeholder="Email" class="full">
+          <input type="tel" placeholder="Phone">
+          <select>
+            <option value="" disabled selected>Investor Type</option>
+            <option>Accredited Investor</option>
+            <option>Non-Accredited Investor</option>
+            <option>Entity / Family Office</option>
+            <option>Joint Venture Partner</option>
+            <option>RIA / Institutional Allocator</option>
+            <option>Operator / Co-GP</option>
+          </select>
+          <select class="full">
+            <option value="" disabled selected>Investment Range</option>
+            <option>$25,000 - $50,000</option>
+            <option>$50,000 - $100,000</option>
+            <option>$100,000 - $250,000</option>
+            <option>$250,000 - $500,000</option>
+            <option>$500,000+</option>
+          </select>
+          <input type="text" placeholder="What are your goals or partnership criteria?" class="full">
+          <select class="full">
+            <option value="" disabled selected>How did you hear about us?</option>
+            <option>Broker Referral</option>
+            <option>LinkedIn</option>
+            <option>Newsletter</option>
+            <option>Podcast</option>
+            <option>Personal Referral</option>
+            <option>Other</option>
+          </select>
+          <button type="submit" class="full">Join Investor List</button>
+        </div>
+        <p class="invest-disclaimer">Nothing on this website constitutes an offering. Offerings are only completed through a Private Placement Memorandum (PPM). Past results are no guarantee of future results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INSIGHTS / THE REEF REPORT ===================== -->
+<section class="insights" id="insights">
+  <div class="section-inner">
+    <div class="tag">Insights</div>
+    <div class="section-heading">Perspective</div>
+    <p class="section-sub">Perspectives on multifamily markets, deal structuring, and the forces shaping real estate investment.</p>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <img src="deep-end-logo.png" alt="The Deep End" style="width:100%;height:auto;display:block;border-radius:6px 6px 0 0">
+        <div class="insight-body">
+          <div class="insight-date">Launching Soon</div>
+          <h3>The Deep End</h3>
+          <p>Long-form conversations and on-screen deal analysis covering underwriting, market shifts, and the logic behind day to day decisions.</p>
+          <div style="display:flex;gap:10px;margin-top:14px">
+            <a href="https://spotify.com/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(30,215,96,0.15);border:1px solid rgba(30,215,96,0.3);border-radius:3px;text-decoration:none;transition:background .2s"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1ED760"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg><span style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#1ED760">Spotify</span></a>
+            <a href="https://youtube.com/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.25);border-radius:3px;text-decoration:none;transition:background .2s"><svg width="18" height="14" viewBox="0 0 24 18" fill="#FF0000"><path d="M23.498 2.186a3.016 3.016 0 00-2.122-2.136C19.505 0 12 0 12 0S4.495 0 2.624.05A3.016 3.016 0 00.502 2.186C0 4.075 0 9 0 9s0 4.925.502 6.814a3.016 3.016 0 002.122 2.136C4.495 18 12 18 12 18s7.505 0 9.376-.05a3.016 3.016 0 002.122-2.136C24 13.925 24 9 24 9s0-4.925-.502-6.814zM9.545 12.818V5.182L15.818 9l-6.273 3.818z"/></svg><span style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FF4444">YouTube</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="insight-card">
+        <img src="reef-report-logo.png" alt="The Reef Report" style="width:100%;height:auto;display:block;border-radius:6px 6px 0 0">
+        <div class="insight-body">
+          <div class="insight-date">Monthly</div>
+          <h3>The Reef Report</h3>
+          <p>Industry conditions, deal stories, and where pricing, debt, and operating data are creating opportunity.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
+            <a href='/reef-report-issue-01' style='display:inline-block;padding:8px 16px;background:rgba(26,107,98,0.15);border:1px solid rgba(26,107,98,0.3);border-radius:3px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal,#1A6B62);text-decoration:none;transition:background .2s' target='_blank'>Issue 01</a>
+            <a href='/reef-report-issue-02' style='display:inline-block;padding:8px 16px;background:rgba(26,107,98,0.15);border:1px solid rgba(26,107,98,0.3);border-radius:3px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal,#1A6B62);text-decoration:none;transition:background .2s' target='_blank'>Issue 02</a>
+            <a href='/reef-report-issue-03' style='display:inline-block;padding:8px 16px;background:rgba(26,107,98,0.15);border:1px solid rgba(26,107,98,0.3);border-radius:3px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal,#1A6B62);text-decoration:none;transition:background .2s' target='_blank'>Issue 03</a>
+            <a href='/reef-report-issue-04' style='display:inline-block;padding:8px 16px;background:rgba(26,107,98,0.15);border:1px solid rgba(26,107,98,0.3);border-radius:3px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal,#1A6B62);text-decoration:none;transition:background .2s' target='_blank'>Issue 04</a>
+          </div>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div style="position:relative;width:100%;padding-bottom:100%;overflow:hidden;border-radius:6px 6px 0 0"><img src="current-cover.png" alt="The Current" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center center"></div>
+        <div class="insight-body">
+          <div class="insight-date">Substack Blog</div>
+          <h3>The Current</h3>
+          <p>Data-driven market signals and analysis on what's moving multifamily right now.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
+            <a href="https://substack.com/@coralreefcapital/" target="_blank" style="display:inline-block;padding:8px 16px;background:rgba(255,102,0,0.12);border:1px solid rgba(255,102,0,0.3);border-radius:3px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FF6600;text-decoration:none;transition:background .2s">Substack</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Inline newsletter subscribe -->
+    <div style="margin-top:64px;text-align:center;padding:48px;border:1px solid var(--dark-border);border-radius:6px;background:var(--dark-card)">
+      <p style="font-size:11px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--coral);margin-bottom:12px">Stay Connected</p>
+      <p style="font-size:22px;font-family:'Libre Baskerville',serif;color:var(--text-bright);margin-bottom:24px">Join The Reef Report</p>
+      <div style="display:flex;gap:0;max-width:460px;margin:0 auto;border-radius:4px;overflow:hidden;border:1px solid var(--dark-border)">
+        <label for="nl-email-inline" class="sr-only">Email address</label>
+        <input type="email" id="nl-email-inline" placeholder="Enter your email" style="flex:1;padding:16px 20px;background:rgba(255,255,255,0.03);border:none;color:var(--text-bright);font-family:'Nunito Sans',sans-serif;font-size:14px;outline:none">
+        <button type="submit" style="padding:16px 32px;background:var(--coral);color:#fff;border:none;font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;white-space:nowrap">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VALUES ===================== -->
+<section class="values" id="values">
+  <div class="section-inner">
+    <div class="tag">Our Values</div>
+    <div class="section-heading">What Drives Us</div>
+    <div class="values-grid">
+      <div class="value-card"><h4>Discipline</h4><p>We do not confuse activity with conviction. Most opportunities are passed. The ones that remain must work on basis, debt, and execution risk before story matters.</p></div>
+      <div class="value-card"><h4>Transparency</h4><p>Current-cycle investing requires honest communication. Investors and partners should know what we see, what we do not like, and why we are moving anyway.</p></div>
+      <div class="value-card"><h4>Alignment</h4><p>We invest alongside our partners and structure deals so incentives stay aligned from acquisition through exit. Direct principal access is part of that alignment.</p></div>
+      <div class="value-card"><h4>Speed With Standards</h4><p>Fast underwriting matters only if it stays rigorous. Our systems shorten the path to a decision without lowering the bar for one.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== COMMUNITY ===================== -->
+<section class="community" id="community">
+  <div class="section-inner">
+    <div class="tag">Community</div>
+    <div class="section-heading">Where We Operate, We Show Up</div>
+    <div class="community-intro">
+      <p class="section-sub">We want the firm to compound beyond deals alone. That means taking relationships seriously, contributing to the local ecosystem, and operating a business that people are proud to be associated with.</p>
+      <p>We have a passion for giving back to our community and helping those less fortunate. Some of the amazing organizations Coral Reef Capital has had the opportunity to partner with:</p>
+    </div>
+    <img src="community-event.png" alt="Coral Reef Capital community event" class="community-photo">
+    <div class="partner-grid">
+      <div class="partner-card">
+        <div class="partner-logo">
+          <img src="casa classic.webp" alt="Dallas CASA Classic">
+        </div>
+        <div class="partner-info">
+          <div class="partner-type">Fundraiser</div>
+          <div class="partner-name">Dallas CASA Classic</div>
+          <p class="partner-desc">Annual charity golf tournament benefiting Dallas CASA — Court Appointed Special Advocates. CASA volunteers provide every abused or neglected child in the Dallas court system with a consistent adult voice until they are placed in a safe, permanent home.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">
+          <img src="the bridge.png" alt="The Bridge Homeless Recovery Center">
+        </div>
+        <div class="partner-info">
+          <div class="partner-type">Charitable Partner</div>
+          <div class="partner-name">The Bridge Homeless Recovery Center</div>
+          <p class="partner-desc">Dallas's largest homeless recovery campus, providing food, shelter, medical care, case management, and a structured path to housing and employment for people experiencing homelessness.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">
+          <img src="scottish rite .png" alt="Scottish Rite for Children">
+        </div>
+        <div class="partner-info">
+          <div class="partner-type">Charitable Partner</div>
+          <div class="partner-name">Scottish Rite for Children</div>
+          <p class="partner-desc">Pediatric specialty hospital delivering orthopedic care, sports medicine, and treatment for scoliosis and learning disorders. Care is provided to children regardless of a family's ability to pay.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">
+          <img src="feed my starving children .png" alt="Feed My Starving Children">
+        </div>
+        <div class="partner-info">
+          <div class="partner-type">Volunteer</div>
+          <div class="partner-name">Feed My Starving Children</div>
+          <p class="partner-desc">Volunteer-driven meal packing events where participants hand-pack specially formulated meals distributed to children in food-insecure countries. Direct, hands-on, measurable impact.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">
+          <img src="katy 5k.png" alt="Katy Trail 5K">
+        </div>
+        <div class="partner-info">
+          <div class="partner-type">Fundraiser</div>
+          <div class="partner-name">Katy Trail 5K</div>
+          <p class="partner-desc">Dallas's premier community run along the iconic Katy Trail. Now in its 27th year, the race brings thousands of Dallas residents together each September in a spirit of health, connection, and giving.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">
+          <img src="klyde warren .jpg" alt="Klyde Warren Party in the Park">
+        </div>
+        <div class="partner-info">
+          <div class="partner-type">Community Event</div>
+          <div class="partner-name">Klyde Warren Party in the Park</div>
+          <p class="partner-desc">Signature fundraising event supporting Klyde Warren Park — one of Dallas's most beloved free public spaces. An outdoor evening gathering that brings the city together and funds programming open to all.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CAREERS ===================== -->
+<section class="careers" id="careers">
+  <div class="section-inner">
+    <div class="tag">Careers</div>
+    <div class="section-heading">Join Us</div>
+    <p class="section-sub">We are not currently hiring at the moment, but are always looking to meet and connect with exceptional professionals in the industry and would love to hear from you.</p>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="faq" id="faq">
+  <div class="section-inner">
+    <div class="tag">FAQ</div>
+    <div class="section-heading">Frequently Asked Questions</div>
+    <div class="faq-grid">
+      <div class="faq-item"><div class="faq-q">Do I need to be an accredited investor?</div><div class="faq-a"><p>We work with both accredited and non-accredited investors. Investment structures and eligibility may vary by offering.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Can I invest through a self-directed IRA or 401(k)?</div><div class="faq-a"><p>Yes. Many of our investors use self-directed IRAs or solo 401(k) accounts.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How often are distributions paid?</div><div class="faq-a"><p>Distribution schedules depend on the specific investment. Where cash flow supports it, we target monthly or quarterly distributions.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Do you accept 1031 exchanges?</div><div class="faq-a"><p>Yes, we can accommodate 1031 exchanges on a deal-by-deal basis.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Do you invest your own capital alongside investors?</div><div class="faq-a"><p>Yes. We invest alongside our partners in every deal. Our interests are aligned from day one through disposition.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Do you work with institutions or operating partners?</div><div class="faq-a"><p>Yes. We are open to JV, Co-GP, and institutional partnership conversations where strategy, execution standards, and reporting expectations are aligned.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How do I stay informed about my investment?</div><div class="faq-a"><p>Investors receive institutional-grade reporting, current market context, direct principal access, and portal-based communication where applicable.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="tag">Connect</div>
+    <div class="section-heading">Get in Touch</div>
+    <div class="contact-tabs">
+      <button class="contact-tab active" onclick="switchTab('general')">General</button>
+      <button class="contact-tab" onclick="switchTab('investor')">Investor Inquiry</button>
+      <button class="contact-tab" onclick="switchTab('refer')">Refer a Friend</button>
+      <button class="contact-tab" onclick="switchTab('testimonial')">Submit a Testimonial</button>
+      <button class="contact-tab" onclick="switchTab('media')">Media</button>
+      <button class="contact-tab" onclick="switchTab('broker')">Submit a Deal</button>
+    </div>
+    <div class="contact-panel" id="tab-broker">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Have a deal that fits our criteria? We respond to every submission within 24 hours.</p>
+          <div class="c-detail"><div class="c-label">Email</div><div class="c-val"><a href="mailto:deals@coralreefcap.co">deals@coralreefcap.co</a></div></div>
+          <div class="c-detail"><div class="c-label">Phone</div><div class="c-val"><a href="tel:2147386331">(214) 738-6331</a></div></div>
+          <div class="c-detail"><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://www.linkedin.com/in/harrison-hoy1">Connect on LinkedIn</a></div></div>
+        </div>
+        <div class="contact-form">
+          <input type="text" placeholder="Name"><input type="text" placeholder="Firm">
+          <input type="email" placeholder="Email"><input type="tel" placeholder="Phone">
+          <input type="text" placeholder="Property Name / Address">
+          <input type="text" placeholder="Unit Count / Asking Price">
+          <textarea placeholder="Deal details, OM link, or notes"></textarea>
+          <button type="submit">Submit Deal</button>
+        </div>
+      </div>
+    </div>
+    <div class="contact-panel" id="tab-investor">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Interested in investing with Coral Reef Capital?</p>
+          <div class="c-detail"><div class="c-label">Email</div><div class="c-val"><a href="mailto:investors@coralreefcap.co">investors@coralreefcap.co</a></div></div>
+          <a href="#invest" class="btn btn-teal" style="margin-top:16px">Join Investor List</a>
+        </div>
+        <div class="contact-form">
+          <input type="text" placeholder="Name"><input type="email" placeholder="Email">
+          <input type="tel" placeholder="Phone">
+          <select><option value="" disabled selected>Investor Type</option><option>Accredited</option><option>Non-Accredited</option><option>Entity / Family Office</option></select>
+          <textarea placeholder="Questions or comments"></textarea>
+          <button type="submit">Send Inquiry</button>
+        </div>
+      </div>
+    </div>
+    <div class="contact-panel active" id="tab-general">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Whether you are a capital partner, operator, or just want to connect, we would like to hear from you.</p>
+          <div class="c-detail"><div class="c-label">Email</div><div class="c-val"><a href="mailto:info@coralreefcap.co">info@coralreefcap.co</a></div></div>
+          <div class="c-detail"><div class="c-label">Phone</div><div class="c-val"><a href="tel:2147386331">(214) 738-6331</a></div></div>
+          <div class="c-detail"><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://www.linkedin.com/in/harrison-hoy1/">Connect on LinkedIn</a></div></div>
+        </div>
+        <div class="contact-form">
+          <input type="text" placeholder="Name"><input type="email" placeholder="Email">
+          <select><option value="" disabled selected>Topic</option><option>Partnership</option><option>Referral</option><option>Other</option></select>
+          <textarea placeholder="Message"></textarea>
+          <button type="submit">Send Message</button>
+        </div>
+      </div>
+    </div>
+    <div class="contact-panel" id="tab-media">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>For press inquiries, podcast invitations, speaking requests, or media partnerships.</p>
+          <div class="c-detail"><div class="c-label">Media Contact</div><div class="c-val"><a href="mailto:media@coralreefcap.co">media@coralreefcap.co</a></div></div>
+        </div>
+        <div class="contact-form">
+          <input type="text" placeholder="Name"><input type="text" placeholder="Organization">
+          <input type="email" placeholder="Email">
+          <select><option value="" disabled selected>Inquiry Type</option><option>Podcast Invitation</option><option>Speaking Request</option><option>Press / Interview</option><option>Partnership</option></select>
+          <textarea placeholder="Details"></textarea>
+          <button type="submit">Send Inquiry</button>
+        </div>
+      </div>
+    </div>
+    <div class="contact-panel" id="tab-refer">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Know someone who would benefit from investing with Coral Reef Capital or has a deal to submit?</p>
+          <div class="c-detail"><div class="c-label">Email</div><div class="c-val"><a href="mailto:info@coralreefcap.co">info@coralreefcap.co</a></div></div>
+        </div>
+        <div class="contact-form">
+          <input type="text" placeholder="Your Name"><input type="email" placeholder="Your Email">
+          <input type="text" placeholder="Referral's Name"><input type="email" placeholder="Referral's Email">
+          <input type="tel" placeholder="Referral's Phone (optional)">
+          <select><option value="" disabled selected>Referral Type</option><option>Potential Investor</option><option>Broker / Deal Source</option><option>Operating Partner</option><option>Other</option></select>
+          <textarea placeholder="Any additional context"></textarea>
+          <button type="submit">Submit Referral</button>
+        </div>
+      </div>
+    </div>
+    <div class="contact-panel" id="tab-testimonial">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>If you have worked with Coral Reef Capital and want to share your experience, send it directly here.</p>
+          <div class="c-detail"><div class="c-label">Email</div><div class="c-val"><a href="mailto:harrison@coralreefcap.co">harrison@coralreefcap.co</a></div></div>
+        </div>
+        <div class="contact-form">
+          <input type="text" placeholder="Your Name"><input type="text" placeholder="Your Company / Title">
+          <input type="email" placeholder="Your Email">
+          <select><option value="" disabled selected>Relationship</option><option>Investor</option><option>Broker</option><option>Capital Partner</option><option>Vendor / Contractor</option><option>Other</option></select>
+          <textarea placeholder="Your testimonial"></textarea>
+          <button type="submit">Submit Testimonial</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="logo-marquee">
+  <div class="marquee-track">
+    <div class="marquee-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20"><path d="M16 2 L16 26 L6 26 Q7 14 16 2Z" fill="#1A6B62"/><path d="M16 6 L16 26 L26 26 Q24 16 16 6Z" fill="#D85A30"/><line x1="4" y1="28" x2="28" y2="28" stroke="#1A6B62" stroke-width="2" stroke-linecap="round"/></svg><span>Coral Reef Capital</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Discipline</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Transparency</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Alignment</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Execution</span></div>
+    <div class="marquee-dot"></div>
+    <div class="marquee-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20"><path d="M16 2 L16 26 L6 26 Q7 14 16 2Z" fill="#1A6B62"/><path d="M16 6 L16 26 L26 26 Q24 16 16 6Z" fill="#D85A30"/><line x1="4" y1="28" x2="28" y2="28" stroke="#1A6B62" stroke-width="2" stroke-linecap="round"/></svg><span>Coral Reef Capital</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Discipline</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Transparency</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Alignment</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Execution</span></div>
+    <div class="marquee-dot"></div>
+    <div class="marquee-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20"><path d="M16 2 L16 26 L6 26 Q7 14 16 2Z" fill="#1A6B62"/><path d="M16 6 L16 26 L26 26 Q24 16 16 6Z" fill="#D85A30"/><line x1="4" y1="28" x2="28" y2="28" stroke="#1A6B62" stroke-width="2" stroke-linecap="round"/></svg><span>Coral Reef Capital</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Discipline</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Transparency</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Alignment</span></div>
+    <div class="marquee-dot"></div><div class="marquee-item"><span>Execution</span></div>
+    <div class="marquee-dot"></div>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="width:24px;height:24px;vertical-align:middle;margin-right:8px"><path d="M16 2 L16 26 L6 26 Q7 14 16 2Z" fill="#1A6B62"/><path d="M16 6 L16 26 L26 26 Q24 16 16 6Z" fill="#D85A30"/><line x1="4" y1="28" x2="28" y2="28" stroke="#1A6B62" stroke-width="2" stroke-linecap="round"/></svg>Coral Reef <span>Capital</span></a>
+      <p>Disciplined by the Downturn. Designed for Scale.</p>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-dim);font-style:italic;max-width:260px">Named for ecosystems built to endure: complex, resilient, and alive beneath the surface.</p>
+      <p style="margin-top:16px;font-size:12px;color:var(--text-dim)">Dallas, Texas<br><a href="tel:2147386331" style="color:var(--text-dim)">(214) 738-6331</a><br><a href="mailto:harrison@coralreefcap.co" style="color:var(--text-dim)">harrison@coralreefcap.co</a></p>
+      <div style="margin-top:20px">
+        <p style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px">Subscribe</p>
+        <div style="display:flex;gap:0;border:1px solid rgba(93,202,165,0.08);border-radius:3px;overflow:hidden;max-width:260px">
+          <input type="email" placeholder="Email" style="flex:1;padding:10px 12px;background:rgba(255,255,255,0.03);border:none;color:var(--text-bright);font-family:'Nunito Sans',sans-serif;font-size:12px;outline:none">
+          <button style="padding:10px 16px;background:var(--coral);color:#fff;border:none;font-family:'Nunito Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer">Go</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#foundation">Foundation</a>
+      <a href="#edge">Platform</a>
+      <a href="#stack">The Coral Reef Stack</a>
+      <a href="#asset-management">Asset Management</a>
+      <a href="#strategy">Strategy</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+    </div>
+    <div class="footer-col">
+      <h4>Investors</h4>
+      <a href="#invest">Invest With Us</a>
+      <a href='/investor-login' target='_blank'>Investor Portal</a>
+      <a href="#criteria">Investment Criteria</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://calendly.com/harrison-coralreefcap/30min" target="_blank">Schedule a Call</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="#insights">The Reef Report</a>
+      <a href="#insights">The Current</a>
+      <a href="#contact">Submit a Deal</a>
+      <a href="#contact">Media Inquiries</a>
+      <a href="#contact">Refer a Friend</a>
+      <a href="#contact">Submit a Testimonial</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-disclaimer">Nothing on this website constitutes an offer to sell securities or the solicitation of an offer to buy securities. Offerings are only completed through a Private Placement Memorandum (PPM). Past results are no guarantee of future results. This is not investment advice.</div>
+    <div><span>&copy; <script>document.write(new Date().getFullYear())</script> Coral Reef Capital. All rights reserved.</span><br><a href="#">Privacy Policy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Accessibility</a></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+
+/* Click-based dropdowns */
+document.querySelectorAll('.nav-group>a').forEach(link=>{
+  link.addEventListener('click',function(e){
+    const group=this.closest('.nav-group');
+    const isOpen=group.classList.contains('open');
+    document.querySelectorAll('.nav-group').forEach(g=>g.classList.remove('open'));
+    if(!isOpen){
+      e.preventDefault();
+      group.classList.add('open');
+    }
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-group')) document.querySelectorAll('.nav-group').forEach(g=>g.classList.remove('open'));
+});
+document.querySelectorAll('.nav-dropdown a').forEach(a=>{
+  a.addEventListener('click',()=>document.querySelectorAll('.nav-group').forEach(g=>g.classList.remove('open')));
+});
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener('click',function(e){
+    e.preventDefault();
+    const target=document.querySelector(this.getAttribute('href'));
+    if(target){const offset=80;const pos=target.getBoundingClientRect().top+window.pageYOffset-offset;window.scrollTo({top:pos,behavior:'smooth'})}
+  });
+});
+function switchStack(i){
+  document.querySelectorAll('.stack-tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));
+  document.querySelectorAll('.stack-panel').forEach((p,idx)=>p.classList.toggle('active',idx===i));
+}
+function switchTab(id){
+  document.querySelectorAll('.contact-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.contact-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.contact-tab').forEach(t=>{if(t.getAttribute('onclick')&&t.getAttribute('onclick').includes(id))t.classList.add('active')});
+}
+function animateCountUp(){
+  document.querySelectorAll('.num[data-target]').forEach(el=>{
+    const target=parseInt(el.dataset.target);
+    const prefix=el.dataset.prefix||'';
+    const suffix=el.dataset.suffix||'';
+    const duration=1500;
+    const start=performance.now();
+    function update(now){
+      const elapsed=now-start;
+      const progress=Math.min(elapsed/duration,1);
+      const eased=1-Math.pow(1-progress,3);
+      el.textContent=prefix+Math.floor(eased*target).toLocaleString()+suffix;
+      if(progress<1)requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+const velocitySection=document.querySelector('.velocity');
+if(velocitySection){
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){animateCountUp();observer.disconnect();}
+    });
+  },{threshold:0.3});
+  observer.observe(velocitySection);
+}
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+var hv=document.getElementById('heroVid');
+if(hv){hv.play().catch(function(){document.addEventListener('click',function(){hv.play()},{once:true})});}
+
+/* Scroll Reveal */
+const revealObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target);}
+  });
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.section-inner,.phil-grid,.edge-grid,.stack-grid,.am-grid,.am-highlight,.process-steps,.criteria-grid,.markets-list,.beyond-grid,.why-grid,.invest-steps,.invest-form-wrap,.rep-grid,.insights-grid,.testimonials-grid,.faq-grid,.contact-tabs,.hiw-steps,.about-grid,.featured-grid').forEach(el=>{
+  el.classList.add('reveal');
+  revealObserver.observe(el);
+});
+</script>
+
+</body></html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investor Portal - Coral Reef Capital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0B1614;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(26,107,98,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(216,90,48,0.08) 0%, transparent 50%);
+      animation: pulse 15s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(180deg); }
+    }
+
+    .login-container {
+      position: relative;
+      z-index: 1;
+      background: rgba(15,31,28,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(93,202,165,0.1);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4),
+                  0 0 0 1px rgba(255,255,255,0.05) inset;
+      max-width: 440px;
+      width: 100%;
+      padding: 48px;
+      transition: all 0.3s ease;
+    }
+
+    .login-container:hover {
+      border-color: rgba(93,202,165,0.2);
+      box-shadow: 0 12px 48px rgba(0,0,0,0.5),
+                  0 0 0 1px rgba(255,255,255,0.08) inset;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .logo svg {
+      width: 36px;
+      height: 36px;
+      filter: drop-shadow(0 2px 8px rgba(26,107,98,0.5));
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #F0F5F4;
+      text-shadow: 0 2px 12px rgba(93,202,165,0.3);
+    }
+
+    .logo-text span {
+      color: #D85A30;
+    }
+
+    .portal-title {
+      color: rgba(93,202,165,0.7);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #F0F5F4;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: rgba(240,245,244,0.5);
+      font-size: 14px;
+      margin-bottom: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(240,245,244,0.8);
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 16px 18px;
+      border: 1px solid rgba(93,202,165,0.15);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.03);
+      color: #F0F5F4;
+    }
+
+    input::placeholder {
+      color: rgba(240,245,244,0.3);
+    }
+
+    input:hover {
+      border-color: rgba(93,202,165,0.25);
+      background: rgba(255,255,255,0.05);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #5DCAA5;
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 0 3px rgba(93,202,165,0.15);
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .forgot-password a {
+      color: #5DCAA5;
+      font-size: 13px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .forgot-password a:hover {
+      color: #7DD9BA;
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #1A6B62 0%, #0A4A42 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 28px;
+      box-shadow: 0 4px 16px rgba(26,107,98,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26,107,98,0.5);
+      background: linear-gradient(135deg, #208975 0%, #0F5D54 100%);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .contact-support {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(93,202,165,0.1);
+    }
+
+    .contact-support p {
+      color: rgba(240,245,244,0.5);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .contact-support a {
+      color: #D85A30;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .contact-support a:hover {
+      color: #E8886C;
+      text-decoration: underline;
+      transform: translateX(2px);
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    .back-link a {
+      color: rgba(93,202,165,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .back-link a:hover {
+      color: #5DCAA5;
+      transform: translateX(-4px);
+    }
+
+    .message {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: rgba(26,107,98,0.95);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      font-size: 14px;
+      font-weight: 500;
+      display: none;
+      z-index: 1000;
+      border: 1px solid rgba(93,202,165,0.3);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 36px 28px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo-container">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+          <path d="M16 2 L16 26 L6 26 Q7 14 16 2Z" fill="#1A6B62"/>
+          <path d="M16 6 L16 26 L26 26 Q24 16 16 6Z" fill="#D85A30"/>
+          <line x1="4" y1="28" x2="28" y2="28" stroke="#5DCAA5" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="logo-text">Coral Reef <span>Capital</span></div>
+      </div>
+      <div class="portal-title">Investor Portal</div>
+    </div>
+
+    <h1>Welcome Back</h1>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <div class="forgot-password">
+          <a href="mailto:support@coralreefcap.co?subject=Password%20Reset%20Request&body=Please%20reset%20my%20password%20for%20the%20Coral%20Reef%20Capital%20Investor%20Portal." id="forgotPasswordLink">Forgot password?</a>
+        </div>
+      </div>
+
+      <button type="submit">Sign In</button>
+    </form>
+
+    <div class="contact-support">
+      <p>Need access or having trouble signing in?</p>
+      <a href="mailto:support@coralreefcap.co?subject=Investor%20Portal%20Support&body=I%20need%20assistance%20with%20the%20Investor%20Portal." id="contactSupportLink">Contact Support</a>
+    </div>
+
+    <div class="back-link">
+      <a href="/">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Home
+      </a>
+    </div>
+  </div>
+
+  <div class="message" id="message"></div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const messageEl = document.getElementById('message');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    function showMessage(text, duration = 4000) {
+      messageEl.textContent = text;
+      messageEl.classList.add('show');
+      setTimeout(() => {
+        messageEl.classList.remove('show');
+      }, duration);
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        showMessage('Please enter both email and password');
+        return;
+      }
+
+      // Simulate loading
+      const btn = form.querySelector('button');
+      const originalText = btn.textContent;
+      btn.textContent = 'Signing In...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        showMessage('Portal access is being configured. Please contact support@coralreefcap.co for access.', 6000);
+
+        // Clear form
+        emailInput.value = '';
+        passwordInput.value = '';
+      }, 1500);
+    });
+
+    // Add focus effects
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'translateX(4px)';
+      });
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'translateX(0)';
+      });
+    });
+
+    // Add visual feedback for email links
+    document.getElementById('forgotPasswordLink').addEventListener('click', function() {
+      showMessage('Opening email to support@coralreefcap.co for password reset...', 3000);
+    });
+
+    document.getElementById('contactSupportLink').addEventListener('click', function() {
+      showMessage('Opening email to support@coralreefcap.co...', 3000);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Reef Report Issue 02 - LinkedIn Frame</title>
+  <style>
+    :root {
+      --deep: #080a0d;
+      --coral: #FF6B6B;
+      --teal: #176B66;
+      --gold: #D4AF37;
+      --bone: #fff8ec;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #111;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .frame {
+      position: relative;
+      width: 1200px;
+      height: 675px;
+      background: var(--deep);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* Inverted reef background on right side */
+    .frame::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      background:
+        url('reef_01_wide.png') center/cover;
+      filter: grayscale(1) invert(1) contrast(1.1);
+      opacity: 0.72;
+    }
+
+    /* Colored accent strip at bottom */
+    .frame::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--coral), var(--gold), var(--teal));
+    }
+
+    .top {
+      position: absolute;
+      top: 42px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      justify-content: space-between;
+      z-index: 5;
+      font: 850 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .title {
+      position: absolute;
+      z-index: 5;
+      left: 54px;
+      right: 53%;
+      top: 124px;
+      font-size: 58px;
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+      font-weight: 920;
+    }
+
+    .issue-badge {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      font: 850 10px/1 ui-monospace, monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral);
+    }
+
+    .subtitle {
+      position: absolute;
+      z-index: 5;
+      left: 56px;
+      bottom: 85px;
+      max-width: 520px;
+      font-size: 18px;
+      line-height: 1.35;
+      opacity: 0.74;
+    }
+
+    .date-stamp {
+      position: absolute;
+      z-index: 5;
+      left: 56px;
+      bottom: 55px;
+      font: 850 11px/1 ui-monospace, monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    /* LinkedIn-optimized 1200x675 */
+    @media (max-width: 1250px) {
+      .frame {
+        width: 100vw;
+        height: 56.25vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="top">
+    <span>Coral Reef Capital</span>
+    <span>May 2026</span>
+  </div>
+
+  <div class="title">
+    <div class="issue-badge">Issue 02</div>
+    The Reef Report
+  </div>
+
+  <div class="subtitle">
+    Bank fragility, extend-and-pretend, supply cliff mechanics, and 16 coral reef markets where the 2026-2027 acquisition window is opening.
+  </div>
+
+  <div class="date-stamp">
+    May 2026 · Multifamily Intelligence
+  </div>
+</div>
+
+</body>
+</html>

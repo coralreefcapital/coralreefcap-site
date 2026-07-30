@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Reef Report, Issue 01 · April 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page { margin: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-dark:  #0A4A42;
+      --teal:       #1A6B62;
+      --teal-mid:   #3A9B8E;
+      --teal-light: #5DCAA5;
+      --coral:      #D85A30;
+      --coral-lt:   #E8886C;
+      --ink:        #0B1614;
+      --paper:      #F4F3F0;
+      --paper-mid:  #EAE9E5;
+      --rule:       rgba(26,107,98,0.15);
+      --text:       #1C2B28;
+      --text-mid:   #4A6560;
+      --text-dim:   #7A9990;
+      --white:      #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--paper);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════════════════════════════════════
+       COVER
+    ══════════════════════════════════════════ */
+    .cover {
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(150deg, #1A6B62 0%, #0A4A42 55%, #050F0D 100%);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover-noise {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      opacity: 0.06;
+    }
+    .cover-glow {
+      position: absolute;
+      top: -20%; right: -10%;
+      width: 60%; height: 80%;
+      background: radial-gradient(circle at 60% 30%, rgba(93,202,165,0.22) 0%, transparent 65%);
+      pointer-events: none; z-index: 1;
+    }
+    .cover-glow-bottom {
+      position: absolute;
+      bottom: -10%; left: -5%;
+      width: 50%; height: 50%;
+      background: radial-gradient(circle, rgba(216,90,48,0.10) 0%, transparent 60%);
+      pointer-events: none; z-index: 1;
+    }
+
+    .cover-inner {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 56px 72px;
+    }
+
+    .cover-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .cover-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+    }
+    .cover-issue {
+      text-align: right;
+    }
+    .cover-issue-num {
+      display: block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal-light);
+    }
+    .cover-issue-date {
+      display: block;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 4px;
+    }
+
+    .cover-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 40px;
+    }
+    .cover-the {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(28px, 5vw, 52px);
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.04em;
+      margin-left: 6px;
+      margin-bottom: 4px;
+    }
+    .cover-reef {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(100px, 22vw, 220px);
+      line-height: 0.82;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-left: -6px;
+    }
+    .cover-report {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(52px, 10vw, 110px);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.92);
+      margin-left: 4px;
+      margin-top: 8px;
+    }
+
+    .cover-descriptor {
+      margin-top: 40px;
+      margin-left: 6px;
+      max-width: 480px;
+    }
+    .cover-descriptor p {
+      font-size: 14px; font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+
+    .cover-bottom {
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .cover-logo {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .cover-wordmark {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .cover-toc-preview {
+      text-align: right;
+    }
+    .cover-toc-preview span {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 4px;
+    }
+    .cover-toc-preview strong {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--teal-light);
+    }
+
+    /* ══════════════════════════════════════════
+       EDITORIAL INTRO
+    ══════════════════════════════════════════ */
+    .intro-section {
+      background: var(--ink);
+      padding: 80px 72px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .intro-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal-light);
+      padding-top: 6px;
+      border-top: 2px solid var(--teal);
+    }
+    .intro-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .intro-body p {
+      font-size: 15px;
+      color: rgba(240,245,244,0.6);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .intro-body p:last-child { margin-bottom: 0; }
+    .intro-body strong { color: rgba(240,245,244,0.9); font-weight: 600; }
+
+    /* ══════════════════════════════════════════
+       SCORECARD
+    ══════════════════════════════════════════ */
+    .scorecard-section {
+      background: var(--paper);
+      padding: 72px;
+    }
+    .section-eyebrow {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3.5px; text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 36px;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-mid);
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    .scorecard-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .scorecard-table thead tr {
+      border-bottom: 2px solid var(--teal);
+    }
+    .scorecard-table th {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--teal);
+      padding: 0 16px 12px 0;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .scorecard-table td {
+      padding: 13px 16px 13px 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: middle;
+    }
+    .scorecard-table tr:last-child td { border-bottom: none; }
+    .scorecard-table .market-name {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .rent-up   { color: var(--teal); font-weight: 700; }
+    .rent-down { color: var(--coral); font-weight: 700; }
+    .rank-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 11px; font-weight: 600;
+    }
+    .rank-pos { background: rgba(93,202,165,0.12); color: var(--teal); }
+    .rank-neg { background: rgba(216,90,48,0.10);  color: var(--coral); }
+
+    /* ══════════════════════════════════════════
+       MARKET SECTIONS
+    ══════════════════════════════════════════ */
+    .markets-wrapper {
+      background: var(--paper);
+    }
+
+    .market-section {
+      padding: 64px 72px;
+      border-top: 1px solid var(--rule);
+    }
+    .market-section:nth-child(even) {
+      background: rgba(26,107,98,0.03);
+    }
+
+    .market-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .market-header-left {}
+    .market-number {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .market-name-h {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 38px;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .market-state {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .market-rent-badge {
+      text-align: right;
+    }
+    .rent-number {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1;
+    }
+    .rent-number.up   { color: var(--teal); }
+    .rent-number.down { color: var(--coral); }
+    .rent-label {
+      display: block;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    .market-metrics {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-bottom: 32px;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .metric-cell {
+      padding: 20px 20px;
+      border-right: 1px solid var(--rule);
+    }
+    .metric-cell:last-child { border-right: none; }
+    .metric-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 18px; font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .metric-sub {
+      font-size: 11px;
+      color: var(--text-mid);
+      margin-top: 3px;
+    }
+
+    .market-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .market-headline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .market-insight {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+    .market-insight strong { color: var(--text); font-weight: 600; }
+
+    .market-sidebar {}
+    .sidebar-card {
+      background: var(--paper-mid);
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .sidebar-card:last-child { margin-bottom: 0; }
+    .sidebar-card-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .sidebar-card-value {
+      font-size: 14px; font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .sidebar-card-value.green { color: var(--teal); }
+    .sidebar-card-value.red   { color: var(--coral); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    /* ══════════════════════════════════════════
+       MACRO WATCH
+    ══════════════════════════════════════════ */
+    .macro-section {
+      background: var(--ink);
+      padding: 72px;
+    }
+    .macro-section .section-eyebrow { color: var(--coral); }
+    .macro-section .section-title   { color: var(--white); }
+    .macro-section .section-sub     { color: rgba(240,245,244,0.45); }
+
+    .macro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .macro-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(93,202,165,0.1);
+      border-top: 3px solid;
+      border-radius: 6px;
+      padding: 28px 24px 24px;
+    }
+    .macro-card.teal   { border-top-color: var(--teal-light); }
+    .macro-card.coral  { border-top-color: var(--coral); }
+    .macro-card.gold   { border-top-color: #C9A84C; }
+
+    .macro-card-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+    .macro-card-headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .macro-card-body {
+      font-size: 13px;
+      color: rgba(240,245,244,0.55);
+      line-height: 1.75;
+    }
+    .macro-card-body strong { color: rgba(240,245,244,0.9); font-weight: 600; }
+    .macro-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .macro-stat:last-child { border-bottom: none; }
+    .macro-stat-label { font-size: 11px; color: rgba(240,245,244,0.4); }
+    .macro-stat-value { font-size: 14px; font-weight: 700; color: var(--white); }
+    .data-section:not(.dark) .macro-stat-label { color: var(--text-dim); }
+    .data-section:not(.dark) .macro-stat-value { color: var(--text); }
+    .data-section:not(.dark) .macro-stat-value.up { color: var(--teal); }
+    .data-section:not(.dark) .macro-stat-value.down { color: var(--coral); }
+    .data-section:not(.dark) .macro-stat { border-bottom-color: var(--rule); }
+    .macro-stat-value.up   { color: var(--teal-light); }
+    .macro-stat-value.down { color: var(--coral); }
+
+    .report-footer {
+      background: var(--ink);
+      padding: 56px 72px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(93,202,165,0.12);
+      margin-bottom: 32px;
+    }
+    .footer-brand {}
+    .footer-wordmark {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-top: 14px;
+      margin-bottom: 10px;
+    }
+    .footer-tagline {
+      font-size: 11px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(93,202,165,0.5);
+    }
+    .footer-disclosures {
+      max-width: 500px;
+      text-align: right;
+    }
+    .footer-disclosures p {
+      font-size: 11px;
+      color: rgba(240,245,244,0.25);
+      line-height: 1.7;
+    }
+    .footer-disclosures strong {
+      color: rgba(240,245,244,0.45);
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(240,245,244,0.2);
+    }
+    .footer-issue {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(93,202,165,0.4);
+    }
+
+    /* ══════════════════════════════════════════
+       UTILS
+    ══════════════════════════════════════════ */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--teal) 0%, transparent 60%);
+    }
+
+    /* ══════════════════════════════════════════
+       FULL-WIDTH DATA SECTIONS
+    ══════════════════════════════════════════ */
+    .data-section {
+      padding: 72px;
+      border-top: 1px solid var(--rule);
+    }
+    .data-section.dark {
+      background: var(--ink);
+    }
+    .data-section.dark .section-title { color: var(--white); }
+    .data-section.dark .section-sub { color: rgba(240,245,244,0.45); }
+    .data-section.dark .section-eyebrow { color: var(--teal-light); }
+
+    .data-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 32px;
+    }
+    .data-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .data-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .data-grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .stat-card {
+      background: var(--paper-mid);
+      border-radius: 6px;
+      padding: 24px 20px;
+    }
+    .dark .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(93,202,165,0.1);
+    }
+    .stat-card-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .dark .stat-card-label { color: rgba(240,245,244,0.4); }
+    .stat-card-value {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--text);
+      line-height: 1;
+    }
+    .dark .stat-card-value { color: var(--white); }
+    .stat-card-value.up { color: var(--teal); }
+    .stat-card-value.down { color: var(--coral); }
+    .stat-card-sub {
+      font-size: 12px;
+      color: var(--text-mid);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+    .dark .stat-card-sub { color: rgba(240,245,244,0.4); }
+
+    /* Sentiment timeline */
+    .sentiment-row {
+      display: grid;
+      grid-template-columns: 80px repeat(4, 1fr);
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: center;
+    }
+    .dark .sentiment-row { border-bottom-color: rgba(255,255,255,0.06); }
+    .sentiment-row:last-child { border-bottom: none; }
+    .sentiment-label {
+      font-size: 11px; font-weight: 600;
+      color: var(--text-dim);
+      padding: 12px 0;
+    }
+    .sentiment-val {
+      text-align: center;
+      font-size: 14px; font-weight: 700;
+      padding: 12px 8px;
+    }
+
+    /* Prose block */
+    .prose {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.8;
+      max-width: 800px;
+    }
+    .prose strong { color: var(--text); font-weight: 600; }
+    .dark .prose { color: rgba(240,245,244,0.6); }
+    .dark .prose strong { color: rgba(240,245,244,0.9); }
+    .prose p { margin-bottom: 14px; }
+
+    .source-tag {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+      margin-top: 24px;
+      font-style: italic;
+    }
+    .dark .source-tag { color: rgba(240,245,244,0.25); }
+
+    /* ══════════════════════════════════════════
+       MOBILE (≤640px)
+    ══════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      /* Cover */
+      .cover-inner        { padding: 28px 20px; }
+      .cover-hero         { padding: 40px 0 24px; }
+      .cover-top          { flex-direction: column; gap: 8px; }
+      .cover-bottom       { flex-direction: column; gap: 16px; align-items: flex-start; }
+      .cover-issue        { text-align: left; }
+      .cover-toc-preview  { text-align: left; }
+
+      /* Editorial intro */
+      .intro-section {
+        padding: 40px 20px;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .intro-body h2 { font-size: 24px; }
+
+      /* Scorecard — 9-column table must scroll horizontally */
+      .scorecard-section  { padding: 40px 20px; }
+      .section-title      { font-size: 26px; }
+      .scorecard-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 12px;
+      }
+      .scorecard-table th { padding: 0 14px 12px 0; }
+      .scorecard-table td { padding: 10px 14px 10px 0; }
+
+      /* Market sections */
+      .market-section     { padding: 40px 20px; }
+      .market-header      { flex-direction: column; gap: 12px; }
+      .market-rent-badge  { text-align: left; }
+      .market-name-h      { font-size: 28px; }
+      .rent-number        { font-size: 36px; }
+
+      /* 5-col metrics grid → 2 cols + last cell full-width */
+      .market-metrics     { grid-template-columns: repeat(2, 1fr); }
+      .metric-cell:nth-child(2n) { border-right: none; }
+      .metric-cell:nth-child(5)  { grid-column: span 2; border-right: none; }
+
+      .market-content     { grid-template-columns: 1fr; gap: 24px; }
+
+      /* Macro watch */
+      .macro-section      { padding: 40px 20px; }
+      .macro-grid         { grid-template-columns: 1fr; }
+
+      /* Data sections */
+      .data-section       { padding: 40px 20px; }
+      .data-grid-2,
+      .data-grid-3,
+      .data-grid-4,
+      .data-grid-5        { grid-template-columns: 1fr; }
+
+      /* Sentiment rows — keep 5 cols but tighter */
+      .sentiment-row      { grid-template-columns: 52px repeat(4, 1fr); }
+      .sentiment-val      { padding: 10px 4px; font-size: 12px; }
+      .sentiment-label    { font-size: 10px; }
+
+      /* Footer */
+      .report-footer      { padding: 40px 20px; }
+      .footer-top         { flex-direction: column; gap: 24px; }
+      .footer-disclosures { max-width: 100%; text-align: left; }
+      .footer-bottom      { flex-direction: column; gap: 8px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     COVER
+══════════════════════════════════════════ -->
+<div class="cover">
+  <svg class="cover-noise" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter>
+    <rect width="100%" height="100%" filter="url(#n)"/>
+  </svg>
+  <div class="cover-glow"></div>
+  <div class="cover-glow-bottom"></div>
+
+  <div class="cover-inner">
+    <div class="cover-top">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <a href="/" style="display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(93,202,165,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Home
+        </a>
+        <div class="cover-label">
+          Monthly Multifamily Intelligence<br>
+          Sun Belt &amp; Southeast Markets
+        </div>
+      </div>
+      <div class="cover-issue">
+        <span class="cover-issue-num">Issue 01</span>
+        <span class="cover-issue-date">April 2026</span>
+      </div>
+    </div>
+
+    <div class="cover-hero">
+      <span class="cover-the">The</span>
+      <div class="cover-reef">REEF</div>
+      <div class="cover-report">REPORT</div>
+      <div class="cover-descriptor">
+        <p>12 metro areas. 49 submarkets. 18,752 properties. One read. Data sourced from Yardi Matrix, Marcus &amp; Millichap, CBRE, Colliers, Newmark, MMG Real Estate Advisors, NMHC, and the Federal Reserve, synthesized by Coral Reef Capital to surface what matters for multifamily operators and allocators across the Sun Belt.</p>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M15 3 Q8 14 7 25 L15 25 Z" fill="#1A6B62"/>
+          <path d="M16 7 Q22 14 24 25 L16 25 Z" fill="#D85A30"/>
+          <line x1="4" y1="28" x2="28" y2="28" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="cover-wordmark">Coral Reef Capital</span>
+      </div>
+      <div class="cover-toc-preview">
+        <span>Markets covered</span>
+        <strong>ATL · AUS · CLT · DAL · FTL · HOU · MIA · BNA · MCO · RDU · SAT · TPA</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     EDITORIAL INTRO
+══════════════════════════════════════════ -->
+<div class="intro-section">
+  <div>
+    <div class="intro-label">From the Desk</div>
+  </div>
+  <div class="intro-body">
+    <h2>Supply is still the story.</h2>
+    <p>Nine of twelve Sun Belt markets posted negative rent growth in April 2026. Only <strong>Dallas (+1.2%)</strong>, <strong>Atlanta (+0.7%)</strong>, and <strong>Raleigh (+0.7%)</strong> finished in positive territory, and all three are sitting on pipelines that will test that resilience through the year.</p>
+    <p>The pattern across this report is consistent: <strong>RBN assets are outperforming Lifestyle</strong> in almost every market as upper-tier supply deliveries concentrate in premium corridors. Outer-ring, supply-constrained submarkets are running entirely different math, double-digit rent growth in outer-ring exurbs and industrial corridors across the Carolinas, Tennessee, and Texas while urban cores absorb the weight of a five-year building cycle that peaked in 2024–2025.</p>
+    <p>The opportunity set is sharpening. Employment fundamentals across this footprint remain broadly sound, Charlotte added 37,600 jobs (3rd nationally), Dallas 14,900, Tampa 15,500. The supply-demand imbalance is a timing issue. Markets with strong job formation, moderating pipelines, and submarket-level supply scarcity are where we are focused.</p>
+    <p style="color:rgba(240,245,244,0.35);font-size:13px;margin-top:8px;">All market data sourced from Yardi Matrix MarketPoint, April 2026. This report is for informational purposes only and does not constitute investment advice.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCORECARD
+══════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     WHERE WE ARE IN THE CYCLE
+══════════════════════════════════════════ -->
+<div class="data-section dark">
+  <div class="section-eyebrow">Where We Are in the Cycle</div>
+  <div class="section-title">Three independent surveys. One conclusion: the turn is here.</div>
+  <div class="section-sub">NMHC, MMG, and CBRE sentiment data all converge on the same signal, capital is returning, operations are soft, and the acquisition window is open.</div>
+
+  <div class="data-grid-3" style="margin-top:40px;">
+
+    <!-- NMHC -->
+    <div class="stat-card">
+      <div class="stat-card-label">NMHC Debt Financing Index</div>
+      <div class="stat-card-value up">75</div>
+      <div class="stat-card-sub">Q1 2026, 53% report better borrowing conditions. 4th consecutive quarter of improvement. Was <strong>3</strong> at the Q2 2022 trough (95% reported worse).</div>
+      <div style="margin-top:16px;">
+        <div class="macro-stat"><span class="macro-stat-label">Q2 2022 (Trough)</span><span class="macro-stat-value down">3</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Q1 2024 (Pivot)</span><span class="macro-stat-value">66</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Q4 2024 (Peak)</span><span class="macro-stat-value up">77</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Q1 2026 (Now)</span><span class="macro-stat-value up">75</span></div>
+      </div>
+    </div>
+
+    <!-- MMG -->
+    <div class="stat-card">
+      <div class="stat-card-label">MMG Net Investor Sentiment</div>
+      <div class="stat-card-value up">+55</div>
+      <div class="stat-card-sub">2026, highest reading in the 4-year survey series. Buy intent at <strong>65%</strong> (up from 45% in 2023). Sell intent collapsed to 8%.</div>
+      <div style="margin-top:16px;">
+        <div class="macro-stat"><span class="macro-stat-label">2023 (Bottom)</span><span class="macro-stat-value down">−12</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">2024 (Inflection)</span><span class="macro-stat-value">+18</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">2025 (Rebound)</span><span class="macro-stat-value up">+42</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">2026 (Recovery)</span><span class="macro-stat-value up">+55</span></div>
+      </div>
+    </div>
+
+    <!-- CBRE -->
+    <div class="stat-card">
+      <div class="stat-card-label">CBRE Investor Confidence (Core MF)</div>
+      <div class="stat-card-value up">76%</div>
+      <div class="stat-card-sub">Q4 2025, share of investors expressing positive sentiment for Core multifamily acquisitions. Up from <strong>44%</strong> in late 2024. Investment volume +9.1% YoY to $161.6B.</div>
+      <div style="margin-top:16px;">
+        <div class="macro-stat"><span class="macro-stat-label">Late 2024</span><span class="macro-stat-value">44%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Q4 2025</span><span class="macro-stat-value up">76%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">2025 Volume</span><span class="macro-stat-value up">$161.6B</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">2026 Growth Proj</span><span class="macro-stat-value up">+9–16%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divergence callout -->
+  <div style="margin-top:40px;padding:28px 32px;background:rgba(216,90,48,0.08);border:1px solid rgba(216,90,48,0.2);border-radius:6px;max-width:900px;">
+    <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--white);margin-bottom:12px;">The key divergence: operations are loose, but capital is surging.</div>
+    <div class="prose">
+      <p>The NMHC Market Tightness Index sits at <strong>32</strong>, markets are loose, supply is hitting, concessions are elevated. But the Debt Financing Index is at <strong>75</strong> and equity is at <strong>53</strong>. Money is available. Assets are soft. This is the definition of an acquisition window: when you can borrow and the thing you're buying is under pressure. By the time operations tighten, pricing will have already moved.</p>
+    </div>
+  </div>
+
+  <div class="source-tag">Sources: NMHC Quarterly Survey of Apartment Conditions (Q1 2022–Q1 2026, 16 quarters); MMG Multifamily Investor Pulse Surveys (2023–2026); CBRE Q4 2025 U.S. Multifamily Figures.</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MACRO WATCH
+══════════════════════════════════════════ -->
+<div class="macro-section">
+  <div class="section-eyebrow">Macro Watch</div>
+  <div class="section-title" style="color:var(--white)">Four forces shaping the next 18 months.</div>
+  <div class="section-sub" style="color:rgba(240,245,244,0.45)">Beyond individual market fundamentals, the macro variables every Sun Belt operator needs in their model right now.</div>
+
+  <div class="macro-grid">
+
+    <!-- NATIONAL SUPPLY CLIFF -->
+    <div class="macro-card teal">
+      <div class="macro-card-label">National Context</div>
+      <div class="macro-card-headline">A supply-constrained world is constructive for hard-asset owners.</div>
+      <div class="macro-card-body">
+        <p>The global economy has shifted from demand-constrained to supply-constrained (Haver/Cates, March 2026). Disruptions no longer dissipate quickly, they accumulate, interact, and amplify. For multifamily operators who own physical assets in supply-scarce markets, this structural shift is fundamentally constructive.</p>
+        <p style="margin-top:10px;">National asking rents are flat at <strong>$1,740</strong> per Yardi Matrix, but the pipeline is the real story. National completions dropped to <strong>297,000 units in 2025</strong>, and Yardi projects market-rate supply in <strong>2028 will be 31% below 2025 levels</strong>. Texas statewide deliveries are projected at under <strong>40,000 units</strong> through summer 2026 versus over 92,000 in the prior 12 months (Texas Real Estate Research Center).</p>
+        <p style="margin-top:10px;">The ISM Services PMI remains at <strong>54.0 in March</strong>, expansion for the 21st consecutive month, with new orders surging to <strong>60.6, the highest since February 2023</strong> (ISM, March 2026). The demand floor is holding. Meanwhile, 2025 apartment investment volume hit <strong>$165.5 billion, up 9.4% YoY</strong> (Arbor Realty Trust). Capital is positioning ahead of the supply-driven recovery.</p>
+      </div>
+      <div style="margin-top:20px;">
+        <div class="macro-stat"><span class="macro-stat-label">2025 Completions</span><span class="macro-stat-value">297,000</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">2028 Supply vs. 2025</span><span class="macro-stat-value down">−31%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">ISM Services PMI (Mar)</span><span class="macro-stat-value up">54.0</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">ISM New Orders</span><span class="macro-stat-value up">60.6</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">2025 Investment Volume</span><span class="macro-stat-value up">$165.5B (+9.4%)</span></div>
+      </div>
+    </div>
+
+    <!-- IRAN VARIABLE -->
+    <div class="macro-card coral">
+      <div class="macro-card-label">Geopolitical Risk · Inflation · Rates</div>
+      <div class="macro-card-headline">The Iran variable: a supply shock the Fed may be misdiagnosing.</div>
+      <div class="macro-card-body">
+        <p>Gas prices jumped <strong>40% in two months</strong>, from $2.93 to $4.11/gallon, following the U.S.-Israel strikes on Iran and the Hormuz closure (Haver/Prakken, April 2026). To match the 1979 Iranian Revolution shock, gas would need to reach <strong>~$6.70/gallon</strong>. To match the 1973 OPEC embargo: <strong>~$4.75</strong>. We are approaching the 1973 threshold. This is not hypothetical anymore.</p>
+        <p style="margin-top:10px;">The 3-month annualized CPI hit <strong>3% before the oil spike even landed</strong> (Haver/Carson). The ISM Services Prices Index surged to <strong>70.7, the fastest since October 2022</strong>, with 46% of respondents reporting higher prices. Commercial bank credit is growing at <strong>7.65% annualized</strong>, the fastest pace since 2022's inflationary peak (Carson). The Fed's implied real rate of 1% is, per Carson, inadequate for a supply-shock environment that historically required 2–3% real rates. Long-end yields reflect growing inflation anxiety.</p>
+        <p style="margin-top:10px;"><strong>Rate cap costs have repriced.</strong> For operators on bridge debt, this is a direct cash flow hit not in most 2026 budgets. But higher oil is a structural tailwind for Texas employment, the Dallas Fed projects <strong>+1.1% statewide job growth</strong> in 2026, even as the national economy shed 92,000 jobs in February (BLS).</p>
+      </div>
+      <div style="margin-top:20px;">
+        <div class="macro-stat"><span class="macro-stat-label">Gas Price (Apr)</span><span class="macro-stat-value down">$4.11 (+40%)</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">1973 Shock Threshold</span><span class="macro-stat-value">~$4.75</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Core CPI (3-mo annualized)</span><span class="macro-stat-value down">3.0%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">ISM Prices Paid (Mar)</span><span class="macro-stat-value down">70.7</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Bank Credit Growth</span><span class="macro-stat-value down">7.65% ann.</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">TX Job Growth Forecast</span><span class="macro-stat-value up">+1.1%</span></div>
+      </div>
+    </div>
+
+    <!-- INSURANCE TAILWIND -->
+    <div class="macro-card gold">
+      <div class="macro-card-label">Operating Expenses</div>
+      <div class="macro-card-headline">Insurance: the hidden tailwind nobody is modeling.</div>
+      <div class="macro-card-body">
+        <p>After three years of double-digit premium increases, the multifamily insurance market has turned. <strong>Commercial rates fell 4% in Q4 2025</strong>, the sixth consecutive quarterly decline (Marsh Global Insurance Market Index). Property premiums for quality, newer-vintage construction are declining <strong>10% to 30%</strong> (Hub International via Multi-Housing News).</p>
+        <p style="margin-top:10px;">CBRE found that insurance was the only expense category whose growth rate was still accelerating into 2024, representing <strong>8% of total expenses but 17% of total expense growth since 2019</strong>. That cost pressure has now reversed course.</p>
+        <p style="margin-top:10px;">Pair this with the supply cliff: fewer deliveries support top-line rent recovery while declining premiums compress the expense side. <strong>Revenue and expense tailwinds converging on the same timeline</strong> means NOI growth could outpace consensus projections meaningfully over the next 12–18 months.</p>
+      </div>
+      <div style="margin-top:20px;">
+        <div class="macro-stat"><span class="macro-stat-label">Commercial Rates Q4 2025</span><span class="macro-stat-value up">−4%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Consecutive Quarterly Declines</span><span class="macro-stat-value up">6</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Premium Decline (Quality Assets)</span><span class="macro-stat-value up">10–30%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Share of Expense Growth (2019–24)</span><span class="macro-stat-value down">17%</span></div>
+      </div>
+    </div>
+
+    <!-- CREDIT & MORTGAGE -->
+    <div class="macro-card teal" style="border-top-color:#87CEAB;">
+      <div class="macro-card-label">Credit Conditions · Mortgage Market</div>
+      <div class="macro-card-headline">CRE credit stress is diminishing. The opacity risk lives in private credit.</div>
+      <div class="macro-card-body">
+        <p>Commercial real estate loan delinquencies rose "only modestly" post-COVID and remain <strong>below residential delinquency levels</strong> (Haver/Levy, March 2026). Banks remain well capitalized (Haver/Levy), charge-off rates remain low, and reserve coverage ratios are relatively high. Business debt continues declining as a percentage of GDP, corporate America has been deleveraging for years. There is no pre-GFC parallel here: no explosive debt growth, no exotic securitization, no insufficient bank capital.</p>
+        <p style="margin-top:10px;">The risk pocket is <strong>private credit</strong>. The ~$3 trillion market remains "murky" with insufficient regulatory data, and large banks are indirectly funding private lenders at <strong>10.3% of total credit</strong> for large commercials (Carson). Narrow lender concentration and AI infrastructure debt add opacity. But for multifamily specifically, the credit environment is stabilizing.</p>
+        <p style="margin-top:10px;">Mortgage applications show <strong>signs of stabilization</strong>: purchase apps rose 1.1% week-over-week in early April, and the 30-year fixed eased to <strong>6.68%</strong> (MBA, April 3 week). ARM share ticked up to 8.6%, suggesting borrowers are adapting. A tentative floor is forming, not a recovery yet, but the rate of decline is slowing.</p>
+      </div>
+      <div style="margin-top:20px;">
+        <div class="macro-stat"><span class="macro-stat-label">30-Year Fixed (Apr 3)</span><span class="macro-stat-value">6.68%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Purchase Apps (WoW)</span><span class="macro-stat-value up">+1.1%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">CRE Delinquencies</span><span class="macro-stat-value up">Below residential</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Private Credit Market</span><span class="macro-stat-value">~$3T (limited visibility)</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="scorecard-section">
+  <div class="section-eyebrow">At a Glance</div>
+  <div class="section-title">Market Scorecard</div>
+  <div class="section-sub">12-market summary ranked by M&M NMI. Rent growth columns compare Yardi Matrix (trailing) vs. Marcus &amp; Millichap (2026 forecast). Sources: Yardi Matrix, Marcus &amp; Millichap 2026 Forecast, MMG, Colliers.</div>
+
+  <table class="scorecard-table">
+    <thead>
+      <tr>
+        <th>Market</th>
+        <th>NMI Rank</th>
+        <th>Yardi Rent (Trailing)</th>
+        <th>M&M Rent (2026F)</th>
+        <th>Vacancy (2026F)</th>
+        <th>Jobs (2026)</th>
+        <th>Pipeline</th>
+        <th>'26 Completions</th>
+        <th>Trans. Vol (TTM)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="market-name">Fort Lauderdale</td>
+        <td><strong>#1</strong></td>
+        <td><span class="rank-badge rank-neg">−0.4%</span></td>
+        <td><span class="rank-badge rank-pos">+3.3%</span></td>
+        <td>4.9%</td>
+        <td>+0.7%</td>
+        <td>10,090</td>
+        <td>3,300</td>
+        <td>$996M</td>
+      </tr>
+      <tr>
+        <td class="market-name">Miami</td>
+        <td><strong>#3</strong></td>
+        <td><span class="rank-badge rank-neg">−0.2%</span></td>
+        <td><span class="rank-badge rank-pos">+2.7%</span></td>
+        <td>4.9%</td>
+        <td>9,000</td>
+        <td>19,133</td>
+        <td>5,500</td>
+        <td>$1.15B</td>
+      </tr>
+      <tr>
+        <td class="market-name">Raleigh</td>
+        <td><strong>#8</strong></td>
+        <td><span class="rank-badge rank-pos">+0.7%</span></td>
+        <td><span class="rank-badge rank-pos">+0.7%</span></td>
+        <td>5.0%</td>
+        <td>9,000</td>
+        <td>13,034</td>
+        <td>6,200</td>
+        <td>$1.3B</td>
+      </tr>
+      <tr>
+        <td class="market-name">Houston</td>
+        <td><strong>#9</strong></td>
+        <td><span class="rank-badge rank-neg">−0.8%</span></td>
+        <td><span class="rank-badge rank-pos">+2.3%</span></td>
+        <td>6.3%</td>
+        <td>8,000</td>
+        <td>28,996</td>
+        <td>9,000</td>
+        <td>$3.5B</td>
+      </tr>
+      <tr>
+        <td class="market-name">Tampa</td>
+        <td><strong>#11</strong></td>
+        <td><span class="rank-badge rank-neg">−3.0%</span></td>
+        <td><span class="rank-badge rank-pos">+2.1%</span></td>
+        <td>5.4%</td>
+        <td>6,000</td>
+        <td>18,283</td>
+        <td>5,300</td>
+        <td>$1.7B</td>
+      </tr>
+      <tr>
+        <td class="market-name">Austin</td>
+        <td><strong>#13</strong></td>
+        <td><span class="rank-badge rank-neg">−4.0%</span></td>
+        <td><span class="rank-badge rank-neg">−1.3%</span></td>
+        <td>6.1%</td>
+        <td>8,000</td>
+        <td>23,500</td>
+        <td>8,000</td>
+        <td>$2.1B</td>
+      </tr>
+      <tr>
+        <td class="market-name">San Antonio</td>
+        <td><strong>#14</strong></td>
+        <td><span class="rank-badge rank-neg">−2.5%</span></td>
+        <td><span class="rank-badge rank-pos">+2.1%</span></td>
+        <td>6.8%</td>
+        <td>15,000</td>
+        <td>13,876</td>
+        <td>3,500</td>
+        <td>$753M</td>
+      </tr>
+      <tr>
+        <td class="market-name">Atlanta</td>
+        <td><strong>#15</strong></td>
+        <td><span class="rank-badge rank-pos">+0.7%</span></td>
+        <td><span class="rank-badge rank-pos">+4.1%</span></td>
+        <td>5.2%</td>
+        <td>19,000</td>
+        <td>27,869</td>
+        <td>8,400</td>
+        <td>$4.9B</td>
+      </tr>
+      <tr>
+        <td class="market-name">Charlotte</td>
+        <td><strong>#16</strong></td>
+        <td><span class="rank-badge rank-neg">−1.5%</span></td>
+        <td><span class="rank-badge rank-pos">+1.6%</span></td>
+        <td>5.1%</td>
+        <td>14,000</td>
+        <td>29,805</td>
+        <td>10,000</td>
+        <td>$2.1B</td>
+      </tr>
+      <tr>
+        <td class="market-name">Orlando</td>
+        <td><strong>#20</strong></td>
+        <td><span class="rank-badge rank-neg">−0.5%</span></td>
+        <td><span class="rank-badge rank-pos">+1.2%</span></td>
+        <td>4.8%</td>
+        <td>8,500</td>
+        <td>21,514</td>
+        <td>7,000</td>
+        <td>$2.7B</td>
+      </tr>
+      <tr>
+        <td class="market-name">Dallas–Fort Worth</td>
+        <td><strong>#21</strong></td>
+        <td><span class="rank-badge rank-pos">+1.2%</span></td>
+        <td><span class="rank-badge rank-pos">+1.8%</span></td>
+        <td>5.9%</td>
+        <td>25,000</td>
+        <td>51,588</td>
+        <td>21,000</td>
+        <td>$3.9B</td>
+      </tr>
+      <tr>
+        <td class="market-name">Nashville</td>
+        <td><strong>#35</strong></td>
+        <td><span class="rank-badge rank-neg">−1.5%</span></td>
+        <td><span class="rank-badge rank-pos">+0.5%</span></td>
+        <td>5.2%</td>
+        <td>10,000</td>
+        <td>17,747</td>
+        <td>6,200</td>
+        <td>$779M</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:20px;padding:20px 24px;background:var(--paper-mid);border-radius:6px;border-left:3px solid var(--coral);">
+    <div style="font-size:13px;color:var(--text-mid);line-height:1.7;">
+      <strong style="color:var(--text);">Reading the gap:</strong> Where Yardi (trailing) is negative but M&M (forward) is positive, the market is at an inflection point. Tampa (−3.0% → +2.1%), San Antonio (−2.5% → +2.1%), and Houston (−0.8% → +2.3%) show the widest reversals. Atlanta's +4.1% M&M forecast, 2nd highest nationally, against a +0.7% Yardi trailing number suggests the strongest acceleration ahead. Austin remains the only market where both trailing and forward numbers are negative.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MARKET DEEP DIVES
+══════════════════════════════════════════ -->
+<div class="markets-wrapper">
+
+<!-- DALLAS -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">01 · Texas</div>
+      <div class="market-name-h">Dallas–Fort Worth</div>
+      <div class="market-state">981,449 units across 4,117 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number up">+1.2%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.3%</div>
+      <div class="metric-sub">14,900 net new jobs</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">51,588</div>
+      <div class="metric-sub">#1 nationally</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">32,882</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$3.9B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$166,317</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Dallas posts positive 1.2% rent growth despite carrying the largest construction pipeline in the nation, and forward indicators suggest the recovery is already underway at the asset level."</div>
+      <div class="market-insight">The Lifestyle/RBN split is inverted here, <strong>Lifestyle +1.5%</strong> while <strong>RBN declined 0.5%</strong>, suggesting that premium product is absorbing despite the record pipeline, while workforce housing faces tighter affordability pressure. But the leading indicators are turning decisively. <strong>Radix's March 2026 data shows DFW leasing traffic running significantly above the national average in tours per property per week</strong>, with new lease signings pacing well ahead of the national benchmark heading into spring leasing season. Units underway have dropped to <strong>~30,700, the lowest since 2015</strong> (Matthews/CoStar, Q4 2025), with construction starts down nearly 20% year-over-year. Given the 24-month construction timeline, the units not started in 2024–2025 will not deliver in 2026–2027. The supply relief is not coming, it is already here.<br><br><strong>Class A rents already turned positive</strong>, rising 0.9% year-over-year in Q4 2025 while headline asking rents across all classes were still slightly negative (Northmarq). Concession usage is now most pervasive in Class C, not Class A or B (Marcus &amp; Millichap), the recovery is filtering from premium to mid-tier product. Critically, <strong>DFW CPI fell 0.3% year-over-year through January 2026</strong> while national CPI rose 2.4% (BLS, March 2026). Renter purchasing power in DFW is actually improving, a structural advantage completely absent from the national narrative. Value-add Class B operators are next in line for that pricing power as the recovery works its way down the quality stack.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Outer-ring western suburbs +8.2%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Northern growth corridors −7.8%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Supply Signal</div>
+        <div class="sidebar-card-value green">Units underway: ~30,700 (lowest since 2015). Starts ↓20% YoY. Class A rents already +0.9% (Northmarq).</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">DFW CPI −0.3% YoY vs. national +2.4%. Renter purchasing power improving, structural advantage for operators.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ATLANTA -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">02 · Georgia</div>
+      <div class="market-name-h">Atlanta</div>
+      <div class="market-state">593,048 units across 2,609 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number up">+0.7%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.3%</div>
+      <div class="metric-sub">19,800 net new jobs</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">27,869</div>
+      <div class="metric-sub">#5 nationally</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">19,703</div>
+      <div class="metric-sub">3.3% inventory growth</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$4.9B</div>
+      <div class="metric-sub">103 properties · TTM</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$195,165</div>
+      <div class="metric-sub">#1 nationally</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Atlanta posts modest 0.7% rent growth as outer-ring suburbs outperform a supply-pressured urban core."</div>
+      <div class="market-insight">Atlanta's growth is bifurcated: <strong>RBN assets gained 0.8%</strong> while Lifestyle properties slipped −0.2%, driven by a top-5-nationally pipeline of 27,869 units concentrated in upper-tier product. Outer-ring submarkets like <strong>southern outer-ring suburbs (+4.4%)</strong> and <strong>southeast suburban corridors (+3.4%)</strong> are the value-add sweet spot, limited new supply, strong occupancy, and proximity to expanding healthcare and tech corridors. With 19,703 units forecast to deliver in 12 months against only 19,800 new jobs, Lifestyle absorption will remain challenged through mid-2027.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Southern outer-ring suburbs +4.4%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Northeast intown corridors −5.3%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">Avg PPU ranked #1 nationally at $195,165. Investor confidence strong despite supply pressure.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RALEIGH -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">03 · North Carolina</div>
+      <div class="market-name-h">Raleigh–Durham</div>
+      <div class="market-state">218,204 units across 1,008 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number up">+0.7%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.8%</div>
+      <div class="metric-sub">8,000 net new jobs</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">13,034</div>
+      <div class="metric-sub">#24 nationally (↓2)</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">10,284</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$1.3B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$215,859</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Raleigh posts positive 0.7% rent growth, one of only three markets in the group in positive territory, as Lifestyle gains offset modest RBN softness."</div>
+      <div class="market-insight">Raleigh's <strong>Lifestyle assets (+0.9%)</strong> are outperforming RBN (−0.1%), the inverse of most peer markets, reflecting its high-concentration professional employment base (18.9% Professional and Business Services) and wage growth outpacing national averages. The pipeline is moderating at 13,034 units (#24 nationally, down two positions), and the 10,284-unit 12-month forecast against 8,000 new jobs is a manageable 1.3:1 ratio. <strong>outer-ring exurbs (+25.8%, 95.1% occupancy)</strong> signals acute supply scarcity in outer-ring locations.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Outer-ring exurbs +25.8%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">University-adjacent corridors −3.9%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">Pipeline moderating, one of the more favorable supply/demand trajectories in the group.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORT LAUDERDALE -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">04 · Florida</div>
+      <div class="market-name-h">Fort Lauderdale</div>
+      <div class="market-state">129,621 units across 538 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−0.4%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.5%</div>
+      <div class="metric-sub">4,500 net new jobs</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">10,090</div>
+      <div class="metric-sub">units</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">7,248</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$996M</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$256,329</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Fort Lauderdale posts a narrow −0.4% decline as northern suburban submarkets diverge sharply from struggling central and southern locations."</div>
+      <div class="market-insight">The market-level number masks extreme submarket dispersion: <strong>northern suburbs (+8.1%, 94.6% occupancy)</strong> and <strong>affluent western areas (+6.0%, 95.4% occupancy)</strong> are outperforming while central areas (−5.5%) and inner suburbs (−3.8%) absorb oversupply. Lifestyle assets are nearly flat (+0.1%) but RBN is under pressure (−0.8%), an unusual reversal. With only 4,500 new jobs and 7,248 units forecasted in 12 months, absorption capacity is thin, northern submarkets with no new supply are where the value lies.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Northern suburban corridor +8.1%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Central/southern areas −5.5%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">RBN underperforming Lifestyle, atypical signal across this peer group.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MIAMI -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">05 · Florida</div>
+      <div class="market-name-h">Miami</div>
+      <div class="market-state">191,245 units across 977 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−0.2%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">−1.6%</div>
+      <div class="metric-sub">−22,100 jobs lost</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">19,133</div>
+      <div class="metric-sub">units</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">9,862</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$1.15B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$282,079</div>
+      <div class="metric-sub">highest in group</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Miami faces a double headwind of −22,100 job losses and a growing pipeline, yet holds to just −0.2% rent decline on the strength of core urban submarkets."</div>
+      <div class="market-insight">This is the only market in the group with actual employment contraction (−1.6%, losing 22,100 jobs), making the near-flat rent performance surprisingly resilient. The narrow RBN-vs-Lifestyle pricing spread (only 16% differential at $317K vs $273K per unit) signals unusually strong workforce housing investor demand. With 9,862 units delivering in 12 months against negative job growth, absorption will be slow, focus is warranted on established infill submarkets like <strong>urban infill core (+3.2%)</strong> and <strong>established residential neighborhoods (+3.1%)</strong> where supply is constrained and demand is structural.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Urban infill core +3.2%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Inner-ring workforce areas −7.5%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">Only market with employment contraction. Resilience at −0.2% suggests structural demand floor.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORLANDO -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">06 · Florida</div>
+      <div class="market-name-h">Orlando</div>
+      <div class="market-state">309,751 units across 1,236 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−0.5%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.8%</div>
+      <div class="metric-sub">12,200 net new jobs</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">21,514</div>
+      <div class="metric-sub">units</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">15,296</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$2.7B</div>
+      <div class="metric-sub">#11 nationally</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$225,524</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Orlando holds to a narrow −0.5% decline as RBN assets outperform (+0.9%) while Lifestyle absorbs heavy supply across western suburban corridors."</div>
+      <div class="market-insight">The RBN/Lifestyle divergence (<strong>+0.9% vs −0.8%</strong>) is the key signal, workforce housing is the relative winner as Lifestyle supply hits western and central suburban corridors. With 15,296 units delivering in 12 months against 12,200 new jobs and a tourism-dependent employment base (Leisure &amp; Hospitality shedding 1,600 jobs), Lifestyle absorption remains challenged. Institutional conviction at <strong>$2.7B in transaction volume (#11 nationally)</strong> signals investors are selecting carefully within established suburban submarkets.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Established southern suburbs +3.7%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Western growth corridors −6.3%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">$2.7B transaction volume at #11 nationally, institutional activity remains elevated despite headwinds.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOUSTON -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">07 · Texas</div>
+      <div class="market-name-h">Houston</div>
+      <div class="market-state">789,223 units across 3,246 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−0.8%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.4%</div>
+      <div class="metric-sub">14,800 net new jobs</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">28,996</div>
+      <div class="metric-sub">#4 nationally</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">17,030</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$3.5B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$126,764</div>
+      <div class="metric-sub">lowest in group</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Houston rents slip −0.8% as the 4th-largest national pipeline bears down on a market still absorbing Professional Services job losses."</div>
+      <div class="market-insight"><strong>RBN is holding at +0.5%</strong> while Lifestyle drops −0.9%, the PBS sector shedding 18,500 jobs (−3.2%) is directly suppressing upper-tier demand. The 28,996-unit pipeline (#4 nationally) with 17,030 units due in 12 months against only 14,800 net new jobs creates continued pressure. Outer-ring petrochemical and industrial submarkets, <strong>outer-ring industrial areas (+10.4%)</strong>, <strong>coastal industrial corridors (+7.6%)</strong>, <strong>southwest petrochemical hubs (+7.2%)</strong>, are thriving on different demand drivers and represent genuine supply-constrained value-add opportunities at Houston's below-average $126,764 per-unit entry point.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Outer-ring industrial corridors +10.4%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Northern exurbs −5.5%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">Lowest avg PPU in the group at $126,764. Outer-ring industrial submarkets running hot independently.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHARLOTTE -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">08 · North Carolina</div>
+      <div class="market-name-h">Charlotte</div>
+      <div class="market-state">257,259 units across 1,263 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−1.5%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+2.7%</div>
+      <div class="metric-sub">37,600 jobs · #3 nationally</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">29,805</div>
+      <div class="metric-sub">#3 nationally</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">21,903</div>
+      <div class="metric-sub">8.5% inventory growth</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$2.1B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$214,856</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Charlotte's best-in-class employment growth (3rd nationally, +37,600 jobs) is being overwhelmed by the 3rd-largest construction pipeline in the country."</div>
+      <div class="market-insight">The employment story is exceptional, 2.7% growth ranking #3 nationally, but the <strong>29,805-unit pipeline (#3 nationally)</strong> and 8.5% inventory growth forecast render it irrelevant for near-term rent recovery. <strong>RBN assets held at +1.1%</strong> while Lifestyle fell −1.8%, indicating workforce housing is the relative safe haven. Outer-ring submarkets (<strong>Western outer-ring areas +8.7%</strong>, exurban growth pockets (+3.5%)) with no new supply are absorbing employment-driven demand; once the pipeline clears in 18–24 months, Charlotte's strong job base makes it a top rebound candidate.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Western outer-ring areas +8.7%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Southern suburban fringe −3.8%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">Best employment growth in the group. Premier medium-term rebound candidate once supply clears.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NASHVILLE -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">09 · Tennessee</div>
+      <div class="market-name-h">Nashville</div>
+      <div class="market-state">211,688 units across 1,068 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−1.5%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+1.0%</div>
+      <div class="metric-sub">12,400 net new jobs</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">17,747</div>
+      <div class="metric-sub">units</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">12,320</div>
+      <div class="metric-sub">5.8% inventory growth</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$779M</div>
+      <div class="metric-sub">#41 nationally</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$196,671</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Nashville rents fall −1.5% uniformly across both Lifestyle and RBN as the pipeline overwhelms solid employment fundamentals."</div>
+      <div class="market-insight">Both segments declining equally (−1.6% Lifestyle, −1.4% RBN) indicates supply pressure is indiscriminate, not tier-specific, a sign the market broadly overbuilt. The 17,747-unit pipeline with 12,320 units forecasted in 12 months against 12,400 new jobs means <strong>nearly a 1:1 ratio of new supply to new jobs</strong>, leaving essentially no absorption buffer. Transaction volume is thin at $779M (#41 nationally), reflecting investor hesitation. <strong>deep suburban exurb growth of +19.8%</strong> (175-unit market with zero new supply) illustrates where the opportunity lives, deep suburban, no competition.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Deep suburban exurbs +19.8%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Northern growth corridors −3.9%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">1:1 supply/jobs ratio, most precarious absorption math in the group. Investor caution warranted.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SAN ANTONIO -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">10 · Texas</div>
+      <div class="market-name-h">San Antonio</div>
+      <div class="market-state">253,209 units across 1,154 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−2.5%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+1.1%</div>
+      <div class="metric-sub">13,100 jobs · #18 nationally</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">13,876</div>
+      <div class="metric-sub">units</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">11,033</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$753M</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$120,341</div>
+      <div class="metric-sub">2nd lowest in group</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"San Antonio's −2.5% headline masks what the forward pipeline is signaling: a collapsing construction cycle that will create acute supply scarcity by late 2027."</div>
+      <div class="market-insight">Today both <strong>Lifestyle (−2.8%)</strong> and <strong>RBN (−2.1%)</strong> are declining, but the forward pipeline tells a radically different story. <strong>Apartment starts collapsed 80% in 2024 to just 1,874 units</strong>, the lowest since 2009 (MMG Real Estate Advisors). Units under construction have already fallen to approximately <strong>4,800, a 76% reduction from the Q2 2023 peak</strong> (Newmark, Q3 2025). With construction timelines averaging 24 months, those missing starts translate directly into an empty delivery pipeline by late 2026 into 2027. <strong>RealPage is projecting strong rent growth from 2027 through 2029</strong> as a direct result of this supply vacuum (Newmark/RealPage).<br><br>The demand side is quietly strengthening. Marcus &amp; Millichap projects vacancy to settle roughly 200 basis points below the 2023 peak. Class A vacancy has held below the metro-wide average since 2023, and <strong>San Antonio ranked top five nationally for population growth among 20- to 35-year-olds</strong> over the past three years, a demographic that skews renter-by-choice. Employment is solid at 13,100 new jobs (#18 nationally), led by healthcare (+9,700) and trade (+8,300). At <strong>$120,341 average price per unit</strong>, the second-lowest entry point in this peer group, the forward setup rewards early positioning. The investors who position now will be the ones who capture the recovery.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Southwest growth node +5.4%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Northwest employment corridor −7.5%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Forward Pipeline</div>
+        <div class="sidebar-card-value red">Starts collapsed 80% in 2024<br>Units under construction: ~4,800 (↓76% from peak)</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">RealPage projects strong rent growth 2027–2029. Top-5 nationally for 20–35 year-old population growth. Lowest entry point in the Sun Belt.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAMPA -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">11 · Florida</div>
+      <div class="market-name-h">Tampa–St. Pete</div>
+      <div class="market-state">287,665 units across 1,277 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−3.0%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.9%</div>
+      <div class="metric-sub">15,500 net new jobs</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">18,283</div>
+      <div class="metric-sub">units</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">11,841</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$1.7B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$189,214</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Tampa-St. Pete hits −3.0% rent decline with both Lifestyle and RBN falling equally as heavy supply overwhelms modest employment gains."</div>
+      <div class="market-insight">The equal decline across both segments (<strong>−3.0% Lifestyle and −3.0% RBN</strong>) is the most alarming signal in this report, it means supply pressure has fully diffused from premium into workforce housing, leaving no defensive tier. With 15,500 new jobs against 11,841 units delivering in 12 months, the math is challenging. Western suburban corridors (<strong>Western beach corridors −7.4%</strong>, northwest suburban areas (−7.2% to −6.9%)) are the epicenter of the pain. <strong>eastern exurbs (+4.1%)</strong> stands alone as a supply-constrained outlier. Wage growth outpacing national averages is the one structural positive that could support a medium-term recovery once deliveries slow.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Eastern exurbs +4.1%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Western beach corridors −7.4%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">Only market where Lifestyle and RBN decline equally, no defensive tier remaining. Highest risk in Florida.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AUSTIN -->
+<div class="market-section">
+  <div class="market-header">
+    <div class="market-header-left">
+      <div class="market-number">12 · Texas</div>
+      <div class="market-name-h">Austin</div>
+      <div class="market-state">370,637 units across 1,522 properties</div>
+    </div>
+    <div class="market-rent-badge">
+      <span class="rent-number down">−4.0%</span>
+      <span class="rent-label">Rent Growth (Trailing)</span>
+    </div>
+  </div>
+  <div class="market-metrics">
+    <div class="metric-cell">
+      <div class="metric-label">Employment Growth</div>
+      <div class="metric-value">+0.7%</div>
+      <div class="metric-sub">10,100 net new jobs</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">23,500</div>
+      <div class="metric-sub">#9 nationally</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">12-Mo Deliveries</div>
+      <div class="metric-value">16,832</div>
+      <div class="metric-sub">units forecast</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Transaction Volume</div>
+      <div class="metric-value">$2.1B</div>
+      <div class="metric-sub">trailing 12 months</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Avg Price / Unit</div>
+      <div class="metric-value">$257,263</div>
+      <div class="metric-sub">&nbsp;</div>
+    </div>
+  </div>
+  <div class="market-content">
+    <div>
+      <div class="market-headline">"Austin sits near the bottom of all 141 U.S. markets at −4.0% rent growth as massive supply overwhelms modest job gains."</div>
+      <div class="market-insight">Both <strong>Lifestyle (−4.0%)</strong> and <strong>RBN (−3.8%)</strong> are declining, signaling uniform distress rather than tier-specific pressure, a market-wide supply storm. The 23,500-unit pipeline (#9 nationally) with 16,832 units forecasted in the next 12 months cannot be absorbed by just 10,100 new jobs, especially with Professional and Business Services shedding 6,000 positions. <strong>northern exurbs (+6.4%)</strong> and <strong>eastern growth corridors (+3.8%)</strong> are the only bright spots, both with minimal supply and significant distance from the delivery epicenter. Austin's above-average pricing at $257,263/unit adds meaningful downside risk to any near-term acquisition thesis.</div>
+    </div>
+    <div class="market-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Top Submarket</div>
+        <div class="sidebar-card-value green">Northern exurbs +6.4%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Weakest Submarket</div>
+        <div class="sidebar-card-value red">Central urban core −10.3%</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Watch</div>
+        <div class="sidebar-card-value">Worst performer in group. PBS shedding 6,000 jobs compounds the supply problem. High avg PPU adds risk.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /markets-wrapper -->
+
+<!-- ══════════════════════════════════════════
+     THE SUPPLY CLIFF
+══════════════════════════════════════════ -->
+<div class="data-section">
+  <div class="section-eyebrow">The Supply Cliff</div>
+  <div class="section-title">The pipeline is collapsing. The data is unambiguous.</div>
+  <div class="section-sub">National completions peaked at ~480,000 units in 2023. By 2028, Yardi projects market-rate supply will be 31% below 2025 levels. The units not started in 2024–2025 will not deliver in 2026–2027.</div>
+
+  <div class="data-grid-5">
+    <div class="stat-card"><div class="stat-card-label">2023 Completions</div><div class="stat-card-value">~480K</div><div class="stat-card-sub">Cycle peak</div></div>
+    <div class="stat-card"><div class="stat-card-label">2025 Completions</div><div class="stat-card-value">297K</div><div class="stat-card-sub">Already falling (Yardi)</div></div>
+    <div class="stat-card"><div class="stat-card-label">2026 Forecast</div><div class="stat-card-value down">~260K</div><div class="stat-card-sub">Supply cliff begins (MMG)</div></div>
+    <div class="stat-card"><div class="stat-card-label">2028 vs 2025</div><div class="stat-card-value down">−31%</div><div class="stat-card-sub">Market-rate supply (Yardi)</div></div>
+    <div class="stat-card"><div class="stat-card-label">TX Deliveries</div><div class="stat-card-value down">&lt;40K</div><div class="stat-card-sub">Through summer 2026 vs 92K prior 12-mo (TRERC)</div></div>
+  </div>
+
+  <div class="data-grid-2" style="margin-top:28px;">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--text);margin-bottom:14px;">Construction starts have collapsed</div>
+      <div class="prose">
+        <p>Multifamily starts fell <strong>32.2% year-over-year</strong> in Q3 2025 (NMHC). San Antonio starts collapsed <strong>80% in 2024</strong> to just 1,874 units, the lowest since 2009 (MMG). DFW units underway dropped to <strong>~30,700, the lowest since 2015</strong> (Matthews/CoStar). Charlotte construction starts in late 2025 fell to their <strong>lowest level since 2019</strong> (M&M).</p>
+        <p>Critically, Census Bureau data and private-sector data tell different stories. Census reported <strong>+22.0% YoY increase</strong> in starts for Q2 2025, while CoStar showed a <strong>−34.9% decline</strong> for the same period (NMHC). Markets are likely tighter than government headlines suggest. The supply is slowing faster than anyone realizes.</p>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--text);margin-bottom:14px;">Pipeline by market (Q1 2026)</div>
+      <table class="scorecard-table" style="font-size:12px;">
+        <thead><tr><th>Market</th><th>Under Const.</th><th>2026 Deliveries</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td class="market-name">DFW</td><td>15,441</td><td>19,700</td><td><span class="rent-down">↓40%</span></td></tr>
+          <tr><td class="market-name">Atlanta</td><td>14,584</td><td>12,693</td><td><span class="rent-down">↓ notable</span></td></tr>
+          <tr><td class="market-name">Austin</td><td>12,141</td><td>18,000</td><td><span class="rent-down">↓14,600</span></td></tr>
+          <tr><td class="market-name">Houston</td><td>13,141</td><td>8,401</td><td><span class="rent-down">↓34%</span></td></tr>
+          <tr><td class="market-name">Tampa</td><td>12,141</td><td>7,559</td><td><span class="rent-down">none sched. 2027</span></td></tr>
+          <tr><td class="market-name">Orlando</td><td>10,141</td><td>6,016</td><td><span class="rent-down">↓ from 11.3K</span></td></tr>
+          <tr><td class="market-name">Charlotte</td><td>16,875</td><td>9,971</td><td><span class="rent-down">starts lowest since '19</span></td></tr>
+          <tr><td class="market-name">Nashville</td><td>12,141</td><td>6,020</td><td><span class="rent-down">peaked 25K in '22</span></td></tr>
+          <tr><td class="market-name">San Antonio</td><td>3,141</td><td>3,364</td><td><span class="rent-down">↓50%, starts ↓80%</span></td></tr>
+          <tr><td class="market-name">S. Florida</td><td>35,141</td><td>, </td><td>Elevated</td></tr>
+        </tbody>
+      </table>
+      <div class="source-tag">Sources: MMG Q1 2026 Pipeline Reports, Colliers Q4 2025, Newmark Q4 2025, NMHC Construction Survey</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CAPITAL MARKETS & REFINANCING
+══════════════════════════════════════════ -->
+<div class="data-section dark">
+  <div class="section-eyebrow">Capital Markets &amp; the Refinancing Wall</div>
+  <div class="section-title">$162 billion in multifamily debt matures in 2026.</div>
+
+  <div class="data-grid-4">
+    <div class="stat-card"><div class="stat-card-label">MF Maturities 2026</div><div class="stat-card-value down">$162.1B</div><div class="stat-card-sub">Up from $104.1B in 2025 (MMG)</div></div>
+    <div class="stat-card"><div class="stat-card-label">MF Maturities 2027</div><div class="stat-card-value down">$167.7B</div><div class="stat-card-sub">Wall continues (MMG)</div></div>
+    <div class="stat-card"><div class="stat-card-label">Distressed MF</div><div class="stat-card-value">$22.8B</div><div class="stat-card-sub">18% of total CRE distress (MMG Q3 2025)</div></div>
+    <div class="stat-card"><div class="stat-card-label">Distressed Sales Share</div><div class="stat-card-value up">1.3%</div><div class="stat-card-sub">Down from 5.1% peak in early 2024</div></div>
+  </div>
+
+  <div class="data-grid-2" style="margin-top:32px;">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--white);margin-bottom:14px;">National cap rate snapshot (Q4 2025)</div>
+      <div style="margin-top:16px;">
+        <div class="macro-stat"><span class="macro-stat-label">National Multifamily</span><span class="macro-stat-value">5.2%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">All CRE Properties</span><span class="macro-stat-value">6.0%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">CMBS Delinquency</span><span class="macro-stat-value down">6.5-7.0%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">CLO Delinquency</span><span class="macro-stat-value down">7.05%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">2025 Investment Volume</span><span class="macro-stat-value up">$161.6B</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Cap Rate Compression Proj.</span><span class="macro-stat-value up">5-15 bps</span></div>
+      </div>
+      <div class="source-tag">Sources: Colliers Q4 2025, CBRE Q4 2025, NMHC</div>
+    </div>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--white);margin-bottom:14px;">Replacement cost creates a floor</div>
+      <div class="prose">
+        <p>New construction replacement costs per unit across Sun Belt markets range from <strong>$160K to $195K</strong> for workforce and garden product, $240K to $280K for mid-rise, and $450K+ for high-rise (Newmark). When acquisition pricing falls below replacement cost, as it has in several Sun Belt markets, the economic incentive to build disappears entirely.</p>
+        <p>The combination of <strong>rising replacement costs, collapsing starts, and $162B in maturing debt</strong> creates a strategic opening for well-capitalized investors. Distressed sales share has already declined from 5.1% to 1.3%, suggesting the worst of forced selling may be behind us, but motivated sellers with maturing bridge loans will continue creating opportunities through 2027.</p>
+        <p>Cap rates have <strong>weak historical correlation with interest rates</strong> (NMHC). Apartments act as real assets where rent growth offsets rate hikes. The 2003–2006 precedent: Treasuries rose from 3.6% to 5.1% while apartment cap rates <strong>fell</strong> from 7.6% to 6.4%.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THE RENTER
+══════════════════════════════════════════ -->
+<div class="data-section">
+  <div class="section-eyebrow">The Renter</div>
+  <div class="section-title">4.3 million apartments needed by 2035. The structural shortage is not going away.</div>
+
+  <div class="data-grid-5">
+    <div class="stat-card"><div class="stat-card-label">Units Needed by 2035</div><div class="stat-card-value">4.3M</div><div class="stat-card-sub">NMHC demand forecast</div></div>
+    <div class="stat-card"><div class="stat-card-label">Current Shortfall</div><div class="stat-card-value down">3.7–4.9M</div><div class="stat-card-sub">Total housing deficit (NMHC)</div></div>
+    <div class="stat-card"><div class="stat-card-label">Affordable Lost</div><div class="stat-card-value down">4.7M</div><div class="stat-card-sub">Units &lt;$1K/mo lost 2015–2020</div></div>
+    <div class="stat-card"><div class="stat-card-label">Buy vs Rent Gap</div><div class="stat-card-value">50–65%</div><div class="stat-card-sub">More expensive to buy (CBRE)</div></div>
+    <div class="stat-card"><div class="stat-card-label">Ownership Costs</div><div class="stat-card-value down">+78%</div><div class="stat-card-sub">In 3 years (NMHC)</div></div>
+  </div>
+
+  <div class="data-grid-2" style="margin-top:28px;">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--text);margin-bottom:14px;">The renter is staying, and aging</div>
+      <div class="prose">
+        <p>Renter mobility has declined from <strong>37.2% in 1981 to 18.3% in 2024</strong>. The median renter age rose from 33 to 40 over the same period (NMHC). Renters are staying put longer, renewing more, and aging in place, a structural shift that supports retention-focused operating strategies.</p>
+        <p><strong>982,000 young adults</strong> moved out of their parents' homes between 2020 and 2024, the household formation rebound is real (MMG). Adults 25–34 living with parents dropped from 17.8% to 15.7%. This cohort is renting, not buying. San Antonio ranked <strong>top five nationally for population growth among 20–35-year-olds</strong> over the past three years (M&M).</p>
+        <p>Only <strong>18.2% of aspiring buyers</strong> are actively looking to purchase, down from 20.5% in 2021 (NMHC). 17% of renters have <strong>no interest in buying at all</strong>. The rent-vs-own gap is at its widest since 2006. These are structural renters, not renters-in-waiting.</p>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--text);margin-bottom:14px;">Who's actually building workforce housing? Almost nobody.</div>
+      <div class="prose">
+        <p><strong>77% of 2024 deliveries were 4/5-Star</strong> product. Only 22.4% were 3-Star. Just <strong>0.4%</strong> were 1/2-Star (NMHC). Virtually no one is building the housing that the majority of renters can actually afford.</p>
+        <p>The filtering mechanism, where new luxury supply relieves pressure on older, more affordable units, has <strong>slowed significantly since 2008</strong> as new supply failed to keep pace with demand (NMHC). 1/2-Star units fell from <strong>39.0% of total stock in 2014 to 30.3% in 2024</strong>. The affordable inventory is shrinking, not expanding.</p>
+        <p>Real rent growth from 2019 to 2022 was only <strong>1.2%</strong> after adjusting for inflation, against a 6.3% nominal headline (NMHC). Housing + transportation account for <strong>50% of household spending</strong> (BLS, 2024). Shelter CPI: rent of primary residence rose <strong>2.7%</strong> and owners' equivalent rent rose <strong>3.2%</strong> year-over-year through April 2026 (BLS).</p>
+      </div>
+      <div class="source-tag">Sources: NMHC (Demand Through 2035, Filtering Study, Renter Mobility, Affordability Research), CBRE Q4 2025, MMG (Household Formation, Population), BLS</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TAX & POLICY
+══════════════════════════════════════════ -->
+<div class="data-section">
+  <div class="section-eyebrow">Tax, Policy &amp; Regulation</div>
+  <div class="section-title">The One Big Beautiful Bill preserves 1031s, restores bonus depreciation, and raises the SALT cap.</div>
+
+  <div class="data-grid-3">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--text);margin-bottom:14px;">OBBBA highlights for MF investors</div>
+      <div style="margin-top:16px;">
+        <div class="macro-stat"><span class="macro-stat-label">SALT Cap</span><span class="macro-stat-value">$10K → $40K</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">QBI Deduction</span><span class="macro-stat-value">20% → 23%</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Estate Tax Exemption</span><span class="macro-stat-value">$15M</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">Bonus Depreciation</span><span class="macro-stat-value up">100% restored</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">1031 Exchanges</span><span class="macro-stat-value up">Preserved</span></div>
+        <div class="macro-stat"><span class="macro-stat-label">LIHTC 50% Test</span><span class="macro-stat-value up">Reduced to 25%</span></div>
+      </div>
+      <div class="source-tag">Source: MMG (One Big Beautiful Bill Analysis)</div>
+    </div>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--text);margin-bottom:14px;">Rent control is driving capital away</div>
+      <div class="prose">
+        <p>The NMHC Q1 2026 quarterly survey asked how rent control laws have influenced investment decisions. The results show accelerating avoidance:</p>
+        <p><strong>35%</strong> of respondents have cut back on investment in rent-controlled markets, up from 26% in January 2022. <strong>41%</strong> said they do not operate in rent-controlled markets and would not consider doing so, up from 32% four years ago (NMHC).</p>
+        <p>NMHC research confirms that tenant protection regulations, source-of-income laws, eviction restrictions, screening requirements, function as hidden taxes. Source-of-income laws are associated with annual rent increases of <strong>$1,104</strong>. Eviction laws: <strong>$1,224</strong>. Screening laws: <strong>$708</strong> (NMHC/CoStar).</p>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--text);margin-bottom:14px;">Population & migration shifts</div>
+      <div class="prose">
+        <p>U.S. population growth slowed to <strong>0.5% in 2025</strong> (~1.8 million), the slowest since the pandemic (MMG). Net international migration plunged <strong>54% year-over-year</strong>, from 2.7 million to 1.3 million.</p>
+        <p>Florida domestic migration collapsed: <strong>310,900 (2022) → 22,500 (2025)</strong>. Texas remains the top numeric gainer at <strong>+391,000</strong>, followed by Florida (+196.7K) and North Carolina (+145.9K). Charlotte adds an estimated <strong>157 residents per day</strong> (M&M).</p>
+        <p><strong>40% of future apartment demand</strong> is concentrated in Texas, Florida, and California (NMHC). The Southeast has <strong>$264.7 billion</strong> in announced large-scale industrial projects expected to create ~150,349 new jobs (MMG).</p>
+      </div>
+      <div class="source-tag">Sources: NMHC (Regulations & Rents, Q1 2026 Survey), MMG (OBBBA, Population, Southeast), M&M 2026 Forecast</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<div class="report-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <path d="M15 3 Q8 14 7 25 L15 25 Z" fill="#1A6B62"/>
+        <path d="M16 7 Q22 14 24 25 L16 25 Z" fill="#D85A30"/>
+        <line x1="4" y1="28" x2="28" y2="28" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <div class="footer-wordmark">Coral Reef Capital</div>
+      <div class="footer-tagline">The Next Generation of Multifamily Owning &amp; Operating</div>
+    </div>
+    <div class="footer-disclosures">
+      <p><strong>Data Sources:</strong> Yardi Matrix MarketPoint (Feb 2026); Marcus &amp; Millichap 2026 National Multifamily Investment Forecast; CBRE Q4 2025 U.S. Multifamily Figures; Colliers Q4 2025 Market Reports (DFW, Houston, Austin, Charlotte, U.S. Capital Markets); Newmark Q4 2025 Market Reports; MMG Real Estate Advisors (2026 Forecasts, Q1 2026 Pipeline Reports, Investor Pulse Surveys 2023–2026, AI Playbook, OBBBA Analysis, Population &amp; Demographics); NMHC (Quarterly Survey of Apartment Conditions Q1 2022–Q1 2026, U.S. Apartment Demand Through 2035, Construction Survey Q1 2026, Regulations &amp; Rents, Filtering Study, State of Multifamily Risk Survey); Haver Analytics (Carson, Levy, Cates, Prakken); JLL (AI in CRE Research, Private Wealth Tracker, Global CRE Technology Survey); U.S. Bureau of Labor Statistics; ISM Services PMI; Mortgage Bankers Association; Dallas Federal Reserve; Radix; Northmarq; Arbor Realty Trust; Texas Real Estate Research Center; Marsh Global Insurance Market Index; Hub International; CME FedWatch; LSEG/CNBC.</p>
+      <p style="margin-top:10px;">This report is produced by Coral Reef Capital for informational purposes only and does not constitute investment advice, a solicitation, or an offer to buy or sell any security. Past performance is not indicative of future results. Independent analysis and qualified professional consultation are recommended before making investment decisions.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Coral Reef Capital · coralreefcap.co · All rights reserved</div>
+    <div class="footer-issue">The Reef Report · Issue 01 · April 2026</div>
+  </div>
+</div>
+
+</body>
+</html>

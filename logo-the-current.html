@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Current — Logo</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 48px;
+    }
+
+    .canvas {
+      width: 600px;
+      height: 600px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #FAFAF8;
+    }
+
+    /* Coral accent strip — left edge */
+    .accent-strip {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 8px;
+      background: linear-gradient(180deg, #D85A30 0%, #E8886C 50%, #5DCAA5 100%);
+    }
+
+    /* Subtle grid */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* Wave SVG — abstract current flow */
+    .wave-art {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 280px;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .wave-art svg {
+      position: absolute;
+      bottom: 0;
+      width: 120%;
+      left: -10%;
+    }
+
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 56px 52px 48px 52px;
+    }
+
+    /* Top */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .issue-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #D85A30;
+    }
+    .date-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #999;
+      text-align: right;
+    }
+
+    /* Hero type */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: 60px;
+    }
+    .the-word {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 32px;
+      color: #888;
+      letter-spacing: 0.08em;
+      margin-left: 4px;
+      margin-bottom: -8px;
+    }
+    .current-word {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 120px;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: #0A4A42;
+    }
+    .tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #666;
+      margin-top: 16px;
+      margin-left: 4px;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+    .tagline strong {
+      color: #D85A30;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: relative;
+      z-index: 3;
+    }
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wordmark {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #0A4A42;
+      opacity: 0.5;
+    }
+    .substack-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #D85A30;
+      padding: 5px 12px;
+      border: 1.5px solid #D85A30;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="canvas">
+  <div class="accent-strip"></div>
+  <div class="grid-bg"></div>
+
+  <div class="wave-art">
+    <svg viewBox="0 0 600 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Wave 1 -->
+      <path d="M-20 200 Q80 160 180 200 T380 200 T580 200 T680 200" stroke="#5DCAA5" stroke-width="1.5" fill="none" opacity="0.15"/>
+      <!-- Wave 2 -->
+      <path d="M-20 220 Q100 175 200 220 T400 220 T600 220 T700 220" stroke="#5DCAA5" stroke-width="1.2" fill="none" opacity="0.12"/>
+      <!-- Wave 3 -->
+      <path d="M-20 240 Q120 200 220 240 T420 240 T620 240 T720 240" stroke="#1A6B62" stroke-width="1" fill="none" opacity="0.1"/>
+      <!-- Wave 4 -->
+      <path d="M-20 255 Q130 225 230 255 T430 255 T630 255 T730 255" stroke="#D85A30" stroke-width="0.8" fill="none" opacity="0.08"/>
+      <!-- Fill beneath -->
+      <path d="M-20 260 Q140 235 240 260 T440 260 T640 260 T740 260 V300 H-20Z" fill="#0A4A42" opacity="0.03"/>
+    </svg>
+  </div>
+
+  <div class="content">
+    <div class="top-bar">
+      <div class="issue-label">Substack</div>
+      <div class="date-label">Multifamily Intelligence</div>
+    </div>
+
+    <div class="hero">
+      <span class="the-word">The</span>
+      <div class="current-word">Current</div>
+      <div class="tagline">Data-driven market signals. What's moving multifamily right now.</div>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="logo-mark">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+          <path d="M15 3 Q8 14 7 25 L15 25 Z" fill="#1A6B62"/>
+          <path d="M16 7 Q22 14 24 25 L16 25 Z" fill="#D85A30"/>
+          <line x1="4" y1="28" x2="28" y2="28" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="wordmark">Coral Reef Capital</span>
+      </div>
+      <a href="https://substack.com/@coralreefcapital" target="_blank" style="text-decoration:none;" class="substack-badge">Subscribe</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
