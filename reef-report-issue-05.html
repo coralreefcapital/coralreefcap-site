@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -81,14 +81,14 @@
   .dtable td.f{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap}
   .sigboard{border-top:3px double var(--line-strong);border-bottom:3px double var(--line-strong);margin:1.8rem 0 2.2rem;padding:.9rem 0 1.1rem;font-family:var(--sans)}
   .sb-head{font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:.9rem}
-  .sb-head .sb-asof{float:right;color:var(--ink-soft);font-weight:400;letter-spacing:.1em}
-  .sb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-left:1px solid var(--line)}
+  .sb-head .sb-asof{display:block;color:var(--ink-soft);font-weight:400;letter-spacing:.1em;margin-top:.25rem}
+  .sb-grid{display:grid;width:100%;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-left:1px solid var(--line);clear:both}
   .sb-card{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:.6rem .7rem .7rem;min-width:0}
   .sb-card:nth-child(-n+4){border-top:1px solid var(--line)}
   .sb-lane{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.25rem}
   .sb-val{font-family:var(--mono);font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.1}
   .sb-lbl{font-size:.72rem;line-height:1.45;color:var(--ink-soft);margin-top:.3rem}
-  @media (max-width:700px){.sb-grid{grid-template-columns:repeat(2,1fr)}.sb-card:nth-child(-n+4){border-top:0}.sb-card:nth-child(-n+2){border-top:1px solid var(--line)}}
+  @media (max-width:700px){.sb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sb-card:nth-child(-n+4){border-top:0}.sb-card:nth-child(-n+2){border-top:1px solid var(--line)}}
   .sb-wire{border:1px solid var(--line);border-top:0;padding:.6rem .7rem;font-size:.74rem;line-height:1.5;color:var(--ink-soft)}
   .sb-wire .sb-lane{margin-right:.5rem}
   summary::-webkit-details-marker{display:none}
