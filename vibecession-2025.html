@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="favicon.svg">
+<title>Year(s) of the Vibecession — Original (2025)</title>
+</head>
+<body>
+<style>
+  :root{
+    --paper:#F6F5F1; --raise:#FFFFFF; --ink:#1C1B17; --ink-soft:#5A5850;
+    --accent:#0C4A46; --accent-deep:#083734; --warm:#B23A1E;
+    --line:rgba(28,27,23,.14); --line-strong:rgba(28,27,23,.30);
+    --data-bg:#EDEBE4; --ok:#0C6B5F; --warn:#B4531A;
+    --shadow:0 1px 0 rgba(28,27,23,.04),0 18px 40px -28px rgba(28,27,23,.35);
+    --serif:"Iowan Old Style","Palatino Linotype","Palatino",Charter,Georgia,"Times New Roman",serif;
+    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#151411;--raise:#1C1B17;--ink:#ECEAE3;--ink-soft:#A39F93;
+      --accent:#5CB9AB;--accent-deep:#86D2C6;--warm:#FF8763;
+      --line:rgba(255,255,255,.11);--line-strong:rgba(255,255,255,.22);
+      --data-bg:#1E1D19;--ok:#4FC0AE;--warn:#F0894A;
+      --shadow:0 1px 0 rgba(0,0,0,.4),0 22px 48px -30px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#151411;--raise:#1C1B17;--ink:#ECEAE3;--ink-soft:#A39F93;
+    --accent:#5CB9AB;--accent-deep:#86D2C6;--warm:#FF8763;
+    --line:rgba(255,255,255,.11);--line-strong:rgba(255,255,255,.22);
+    --data-bg:#1E1D19;--ok:#4FC0AE;--warn:#F0894A;
+    --shadow:0 1px 0 rgba(0,0,0,.4),0 22px 48px -30px rgba(0,0,0,.8);
+  }
+  :root[data-theme="light"]{
+    --paper:#F6F5F1;--raise:#FFFFFF;--ink:#1C1B17;--ink-soft:#5A5850;
+    --accent:#0C4A46;--accent-deep:#083734;--warm:#B23A1E;
+    --line:rgba(28,27,23,.14);--line-strong:rgba(28,27,23,.30);
+    --data-bg:#EDEBE4;--ok:#0C6B5F;--warn:#B4531A;
+    --shadow:0 1px 0 rgba(28,27,23,.04),0 18px 40px -28px rgba(28,27,23,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink)}
+  .wrap{background:var(--paper);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased;padding:clamp(1.1rem,4vw,3.5rem) 1.1rem 5rem;min-height:100vh}
+  .sheet{max-width:44rem;margin:0 auto}
+  .masthead{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--sans)}
+  .brand{font-weight:800;letter-spacing:.24em;text-transform:uppercase;font-size:clamp(.82rem,2.4vw,1rem);color:var(--ink)}
+  .brand .dot{color:var(--warm)}
+  .issue-tag{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .rule{height:2px;background:var(--accent);margin:.85rem 0 0;border:0}
+  header.title{margin:clamp(2.2rem,6vw,3.4rem) 0 clamp(1.6rem,4vw,2.2rem)}
+  .eyebrow{font-family:var(--sans);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 1.1rem}
+  h1{font-family:var(--serif);font-weight:800;font-size:clamp(2.2rem,7vw,3.7rem);line-height:1.04;letter-spacing:-.015em;margin:0;text-wrap:balance}
+  .edition{font-family:var(--serif);font-style:italic;font-weight:700;font-size:clamp(1.1rem,2.8vw,1.45rem);margin:.7rem 0 0;color:var(--warm)}
+  .byline{font-family:var(--sans);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:1.4rem 0 0;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+  .byline .pip{width:4px;height:4px;border-radius:50%;background:var(--warm);display:inline-block}
+  .note{font-family:var(--sans);font-size:.85rem;line-height:1.55;background:color-mix(in srgb,var(--accent) 9%,transparent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:10px;padding:.8rem 1rem;color:var(--ink);margin:1.4rem 0 0}
+  article{font-size:1.12rem;line-height:1.72;text-wrap:pretty}
+  article p{margin:0 0 1.3em}
+  article ul{margin:0 0 1.3em;padding-left:1.3em}
+  article li{margin:.3em 0}
+  article h2{font-family:var(--serif);font-weight:800;font-size:clamp(1.4rem,3.4vw,1.8rem);letter-spacing:-.01em;line-height:1.2;margin:2.2rem 0 1rem;text-wrap:balance;color:var(--accent)}
+  article h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.1rem,3vw,1.3rem);margin:1.8rem 0 .8rem}
+  article p.lead{margin-top:.4rem}
+  article p.lead::first-letter{font-weight:800;float:left;font-size:3.4em;line-height:.8;padding:.06em .09em 0 0;color:var(--warm)}
+  article p.fine{font-size:.92rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:1.2rem;margin-top:2rem}
+  a.reflink{color:var(--accent-deep);text-decoration-color:var(--line-strong);text-underline-offset:3px}
+  .marker{font-family:var(--sans);font-size:.82rem;font-weight:600;background:color-mix(in srgb,var(--warm) 14%,transparent);color:var(--warm);border:1px dashed var(--warm);border-radius:4px;padding:.05em .5em}
+  .his{display:block;font-family:var(--sans);font-size:.9rem;font-weight:600;background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);border:1px dashed var(--accent);border-radius:8px;padding:.7rem 1rem;margin:1.4rem 0}
+  .divider{display:flex;align-items:center;justify-content:center;gap:.7rem;margin:2.4rem 0;color:var(--warm)}
+  .divider::before,.divider::after{content:"";height:1px;width:2.6rem;background:var(--line-strong)}
+  .divider span{font-size:1rem;letter-spacing:.3em}
+  blockquote.pull{margin:2.2rem 0;padding:.2rem 0 .2rem 1.4rem;border-left:3px solid var(--warm);font-size:clamp(1.3rem,3.2vw,1.65rem);line-height:1.3;font-weight:700;color:var(--ink);text-wrap:balance}
+  .dtable{overflow-x:auto;margin:1.4rem 0}
+  .dtable table{border-collapse:collapse;width:100%;min-width:26rem;font-family:var(--sans);font-size:.85rem}
+  .dtable thead th{text-align:left;font-weight:700;border-bottom:2px solid var(--line-strong);padding:.45rem .65rem;white-space:nowrap}
+  .dtable tbody td{padding:.5rem .65rem;border-bottom:1px solid var(--line);color:var(--ink-soft)}
+  .dtable td.f{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap}
+  .photos,.exgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem;margin:1.6rem 0}
+  .ph,.ex{background:var(--raise);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+  .ph img,.ex img{width:100%;height:auto;display:block}
+  .ph figcaption,.ex figcaption{font-family:var(--sans);font-size:.74rem;line-height:1.4;color:var(--ink-soft);padding:.55rem .7rem}
+  figure{margin:0}
+  .tablewrap{overflow-x:auto}
+  .pill{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.14em .55em;border-radius:99px}
+  .pill.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,transparent)}
+  .pill.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 18%,transparent)}
+  footer.colophon{max-width:44rem;margin:2.4rem auto 0;text-align:center;font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  footer.colophon .c{color:var(--warm)}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap"><div class="sheet">
+
+  <div class="masthead">
+    <div class="brand">The Reef Report<span class="dot">.</span></div>
+    <div class="issue-tag">Archive &nbsp;·&nbsp; Original 2025 Paper &nbsp;·&nbsp; Republished 2026</div>
+  </div>
+  <hr class="rule">
+  <nav style="display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem;font-family:var(--sans)">
+    <a href="/" style="display:inline-block;padding:.6rem 1.1rem;border:1px solid var(--line-strong);border-radius:8px;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;background:var(--raise)">&larr; Home</a>
+    <a href="/reef-report-issue-05" style="display:inline-block;padding:.6rem 1.1rem;border:1px solid var(--line-strong);border-radius:8px;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;background:var(--raise)">Reef Report 5 &rarr;</a>
+  </nav>
+
+  <header class="title">
+    <p class="eyebrow">From the Coral Reef Capital archive</p>
+    <h1>Year(s) of the Vibecession</h1>
+    <p class="edition">Original (2025) — A Second-Half 2025 Market Report, Republished</p>
+    <p class="byline"><span>Harrison Hoy</span><span class="pip"></span><span>Written 2H 2025</span><span class="pip"></span><span>Republished 2026</span></p>
+    <p class="note"><b>Vintage note.</b> This report is republished as written in the second half of 2025. Every figure carries its 2025 vintage. Where later data corrected a figure, the correction is noted in place. The 2026 follow-up is <a class="reflink" href="/reef-report-issue-05"><i>Year(s) of the Vibecession: Volume 2</i></a>, a Reef Report Special Edition.</p>
+  </header>
+
+  <article>
+    <h2>Preface</h2>
+
+    <p class="lead">This report makes one argument: the economy is in a vibecession, a period where the headline statistics look survivable while the lived reality underneath them keeps deteriorating. As of mid-2025, inflation was reaccelerating, real household purchasing power was falling, credit was tightening without anyone naming it, and distress was building in exactly the places official data measures worst.</p>
+
+    <p>I wrote it plainly because the people operating in this market were making real capital decisions on bad information. It covers five things: the Federal Reserve's Beige Book releases through July 2025, the macro picture I think matters, the multifamily market, single-family housing, and the lessons Trammell Crow drew from surviving the S&amp;L crisis.</p>
+
+    <p>The thesis in one line: this is the part of the cycle where pain compounds silently until something cracks.</p>
+
+    <h2>I. The Beige Book: A Change in Tone</h2>
+
+    <p>Seven Beige Book releases into 2025, January through July, the Fed's own language shifted. Early editions still entertained a soft landing. By the July 16 edition, the subtlety was gone: inflation was back, services costs were rising, wage pressure had not eased, and businesses were preparing for higher-for-longer rates.</p>
+
+    <p><b>Tariffs became a driver, not a risk.</b> The Dallas District explicitly tied new tariffs to input-cost inflation, with pass-through already visible in construction and manufacturing. Over 50% of Dallas firms reported passing tariff-related increases within 30 days, and 90% within 90 days. Manufacturers cited 5 to 10% cost increases, concentrated in steel, aluminum, and parts, and noted that even domestic steel prices were rising as buyers substituted away from imports.</p>
+
+    <p><b>Services inflation was not cooling.</b> From April through July, multiple districts reported intensifying cost pressure in travel, auto insurance, healthcare, and skilled labor. With services sticky and shelter comps set to reaccelerate, the year-end CPI prints were at risk of coming in above consensus. <i>(2026 note: they did. Headline CPI was 3.4% in July 2026.)</i></p>
+
+    <p><b>Credit was tightening without being named.</b> The July 2025 edition carried more references to tightening than any release since early 2023: "stricter lending standards," "lower risk appetite," "more conservative underwriting," "downward pressure on valuations," across at least six districts. It was not being called a credit crunch because the industry was still framing the moment as wait-and-see.</p>
+
+    <p><b>Labor was structurally tight.</b> Employers still could not fill roles without raising pay or offering bonuses. Dallas flagged ongoing shortages in skilled trades and oilfield labor, with immigration changes squeezing the pipeline further. Structurally tight labor argued for holding rates, whatever the market wanted to hear about cuts.</p>
+
+    <p><b>The disconnect.</b> Wall Street was pricing rate cuts while the districts described deteriorating conditions. Dallas and Atlanta both flagged falling consumer sentiment, slower sales, and weakening CRE fundamentals. Business investment sentiment was defensive: firms were cutting capex, trimming profit outlooks, and stockpiling inventory. Consumers were pulling spending forward, buying cars, appliances, and materials ahead of price hikes, the classic sign that inflation expectations have set in.</p>
+
+    <h2>II. The Macro Picture the Headlines Miss</h2>
+
+    <p><b>Inflation.</b> CPI hit 2.7% in June 2025, the highest in four months, and Core PCE also came in at 2.7% in May 2025, well above the Fed's 2% target. Tariffs had already moved prices on toys, tools, home furnishings, appliances, and electronics, with more expected as inventories thinned into the second half.</p>
+
+    <p>The headline understated the real strain. The Ludwig Institute for Shared Economic Prosperity (LISEP) True Living Cost Index shows the cost of basic household needs rose 83.8% from 2001 to 2022, roughly 1.3 times faster than CPI's 65.3%. Housing rose 109% by that measure against 71% on CPI. Healthcare rose 194%. Technology rose 128% while CPI recorded a decline. The index shows how badly CPI underweights the essentials that dominate low- and middle-income budgets. <i>(2026 note: LISEP's update through 2024 puts the TLC at +106% against CPI +77.2%. The gap widened from 18.5 points to 28.8.)</i></p>
+
+    <p><b>Labor.</b> On paper, jobs looked fine. People like Howard Lutnick were parroting full employment. In reality, the private sector lost 33,000 jobs in June 2025 against expectations of a 100,000 gain, the first outright decline in some time, with jobless claims climbing and hiring slowing. LISEP's True Rate of Unemployment, which counts part-timers who want full-time work and those earning below a poverty wage, hit 24.3% in May 2025 against the BLS headline of 4.2%. It ran 29.9% for women, 27.3% for Hispanic workers, 26.0% for Black workers, and 23.6% for white workers. The facade of full employment did not hold up. Functional unemployment was widespread, and concentrated in exactly the income tiers that fill Class B and C apartments. <i>(2026 note: TRU reached 24.9% in July 2026 against a 4.1% headline, the fourth straight monthly increase.)</i></p>
+
+    <p><b>The banking system.</b> U.S. banks carried $482.4 billion in unrealized securities losses as of Q4 2024, up 32.5% from the prior quarter (FDIC Quarterly Banking Profile). Systemwide unrealized losses had peaked above $600 billion in late 2022, months before SVB failed in March 2023. <i>(Correction: the 2025 draft put the figure at the time of the SVB failure at $515 billion. The FDIC series peaked above $600 billion in Q3 2022; the $515 billion reading was Q1 2023.)</i> These losses stay off the income statement until assets are sold, but they are real: if depositors move, the assets get dumped and the balance sheet takes the hit. <i>(2026 note: $325.1 billion at Q1 2026. Improved, not resolved.)</i></p>
+
+    <p><b>The illusion of growth.</b> GDP rose over 118% from 1992 to 2023 while median household income rose only 31% (BEA real GDP; Census real median household income, 2023 dollars). National prosperity, measured on the ground, has become unrecognizable.</p>
+
+    <p><b>The consumer.</b> Spending grew just 0.5% in Q1 2025, the weakest in over four years, and declined 0.1% in May 2025, with the top 10% of earners accounting for roughly half of all consumer spending (Moody's Analytics). Credit stress was building underneath: the share of credit-card balances 90-plus days delinquent reached 12.3% in Q1 2025, the highest in roughly 15 years and approaching the Great Recession peak near 13.7% (NY Fed Household Debt and Credit Report). <i>(Correction: the 2025 draft put the GFC peak at about 11.5%. The NY Fed series peaked near 13.7% in 2010.)</i> Auto insurance, by the BLS motor vehicle insurance index, was up roughly 50% since January 2020. <i>(Correction: the 2025 draft said premiums had "more than doubled (110%) in five years." The BLS index does not support that figure; no source for it was located.)</i> Total household debt reached $18.2 trillion in Q1 2025, up 27.6% since March 2020 and past the Q1 2008 record (NY Fed). Disposable personal income fell 0.6% in June 2025, the first drop since January 2022 (BEA). More than half of Americans could not cover a $1,000 emergency expense. Think about the woman in the efficiency unit next to the coin laundromat. Could she? <i>(Correction: the 2025 draft used a $2,000 threshold. Bankrate's survey, fielded December 2025, asks about $1,000: 53% could not cover it.)</i></p>
+
+    <p><b>Wages.</b> From 2001 to 2023, wages adjusted by CPI suggest an 11.3% gain, but adjusted by LISEP's minimal-quality-of-life basket they fell 4.0%. The income needed for a minimal quality of life in 2023 was about $67,000. The bottom 60% of earners fell short by roughly $29,000 on average; households in the 40th to 60th percentile carried a $12,000 gap; the bottom 20% were short $42,000. The measurement gap shows up in the weekly numbers too: BLS median weekly earnings were $984, about $51,000 a year, while LISEP's True Weekly Earnings were $797, about $41,000, a 20% difference. BLS wage data flatters the picture in downturns because it excludes part-timers and the unemployed, so low-income job losses pull the median up. In 2020, the BLS reported a 6.9% wage increase, the largest since 1978, while LISEP's real True Weekly Earnings fell 2%. <i>(2026 note: LISEP's update through 2024 puts the CPI-adjusted gain at 11.5% and the basket-adjusted loss at 5.1%. The gap widened.)</i></p>
+
+    <p>Put together, as of mid-2025: inflation reaccelerating, real wages flat to falling, consumers maxed out, labor softening, and banks holding unrealized losses. The most vulnerable households were being squeezed by costs that outpaced their paychecks, and half the country sat one shock from crisis. That fragility is what underpins rent payments, consumption, and ultimately property values, before interest rates enter the picture.</p>
+
+    <p>This was not a soft landing. It was a slow unraveling masked by flawed data and delayed recognition of risk.</p>
+
+    <h2>III. Multifamily: A Bifurcated Market</h2>
+
+    <p>The single most under-acknowledged fact in this business is that multifamily is bifurcated, a K-shaped market that predates COVID. Most operators are not transacting trophy assets. They are working older, workforce product with real operational challenges.</p>
+
+    <p><b>What the Beige Book meant for operators in 2025.</b> Let us stop pretending this was normal. This is exactly what a slow-motion reset looks like. The Fed was telegraphing that rates would stay high, pricing power was evaporating, and the credit cycle was turning over. If you were buying or operating in this environment, you had to assume:</p>
+
+    <p>1. Cap rates will widen further, and expenses will not come down. 2. Insurance will keep rising. 3. Rent growth will decelerate, or reverse, depending on the market. 4. Refinancing will be punitive unless you are sitting on a strong DSCR. 5. You cannot underwrite to wishful thinking. You have to underwrite to what the Fed is telling you, not what the hopeful are posting.</p>
+
+    <p class="fine"><i>(2026 note: four of the five held. Cap rates widened, MSCI's closed-deal apartment cap rate reaching 5.79% in Q2 2026, the highest since 2015. The exception is insurance: portfolio-level renewals moderated in 2026, and the relief went to large owners.)</i></p>
+
+    <p><b>The transaction market.</b> In my own North Texas comp set for 2025 there were roughly 120 relevant sales in the sub-institutional space, with pre-1990 vintages accounting for well under 20% of closed deals. Activity concentrated in Dallas, then Fort Worth, then smaller North Texas markets. For the older product, pricing sat around $105,000 per door and was still falling. Buyers were not accepting 35% expense ratios on lower-end B and C product.</p>
+
+    <p><b>The distress was hidden.</b> You would expect more fire sales. That is not how it played out. Most distress was masked by forbearance extensions and rescue capital keeping the lights on. If you lifted the hood, concessions were deep and DSCR was often below 1.0 even after insurance was stripped out. I reviewed deal after deal where the real T3 collections did not support the in-place debt, let alone refinance risk. Buyers frequently did not discover how bad a deal was until mid-diligence, when the narrative shifted from "value-add upside" to "how do we plug this gap and keep it afloat?" The question that decides everything is whether collections normalize and costs stabilize. In 2025 they were not. Reported DSCRs across the market were likely overstated.</p>
+
+    <p><b>Broker psychology had shifted.</b> The language moved from "interest is strong" to "the seller might get more realistic soon." Whisper prices fell 10 to 20% between Q1 and Q3 2025 in my tracking, and most still did not pencil without aggressive assumptions. There was a flight to easier assets, newer builds and stabilized 1990s–2000s product, but those were priced to perfection.</p>
+
+    <p><b>The opportunity is in the product people fear.</b> 1960s–1980s vintage, workforce demographics, choppier cash flow. That is where the pain is, and where the discounts come from. Institutional buyers are too slow, too bureaucratic, or too constrained by fund mandates to take it on.</p>
+
+    <p><b>Upgrade fatigue is real and under-discussed.</b> Tenants no longer pay premiums for granite. They want working air conditioning, security, and a responsive manager. Full renovations were not penciling, and the premium rent bump was shrinking across many submarkets. If your comp set is 90% partial renovations, you are over-improving.</p>
+
+    <p><b>Why Class B/C gets hit hardest.</b> These operators face the tightest affordability margins. Tenant incomes are not keeping up, rent growth is flat or falling, and operating costs, insurance, maintenance, labor, are rising fast. They are the most exposed to weak wage growth and functional unemployment among renters, rising delinquencies and turnover (I saw economic vacancy reach 30% in some DFW assets in 2025), a dwindling buyer pool unwilling to touch older product without deep discounts, and limited access to capital when the debt sits with small regional banks under pressure.</p>
+
+    <p>The illusion of stability in this segment was breaking. Many of these assets were not distressed yet, but they were bleeding equity behind the scenes. And when maturity extensions run out, it becomes obvious who cannot survive without a refinance. Material costs were up. Insurance premiums were up. Labor for make-readies and turns was up. The Beige Book specifically called out construction and maintenance inflation in Dallas. If you underwrote deals to 2022 cost structures, you were lying to yourself. Locking in a good rate protects debt service only; it does nothing for capex, payroll, or make-ready costs when turnover spikes.</p>
+
+    <p>Price discipline is the edge. The firms that win are the ones that already tightened ops, kept capex lean, and have real discipline in the underwriting. This market will not forgive sloppy execution.</p>
+
+    <p><b>The maturity wall.</b> Nearly two-thirds of the $214 billion in CRE loans that matured in 2023 remained unresolved at the time of writing, and over $1 trillion in maturities was expected annually for the next several years. By the end of 2023, CRE loans maturing within three years represented 27% of bank marked-to-market capital, up from 16% in 2020; within five years that figure reached 40%. Delayed loss recognition creates fire-sale risk, distorts price discovery, and threatens non-bank intermediaries as defaults ripple outward. (Source: Jiang, Matvos, Piskorski and Seru, bank-fragility research on CRE maturities, 2023 data.) <i>(2026 note: MBA put 2026 CRE maturities at $875 billion, 17% of outstanding debt. Multifamily CMBS delinquency reached 7.69% in July 2026 while the agency book held near 0.5%. The wall arrived on the securitized side first.)</i></p>
+
+    <h2>IV. Single-Family: A Slow-Motion Unwind</h2>
+
+    <p>Single-family was still afloat in 2025, but the cracks were visible. Inventory was climbing, builders had been cutting prices and offering buydowns for over a year, and realtors were selling fewer homes than they did in 2008.</p>
+
+    <p><b>Quiet policy support signals real stress.</b> A foreclosure wave was unlikely because policy would intervene first, and it already had. As of mid-2025 the FHA had activated the Standalone Partial Claim, which moves missed payments to the back of the loan, and the Payment Supplement Program, which covers roughly a quarter of the mortgage for up to three years. These tools do not get created unless the situation is serious. It was a quiet bailout aimed at FHA and VA borrowers, first-time buyers, and those who bought at the peak.</p>
+
+    <p><b>Sellers had not adjusted.</b> Resale inventory was climbing while sellers priced to 2021 comps, so homes sat and days-on-market rose. The resale market was lagging the new-build market's price cuts.</p>
+
+    <p><b>Insurance was breaking budgets.</b> Premiums were climbing rapidly in Texas, Florida, California, and mid-tier weather-exposed markets. Double-digit hikes, non-renewals, and surprise assessments were pushing buyers out. Any housing-rebound thesis that ignores insurance is incomplete.</p>
+
+    <p><b>Affordability had broken.</b> Mortgage rates were stuck near 7% with no catalyst for relief. Higher-income households with equity could still buy; first-time buyers were sidelined. Renting was becoming the default by necessity, which preserves baseline demand for multifamily even as budgets tighten. <i>(2026 note: a house cost 4.7 times median income in 2025 per Harvard's Joint Center, with prices up 54% since 2020. The 2025 draft's "35% of income" and "prices tripled since 2000" lines had no source and are removed.)</i></p>
+
+    <h2>V. Lessons from Trammell Crow and the S&amp;L Crisis</h2>
+
+    <p>The rest of this report is about distress and delay. This section is about clarity, and it comes from someone else's pain rather than our own.</p>
+
+    <p>In the early 1990s, Trammell Crow was in a fight for survival, at one point 90 days from collapse. The firm had grown too fast on too much debt with too little structure. When the S&amp;L crisis hit and liquidity dried up, lenders panicked and assets devalued.</p>
+
+    <p>What saved them was transparency and talent density. Leadership told their teams the truth rather than sugarcoating it. They cut hard and fast, roughly 70% of the company at once, rather than dragging it out. They retrenched to their core strengths, local advantage and talent leverage, and realigned compensation and incentives around them. And when the opportunity came to buy while everyone else was still frightened, they leaned in. They did not win by timing the bottom perfectly. They won because they learned fast, cut deep, and stayed ready. One partner kept a running list of every operator he wanted to buy from once the cycle turned, and when it did, he started calling.</p>
+
+    <p>That is where we were in 2025: not at the bottom, but close enough to prepare. The lessons translate directly:</p>
+
+    <ul>
+      <li>- Transparency builds loyalty; sugarcoating only delays survival.</li>
+      <li>- If you have to cut, cut once and cut all the way.</li>
+      <li>- Know what you are best at and drop the rest.</li>
+      <li>- Build your acquisition watchlist before the turn, not in the chaos.</li>
+      <li>- Build relationships now with the people you want to buy from later.</li>
+      <li>- Liquidity is oxygen and structure is shelter. Hold both.</li>
+      <li>- Be humble on the way up and quick on the way down.</li>
+    </ul>
+
+    <p>The practical version: track every deal, ask every broker what they have seen fail, audit the failures as carefully as you underwrite the wins, and triangulate every number, expenses, rents, taxes, concessions, that you can.</p>
+
+    <h2>Final Thought</h2>
+
+    <p>Dallas is the clearest signal the Fed has. And they were waving the flag. We were not easing. We were not soft landing. We were not going back to normal. We were in the new normal, and it was going to separate the operators from the storytellers. <i>(2026 note: it did.)</i></p>
+
+    <p>Nobody gets the bottom tick. The edge goes to whoever is structured, disciplined, and ready to move while others freeze. That is the whole game.</p>
+
+    <div class="divider"><span>≈≈≈</span></div>
+
+    <h2>Key Data Points (quick reference — all 2H 2025 vintage; re-verify before any 2026 use)</h2>
+
+    <p><b>Inflation / cost of living:</b> - CPI 2.7% (highest in 4 months); Core PCE 2.7% (May). <i>(2026: CPI 3.4%, core 2.5%.)</i> - LISEP TLC rose 83.8% (2001-2022) vs CPI 65.3% = 1.3x. Housing +109% TLC vs +71% CPI. Healthcare +194%. Tech +128% TLC vs CPI decline. - Wages: TWE +11.3% CPI-adjusted vs -4.0% MQL-adjusted. Housing TLC +130% since 2001, healthcare +178%.</p>
+
+    <p><b>Labor:</b> - Private sector -33K jobs June (vs +100K expected). - LISEP TRU 24.3% (May 2025) vs BLS 4.2%. Women 29.9%, Hispanic 27.3%, Black 26.0%, White 23.6%. <i>(2026: TRU 24.9% vs 4.1%.)</i></p>
+
+    <p><b>Banking / systemic:</b> - U.S. banks $482.4B unrealized losses (Q4 2024), +32.5% QoQ; peaked above $600B late 2022. <i>(2026: $325.1B at Q1.)</i> - CRE: roughly two-thirds of $214B in 2023 maturities unresolved; $1T+/yr ahead. CRE maturing within 3yr = 27% of bank marked-to-market capital (up from 16% in 2020); within 5yr = 40%.</p>
+
+    <p><b>Consumer:</b> - GDP +118% (1992-2023) vs median income +31%. - Consumer spending +0.5% Q1 2025 (weakest in 4 years), -0.1% May. Top 10% = roughly half of spending. - Credit cards: 12.3% of accounts 90+ days delinquent Q1 2025; GFC peak roughly 13.7%. <i>(2026: 12.8%.)</i> - Auto insurance roughly +50% since Jan 2020 (BLS index). <i>(Correction: original said 110%. Not verified.)</i> - Total household debt $18.2T (Q1 2025), +27.6% since Mar 2020, past the Q1 2008 record. - MQL income needed: $67K (2023); bottom 60% short $29K; 40-60th percentile short $12K; bottom 20% short $42K. - 53% cannot cover a $1,000 emergency (Bankrate). <i>(Correction: original said $2,000.)</i> - BLS median weekly $984 ($51K/yr) vs LISEP TWE $797 ($41K/yr) = 20% gap.</p>
+
+    <p><b>Multifamily (DFW focus):</b> - Roughly 120 sub-institutional comps YTD; pre-1990 vintage under 20% of closed deals. Most activity Dallas, then Fort Worth. - Pre-1990 subset roughly $105K/door and falling. - Nobody buying 35% expense ratios on B/C. Whisper prices down 10-20% Q1 to Q3. - Hidden distress: DSCR below 1.0 after insurance stripped; South Dallas economic vacancy up to 30%. <i>(2026: CMBS MF delinquency 7.69% July; agency book 0.5%.)</i></p>
+
+    <p><b>Single-family:</b> - Realtors sold fewer homes than in 2008. FHA Standalone Partial Claim + Payment Supplement Program activated. - Insurance breaking budgets (TX/FL/CA). Mortgage roughly 7%. <i>(2026: 6.65%.)</i> - House cost 4.7x median income; prices +54% since 2020 (JCHS 2026).</p>
+
+    <p><b>Trammell Crow / S&amp;L playbook:</b> 90 days from collapse; laid off 70% at once; transparency + talent density; retrench to core; watchlist before the bottom; liquidity = oxygen, structure = shelter.</p>
+
+    <div class="divider"><span>≈≈≈</span></div>
+  </article>
+
+  <section class="appendix" style="margin-top:2.4rem;font-family:var(--sans);font-size:.85rem">
+    <div class="tablewrap"><table>
+      <thead><tr><th>Claim in text</th><th>Source</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="claim">Beige Book tone shift; Dallas tariff pass-through (50% within 30 days, 90% within 90); services inflation; credit-tightening language across six districts; labor shortages; pull-forward spending</td><td>Federal Reserve Beige Book, January–July 2025 editions (federalreserve.gov/monetarypolicy/beigebook)</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">CPI 2.7% (June 2025); Core PCE 2.7% (May 2025)</td><td>BLS CPI; BEA Personal Income and Outlays</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">LISEP True Living Cost +83.8% vs CPI +65.3% (2001–2022); housing +109% vs +71%; healthcare +194%; technology +128%</td><td>LISEP, lisep.org/tlc</td><td><span class="pill warn">2001–2022</span></td></tr>
+        <tr><td class="claim">Private sector -33,000 jobs June 2025 vs +100,000 expected</td><td>ADP National Employment Report, July 2025</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">LISEP True Rate of Unemployment 24.3% (May 2025) vs BLS 4.2%; demographic breakdown</td><td>LISEP, lisep.org/tru</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">Bank unrealized securities losses $482.4B, Q4 2024, +32.5% QoQ; peak above $600B late 2022</td><td>FDIC Quarterly Banking Profile</td><td><span class="pill warn">2024</span></td></tr>
+        <tr><td class="claim">GDP +118% vs median household income +31%, 1992–2023</td><td>BEA real GDP (chained dollars); Census Income in the United States, P60</td><td><span class="pill warn">2023</span></td></tr>
+        <tr><td class="claim">Consumer spending +0.5% Q1 2025, -0.1% May 2025</td><td>BEA</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">Top 10% ≈ half of consumer spending</td><td>Moody's Analytics (Zandi)</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">Credit-card balances 90+ days delinquent 12.3% Q1 2025; GFC peak ~13.7%</td><td>NY Fed Household Debt and Credit Report, Q1 2025</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">Auto insurance ~+50% since Jan 2020</td><td>BLS CPI motor vehicle insurance index (CUUR0000SETE)</td><td><span class="pill warn">2020–2025</span></td></tr>
+        <tr><td class="claim">Household debt $18.2T Q1 2025, +27.6% since March 2020</td><td>NY Fed Household Debt and Credit Report</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">Disposable personal income -0.6% June 2025</td><td>BEA Personal Income and Outlays, July 2025</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">53% cannot cover a $1,000 emergency</td><td>Bankrate Emergency Savings Report, fielded Dec 2–8 2025</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">Wages: CPI-adjusted +11.3% vs MQL-adjusted -4.0% (2001–2023); MQL income $67,000; shortfalls $29K / $12K / $42K; BLS $984 vs LISEP TWE $797; 2020 BLS +6.9% vs TWE -2%</td><td>LISEP Minimal Quality of Life and True Weekly Earnings, lisep.org/mql</td><td><span class="pill warn">2023</span></td></tr>
+        <tr><td class="claim">~120 sub-institutional comps, &lt;20% pre-1990, ~$105,000/door, whisper prices -10 to -20% Q1→Q3 2025, 30% economic vacancy on some DFW assets</td><td>Author's North Texas deal tracking, 2025</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">Maturity wall: two-thirds of $214B 2023 maturities unresolved; $1T+/yr; 27% → 40% of bank marked-to-market capital</td><td>Jiang, Matvos, Piskorski, Seru (2023), "Monetary Tightening, Commercial Real Estate Distress, and US Bank Fragility," NBER</td><td><span class="pill warn">2023</span></td></tr>
+        <tr><td class="claim">Realtors selling fewer homes than 2008; builder price cuts and buydowns</td><td>NAR existing-home sales; public builder earnings, 2025</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">FHA Standalone Partial Claim; Payment Supplement Program (~25% of payment, up to 3 years)</td><td>HUD Mortgagee Letters 2024–2025</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">Mortgage rates near 7% (mid-2025)</td><td>Freddie Mac PMMS</td><td><span class="pill warn">2025</span></td></tr>
+        <tr><td class="claim">House price 4.7× median income; prices +54% since 2020</td><td>Harvard JCHS, State of the Nation's Housing 2026</td><td><span class="pill warn">2025 data</span></td></tr>
+        <tr><td class="claim">Trammell Crow: 90 days from collapse; ~70% layoffs; retrenchment</td><td>Public accounts of Trammell Crow Company's 1989–1991 restructuring</td><td><span class="pill warn">historical</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="checklist">
+      <p><b>Removed in revision (no source located):</b> "dollar down more than 7%, worst year in modern history"; "households lost roughly 25% of purchasing power over four years"; "housing consumes 35% of income"; "home prices tripled since 2000 while incomes rose 40%"; "looks more like pre-2008 than post-COVID."</p>
+      <p>---</p>
+      <p><i>Written in the second half of 2025. Revised August 2026. © Coral Reef Capital.</i></p>
+    </div>
+  </section>
+
+</div>
+<nav style="max-width:44rem;margin:2.2rem auto 0;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;font-family:var(--sans)">
+  <a href="/" style="display:inline-block;padding:.75rem 1.4rem;border:1px solid var(--line-strong);border-radius:8px;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;background:var(--raise)">&larr; Home</a>
+  <a href="/reef-report-issue-05" style="display:inline-block;padding:.75rem 1.4rem;border:1px solid var(--line-strong);border-radius:8px;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;background:var(--raise)">Reef Report 5 &rarr;</a>
+</nav>
+<footer class="colophon">Coral Reef Capital &nbsp;<span class="c">&bull;</span>&nbsp; Original 2025 paper, republished as written</footer>
+</div>
+
+</body>
+</html>
