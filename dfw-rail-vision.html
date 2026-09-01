@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="favicon.svg">
+<title>DFW Rail Vision</title>
+</head>
+<body>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #181C2D;
+  --ink-soft: #3E4460;
+  --ground: #F4F1E8;
+  --surface: #EAE7DB;
+  --rail: #C13428;
+  --rail-light: #D94535;
+  --signal: #265BA8;
+  --signal-light: #3A7DD4;
+  --steel: #637086;
+  --rule: #D2CBBA;
+  --data-bg: #DDE7F5;
+  --node-fill: #F4F1E8;
+
+  --f-display: 'Syne', system-ui, sans-serif;
+  --f-body: 'IBM Plex Serif', Georgia, serif;
+  --f-mono: 'IBM Plex Mono', 'Courier New', monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #E2DDD0;
+    --ink-soft: #9AA4BA;
+    --ground: #0E1122;
+    --surface: #161B2C;
+    --rail: #D84E3B;
+    --rail-light: #E86555;
+    --signal: #4A87D9;
+    --signal-light: #6BA3E8;
+    --steel: #8A9CB8;
+    --rule: #242B40;
+    --data-bg: #1A2035;
+    --node-fill: #0E1122;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #E2DDD0;
+  --ink-soft: #9AA4BA;
+  --ground: #0E1122;
+  --surface: #161B2C;
+  --rail: #D84E3B;
+  --rail-light: #E86555;
+  --signal: #4A87D9;
+  --signal-light: #6BA3E8;
+  --steel: #8A9CB8;
+  --rule: #242B40;
+  --data-bg: #1A2035;
+  --node-fill: #0E1122;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { background: var(--ground); color: var(--ink); font-family: var(--f-body); line-height: 1.72; -webkit-font-smoothing: antialiased; }
+
+/* Layout */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.wrap--narrow { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+/* Hero */
+.hero {
+  background: var(--ink);
+  color: var(--ground);
+  padding: 5.5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 72px 36px;
+  pointer-events: none;
+}
+.hero__bottom-bar {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rail) 0%, var(--signal) 55%, transparent 100%);
+}
+.hero__eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rail-light);
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.hero__eyebrow::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--rail);
+  flex-shrink: 0;
+}
+.hero__headline {
+  font-family: var(--f-display);
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  font-weight: 800;
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  max-width: 16ch;
+  margin-bottom: 1.5rem;
+  color: var(--ground);
+}
+.hero__headline em { color: var(--rail-light); font-style: normal; }
+.hero__sub {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(244,241,232,0.65);
+  max-width: 56ch;
+  margin-bottom: 3.5rem;
+}
+.hero__stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.hero__stat {
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 180px;
+}
+.hero__stat-num {
+  font-family: var(--f-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--rail-light);
+  font-variant-numeric: tabular-nums;
+}
+.hero__stat-num.blue { color: var(--signal-light); }
+.hero__stat-label {
+  font-family: var(--f-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(244,241,232,0.5);
+  line-height: 1.45;
+  max-width: 20ch;
+}
+
+/* Section scaffolding */
+section { padding: 5rem 0; }
+section.surface { background: var(--surface); }
+section.dark { background: var(--ink); color: var(--ground); }
+
+.sec-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rail);
+  margin-bottom: 0.75rem;
+}
+.dark .sec-eyebrow { color: var(--rail-light); }
+
+h2 {
+  font-family: var(--f-display);
+  font-size: clamp(1.65rem, 3.8vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  margin-bottom: 1rem;
+}
+h3 {
+  font-family: var(--f-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.45rem;
+}
+h4 {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 0.5rem;
+}
+p { margin-bottom: 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.72;
+  color: var(--ink-soft);
+  max-width: 66ch;
+  margin-bottom: 3rem;
+}
+.dark .lead { color: rgba(244,241,232,0.65); }
+
+/* Track divider */
+.track {
+  height: 14px;
+  position: relative;
+  margin: 2.5rem 0;
+  flex-shrink: 0;
+}
+.track::before,
+.track::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--rule);
+}
+.track::before { top: 4px; }
+.track::after { top: 9px; }
+
+/* Stat cards */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.75rem;
+}
+.stat-card {
+  background: var(--ground);
+  border-top: 3px solid var(--signal);
+  padding: 1.6rem 1.6rem 1.4rem;
+}
+.surface .stat-card { background: var(--ground); }
+.stat-card.red { border-top-color: var(--rail); }
+.stat-card.steel { border-top-color: var(--steel); }
+.stat-card.green { border-top-color: #3A8A5C; }
+.stat-card__num {
+  font-family: var(--f-display);
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--signal);
+}
+.stat-card.red .stat-card__num { color: var(--rail); }
+.stat-card.steel .stat-card__num { color: var(--steel); }
+.stat-card.green .stat-card__num { color: #3A8A5C; }
+.stat-card__label { font-size: 0.93rem; line-height: 1.5; color: var(--ink-soft); }
+.stat-card__src {
+  font-family: var(--f-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-top: 0.85rem;
+  opacity: 0.75;
+}
+
+/* Two-column */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+@media (max-width: 700px) {
+  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* Current rail status */
+.rail-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.rail-status-card {
+  border: 1px solid var(--rule);
+  padding: 1.2rem 1.35rem;
+  background: var(--ground);
+}
+.surface .rail-status-card { background: var(--surface); border-color: var(--rule); }
+.rail-status-card__tag {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  background: var(--signal);
+  color: white;
+  margin-bottom: 0.65rem;
+}
+.rail-status-card__tag.red { background: var(--rail); }
+.rail-status-card__name {
+  font-family: var(--f-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.rail-status-card__detail {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: var(--steel);
+  line-height: 1.5;
+}
+
+/* Map section */
+.map-section {
+  background: var(--ink);
+  color: var(--ground);
+  padding: 5rem 0 4.5rem;
+}
+.map-container {
+  margin-top: 2.5rem;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.02);
+  overflow-x: auto;
+  padding: 1.5rem;
+}
+.map-container svg { width: 100%; height: auto; min-width: 480px; display: block; }
+
+.legend {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(226,221,208,0.6);
+}
+.legend__swatch {
+  width: 28px;
+  height: 3px;
+  flex-shrink: 0;
+  background: var(--signal);
+}
+.legend__swatch.dashed {
+  background: repeating-linear-gradient(
+    to right,
+    var(--rail-light) 0, var(--rail-light) 5px,
+    transparent 5px, transparent 9px
+  );
+}
+.legend__swatch.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--rail-light);
+}
+.legend__swatch.dot-blue {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--signal-light);
+}
+
+/* Corridor cards */
+.corridor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 1rem;
+  margin-top: 2.75rem;
+}
+.corridor-card {
+  border: 1px solid var(--rule);
+  padding: 1.2rem 1.3rem 1rem;
+  background: var(--ground);
+}
+.surface .corridor-card { background: var(--surface); }
+.corridor-card__dir {
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rail);
+  margin-bottom: 0.3rem;
+}
+.corridor-card__city {
+  font-family: var(--f-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.corridor-card__dist {
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  color: var(--steel);
+  margin-bottom: 0.6rem;
+}
+.corridor-card__note {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Callout block */
+.callout {
+  border-left: 4px solid var(--signal);
+  background: var(--data-bg);
+  padding: 1.4rem 1.75rem;
+  margin: 2.25rem 0;
+}
+.callout p {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: none;
+}
+.callout p strong { font-style: normal; color: var(--ink); font-family: var(--f-display); }
+
+/* Anchor section */
+.anchor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.anchor-card {
+  padding: 1.5rem;
+  border: 1px solid var(--rule);
+  background: var(--ground);
+}
+.surface .anchor-card { background: var(--surface); }
+.anchor-card__icon {
+  font-family: var(--f-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--signal);
+  margin-bottom: 0.6rem;
+  line-height: 1;
+}
+.anchor-card p { font-size: 0.92rem; line-height: 1.6; color: var(--ink-soft); }
+
+/* Conclusion */
+.conclusion {
+  background: var(--ink);
+  color: var(--ground);
+  padding: 5.5rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.conclusion::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 60px 30px;
+  pointer-events: none;
+}
+.conclusion__top-bar {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--signal) 0%, var(--rail) 100%);
+}
+.conclusion h2 { color: var(--ground); max-width: 22ch; }
+.conclusion .lead { color: rgba(244,241,232,0.65); }
+
+.vision-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.vision-point {
+  border-top: 2px solid rgba(255,255,255,0.12);
+  padding-top: 1.25rem;
+}
+.vision-point h3 {
+  color: var(--ground);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.vision-point p {
+  font-size: 0.9rem;
+  color: rgba(244,241,232,0.55);
+  line-height: 1.6;
+  max-width: none;
+}
+
+/* Footer */
+footer {
+  background: #0C0F1D;
+  color: rgba(226,221,208,0.35);
+  padding: 3rem 0;
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  line-height: 1.85;
+}
+footer h4 {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(226,221,208,0.5);
+  margin-bottom: 0.75rem;
+}
+footer a { color: rgba(226,221,208,0.45); text-decoration: none; }
+footer a:hover { color: rgba(226,221,232,0.7); }
+footer ul { list-style: none; }
+footer ul li { margin-bottom: 0.35rem; }
+.footer-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
+@media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+/* Fade-in */
+@media (prefers-reduced-motion: no-preference) {
+  .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .fade.in { opacity: 1; transform: none; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  section { padding: 3.5rem 0; }
+  .hero { padding: 3.5rem 0 3rem; }
+  .hero__stats { flex-direction: column; }
+  .hero__stat { min-width: unset; }
+}
+</style>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero__bottom-bar"></div>
+  <div class="wrap">
+    <div class="hero__eyebrow">Economic Research Brief &mdash; DFW Regional Transit</div>
+    <h1 class="hero__headline">North Texas Needs <em>Tracks,</em> Not Just Roads</h1>
+    <p class="hero__sub">A data-backed case for expanding commuter rail to Sherman, Gainesville, Tyler, Athens, Cleburne, Granbury, Weatherford, Decatur, and Greenville — and why relocating community colleges to urban cores accelerates the same goal.</p>
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <span class="hero__stat-num">$5</span>
+        <span class="hero__stat-label">returned for every $1 invested in public transit</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-num blue">41,400</span>
+        <span class="hero__stat-label">jobs created or sustained per $1B invested</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-num">~200mi</span>
+        <span class="hero__stat-label">of rail DFW already has, Silver Line included — and needs to multiply</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SECTION 1: NATIONAL ECONOMIC CASE -->
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow">The National Evidence</div>
+    <h2>The Economic Case for Transit Is Settled</h2>
+    <p class="lead">Decades of research and the most recent federal data all point the same direction: public transit builds economies. The remaining debate is how boldly to invest.</p>
+    <div class="stat-grid fade">
+      <div class="stat-card red">
+        <div class="stat-card__num">5:1</div>
+        <div class="stat-card__label">Economic return ratio. Every dollar invested in public transit infrastructure generates five dollars in broader economic activity — productivity, wages, reduced congestion costs, and induced development.</div>
+        <div class="stat-card__src">APTA Surface Transportation Report, 2026</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__num">41,400</div>
+        <div class="stat-card__label">Jobs created or sustained per $1 billion in transit investment. This consistently outpaces highway spending for employment per dollar, particularly in the construction and operations phases.</div>
+        <div class="stat-card__src">APTA, 2026</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-card__num">1–27%</div>
+        <div class="stat-card__label">Range of property value premiums near rail stations across 66 measured premiums in 46 studies — with commuter rail premiums significantly larger than light rail or metro.</div>
+        <div class="stat-card__src">Rennert, Transportation Research Part A, 2022</div>
+      </div>
+      <div class="stat-card steel">
+        <div class="stat-card__num">2.5×</div>
+        <div class="stat-card__label">Transit spending yields two and a half times the total employment impact of streets-and-highways spending per dollar, per Regional Plan Association analysis.</div>
+        <div class="stat-card__src">Regional Plan Association</div>
+      </div>
+    </div>
+
+    <div class="track"></div>
+
+    <div class="two-col fade">
+      <div>
+        <h3>Why Roads Alone Can't Sustain DFW's Growth</h3>
+        <p>The Dallas–Fort Worth metro added 177,922 people in a single year per the latest Census release — a top-three metro for numeric growth nationally, and the leader as recently as 2022–23. Road capacity cannot keep pace with that growth. Highway expansion induces demand, filling new lanes within years. Rail, by contrast, moves people at scale without proportional land consumption.</p>
+        <p>The economic cost of congestion in DFW is already measured in billions annually — hours lost, fuel burned, freight delayed, workers priced out of neighborhoods close to jobs. Commuter rail moves people and structures land use around it, and the land-use effect compounds for decades.</p>
+      </div>
+      <div>
+        <h3>Transit as a Property Tax Engine</h3>
+        <p>Every station on a well-designed commuter rail line is a development catalyst. Transit-oriented development (TOD) densifies land use, increases taxable value per acre, and creates walkable commercial districts that generate sales tax. Cities like Denver, Charlotte, and Dallas itself have documented this effect along their existing light rail corridors.</p>
+        <p>A commuter rail extension to a market like Sherman or Greenville restructures the economic geography of an entire county, bringing workforce mobility and development pressure that highway-only markets attract at a far lower rate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: DFW CURRENT STATE -->
+<section class="surface">
+  <div class="wrap">
+    <div class="sec-eyebrow">What DFW Already Has</div>
+    <h2>A Rail Foundation — Ready to Scale</h2>
+    <p class="lead">The DFW metro is not starting from zero. Four rail systems already serve the region, and in April 2025, planning began to formally link them into a single unified network. The question is how far that network extends.</p>
+
+    <div class="rail-status-grid fade">
+      <div class="rail-status-card">
+        <div class="rail-status-card__tag">Operational</div>
+        <div class="rail-status-card__name">DART Light Rail</div>
+        <div class="rail-status-card__detail">93 miles · 64 stations · Dallas urban core and suburbs</div>
+      </div>
+      <div class="rail-status-card">
+        <div class="rail-status-card__tag">Operational</div>
+        <div class="rail-status-card__name">Trinity Railway Express</div>
+        <div class="rail-status-card__detail">34 miles · Fort Worth ↔ Dallas · Shared DART / Trinity Metro</div>
+      </div>
+      <div class="rail-status-card">
+        <div class="rail-status-card__tag">Operational</div>
+        <div class="rail-status-card__name">TEXRail</div>
+        <div class="rail-status-card__detail">27 miles · Fort Worth to DFW Airport · Trinity Metro</div>
+      </div>
+      <div class="rail-status-card">
+        <div class="rail-status-card__tag">Operational</div>
+        <div class="rail-status-card__name">A-Train (DCTA)</div>
+        <div class="rail-status-card__detail">21 miles · Carrollton to Denton · Expansion plans underway</div>
+      </div>
+      <div class="rail-status-card" style="border-color: var(--rail);">
+        <div class="rail-status-card__tag red">In Planning</div>
+        <div class="rail-status-card__name">Unified Network Link</div>
+        <div class="rail-status-card__detail">TEXRail + DART + A-Train integration announced April 2025</div>
+      </div>
+      <div class="rail-status-card" style="border-color: var(--rail);">
+        <div class="rail-status-card__tag red">In Study</div>
+        <div class="rail-status-card__name">TRE Service Restructure</div>
+        <div class="rail-status-card__detail">Fort Worth Report (July 2025): significant operational changes under review</div>
+      </div>
+    </div>
+
+    <div class="callout fade">
+      <p><strong>The 2025 Turning Point:</strong> Rail expansion that links Fort Worth's TEXRail with the DART and Denton County systems represents the most significant structural shift in DFW transit in a decade. It creates a single continuous spine, and the extensions to the outer counties should be planned alongside the core, while right-of-way is still open.</p>
+    </div>
+
+    <p>The region's existing ~200 miles of rail, including the 26-mile Silver Line that opened in October 2025, serves a metro of 9,000+ square miles and nearly 8 million people. By comparison, Chicago's regional rail network covers 500+ miles; Philadelphia's SEPTA regional rail covers 280 miles for a smaller metro. The gap between DFW's economic scale and its rail coverage is one of the largest in any major American city — and it's growing.</p>
+  </div>
+</section>
+
+<!-- SECTION 3: MAP -->
+<section class="map-section">
+  <div class="wrap">
+    <div class="sec-eyebrow" style="color: var(--rail-light);">The Proposed Vision</div>
+    <h2 style="color: var(--ground);">Nine Corridors, One Connected Region</h2>
+    <p class="lead dark">Commuter rail lines radiating from the DFW core to nine outlying cities — connecting workforce, colleges, and county seats to the metro economy. Existing rail shown in blue; proposed corridors in red.</p>
+  </div>
+  <div class="wrap" style="max-width: 980px;">
+    <div class="map-container fade">
+      <svg viewBox="0 0 700 530" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', monospace" aria-label="DFW Proposed Commuter Rail Corridors Map">
+
+        <!-- Background subtle grid -->
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+          </pattern>
+          <radialGradient id="metroGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#265BA8" stop-opacity="0.28"/>
+            <stop offset="100%" stop-color="#265BA8" stop-opacity="0.08"/>
+          </radialGradient>
+        </defs>
+        <rect width="700" height="530" fill="url(#grid)"/>
+
+        <!-- Proposed corridor lines (dashed red) - from metro edge to city -->
+        <!-- Sherman (N) -->
+        <line x1="337" y1="165" x2="328" y2="40" stroke="#D84E3B" stroke-width="2.5" stroke-dasharray="7,5"/>
+        <!-- Gainesville (NNW) -->
+        <line x1="284" y1="179" x2="200" y2="60" stroke="#D84E3B" stroke-width="2.5" stroke-dasharray="7,5"/>
+        <!-- Decatur (NW) -->
+        <line x1="248" y1="213" x2="152" y2="165" stroke="#D84E3B" stroke-width="2.5" stroke-dasharray="7,5"/>
+        <!-- Weatherford (W) -->
+        <line x1="235" y1="256" x2="112" y2="255" stroke="#D84E3B" stroke-width="2.5" stroke-dasharray="7,5"/>
+        <!-- Granbury (SW) -->
+        <line x1="266" y1="317" x2="172" y2="405" stroke="#D84E3B" stroke-width="2.5" stroke-dasharray="7,5"/>
+        <!-- Cleburne (SSW) -->
+        <line x1="315" y1="342" x2="282" y2="460" stroke="#D84E3B" stroke-width="2.5" stroke-dasharray="7,5"/>
+        <!-- Athens (SSE) -->
+        <line x1="385" y1="337" x2="448" y2="460" stroke="#D84E3B" stroke-width="2.5" stroke-dasharray="7,5"/>
+        <!-- Tyler (E) -->
+        <line x1="443" y1="267" x2="570" y2="340" stroke="#D84E3B" stroke-width="2.5" stroke-dasharray="7,5"/>
+        <!-- Greenville (NE) -->
+        <line x1="413" y1="196" x2="522" y2="100" stroke="#D84E3B" stroke-width="2.5" stroke-dasharray="7,5"/>
+
+        <!-- Metro zone -->
+        <ellipse cx="340" cy="256" rx="107" ry="92" fill="url(#metroGrad)" stroke="#4A87D9" stroke-width="1.5"/>
+
+        <!-- Existing rail lines (solid blue, within metro) -->
+        <!-- TRE: Fort Worth area to Dallas area -->
+        <line x1="268" y1="262" x2="408" y2="252" stroke="#4A87D9" stroke-width="3" stroke-linecap="round"/>
+        <!-- TEXRail: FW to DFW Airport area -->
+        <line x1="268" y1="262" x2="360" y2="196" stroke="#4A87D9" stroke-width="3" stroke-linecap="round"/>
+        <!-- DART north-south branch -->
+        <line x1="390" y1="222" x2="390" y2="300" stroke="#4A87D9" stroke-width="3" stroke-linecap="round"/>
+        <!-- A-Train (going north toward Denton) -->
+        <line x1="383" y1="210" x2="376" y2="178" stroke="#4A87D9" stroke-width="2.5" stroke-dasharray="10,4" stroke-linecap="round"/>
+
+        <!-- Existing station dots (blue) -->
+        <circle cx="268" cy="262" r="5" fill="#4A87D9" stroke="#0E1122" stroke-width="1.5"/>
+        <circle cx="360" cy="197" r="5" fill="#4A87D9" stroke="#0E1122" stroke-width="1.5"/>
+        <circle cx="408" cy="252" r="5" fill="#4A87D9" stroke="#0E1122" stroke-width="1.5"/>
+        <circle cx="376" cy="178" r="4" fill="#4A87D9" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="264" y="282" font-size="9" fill="#6BA3E8" text-anchor="middle">Fort Worth</text>
+        <text x="415" y="245" font-size="9" fill="#6BA3E8" text-anchor="start">Dallas</text>
+        <text x="362" y="190" font-size="9" fill="#6BA3E8" text-anchor="middle">DFW Airport</text>
+        <text x="380" y="172" font-size="9" fill="#6BA3E8" text-anchor="start">Denton</text>
+
+        <!-- Metro label -->
+        <text x="340" y="258" font-size="11" font-weight="500" fill="rgba(226,221,208,0.5)" text-anchor="middle" letter-spacing="0.1em" text-transform="uppercase">DFW METRO</text>
+        <text x="340" y="273" font-size="9" fill="rgba(226,221,208,0.3)" text-anchor="middle">~200mi existing rail</text>
+
+        <!-- City nodes (red) and labels -->
+        <!-- Sherman -->
+        <circle cx="328" cy="40" r="7" fill="#D84E3B" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="340" y="34" font-size="10.5" fill="#E86555" text-anchor="start" font-weight="500">SHERMAN</text>
+        <text x="340" y="46" font-size="8.5" fill="rgba(226,221,208,0.45)" text-anchor="start">~65 mi N</text>
+
+        <!-- Gainesville -->
+        <circle cx="200" cy="60" r="7" fill="#D84E3B" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="100" y="55" font-size="10.5" fill="#E86555" text-anchor="start" font-weight="500">GAINESVILLE</text>
+        <text x="100" y="67" font-size="8.5" fill="rgba(226,221,208,0.45)" text-anchor="start">~80 mi NNW</text>
+
+        <!-- Decatur -->
+        <circle cx="152" cy="165" r="7" fill="#D84E3B" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="55" y="161" font-size="10.5" fill="#E86555" text-anchor="start" font-weight="500">DECATUR</text>
+        <text x="55" y="173" font-size="8.5" fill="rgba(226,221,208,0.45)" text-anchor="start">~40 mi NW</text>
+
+        <!-- Weatherford -->
+        <circle cx="112" cy="255" r="7" fill="#D84E3B" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="16" y="250" font-size="10.5" fill="#E86555" text-anchor="start" font-weight="500">WEATHERFORD</text>
+        <text x="16" y="263" font-size="8.5" fill="rgba(226,221,208,0.45)" text-anchor="start">~30 mi W</text>
+
+        <!-- Granbury -->
+        <circle cx="172" cy="405" r="7" fill="#D84E3B" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="80" y="398" font-size="10.5" fill="#E86555" text-anchor="start" font-weight="500">GRANBURY</text>
+        <text x="80" y="411" font-size="8.5" fill="rgba(226,221,208,0.45)" text-anchor="start">~42 mi SW</text>
+
+        <!-- Cleburne -->
+        <circle cx="282" cy="460" r="7" fill="#D84E3B" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="282" y="480" font-size="10.5" fill="#E86555" text-anchor="middle" font-weight="500">CLEBURNE</text>
+        <text x="282" y="492" font-size="8.5" fill="rgba(226,221,208,0.45)" text-anchor="middle">~38 mi SSW</text>
+
+        <!-- Athens -->
+        <circle cx="448" cy="460" r="7" fill="#D84E3B" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="448" y="480" font-size="10.5" fill="#E86555" text-anchor="middle" font-weight="500">ATHENS</text>
+        <text x="448" y="492" font-size="8.5" fill="rgba(226,221,208,0.45)" text-anchor="middle">~75 mi SE</text>
+
+        <!-- Tyler -->
+        <circle cx="570" cy="340" r="7" fill="#D84E3B" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="582" y="336" font-size="10.5" fill="#E86555" text-anchor="start" font-weight="500">TYLER</text>
+        <text x="582" y="348" font-size="8.5" fill="rgba(226,221,208,0.45)" text-anchor="start">~95 mi E</text>
+
+        <!-- Greenville -->
+        <circle cx="522" cy="100" r="7" fill="#D84E3B" stroke="#0E1122" stroke-width="1.5"/>
+        <text x="534" y="96" font-size="10.5" fill="#E86555" text-anchor="start" font-weight="500">GREENVILLE</text>
+        <text x="534" y="108" font-size="8.5" fill="rgba(226,221,208,0.45)" text-anchor="start">~48 mi NE</text>
+
+        <!-- Compass rose (subtle) -->
+        <text x="654" y="26" font-size="9" fill="rgba(226,221,208,0.25)" text-anchor="middle">N</text>
+        <line x1="654" y1="30" x2="654" y2="46" stroke="rgba(226,221,208,0.15)" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="legend">
+      <div class="legend__item"><span class="legend__swatch"></span>Existing rail (operational)</div>
+      <div class="legend__item"><span class="legend__swatch" style="background: repeating-linear-gradient(to right, #4A87D9 0, #4A87D9 5px, transparent 5px, transparent 9px);"></span>Existing (planned link)</div>
+      <div class="legend__item"><span class="legend__swatch dashed"></span>Proposed new corridor</div>
+      <div class="legend__item"><span class="legend__swatch dot-blue"></span>Existing station</div>
+      <div class="legend__item"><span class="legend__swatch dot"></span>Proposed terminal</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: CORRIDOR DETAIL -->
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow">Corridor by Corridor</div>
+    <h2>What Each Line Unlocks</h2>
+    <p class="lead">Each proposed corridor serves a distinct purpose — from connecting fast-growing exurbs to tapping underserved regional economies that are currently two hours from the metro by car in peak traffic.</p>
+
+    <div class="corridor-grid fade">
+      <div class="corridor-card">
+        <div class="corridor-card__dir">North · ~65 mi</div>
+        <div class="corridor-card__city">Sherman</div>
+        <div class="corridor-card__dist">Grayson County seat · ~145,000 county pop</div>
+        <div class="corridor-card__note">Texas Instruments chip fab expansion makes Grayson County a semiconductor corridor. Rail would allow workers to commute bidirectionally — Sherman residents into DFW, DFW talent into Sherman plants.</div>
+      </div>
+      <div class="corridor-card">
+        <div class="corridor-card__dir">North-Northwest · ~80 mi</div>
+        <div class="corridor-card__city">Gainesville</div>
+        <div class="corridor-card__dist">Cooke County seat · I-35 corridor</div>
+        <div class="corridor-card__note">Positioned on a major NAFTA-era freight corridor. A commuter line on this route would also serve Denton and the tech cluster emerging along I-35. Gainesville is a gateway to Oklahoma and underserved by transit entirely.</div>
+      </div>
+      <div class="corridor-card">
+        <div class="corridor-card__dir">Northwest · ~40 mi</div>
+        <div class="corridor-card__city">Decatur</div>
+        <div class="corridor-card__dist">Wise County seat · Rural workforce hub</div>
+        <div class="corridor-card__note">Wise County commuters already flood US-287 into Fort Worth daily. Rail would reduce a grinding commute, support local hiring by county-seat employers, and enable Decatur to retain workers who currently relocate closer to Fort Worth.</div>
+      </div>
+      <div class="corridor-card">
+        <div class="corridor-card__dir">West · ~30 mi</div>
+        <div class="corridor-card__city">Weatherford</div>
+        <div class="corridor-card__dist">Parker County seat · Fastest-growing segment</div>
+        <div class="corridor-card__note">Parker County is one of the fastest-growing counties in Texas. Weatherford is the nearest major city to Fort Worth without rail access. This corridor is the most immediately viable — short distance, dense commute pattern, existing I-20 freight ROW.</div>
+      </div>
+      <div class="corridor-card">
+        <div class="corridor-card__dir">Southwest · ~42 mi</div>
+        <div class="corridor-card__city">Granbury</div>
+        <div class="corridor-card__dist">Hood County seat · Tourism + retirement economy</div>
+        <div class="corridor-card__note">A growing retirement and tourism destination that sends workers into Fort Worth daily. Rail would support a two-way economy — residents commuting out, visitors arriving in. Hood County's lack of transit is a persistent equity gap.</div>
+      </div>
+      <div class="corridor-card">
+        <div class="corridor-card__dir">South-Southwest · ~38 mi</div>
+        <div class="corridor-card__city">Cleburne</div>
+        <div class="corridor-card__dist">Johnson County seat · Manufacturing base</div>
+        <div class="corridor-card__note">Cleburne has a significant manufacturing and logistics workforce that commutes north into Fort Worth and Arlington. It also hosts Tarleton State University. Rail access would be transformative for workforce mobility and college enrollment.</div>
+      </div>
+      <div class="corridor-card">
+        <div class="corridor-card__dir">Southeast · ~75 mi</div>
+        <div class="corridor-card__city">Athens</div>
+        <div class="corridor-card__dist">Henderson County seat · Trinity River basin</div>
+        <div class="corridor-card__note">An Athens–Tyler corridor would serve the most underconnected quadrant of the DFW region. Henderson County has limited economic mobility infrastructure. A rail line would also serve intermediate stops like Mabank and Canton.</div>
+      </div>
+      <div class="corridor-card">
+        <div class="corridor-card__dir">East · ~95 mi</div>
+        <div class="corridor-card__city">Tyler</div>
+        <div class="corridor-card__dist">Smith County · Largest East Texas metro</div>
+        <div class="corridor-card__note">Tyler is the economic capital of East Texas — a city of 115,000 with a major medical complex, university, and commercial hub. A rail link would functionally integrate East Texas into the DFW economy for the first time, unlocking enormous latent labor mobility.</div>
+      </div>
+      <div class="corridor-card">
+        <div class="corridor-card__dir">Northeast · ~48 mi</div>
+        <div class="corridor-card__city">Greenville</div>
+        <div class="corridor-card__dist">Hunt County seat · I-30 corridor</div>
+        <div class="corridor-card__note">Hunt County is already experiencing DFW suburban sprawl pressure. Rail before full suburban buildout preserves the chance to shape density around stations rather than retrofit it later. Greenville's Hunt Regional Medical Center is a key employment anchor.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4B: KNOX-HENDERSON -->
+<section class="dark">
+  <div class="wrap">
+    <div class="sec-eyebrow" style="color: var(--rail-light);">The Cost of Waiting</div>
+    <h2 style="color: var(--ground);">There Is Already a Ghost Station Under Knox Street</h2>
+    <p class="lead">Dallas has run this experiment once. The result is sitting eighty feet under one of the most valuable retail districts in Texas, sealed behind a block wall.</p>
+    <div class="two-col fade">
+      <div>
+        <p>DART's original 1985 tunnel design for the Central corridor included two underground stations: Cityplace and Knox-Henderson. Residents of Vickery Place, the neighborhood just east, opposed the Knox station, and DART removed it from the plan in the early 1990s. During tunnel construction the agency spent roughly $1 million excavating the station cavity anyway: a 400-foot platform area, a ventilation shaft, and a stairwell. It was sealed and serves today as an emergency exit.</p>
+        <p>Within a few years the same neighborhood petitioned DART to build the station after all. By then there was no funding and no priority. A 2006 estimate put the cost of finishing the station at roughly $100 million, most of it driven by the constraint of working midnight to 4 a.m. around live trains. The station has been excluded from every long-range plan since, including the 2030 and 2045 Transit System Plans.</p>
+      </div>
+      <div>
+        <p>Knox-Henderson went on to become one of the strongest districts in the region without the station: office rents that lead the Sunbelt outside Miami per JLL, triple-digit retail rents, and a development pipeline that now includes a million-plus square feet anchored by a 27-story tower over the district, directly above the sealed shell.</p>
+        <p>The provision cost $1 million. The retrofit was quoted at $100 million. The neighborhood that blocked the station asked for it back within a few years, and the district became exactly the kind of place a station serves. The trains pass under it without stopping. Securing right-of-way and station provisions for the nine corridors above, now, while they are cheap, is how the region avoids repeating this.</p>
+      </div>
+    </div>
+    <div class="stat-grid fade">
+      <div class="stat-card" style="background: rgba(255,255,255,0.04); border-top-color: var(--signal-light);">
+        <div class="stat-card__num" style="color: var(--signal-light);">$1M</div>
+        <div class="stat-card__label" style="color: rgba(244,241,232,0.65);">Cost of the station shell excavated during tunnel construction, 1990s.</div>
+        <div class="stat-card__src">DART / Dallas Morning News, 2018</div>
+      </div>
+      <div class="stat-card red" style="background: rgba(255,255,255,0.04);">
+        <div class="stat-card__num" style="color: var(--rail-light);">$100M</div>
+        <div class="stat-card__label" style="color: rgba(244,241,232,0.65);">DART's 2006 estimate to finish the same station around live trains. Deferred indefinitely.</div>
+        <div class="stat-card__src">DART, 2006 estimate</div>
+      </div>
+      <div class="stat-card steel" style="background: rgba(255,255,255,0.04);">
+        <div class="stat-card__num" style="color: var(--steel);">0</div>
+        <div class="stat-card__label" style="color: rgba(244,241,232,0.65);">Long-range DART plans that include the station today, while the district above it posts Sunbelt-leading rents.</div>
+        <div class="stat-card__src">DART 2030 / 2045 Transit System Plans</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: COLLEGE RELOCATION -->
+<section class="surface">
+  <div class="wrap">
+    <div class="sec-eyebrow">The Anchor Institution Argument</div>
+    <h2>Relocate Smaller Colleges to City Centers</h2>
+    <p class="lead">Transit and education are the same policy question. A commuter rail network gains its full value when the destinations it connects include dense employment, retail, and institutional anchors. Community colleges and small four-year schools are among the highest-value anchors available.</p>
+
+    <div class="two-col fade">
+      <div>
+        <h3>What Research Shows About Anchor Institutions</h3>
+        <p>The University of Pennsylvania's Institute for Urban Research defines anchor institutions as place-based organizations — hospitals, universities, colleges — that are unlikely to relocate and generate sustained economic activity in their surrounding neighborhoods. When these institutions are in or near urban cores, the multiplier effects are dramatically higher.</p>
+        <p>Research published through Penn IUR and the Philadelphia Federal Reserve shows that anchors create supply chains of local purchasing, employ lower-income workers in accessible service roles, and support spin-off businesses at measurable rates within a two-mile radius.</p>
+        <p>A July 2025 Urban Institute report on community colleges contributing value to communities found that proximity to transit and employers directly correlates with better student outcomes — higher completion rates, better employment placement, and higher wages after graduation.</p>
+      </div>
+      <div>
+        <h3>The Specific Case for DFW</h3>
+        <p>The DFW region has significant higher education assets that are marooned on suburban campuses designed for an era of universal car ownership. Several community college districts — including Dallas College and Tarrant County College — have already begun building downtown and near-downtown footprints. The question is whether smaller institutions follow.</p>
+        <p>A community college campus within walking distance of a commuter rail station doesn't require students to own a car to access education. It doesn't require faculty to commute in from fifty miles away on congested highways. It activates daytime street life in urban cores, supports adjacent retail, and creates a visible presence that signals economic vitality to employers considering relocation.</p>
+        <div class="callout">
+          <p>Stockton University's Atlantic City campus is a documented case study: <strong>a university anchor shifted local economic trajectory</strong>, supporting retail, hospitality, and housing investment in a corridor that had stagnated for two decades. The institution and the neighborhood feed each other.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="anchor-grid fade">
+      <div class="anchor-card">
+        <div class="anchor-card__icon">01</div>
+        <h3>Workforce Pipeline at Scale</h3>
+        <p>Urban community colleges place graduates directly into adjacent labor markets. Students who complete degrees without a car get jobs they can reach without a car. Transit access closes the loop between education and employment in a way suburban campuses cannot.</p>
+      </div>
+      <div class="anchor-card">
+        <div class="anchor-card__icon">02</div>
+        <h3>Downtown Activation</h3>
+        <p>College campuses in city centers generate 10–14 hours of active daytime use across retail, food service, and public space. This is the single most reliable way to support urban commercial districts outside of office development — and it's more resilient to remote work trends.</p>
+      </div>
+      <div class="anchor-card">
+        <div class="anchor-card__icon">03</div>
+        <h3>Enrollment Access Equity</h3>
+        <p>Low-income students are significantly more likely to complete programs when they can reach campus via transit rather than depending on car access. Relocating campuses to transit-served locations is a direct equity intervention.</p>
+      </div>
+      <div class="anchor-card">
+        <div class="anchor-card__icon">04</div>
+        <h3>Land Value Creation</h3>
+        <p>A college campus in a transit-accessible urban location commands premium real estate value for surrounding parcels within 5 years of opening. For smaller cities along proposed commuter corridors — Cleburne, Weatherford, Greenville — a downtown campus is a station-area catalyst.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: CONCLUSION -->
+<section class="conclusion">
+  <div class="conclusion__top-bar"></div>
+  <div class="wrap">
+    <div class="sec-eyebrow" style="color: var(--rail-light);">The Case for Action</div>
+    <h2>What North Texas Could Be</h2>
+    <p class="lead">The economic research argues for network thinking, because the returns from transit accrue to the whole network. A single spoke to Weatherford is useful. Nine spokes connecting a unified regional system is transformational.</p>
+
+    <div class="vision-points fade">
+      <div class="vision-point">
+        <h3>Build the Network First</h3>
+        <p>Corridors to Weatherford and Cleburne are the shortest and most immediately viable. Start there — but plan the full nine-corridor system now so right-of-way is preserved and future construction doesn't require politically costly land acquisition.</p>
+      </div>
+      <div class="vision-point">
+        <h3>Zone for Transit Before the Train Arrives</h3>
+        <p>The best time to shape land use around future stations is before the rail arrives. Station-area zoning in Greenville, Athens, and Granbury today sets the conditions for TOD development that compounds in value for thirty years.</p>
+      </div>
+      <div class="vision-point">
+        <h3>Move the Colleges Toward the Tracks</h3>
+        <p>Tarleton State in Stephenville, Texas A&M Commerce, Navarro College, and others all have campuses far from transit. Branch campuses in Cleburne, Greenville, or along future rail corridors should be a condition of new state higher education funding.</p>
+      </div>
+      <div class="vision-point">
+        <h3>Capture the Land Value</h3>
+        <p>Implement tax increment financing (TIF) districts along proposed corridors now. Even before rail arrives, TIF-backed investment in walkable commercial development at future station sites creates the density that makes rail economically viable when it opens.</p>
+      </div>
+      <div class="vision-point">
+        <h3>Make the Case in Austin</h3>
+        <p>Texas Rail Advocates petitioned TxDOT to participate in the FRA Corridor ID Program. That federal process is the mechanism for funding. The DFW region needs a unified, loudly articulated vision — not four separate transit authorities lobbying in separate lanes.</p>
+      </div>
+      <div class="vision-point">
+        <h3>Think Beyond the Commute</h3>
+        <p>Commuter rail done right serves the student in Cleburne attending Tarrant County College. The nurse in Weatherford whose hospital is in Fort Worth. The family in Greenville that can't afford DFW rents but could afford a train ticket.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / SOURCES -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>About This Brief</h4>
+        <p>Prepared using publicly available research, federal transit data, and regional planning reporting as of September 2026. Economic figures represent the best available published estimates; actual returns vary by corridor, design, and land use context.</p>
+      </div>
+      <div>
+        <h4>Sources</h4>
+        <ul>
+          <li><a href="https://www.apta.com/press-release/apta-surface-transportation-authorization-recommendations-deliver-5-in-economic-benefits-for-every-1-invested-41400-jobs-created-or-sustained-per-1-billion-invested/" target="_blank">APTA — $5:$1 ROI, 41,400 Jobs per $1B Invested (2026)</a></li>
+          <li><a href="https://rpa.org/news/lab/economic-benefits-of-transit-spending" target="_blank">Regional Plan Association — Transit Outpaces Highways for Economic Return</a></li>
+          <li><a href="https://www.sciencedirect.com/science/article/pii/S0965856422001677" target="_blank">Rennert (2022), Transportation Research Part A — Rail Station Property Value Meta-Analysis</a></li>
+          <li><a href="https://www.census.gov/library/stories/2025/04/metro-area-trends.html" target="_blank">U.S. Census Bureau — Metro Area Population Trends (2025 release)</a></li>
+          <li><a href="https://fortworthreport.org/2025/04/08/rail-expansion-expected-to-link-fort-worths-texrail-with-dallas-denton-systems/" target="_blank">Fort Worth Report — TEXRail/DART/DCTA Integration Plan, April 2025</a></li>
+          <li><a href="https://fortworthreport.org/2025/07/28/trinity-railway-express-fort-worth-dallas-commuter-service-could-soon-change-significantly/" target="_blank">Fort Worth Report — Trinity Railway Express Changes Under Review, July 2025</a></li>
+          <li><a href="https://www.keranews.org/texas-news/2025-06-06/full-steam-ahead-for-trinity-railway-express-after-texas-funding-cuts-fail" target="_blank">KERA News — TEXRail Funding Update, June 2025</a></li>
+          <li><a href="https://www.texasrailadvocates.org/post/denton-countys-a-train-has-expansion-plans" target="_blank">Texas Rail Advocates — A-Train Expansion Plans</a></li>
+          <li><a href="https://www.urban.org/sites/default/files/2025-07/Colleges%20Contributing%20Value%20to%20Communities.pdf" target="_blank">Urban Institute — Colleges Contributing Value to Communities, July 2025</a></li>
+          <li><a href="https://penniur.upenn.edu/publications/exploring-the-impact-of-anchor-institutions" target="_blank">Penn IUR — Exploring the Impact of Anchor Institutions</a></li>
+          <li><a href="https://stockton.edu/atlantic-city/anchor.html" target="_blank">Stockton University — Atlantic City Anchor Institution Case Study</a></li>
+          <li><a href="https://www.smartgrowthamerica.org/knowledge-hub/resources/the-economic-impact-of-public-transportation-investment/" target="_blank">Smart Growth America — Economic Impact of Transit Investment</a></li>
+          <li><a href="https://www.transportation.gov/long-term-economic-benefits-and-impacts-federal-infrastructure-and-public-transportation-investment" target="_blank">U.S. DOT — Long-Term Economic Benefits of Transit Infrastructure</a></li>
+          <li><a href="https://www.dallasnews.com/business/real-estate/2018/07/25/see-what-dart-s-forgotten-subway-station-under-north-central-expressway-looks-like/" target="_blank">Dallas Morning News — DART's Forgotten Subway Station Under Central (2018)</a></li>
+          <li><a href="https://dartdallas.wordpress.com/2015/01/29/ask-dart-is-there-really-a-hidden-knox-henderson-rail-station/" target="_blank">DART Daily — Is There Really a Hidden Knox-Henderson Station? (2015)</a></li>
+          <li><a href="https://www.trammellcrow.com/projects/knox-street" target="_blank">Trammell Crow — The Knox Street Development</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+})();
+</script>
+
+
+</body>
+</html>
