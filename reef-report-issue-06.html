@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Reef Report · Issue 06 · October 2026</title>
+<meta name="description" content="Capitalists vs. Communists: who wins the AI race, and what it means for Sunbelt apartment owners. The Reef Report, Issue 06, from Coral Reef Capital.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Coral Reef Capital">
+<meta property="og:title" content="The Reef Report · Issue 06 · Capitalists vs. Communists">
+<meta property="og:description" content="Who wins the AI race, and what it means for Sunbelt apartment owners.">
+<meta property="og:url" content="https://coralreefcap.co/reef-report-issue-06">
+<meta property="og:image" content="https://coralreefcap.co/reef-report-issue-06/reef-report-06-og-1200x627.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Shrikhand&display=swap" rel="stylesheet">
@@ -689,7 +699,13 @@ body { margin: 0; }
   .issue-hero { padding: 44px 18px 36px; }
   .nav-meta { display: none; }
   .archive-popover { right: 0; width: 270px; }
+  .nav-back .slash, .nav-back .section-name { display: none; }
+  .nav-back .brand-text { white-space: nowrap; }
+  .archive-section:not(.show-all) .archive-card:not(.is-current) { display: none; }
+  .archive-section .archive-more { display: block; }
+  .archive-section.show-all .archive-more { display: none; }
 }
+.archive-more { display: none; width: 100%; margin-top: 16px; padding: 14px; background: transparent; border: 1px solid rgba(93, 202, 165, 0.4); border-radius: 8px; color: #5DCAA5; font-family: 'Oswald', 'Inter', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; cursor: pointer; }
 .verify { border-bottom: 2px dotted var(--coral); }
 .pending { border: 2px dashed var(--coral); background: rgba(216,90,48,0.06); color: var(--coral); padding: 14px 18px; margin: 18px 0; font-size: 13px; font-weight: 600; }
 .split2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 28px; margin: 12px 0 8px; }
@@ -876,6 +892,7 @@ body { margin: 0; }
         </div>
       </a>
     </div>
+    <button class="archive-more" type="button" onclick="this.closest('.archive-section').classList.add('show-all')">Show all six issues ↓</button>
   </div>
 </section>
 
