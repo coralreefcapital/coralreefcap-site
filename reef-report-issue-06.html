@@ -534,12 +534,260 @@ body { margin: 0; }
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
 }
+.series-ref {
+  color: var(--teal);
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 107, 98, 0.4);
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.section.dark .series-ref {
+  color: var(--teal-light);
+  text-decoration-color: rgba(93, 202, 165, 0.5);
+}
+.series-ref:hover {
+  color: var(--coral) !important;
+  text-decoration-color: var(--coral) !important;
+}
+.nav-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.archive-dropdown {
+  position: relative;
+}
+.archive-trigger {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  color: #FFFFFF;
+  padding: 6px 12px;
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.archive-trigger:hover, .archive-dropdown.open .archive-trigger {
+  background: rgba(26, 107, 98, 0.35);
+  border-color: var(--teal-light);
+  color: #FFFFFF;
+}
+.archive-chevron {
+  font-size: 9px;
+  transition: transform 0.2s ease;
+}
+.archive-dropdown.open .archive-chevron {
+  transform: rotate(180deg);
+}
+.archive-popover {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 310px;
+  background: rgba(11, 22, 20, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+  padding: 8px 0;
+  z-index: 250;
+  text-align: left;
+}
+.archive-dropdown.open .archive-popover {
+  display: block;
+}
+.archive-popover-header {
+  padding: 10px 18px 8px;
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--coral-lt);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+}
+.archive-popover-item {
+  display: block;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.15s ease;
+}
+.archive-popover-item:last-child {
+  border-bottom: none;
+}
+.archive-popover-item:hover {
+  background: rgba(26, 107, 98, 0.25);
+}
+.archive-popover-item.is-active {
+  background: rgba(216, 90, 48, 0.14);
+}
+.api-tag {
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.archive-popover-item.is-active .api-tag {
+  color: var(--coral-lt);
+}
+.api-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 13.5px;
+  line-height: 1.3;
+  color: #FFFFFF;
+  margin-bottom: 2px;
+  font-weight: 700;
+}
+.api-date {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+}
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+.archive-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(14, 28, 25, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.archive-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(93, 202, 165, 0.4);
+  background: rgba(14, 28, 25, 0.85);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+.archive-card.is-current {
+  border-color: rgba(216, 90, 48, 0.5);
+  background: rgba(216, 90, 48, 0.08);
+}
+.archive-card.is-current:hover {
+  transform: none;
+  box-shadow: none;
+}
+.ac-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.ac-badge {
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(26, 107, 98, 0.25);
+  color: var(--teal-light);
+  border: 1px solid rgba(93, 202, 165, 0.3);
+}
+.ac-badge-live {
+  background: rgba(216, 90, 48, 0.25);
+  color: var(--coral-lt);
+  border-color: rgba(216, 90, 48, 0.4);
+}
+.ac-date {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Inter', sans-serif;
+}
+.ac-kicker {
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.ac-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  line-height: 1.25;
+  color: #FFFFFF;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+.ac-deck {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(240, 245, 244, 0.72);
+  margin: 0 0 20px;
+  flex-grow: 1;
+}
+.ac-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ac-btn {
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--teal-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+.archive-card:hover .ac-btn {
+  color: var(--coral-lt);
+  gap: 10px;
+}
+.ac-current-label {
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--coral-lt);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ac-current-label::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--coral);
+}
 @media (max-width: 600px) {
   .issue-nav { padding: 12px 18px; }
   .issue-hero { padding: 44px 18px 36px; }
   .sb-body { padding: 16px 18px; }
   .sb-line.swing { margin: 6px -18px -16px; padding: 12px 18px; }
   .nav-meta { display: none; }
+  .archive-popover { right: 0; width: 270px; }
 }
 .verify { border-bottom: 2px dotted var(--coral); }
 .pending { border: 2px dashed var(--coral); background: rgba(216,90,48,0.06); color: var(--coral); padding: 14px 18px; margin: 18px 0; font-size: 13px; font-weight: 600; }
@@ -587,7 +835,48 @@ body { margin: 0; }
     <span class="slash">/</span>
     <span class="section-name">Insights</span>
   </a>
-  <div class="nav-meta">The Reef Report · Issue 06</div>
+  <div class="nav-actions">
+    <div class="archive-dropdown">
+      <button class="archive-trigger" type="button" aria-haspopup="true" aria-expanded="false" onclick="this.parentElement.classList.toggle('open');event.stopPropagation();">
+        <span>The Archive</span>
+        <span class="archive-chevron">▾</span>
+      </button>
+      <div class="archive-popover">
+        <div class="archive-popover-header">The Reef Report · Series Index</div>
+        <a href="/reef-report-issue-06" class="archive-popover-item is-active">
+          <div class="api-tag">Issue 06 · Current</div>
+          <div class="api-title">Capitalists vs. Communists</div>
+          <div class="api-date">October 2026</div>
+        </a>
+        <a href="/reef-report-issue-05" class="archive-popover-item">
+          <div class="api-tag">Issue 05 · Special Edition</div>
+          <div class="api-title">Year(s) of the Vibecession</div>
+          <div class="api-date">September 2026</div>
+        </a>
+        <a href="/reef-report-issue-04" class="archive-popover-item">
+          <div class="api-tag">Issue 04</div>
+          <div class="api-title">The Failures Are at the Refinance, Not the Roof</div>
+          <div class="api-date">July 2026</div>
+        </a>
+        <a href="/reef-report-issue-03" class="archive-popover-item">
+          <div class="api-tag">Issue 03</div>
+          <div class="api-title">The Lines Are Lying</div>
+          <div class="api-date">June 2026</div>
+        </a>
+        <a href="/reef-report-issue-02" class="archive-popover-item">
+          <div class="api-tag">Issue 02</div>
+          <div class="api-title">The Market Is Moving Again</div>
+          <div class="api-date">May 2026</div>
+        </a>
+        <a href="/reef-report-issue-01" class="archive-popover-item">
+          <div class="api-tag">Issue 01 · Inaugural</div>
+          <div class="api-title">Supply Is Still the Story</div>
+          <div class="api-date">April 2026</div>
+        </a>
+      </div>
+    </div>
+    <div class="nav-meta">Issue 06</div>
+  </div>
 </nav>
 
 <header class="issue-hero">
@@ -623,7 +912,7 @@ body { margin: 0; }
   <div class="section-eyebrow">Pregame</div>
   <h2 class="section-title">The Expensive Machine and the Cheap One</h2>
   <p class="section-sub">The cover sells Capitalists vs. Communists. The ledger tells a different story.</p>
-  <div class="prose"><p>The people who lose those jobs rent from us. That is the one reason an apartment owner is watching the AI trade. If the trade corrects, companies cut costs, labor is the biggest line, and the cheapest model that does the job wins. <strong>The Capitalists are building the expensive machine. The Communists may be selling the cheap one.</strong></p><p>American private capital put $285.9 billion into AI in 2025, more than 23 times China's $12.4 billion. As of March 2026, Stanford's AI Index put the best American model 2.7% ahead of the best Chinese one and called the gap effectively closed. <sup data-src="S36">Stanford HAI, AI Index 2026</sup> Yet a leading Chinese model sells its output for $3.96 per million tokens; comparable American models list at $10 to $20. <sup data-src="S37,S38">DeepSeek; Anthropic</sup></p><p>Read the jerseys closely. The 'Capitalists' now own 9.9% of Intel <sup data-src="S58">Bloomberg Law</sup>, and the 'Communists' say private firms produce most of their economy. <sup data-src="S52">China Daily / Caixin (official line)</sup> <strong>Neither team plays the position on its jersey.</strong> The 2026 game is two kinds of state capitalism: in one, private capital leads and the state backs it; in the other, the state leads and private capital follows. We'll skip the verdict and show you the ledger.</p><p>This issue is about who pays: who borrowed, who got rescued, who got the raise, and who is left holding the rent. Our answer, as operators, is simple. <strong>When the tenant wins, the operator wins.</strong> We'd rather build more homes and see paychecks rise than cap rents and starve the buildings.</p></div>
+  <div class="prose"><p>The people who lose those jobs rent from us. That is the one reason an apartment owner is watching the AI trade. If the trade corrects, companies cut costs, labor is the biggest line, and the cheapest model that does the job wins. <strong>The Capitalists are building the expensive machine. The Communists may be selling the cheap one.</strong></p><p>American private capital put $285.9 billion into AI in 2025, more than 23 times China's $12.4 billion. As of March 2026, Stanford's AI Index put the best American model 2.7% ahead of the best Chinese one and called the gap effectively closed. <sup data-src="S36">Stanford HAI, AI Index 2026</sup> Yet a leading Chinese model sells its output for $3.96 per million tokens; comparable American models list at $10 to $20. <sup data-src="S37,S38">DeepSeek; Anthropic</sup></p><p>Read the jerseys closely. The 'Capitalists' now own 9.9% of Intel <sup data-src="S58">Bloomberg Law</sup>, and the 'Communists' say private firms produce most of their economy. <sup data-src="S52">China Daily / Caixin (official line)</sup> <strong>Neither team plays the position on its jersey.</strong> The 2026 game is two kinds of state capitalism: in one, private capital leads and the state backs it; in the other, the state leads and private capital follows. We'll skip the verdict and show you the ledger.</p><p>Following our look at tenant balance sheets in <a href="/reef-report-issue-05" class="series-ref">Issue 05</a>, this issue is about who pays: who borrowed, who got rescued, who got the raise, and who is left holding the rent. Our answer, as operators, is simple. <strong>When the tenant wins, the operator wins.</strong> We'd rather build more homes and see paychecks rise than cap rents and starve the buildings.</p></div>
 </section>
 <section class="section">
   <div class="section-eyebrow">Tale of the Tape</div>
@@ -652,7 +941,7 @@ body { margin: 0; }
   <div class="section-eyebrow">Home Field</div>
   <h2 class="section-title">The Sunbelt Already Ran the Experiment</h2>
   <p class="section-sub">The coasts argue about rent control. Our markets can't use it, and they didn't need it.</p>
-  <div class="prose"><p>Texas, North Carolina, Georgia and Tennessee all bar local rent control by state law; Texas allows it only in a governor-declared disaster. <sup data-src="S46,S47">N.C. General Statutes; State statutes</sup> The lever our metros have is supply, and they pulled it: a record wave of apartment building, then rents flat or falling.</p><p><strong>The wave is over.</strong> Units permitted in 5+ unit buildings are down from peak in every one of our core metros: Nashville −60%, Austin −54%, Atlanta −48%, Raleigh −44%, Charlotte −43%, Houston −40%, DFW −24%. <sup data-src="S35">U.S. Census Bureau</sup> Add 7%+ mortgages and +10% materials <sup data-src="S40,S41">Treasury / Freddie Mac / Fed; BLS</sup>, and the next squeeze may be building, if demand holds. Fewer deliveries do not raise rents on their own; absorption and jobs decide that.</p><p>Below, the housing plans on the ballot this fall, sorted by what they do rather than who proposes them. We don't endorse candidates. We read plans.</p><p>Austin, the hardest-hit metro, is turning: effective rent rose 1.8% in the second quarter to $1,316 after twelve straight quarterly declines, and vacancy fell to 12.3% from a 15.8% peak. <sup data-src="S89">Northmarq via CRE Daily</sup> Nationally, wage growth has outpaced apartment rent growth for 38 straight months, by JPI and RealPage data shown at a Dallas Fed conference. <sup data-src="S87">Dallas Fed conference (JPI / RealPage data)</sup> The supply wave gave renters a raise.</p></div><div class="strip"><div class="strip-label">Home field: the turn</div><div class="signal-board"><div class="signal-card ops"><div class="signal-metric">Austin: +1.8% q/q After 12 Down Quarters</div><div class="signal-source">Northmarq via CRE Daily, Q2 2026 <sup data-src="S89">Northmarq via CRE Daily</sup></div><div class="signal-implication">$1,316 effective; vacancy 12.3% from a 15.8% peak; still −3.9% y/y.</div></div><div class="signal-card ops"><div class="signal-metric">Asking Rent: $1,773, +0.4% y/y</div><div class="signal-source">Yardi Matrix, Aug 2026 <sup data-src="S80">Yardi Matrix (vendor data)</sup></div><div class="signal-implication">First August gain in years. Austin −2.8%, Houston −1.7%.</div></div><div class="signal-card supply"><div class="signal-metric">5+ Unit Starts: 344K, −15.5% y/y</div><div class="signal-source">Census via FRED, Aug 2026 <sup data-src="S73">U.S. Census Bureau</sup></div><div class="signal-implication">The pipeline is still shrinking.</div></div><div class="signal-card ops"><div class="signal-metric">Foreign-Born Labor Force: +0.6% y/y</div><div class="signal-source">BLS CPS via FRED, Sep 2026 (not seasonally adjusted) <sup data-src="S105">BLS</sup></div><div class="signal-implication">32.28M, 1.44M below the March 2025 high. Fewer new renters and fewer framers.</div></div></div></div><div class="table-wrap"><table class="policy-table" style="width:100%;border-collapse:collapse;margin:0;">
+  <div class="prose"><p>Texas, North Carolina, Georgia and Tennessee all bar local rent control by state law; Texas allows it only in a governor-declared disaster. <sup data-src="S46,S47">N.C. General Statutes; State statutes</sup> The lever our metros have is supply, and they pulled it: a record wave of apartment building, then rents flat or falling.</p><p><strong>The wave is over.</strong> The delivery peak we mapped in <a href="/reef-report-issue-01" class="series-ref">Issue 01</a> is giving way to the permit cliff we tracked in <a href="/reef-report-issue-02" class="series-ref">Issue 02</a>: units permitted in 5+ unit buildings are down from peak in every one of our core metros: Nashville −60%, Austin −54%, Atlanta −48%, Raleigh −44%, Charlotte −43%, Houston −40%, DFW −24%. <sup data-src="S35">U.S. Census Bureau</sup> Add 7%+ mortgages and +10% materials <sup data-src="S40,S41">Treasury / Freddie Mac / Fed; BLS</sup>, and the next squeeze may be building, if demand holds. Fewer deliveries do not raise rents on their own; absorption and jobs decide that.</p><p>Below, the housing plans on the ballot this fall, sorted by what they do rather than who proposes them. We don't endorse candidates. We read plans.</p><p>Austin, the hardest-hit metro, is turning: effective rent rose 1.8% in the second quarter to $1,316 after twelve straight quarterly declines, and vacancy fell to 12.3% from a 15.8% peak. <sup data-src="S89">Northmarq via CRE Daily</sup> Nationally, wage growth has outpaced apartment rent growth for 38 straight months, by JPI and RealPage data shown at a Dallas Fed conference. <sup data-src="S87">Dallas Fed conference (JPI / RealPage data)</sup> The supply wave gave renters a raise.</p></div><div class="strip"><div class="strip-label">Home field: the turn</div><div class="signal-board"><div class="signal-card ops"><div class="signal-metric">Austin: +1.8% q/q After 12 Down Quarters</div><div class="signal-source">Northmarq via CRE Daily, Q2 2026 <sup data-src="S89">Northmarq via CRE Daily</sup></div><div class="signal-implication">$1,316 effective; vacancy 12.3% from a 15.8% peak; still −3.9% y/y.</div></div><div class="signal-card ops"><div class="signal-metric">Asking Rent: $1,773, +0.4% y/y</div><div class="signal-source">Yardi Matrix, Aug 2026 <sup data-src="S80">Yardi Matrix (vendor data)</sup></div><div class="signal-implication">First August gain in years. Austin −2.8%, Houston −1.7%.</div></div><div class="signal-card supply"><div class="signal-metric">5+ Unit Starts: 344K, −15.5% y/y</div><div class="signal-source">Census via FRED, Aug 2026 <sup data-src="S73">U.S. Census Bureau</sup></div><div class="signal-implication">The pipeline is still shrinking.</div></div><div class="signal-card ops"><div class="signal-metric">Foreign-Born Labor Force: +0.6% y/y</div><div class="signal-source">BLS CPS via FRED, Sep 2026 (not seasonally adjusted) <sup data-src="S105">BLS</sup></div><div class="signal-implication">32.28M, 1.44M below the March 2025 high. Fewer new renters and fewer framers.</div></div></div></div><div class="table-wrap"><table class="policy-table" style="width:100%;border-collapse:collapse;margin:0;">
 <thead><tr><th>Lever</th><th>Who proposes it this fall</th><th>What it does to rent</th></tr></thead>
 <tbody>
 <tr><td><strong>Build more, faster</strong></td><td>James Talarico (D, Texas Senate nominee): "cut regulation so homes build faster"; House author of the small-footprint apartment bill (SB 2835) <sup data-src="S12,S14">Texas Tribune; Talarico campaign</sup><br>Abdul El-Sayed (D, Michigan Senate nominee): by-right multifamily, lower parking minimums, firm permit timelines, more LIHTC <sup data-src="S07">El-Sayed campaign</sup><br>Mike Rogers (R, Michigan Senate nominee): tax-free residential building zones <sup data-src="S11">Newsweek</sup><br>Zohran Mamdani (NYC mayor): 200,000 affordable homes over 10 years; $5.6B for public housing <sup data-src="S03,S05">NYC Mayor's Office; NYC Mayor's Office</sup></td><td>Lowers rent for the next renter.</td></tr>
@@ -715,7 +1004,7 @@ body { margin: 0; }
   <div class="section-eyebrow">Special Teams</div>
   <h2 class="section-title">The Policies Nobody Campaigns On</h2>
   <p class="section-sub">What a renter pays is mostly decided by policies that never make a stump speech. Each one has an owner.</p>
-  <div class="prose"><p><strong>Rates: the Fed and the bond market.</strong> The effective fed funds rate is down 0.47 points in a year to 3.75%, yet the 10-year Treasury rose 1.12 points to 5.24% and the 30-year mortgage to 7.28%. <sup data-src="S40">Treasury / Freddie Mac / Fed</sup> Then on September 16 the Fed raised its target to 3.75% to 4.00% and projected 4.1% by year-end. <sup data-src="S69">Federal Reserve Board</sup> The refi wall from Issue 04 just got steeper.</p><p><strong>Tariffs: Congress and the White House.</strong> Construction materials are up 10.1% in a year and 61.1% since January 2020; lumber up 7.6%. <sup data-src="S41">BLS</sup></p><p><strong>Immigration: Washington.</strong> Net international migration fell 53.8% in a year, from 2.73 million to 1.26 million: Texas −52.8%, Georgia −50.8%, North Carolina −43.4%, Tennessee −62.5%. <sup data-src="S44">U.S. Census Bureau</sup> That means fewer renters at the bottom of the market and fewer trades on the job site; specialty-trade employment grew just 1.1%. <sup data-src="S42">BLS</sup></p><p><strong>Property tax: statehouses.</strong> Texas spent $18 billion on relief in 2023 and budgets $51.0 billion for 2026 to 2027; the headline piece raised the school homestead exemption from $40,000 to $100,000, and it now stands at $140,000. <sup data-src="S102">Texas Comptroller</sup> Apartments got rate compression; the 20% circuit breaker stops at $5 million properties. <sup data-src="S50">State of Texas</sup> Renters pay property tax through rent, and got the smaller share.</p><p><strong>Rent-pricing software: DOJ and Congress.</strong> In November 2025 DOJ reached a proposed settlement with RealPage that would end its software's use of competitors' nonpublic, competitively sensitive data to set prices. <sup data-src="S45">U.S. DOJ</sup> DOJ is now settling with landlords one at a time, including Dallas-based Willow Bridge in July 2026, the fifth defendant to settle. <sup data-src="S45b">U.S. DOJ</sup> <strong>Our position: ban it.</strong> Software that pools rivals' private rents so everyone prices off the same sheet is a cartel with a login. Operators should compete on price and product, building by building. That puts us on the same side of this one as a Democratic Senate candidate who would ban it outright. <sup data-src="S09">Newsweek</sup> The ledger doesn't care about the label.</p><p><strong>Insurance: statehouses and the market.</strong> Insurance cost per apartment rose from $502 in 2021 to $777 in 2024, +55%, with 2023 alone up 25%. <sup data-src="S100">National Apartment Association</sup> A Minneapolis Fed survey of 35 owners in four Upper Midwest states found premiums up 45% from 2023 to 2024, and higher deductibles and exclusions moved more of the risk onto owners. <sup data-src="S99">Federal Reserve Bank of Minneapolis</sup> The market has started to turn: commercial property premiums fell 6.3% on average in the second quarter of 2026. <sup data-src="S128">CIAB via Insurance Journal</sup></p><p><strong>Credit: FHFA.</strong> Washington raised Fannie Mae's and Freddie Mac's apartment-loan caps to $88 billion each for 2026, $176 billion in all, from $146 billion. <sup data-src="S90">FHFA</sup> The ceiling on what they can buy rose 20% in the year rates rose.</p></div><div class="strip"><div class="strip-label">Special teams: the operator's bill</div><div class="signal-board"><div class="signal-card ops"><div class="signal-metric">Apartment Insurance: $502 → $777 per Unit</div><div class="signal-source">NAA benchmarking, 2021–2024 <sup data-src="S100">National Apartment Association</sup></div><div class="signal-implication">+55% in three years; 2023 alone +25%.</div></div><div class="signal-card ops"><div class="signal-metric">Apartment Insurance Premiums: +45%</div><div class="signal-source">Minneapolis Fed survey, 2023 → 2024 <sup data-src="S99">Federal Reserve Bank of Minneapolis</sup></div><div class="signal-implication">Higher deductibles and exclusions shift more risk to owners.</div></div><div class="signal-card ops"><div class="signal-metric">Texas Homestead Exemption: $140,000</div><div class="signal-source">Texas Comptroller <sup data-src="S102">Texas Comptroller</sup></div><div class="signal-implication">School-district exemption for owner-occupied homes. Renters' buildings get none of it.</div></div><div class="signal-card supply"><div class="signal-metric">Tariffs: ~$30B Added to Housing Construction</div><div class="signal-source">Brookings / Tax Policy Center <sup data-src="S98">Brookings / Tax Policy Center</sup></div><div class="signal-implication">About 90% falls on new homes, including apartments.</div></div></div></div>
+  <div class="prose"><p><strong>Rates: the Fed and the bond market.</strong> The effective fed funds rate is down 0.47 points in a year to 3.75%, yet the 10-year Treasury rose 1.12 points to 5.24% and the 30-year mortgage to 7.28%. <sup data-src="S40">Treasury / Freddie Mac / Fed</sup> Then on September 16 the Fed raised its target to 3.75% to 4.00% and projected 4.1% by year-end. <sup data-src="S69">Federal Reserve Board</sup> The refi wall from <a href="/reef-report-issue-04" class="series-ref">Issue 04</a> (where we examined maturities breaking assets before operations do) just got steeper.</p><p><strong>Tariffs: Congress and the White House.</strong> Construction materials are up 10.1% in a year and 61.1% since January 2020; lumber up 7.6%. <sup data-src="S41">BLS</sup></p><p><strong>Immigration: Washington.</strong> Net international migration fell 53.8% in a year, from 2.73 million to 1.26 million: Texas −52.8%, Georgia −50.8%, North Carolina −43.4%, Tennessee −62.5%. <sup data-src="S44">U.S. Census Bureau</sup> That means fewer renters at the bottom of the market and fewer trades on the job site; specialty-trade employment grew just 1.1%. <sup data-src="S42">BLS</sup></p><p><strong>Property tax: statehouses.</strong> Texas spent $18 billion on relief in 2023 and budgets $51.0 billion for 2026 to 2027; the headline piece raised the school homestead exemption from $40,000 to $100,000, and it now stands at $140,000. <sup data-src="S102">Texas Comptroller</sup> Apartments got rate compression; the 20% circuit breaker stops at $5 million properties. <sup data-src="S50">State of Texas</sup> Renters pay property tax through rent, and got the smaller share.</p><p><strong>Rent-pricing software: DOJ and Congress.</strong> In November 2025 DOJ reached a proposed settlement with RealPage that would end its software's use of competitors' nonpublic, competitively sensitive data to set prices. <sup data-src="S45">U.S. DOJ</sup> DOJ is now settling with landlords one at a time, including Dallas-based Willow Bridge in July 2026, the fifth defendant to settle. <sup data-src="S45b">U.S. DOJ</sup> <strong>Our position: ban it.</strong> Software that pools rivals' private rents distorts the real submarket dispersion we tracked in <a href="/reef-report-issue-03" class="series-ref">Issue 03</a>; pooling data so everyone prices off the same sheet is a cartel with a login. Operators should compete on price and product, building by building. That puts us on the same side of this one as a Democratic Senate candidate who would ban it outright. <sup data-src="S09">Newsweek</sup> The ledger doesn't care about the label.</p><p><strong>Insurance: statehouses and the market.</strong> Insurance cost per apartment rose from $502 in 2021 to $777 in 2024, +55%, with 2023 alone up 25%. <sup data-src="S100">National Apartment Association</sup> A Minneapolis Fed survey of 35 owners in four Upper Midwest states found premiums up 45% from 2023 to 2024, and higher deductibles and exclusions moved more of the risk onto owners. <sup data-src="S99">Federal Reserve Bank of Minneapolis</sup> The market has started to turn: commercial property premiums fell 6.3% on average in the second quarter of 2026. <sup data-src="S128">CIAB via Insurance Journal</sup></p><p><strong>Credit: FHFA.</strong> Washington raised Fannie Mae's and Freddie Mac's apartment-loan caps to $88 billion each for 2026, $176 billion in all, from $146 billion. <sup data-src="S90">FHFA</sup> The ceiling on what they can buy rose 20% in the year rates rose.</p></div><div class="strip"><div class="strip-label">Special teams: the operator's bill</div><div class="signal-board"><div class="signal-card ops"><div class="signal-metric">Apartment Insurance: $502 → $777 per Unit</div><div class="signal-source">NAA benchmarking, 2021–2024 <sup data-src="S100">National Apartment Association</sup></div><div class="signal-implication">+55% in three years; 2023 alone +25%.</div></div><div class="signal-card ops"><div class="signal-metric">Apartment Insurance Premiums: +45%</div><div class="signal-source">Minneapolis Fed survey, 2023 → 2024 <sup data-src="S99">Federal Reserve Bank of Minneapolis</sup></div><div class="signal-implication">Higher deductibles and exclusions shift more risk to owners.</div></div><div class="signal-card ops"><div class="signal-metric">Texas Homestead Exemption: $140,000</div><div class="signal-source">Texas Comptroller <sup data-src="S102">Texas Comptroller</sup></div><div class="signal-implication">School-district exemption for owner-occupied homes. Renters' buildings get none of it.</div></div><div class="signal-card supply"><div class="signal-metric">Tariffs: ~$30B Added to Housing Construction</div><div class="signal-source">Brookings / Tax Policy Center <sup data-src="S98">Brookings / Tax Policy Center</sup></div><div class="signal-implication">About 90% falls on new homes, including apartments.</div></div></div></div>
 </section>
 <section class="section">
   <div class="section-eyebrow">Locker Room</div>
@@ -771,6 +1060,96 @@ body { margin: 0; }
   <p class="section-sub">One distinction to take away.</p>
   <div class="prose"><p>Capitalists vs. Communists is the poster. On the field, both teams run state capitalism, one with private capital in front and one with the state in front. Both are racing to build, or sell, the machine that does a white-collar job for less.</p><p>For an operator in Dallas or Charlotte, the flag matters less than two questions. Do our tenants share in the gains or absorb the cuts? And do we compete for them, or price them off a shared sheet?</p><p><strong>Build more. Pay more. Rescue last the ones who need it least.</strong></p></div>
 </section>
+<section class="section archive-section" id="series-archive" style="background: var(--ink); color: var(--paper); border-top: 4px solid var(--teal); padding: 60px clamp(16px, 4vw, 40px);">
+  <div style="max-width: 1080px; margin: 0 auto;">
+    <div style="font-family: 'Oswald', 'Inter', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--coral-lt); margin-bottom: 10px; font-weight: 600;">The Reef Report Archive</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 38px); font-weight: 900; margin: 0 0 14px; color: #FFFFFF; letter-spacing: -0.5px;">The Complete Series</h2>
+    <p style="font-size: 15.5px; color: rgba(240, 245, 244, 0.75); max-width: 760px; margin-bottom: 36px; line-height: 1.6;">
+      Six issues tracking the capital stack, supply waves, regulatory moves, and the real tenant ledger across Sunbelt multifamily.
+    </p>
+
+    <div class="archive-grid">
+      <div class="archive-card is-current">
+        <div class="ac-header">
+          <span class="ac-badge ac-badge-live">Current Issue</span>
+          <span class="ac-date">October 2026</span>
+        </div>
+        <div class="ac-kicker">Issue 06</div>
+        <h3 class="ac-title">Capitalists vs. Communists</h3>
+        <p class="ac-deck">State capitalism, AI compute economics, policy platforms, and why the swing vote in every market is the tenant's paycheck.</p>
+        <div class="ac-footer">
+          <span class="ac-current-label">Currently Reading</span>
+        </div>
+      </div>
+
+      <a href="/reef-report-issue-05" class="archive-card">
+        <div class="ac-header">
+          <span class="ac-badge">Issue 05</span>
+          <span class="ac-date">September 2026</span>
+        </div>
+        <div class="ac-kicker">Special Edition</div>
+        <h3 class="ac-title">Year(s) of the Vibecession</h3>
+        <p class="ac-deck">Both sides of the rent roll: buying right is what lets you charge less, and operating discipline beats headline sentiment.</p>
+        <div class="ac-footer">
+          <span class="ac-btn">Read Issue 05 <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a href="/reef-report-issue-04" class="archive-card">
+        <div class="ac-header">
+          <span class="ac-badge">Issue 04</span>
+          <span class="ac-date">July 2026</span>
+        </div>
+        <div class="ac-kicker">Issue 04</div>
+        <h3 class="ac-title">The Failures Are at the Refinance, Not the Roof</h3>
+        <p class="ac-deck">Where in the capital stack buildings actually break: floating-rate maturities, debt yield covenants, and the 65% signal.</p>
+        <div class="ac-footer">
+          <span class="ac-btn">Read Issue 04 <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a href="/reef-report-issue-03" class="archive-card">
+        <div class="ac-header">
+          <span class="ac-badge">Issue 03</span>
+          <span class="ac-date">June 2026</span>
+        </div>
+        <div class="ac-kicker">Issue 03</div>
+        <h3 class="ac-title">The Lines Are Lying</h3>
+        <p class="ac-deck">Reading beneath national rent averages: why aggregate indexes mask submarket dispersion, concessions, and micro-location strength.</p>
+        <div class="ac-footer">
+          <span class="ac-btn">Read Issue 03 <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a href="/reef-report-issue-02" class="archive-card">
+        <div class="ac-header">
+          <span class="ac-badge">Issue 02</span>
+          <span class="ac-date">May 2026</span>
+        </div>
+        <div class="ac-kicker">Issue 02</div>
+        <h3 class="ac-title">The Market Is Moving Again</h3>
+        <p class="ac-deck">Bank fragility, extend-and-pretend exhaustion, supply cliff mechanics, and 16 Sunbelt markets where the acquisition window opened.</p>
+        <div class="ac-footer">
+          <span class="ac-btn">Read Issue 02 <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a href="/reef-report-issue-01" class="archive-card">
+        <div class="ac-header">
+          <span class="ac-badge">Issue 01</span>
+          <span class="ac-date">April 2026</span>
+        </div>
+        <div class="ac-kicker">Inaugural Issue</div>
+        <h3 class="ac-title">Supply Is Still the Story</h3>
+        <p class="ac-deck">12 metro areas, 49 submarkets, 18,752 properties. The delivery peak schedule and fundamental underwriting reality across the Sunbelt.</p>
+        <div class="ac-footer">
+          <span class="ac-btn">Read Issue 01 <span class="arrow">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <div class="report-footer" style="background: linear-gradient(135deg, #0A4A42, #1A6B62); padding: 60px clamp(16px, 4vw, 40px) 40px; margin-top: 0;">
   <div style="max-width: 1400px; margin: 0 auto;">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 60px; margin-bottom: 40px;">
@@ -795,5 +1174,14 @@ body { margin: 0; }
   </div>
 </div>
 
+<script>
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.archive-dropdown')) {
+    document.querySelectorAll('.archive-dropdown.open').forEach(function(el) {
+      el.classList.remove('open');
+    });
+  }
+});
+</script>
 </body>
 </html>
