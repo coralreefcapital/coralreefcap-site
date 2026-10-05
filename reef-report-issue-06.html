@@ -447,77 +447,6 @@ body { margin: 0; }
   margin: 0 auto 32px;
   text-shadow: 0 2px 8px rgba(0,0,0,0.9);
 }
-.scoreboard-card {
-  width: 100%;
-  max-width: 580px;
-  background: rgba(14, 28, 25, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(93, 202, 165, 0.28);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 20px 48px rgba(0,0,0,0.55);
-  text-align: left;
-  margin: 0 auto;
-}
-.sb-stripe {
-  height: 4px;
-  background: linear-gradient(90deg, #1A6B62 0 33%, #F47321 33% 66%, #C99700 66% 100%);
-}
-.sb-head {
-  padding: 12px 22px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-.sb-head-title {
-  font-family: 'Oswald', 'Inter', sans-serif;
-  font-size: 11px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #C99700;
-}
-.sb-head-tag {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.45);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-.sb-body {
-  padding: 18px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.sb-line {
-  font-size: 15.5px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
-}
-.sb-line strong.cap {
-  color: #F47321;
-  font-weight: 700;
-}
-.sb-line strong.com {
-  color: var(--teal-light);
-  font-weight: 700;
-}
-.sb-line.swing {
-  margin: 6px -22px -18px;
-  padding: 14px 22px;
-  background: rgba(216, 90, 48, 0.16);
-  border-top: 1px solid rgba(216, 90, 48, 0.35);
-  color: #FFFFFF;
-  font-size: 16px;
-}
-.sb-line.swing strong {
-  color: var(--coral-lt);
-  font-weight: 700;
-}
 .metro-pills {
   margin-top: 32px;
   display: inline-flex;
@@ -784,8 +713,6 @@ body { margin: 0; }
 @media (max-width: 600px) {
   .issue-nav { padding: 12px 18px; }
   .issue-hero { padding: 44px 18px 36px; }
-  .sb-body { padding: 16px 18px; }
-  .sb-line.swing { margin: 6px -18px -16px; padding: 12px 18px; }
   .nav-meta { display: none; }
   .archive-popover { right: 0; width: 270px; }
 }
@@ -886,19 +813,6 @@ body { margin: 0; }
     <div class="hero-kicker">The Reef Report · Issue 06 · October 2026</div>
     <h1 class="hero-title">Capitalists vs. Communists</h1>
     <p class="hero-deck">The cover sells Capitalists vs. Communists. The ledger tells a different story.</p>
-
-    <div class="scoreboard-card">
-      <div class="sb-stripe"></div>
-      <div class="sb-head">
-        <span class="sb-head-title">Final Score</span>
-        <span class="sb-head-tag">Tale of the Tape</span>
-      </div>
-      <div class="sb-body">
-        <div class="sb-line"><strong class="cap">Capitalists win</strong> on building the machine.</div>
-        <div class="sb-line"><strong class="com">Communists win</strong> on price.</div>
-        <div class="sb-line swing"><strong>The swing vote</strong> is the tenant's paycheck.</div>
-      </div>
-    </div>
 
     <div>
       <div class="metro-pills">
